@@ -141,7 +141,10 @@ Data.saveGameObject = function(slot) {
         saveData.player.itemSlots = [];
         for (i = 0; i < player.itemSlots.length; i++) {
             saveData.player.itemSlots.push(new ItemSlot());
-            saveData.player.itemSlots[i].id = player.itemSlots[i].itype.id;
+            if (player.itemSlots[i].itype != undefined)
+                saveData.player.itemSlots[i].id = player.itemSlots[i].itype.id;
+            else
+                saveData.player.itemSlots[i].id = "Nothing";
             saveData.player.itemSlots[i].quantity = player.itemSlots[i].quantity;
         }
         //Perks

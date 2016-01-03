@@ -1,6 +1,5 @@
 function keyPress(e) {
     var event = window.event ? window.event : e;
-    console.log(event);
     switch(event.key) {
         //Standard buttons
         case "1":
