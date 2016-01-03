@@ -1,0 +1,5 @@
+Areas = [];
+
+Areas.Forest = function() {
+
+}

@@ -1,0 +1,199 @@
+/* Body Content */
+body {
+	background-color: #EBD7A5;
+}
+header {
+	
+}
+nav {
+	float: left;
+	margin-right: 0;
+	margin-left: 0;
+	display: block;
+}
+main {
+	
+}
+footer {
+	
+}
+
+/* Heading Texts */
+h2 {
+	margin-top: 0;
+	margin-bottom: 0;
+	padding-left: 10px;
+}
+
+/* Wrapper */
+#wrapper {
+	margin-left: auto;
+	margin-right: auto;
+	width: 920px;
+	background-image: url(assets/interface/background.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+/* Main Text Display */
+#maintext {
+	width: 687px;
+	height: 440px;
+	padding-left: 5px;
+	overflow-y: scroll;
+	display: block;
+	background-color: rgba(255, 255, 255, 0.3);
+	border: 2px solid #000000;
+}
+
+/* Stats Display */
+#stats {
+	width: 210px;
+	height: 560px;
+	margin-right: 0;
+	/*background-image: url(assets/interface/sidepanel.png);
+	background-repeat: no-repeat;*/
+}
+#stats p {
+	width: 200px;
+	padding-left: 5px;
+	margin-top: 0;
+	line-height: 1.4em;
+	overflow-x: visible;
+}
+.statframe {
+	padding-top: 0;
+	margin-top: 0;
+	margin-left: 10px;
+	height: 20px;
+	width: 160px;
+	display: block;
+	background-color: rgba(0, 0, 0, 0.2);
+	border: 2px ridge #000000;
+}
+.statframeblank {
+	padding-top: 0;
+	margin-top: 0;
+	margin-left: 10px;
+	height: 20px;
+	width: 160px;
+	display: block;
+	/*border: 2px ridge #000000;*/
+	padding: 2px;
+}
+.statbar {
+	background-image: linear-gradient(to bottom, rgba(255, 0, 0, 0.7), rgba(255, 127, 127, 0.7) 50%, rgba(255, 0, 0, 0.7) 50%);
+	height: 100%;
+	width: 100%;
+}
+.statlabel {
+	position: relative;
+	left: 0px;
+	top: -2px;
+	padding: 0;
+	margin: 0;
+	height: 0;
+	width: 100px;
+	display: block;
+	color: #000000;
+	font-family: Georgia, "Times New Roman", sans-serif;
+	font-size: 12px;
+	text-shadow: 1px 1px 5px #333333;
+}
+.statnum {
+	position: relative;
+	top: -2px;
+	right: 50px;
+	padding: 0;
+	margin: 0;
+	height: 0;
+	width: 60px;
+	text-align: right;
+	color: #000000;
+	font-family: Georgia, "Times New Roman", sans-serif;
+	font-size: 18px;
+	text-shadow: 1px 1px 5px #333333;
+}
+.statupdown {
+	float: inherit;
+	position: relative;
+	left: 162px;
+	bottom: 22px;
+	background-image: url(assets/interface/arrow-up.png);
+	background-size: cover;
+	background-repeat: no-repeat;
+	height: 24px;
+	width: 24px;
+}
+#timeDisplay {
+	padding-top: 5px;
+	padding-left: 10px;
+	font-family: "Lucida Console", "Courier New", monospace;
+}
+#strBar, #touBar, #speBar, #intBar, #libBar, #senBar, #corBar, #hpBar, #lustBar, #fatigueBar, #xpBar {}
+#strNum, #touNum, #speNum, #intNum, #libNum, #senNum, #corNum, #hpNum, #lustNum, #fatigueNum, #levelNum, #xpNum, #gemNum {}
+
+#strArrow, #touArrow, #speArrow, #intArrow, #libArrow, #senArrow, #corArrow, #hpArrow, #lustArrow, #fatigueArrow {}
+
+/* Buttons */
+.buttonrow {
+	padding-bottom: 40px;
+}
+.button {
+	background-repeat: no-repeat;
+	width: 136px;
+	height: 38px;
+	display: block;
+	float: left;
+	margin-top: 2px;
+	margin-right: 4px;
+	text-align: center;
+	text-decoration: none;
+	text-shadow: 1px 1px 1px #333333;
+	font-family: Georgia, "Times New Roman", serif;
+	font-size: 16px;
+	font-weight: bold;
+	line-height: 38px;
+	color: #000000;
+	transition: color 0.2s linear;
+}
+.buttonbuffer {
+	margin-right: 74px;
+}
+.button:hover {
+	opacity: 0.8;
+	color: #00FFFF;
+	cursor: pointer;
+}
+.button:active {
+	opacity: 0.6;
+	color: #00FFFF;
+}
+#topbuttonset {
+	margin-bottom: 2px;
+	float: top;
+}
+#buttonset {
+	margin-left: 0px;
+	float: bottom;
+	bottom: 200px;
+}
+#buttonMain { background-image: url(assets/interface/button0.jpg); }
+#buttonData { background-image: url(assets/interface/button1.jpg); }
+#buttonLevel { background-image: url(assets/interface/button2.jpg); }
+#buttonStats { background-image: url(assets/interface/button3.jpg); }
+#buttonPerks { background-image: url(assets/interface/button4.jpg); }
+#buttonAppearance { background-image: url(assets/interface/button5.jpg); }
+#button0, #button10 { background-image: url(assets/interface/button0.jpg); }
+#button1, #button11 { background-image: url(assets/interface/button1.jpg); }
+#button2, #button12 { background-image: url(assets/interface/button2.jpg); }
+#button3, #button13 { background-image: url(assets/interface/button3.jpg); }
+#button4, #button14 { background-image: url(assets/interface/button4.jpg); }
+#button5 { background-image: url(assets/interface/button5.jpg); }
+#button6 { background-image: url(assets/interface/button6.jpg); }
+#button7 { background-image: url(assets/interface/button7.jpg); }
+#button8 { background-image: url(assets/interface/button8.jpg); }
+#button9 { background-image: url(assets/interface/button9.jpg); }
+
+/* Others */
+#perkselect { min-width: 200px; }

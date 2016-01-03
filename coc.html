@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Corruption of Champions: HTML Edition</title>
+		<meta charset="utf-8">
+		<link href="coc.css" rel="stylesheet">
+	</head>
+	<body>
+		<div id="wrapper">
+			<header>
+				<div id="topbuttonset">
+					<div class="buttonrow">
+						<a><div class="button" id="buttonMain" onclick="mainMenu()">Main Menu</div></a>
+						<a><div class="button buttonbuffer" id="buttonData" onClick="dataScreen()">Data</div></a>
+						<a><div class="button" id="buttonLevel" onclick="levelScreen()">Level Up</div></a>
+						<a><div class="button" id="buttonStats" onclick="statsScreen()">Stats</div></a>
+						<a><div class="button" id="buttonPerks" onclick="perksScreen()">Perks</div></a>
+						<a><div class="button" id="buttonAppearance" onclick="appearanceScreen()">Appearance</div></a>
+					</div>
+				</div>
+			</header>
+			<nav>
+				<div id="stats">
+					<h2 id="charName">Name</h2>
+					<h2>Core Stats</h2>
+					<div class="statframe"><div class="statbar" id="strBar"><p class="statlabel">Strength:</p><p class="statnum" id="strNum">100</p></div><div class="statupdown" id="strArrow"></div></div>
+					<div class="statframe"><div class="statbar" id="touBar"><p class="statlabel">Toughness:</p><p class="statnum" id="touNum">100</p></div><div class="statupdown" id="touArrow"></div></div>
+					<div class="statframe"><div class="statbar" id="speBar"><p class="statlabel">Speed:</p><p class="statnum" id="speNum">100</p></div><div class="statupdown" id="speArrow"></div></div>
+					<div class="statframe"><div class="statbar" id="intBar"><p class="statlabel">Intelligence:</p><p class="statnum" id="intNum">100</p></div><div class="statupdown" id="intArrow"></div></div>
+					<div class="statframe"><div class="statbar" id="libBar"><p class="statlabel">Libido:</p><p class="statnum" id="libNum">100</p></div><div class="statupdown" id="libArrow"></div></div>
+					<div class="statframe"><div class="statbar" id="senBar"><p class="statlabel">Sensitivity:</p><p class="statnum" id="senNum">100</p></div><div class="statupdown" id="senArrow"></div></div>
+					<div class="statframe"><div class="statbar" id="corBar"><p class="statlabel">Corruption:</p><p class="statnum" id="corNum">100</p></div><div class="statupdown" id="corArrow"></div></div>
+					<h2>Combat Stats</h2>
+					<div class="statframe"><div class="statbar" id="hpBar"><p class="statlabel">HP:</p><p class="statnum" id="hpNum">9999 / 9999</p></div><div class="statupdown" id="hpArrow"></div></div>
+					<div class="statframe"><div class="statbar" id="lustBar"><p class="statlabel">Lust:</p><p class="statnum" id="lustNum">100 / 100</p></div><div class="statupdown" id="lustArrow"></div></div>
+					<div class="statframe"><div class="statbar" id="fatigueBar"><p class="statlabel">Fatigue:</p><p class="statnum" id="fatigueNum">100 / 100</p></div><div class="statupdown" id="fatigueArrow"></div></div>
+					<div class="statframe" id="hungerFrame"><div class="statbar" id="hungerBar"><p class="statlabel">Fullness:</p><p class="statnum" id="hungerNum">100 / 100</p></div><div class="statupdown" id="hungerArrow"></div></div>
+					<h2>Advancement</h2>
+					<div class="statframeblank"><p class="statlabel">Level:</p><p class="statnum" id="levelNum">99</p></div>
+					<div class="statframe"><div class="statbar" id="xpBar"><p class="statlabel">XP:</p><p class="statnum" id="xpNum">9999 / 9999</p></div></div>
+					<div class="statframeblank"><p class="statlabel">Gems:</p><p class="statnum" id="gemNum">999,999,999</p></div>
+					<div id="timeDisplay"><p>Day#: 1337<br>Time: 12:00pm<br></p></div>
+				</div>
+			</nav>
+			<main>
+				<div id="maintext">
+					The placeholder text of placeholderiness.
+				</div>
+			</main>
+			<footer>
+				<div id="buttonset">
+					<div class="buttonrow">
+						<a><div class="button" id="button0">Button 0</div></a>
+						<a><div class="button" id="button1">Button 1</div></a>
+						<a><div class="button" id="button2">Button 2</div></a>
+						<a><div class="button" id="button3">Button 3</div></a>
+						<a><div class="button" id="button4">Button 4</div></a>
+					</div>
+					<div class="buttonrow">
+						<a><div class="button" id="button5">Button 5</div></a>
+						<a><div class="button" id="button6">Button 6</div></a>
+						<a><div class="button" id="button7">Button 7</div></a>
+						<a><div class="button" id="button8">Button 8</div></a>
+						<a><div class="button" id="button9">Button 9</div></a>
+					</div>
+					<div class="buttonrow">
+						<a><div class="button" id="button10">Button 10</div></a>
+						<a><div class="button" id="button11">Button 11</div></a>
+						<a><div class="button" id="button12">Button 12</div></a>
+						<a><div class="button" id="button13">Button 13</div></a>
+						<a><div class="button" id="button14">Button 14</div></a>
+					</div>
+				</div>
+			</footer>
+		</div>
+		<!--Additional APIs-->
+		<script type="text/javascript" src="js/engine/jquery-1.11.3.js"></script>
+		<!--Core Engine-->
+		<script type="text/javascript" src="js/engine/gui.js"></script>
+		<script type="text/javascript" src="js/engine/text.js"></script>
+		<script type="text/javascript" src="js/engine/utils.js"></script>
+		<script type="text/javascript" src="js/engine/input.js"></script>
+		<script type="text/javascript" src="js/engine/saves.js"></script>
+		<script type="text/javascript" src="js/engine/inventory.js"></script>
+		<script type="text/javascript" src="js/engine/time.js"></script>
+		<script type="text/javascript" src="js/engine/combat.js"></script>
+
+		<script type="text/javascript" src="js/flags/gameFlags.js"></script>
+
+        <script type="text/javascript" src="js/appearanceEnums.js"></script>
+		<script type="text/javascript" src="js/appearance.js"></script>
+		<script type="text/javascript" src="js/assClass.js"></script>
+		<script type="text/javascript" src="js/breastRowClass.js"></script>
+		<script type="text/javascript" src="js/cockClass.js"></script>
+		<script type="text/javascript" src="js/vaginaClass.js"></script>
+		<script type="text/javascript" src="js/itemClass.js"></script>
+		<script type="text/javascript" src="js/itemSlotClass.js"></script>
+		<script type="text/javascript" src="js/perkClass.js"></script>
+		<script type="text/javascript" src="js/perkLib.js"></script>
+		<script type="text/javascript" src="js/perkBuildMenu.js"></script>
+		<script type="text/javascript" src="js/statusEffectClass.js"></script>
+		<script type="text/javascript" src="js/statusEffectLib.js"></script>
+
+		<script type="text/javascript" src="js/globalVariables.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>
+		<script type="text/javascript" src="js/playerInfo.js"></script>
+		<!--Items-->
+		<script type="text/javascript" src="js/items/weapons.js"></script>
+		<script type="text/javascript" src="js/items/armor.js"></script>
+		<script type="text/javascript" src="js/items/consumableEffects.js"></script>
+		<script type="text/javascript" src="js/items/consumables.js"></script>
+		<!--Core entities-->
+		<script type="text/javascript" src="js/creature.js"></script>
+		<script type="text/javascript" src="js/player.js"></script>
+		<!--Additional-->
+		<script type="text/javascript" src="js/scenes/intro.js"></script>
+		<script type="text/javascript" src="js/scenes/camp.js"></script>
+		<script type="text/javascript" src="js/scenes/exploration.js"></script>
+		<script type="text/javascript" src="js/scenes/monsters/goblin.js"></script>
+		<script type="text/javascript" src="js/scenes/monsters/imp.js"></script>
+		<script>
+			//Start the game!
+			mainMenu();
+		</script>
+	</body>
+</html>
