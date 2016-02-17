@@ -68,54 +68,19 @@ Data.saveGameObject = function(slot) {
     try {
         //Player Data
         saveData.player = {};
-        saveData.player.name = player.name;
-        saveData.player.gender = player.gender;
-        saveData.player.tallness = player.tallness;
+        for (i in player) {
+            if (player[i] != undefined && (typeof player[i] == "string" || typeof player[i] == "number" || typeof player[i] == "boolean")) {
+                saveData.player[i] = player[i];
+            }
+        }
 
-        saveData.player.str = player.str;
-        saveData.player.tou = player.tou;
-        saveData.player.spe = player.spe;
-        saveData.player.inte = player.inte;
-        saveData.player.lib = player.lib;
-        saveData.player.sen = player.sen;
-        saveData.player.cor = player.cor;
-
-        saveData.player.HP = player.HP;
-        saveData.player.lust = player.lust;
-        saveData.player.fatigue = player.fatigue;
-
-        saveData.player.level = player.level;
-        saveData.player.XP = player.XP;
-        saveData.player.gems = player.gems;
-
-        saveData.player.skinTone = player.skinTone;
-        saveData.player.skinType = player.skinType;
-        saveData.player.skinAdj = player.skinAdj;
-        saveData.player.hairType = player.hairType;
-        saveData.player.hairColor = player.hairColor;
-        saveData.player.hairLength = player.hairLength;
-        saveData.player.furColor = player.furColor;
-
-        saveData.player.earType = player.earType;
-        saveData.player.tailType = player.tailType;
-        saveData.player.tailVenom = player.tailVenom;
-        saveData.player.tailRecharge = player.tailRecharge;
-        saveData.player.lowerBody = player.lowerBody;
-
-        saveData.player.tone = player.tone;
-        saveData.player.thickness = player.thickness;
-        saveData.player.hipRating = player.hipRating;
-
+        //Cocks
         saveData.player.cocks = [];
         if (player.cocks.length > 0) {
             for (var i = 0; i < player.cocks.length; i++) {
                 saveData.player.cocks[i] = player.cocks[i];
             }
         }
-        saveData.player.balls = player.balls;
-        saveData.player.ballSize = player.ballSize;
-        saveData.player.hoursSinceCum = player.hoursSinceCum = 0;
-        saveData.player.cumMultiplier = player.cumMultiplier = 0;
         //Vaginas
         saveData.player.vaginas = [];
         if (player.vaginas.length > 0) {
@@ -127,12 +92,17 @@ Data.saveGameObject = function(slot) {
         saveData.player.ass = player.ass;
         //Breasts
         saveData.player.breastRows = [];
-        if (player.breastRows.length > 0) {
-            for (i = 0; i < player.breastRows.length; i++) {
-                saveData.player.breastRows[i] = player.breastRows[i];
-            }
+        for (i = 0; i < player.breastRows.length; i++) {
+            saveData.player.breastRows[i] = player.breastRows[i];
+            /*player.breastRows[i] = unfuckBreastRow(player.breastRows[i]);
+            saveData.player.breastRows[i].breasts = player.breastRows[i].breasts;
+            saveData.player.breastRows[i].breastSize = player.breastRows[i].breastSize;
+            saveData.player.breastRows[i].lactationMultiplier = player.breastRows[i].lactationMultiplier;
+            saveData.player.breastRows[i].milkFullness = player.breastRows[i].milkFullness;
+            saveData.player.breastRows[i].fuckable = player.breastRows[i].fuckable;
+            saveData.player.breastRows[i].nipplesPerBreast = player.breastRows[i].nipplesPerBreast;
+            saveData.player.breastRows[i].nippleLength = player.breastRows[i].nippleLength;*/
         }
-        saveData.player.lactationMultiplier = player.lactationMultiplier;
 
         saveData.player.weapon = player.weapon;
         saveData.player.armor = player.armor;
@@ -176,16 +146,29 @@ Data.saveGameObject = function(slot) {
         if (player.keyItems.length > 0) {
             for (i = 0; i < player.keyItems.length; i++) {
                 saveData.player.keyItems.push(new KeyItem());
-                saveData.player.keyItems[i].ktype = player.keyItems[i].ktype.id;
+                saveData.player.keyItems[i].id = player.keyItems[i].ktype.id;
                 saveData.player.keyItems[i].value1 = player.keyItems[i].value1;
                 saveData.player.keyItems[i].value2 = player.keyItems[i].value2;
                 saveData.player.keyItems[i].value3 = player.keyItems[i].value3;
                 saveData.player.keyItems[i].value4 = player.keyItems[i].value4;
             }
         }
+        //Spells
+        saveData.player.spells = {};
+        saveData.player.spells.chargeWeapon = player.spells.chargeWeapon;
+        saveData.player.spells.blind = player.spells.blind;
+        saveData.player.spells.whitefire = player.spells.whitefire;
+        saveData.player.spells.arouse = player.spells.arouse;
+        saveData.player.spells.heal = player.spells.heal;
+        saveData.player.spells.might = player.spells.might;
 
-        saveData.player.statPoints = player.statPoints;
-        saveData.player.perkPoints = player.perkPoints;
+        //Exploration
+        saveData.exploration = {};
+        saveData.exploration.explored = exploration.explored;
+        saveData.exploration.exploredForest = exploration.exploredForest;
+        saveData.exploration.exploredLake = exploration.exploredLake;
+        saveData.exploration.exploredDesert = exploration.exploredDesert;
+        saveData.exploration.exploredMountain = exploration.exploredMountain;
 
         //Other Data
         saveData.time = {};
@@ -193,6 +176,10 @@ Data.saveGameObject = function(slot) {
         saveData.time.hours = time.hours;
         saveData.time.minutes = time.minutes;
 
+        saveData.gameFlags = {};
+        for (i in gameFlags) {
+            saveData.gameFlags[i] = gameFlags[i];
+        }
         //Assign Save Version
         saveData.saveVersion = saveVersion;
         localStorage[slot] = JSON.stringify(saveData);
@@ -230,6 +217,12 @@ Data.loadGameObject = function(slot) {
 		for (i in saveData.player) {
             player[i] = saveData.player[i];
 		}
+        //Manually set equipment
+        if (saveData.player.weapon != undefined)
+            player.weapon = lookupItem(saveData.player.weapon.id);
+        if (saveData.player.armor != undefined)
+            player.armor = lookupItem(saveData.player.armor.id);
+
         //Set items
         player.itemSlots = [];
         for (var i = 0; i < 10; i++) {
@@ -247,10 +240,32 @@ Data.loadGameObject = function(slot) {
         //Status Effects
         player.statusEffects = [];
         for (i = 0; i < saveData.player.statusEffects.length; i++) {
-            player.createStatusEffect(lookupPerk(saveData.player.perks[i].id), saveData.player.perks[i].value1, saveData.player.perks[i].value2, saveData.player.perks[i].value3, saveData.player.perks[i].value4);
+            player.createStatusEffect(lookupStatusEffects(saveData.player.statusEffects[i].id), saveData.player.statusEffects[i].value1, saveData.player.statusEffects[i].value2, saveData.player.statusEffects[i].value3, saveData.player.statusEffects[i].value4);
         }
         //Key Items
-
+        player.keyItems = [];
+        for (i = 0; i < saveData.player.keyItems.length; i++) {
+            player.createKeyItem(lookupKeyItem(saveData.player.keyItems[i].id), saveData.player.keyItems[i].value1, saveData.player.keyItems[i].value2, saveData.player.keyItems[i].value3, saveData.player.keyItems[i].value4);
+        }
+        //Spells
+        if (saveData.player.spells != undefined) {
+            player.spells = [];
+            player.spells.chargeWeapon = saveData.player.spells.chargeWeapon;
+            player.spells.blind = saveData.player.spells.blind;
+            player.spells.whitefire = saveData.player.spells.whitefire;
+            player.spells.arouse = saveData.player.spells.arouse;
+            player.spells.heal = saveData.player.spells.heal;
+            player.spells.might = saveData.player.spells.might;
+        }
+        //Exploration
+        if (saveData.exploration != undefined) {
+            exploration = [];
+            exploration.explored = saveData.exploration.explored;
+            exploration.exploredForest = saveData.exploration.exploredForest;
+            exploration.exploredLake = saveData.exploration.exploredLake;
+            exploration.exploredDesert = saveData.exploration.exploredDesert;
+            exploration.exploredMountain = saveData.exploration.exploredMountain;
+        }
 		//Other data
 		playerMenu = Camp.doCamp;
 		if (saveData.time != undefined) {
@@ -258,6 +273,15 @@ Data.loadGameObject = function(slot) {
 			time.hours = saveData.time.hours;
 			time.minutes = saveData.time.minutes;
 		}
+        if (saveData.gameFlags != undefined) {
+            for (i in saveData.gameFlags) {
+                if (saveData.gameFlags[i] == undefined || saveData.gameFlags[i] == null)
+                    gameFlags[i] = 0;
+                else
+                    gameFlags[i] = saveData.gameFlags[i];
+            }
+        }
+        Data.fixSave();
 		//Set to successful and return
 		success = true;
 	}
@@ -287,6 +311,25 @@ Data.loadSaveDisplay = function(slot) {
         holding += "H";
 	return holding;
 }
+Data.fixSave = function() {
+    var i;
+    //Fix body parts
+    if (player.race != undefined)
+        delete player.race; //Reset variable
+    if (player.weapon.getTooltipDescription == undefined)
+        delete player.weapon.getTooltipDescription;
+    if (player.armor.getTooltipDescription == undefined)
+        delete player.armor.getTooltipDescription;
+    for (i in player.cocks) {
+        fixCock(player.cocks[i]);
+    }
+    for (i in player.vaginas) {
+        fixVagina(player.vaginas[i]);
+    }
+    for (i in player.breastRows) {
+        unfuckBreastRow(player.breastRows[i]);
+    }
+}
 //DELETE SAVE
 Data.deletePrompt = function(slot) {
 	clearOutput();
@@ -308,10 +351,17 @@ Data.saveSettings = function() {
     try {
         saveData.silly = silly;
         saveData.use12Hours = use12Hours;
+
+        //saveData.buttonFont = buttonFont;
+        saveData.mainFont = mainFont;
+        saveData.mainFontSizeIndex = mainFontSizeIndex;
+
+        //Set save to successful
         localStorage["CoC_Main"] = JSON.stringify(saveData);
         success = true;
     }
     catch(error) {
+        //If errors occur, set save to failed
         console.error(error);
         success = false;
     }
@@ -325,6 +375,11 @@ Data.loadSettings = function() {
     try {
         silly = saveData.silly;
         use12Hours = saveData.use12Hours;
+
+        mainFont = saveData.mainFont;
+        mainFontSizeIndex = saveData.mainFontSizeIndex;
+        applyFontSettings();
+        //Set load to successful
         success = true;
     }
     catch(error) {
@@ -332,4 +387,11 @@ Data.loadSettings = function() {
         success = false;
     }
     return success;
+}
+
+//Add to Data Flags
+function addToGameFlags() {
+    for (var i in arguments) {
+        gameFlags[arguments[i]] = 0;
+    }
 }

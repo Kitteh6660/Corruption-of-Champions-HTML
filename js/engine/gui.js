@@ -1,24 +1,40 @@
+//Events
+document.onmousemove = getMousePosition;
+initializeTooltipEvents();
+
+function getMousePosition(event) {
+    document.getElementById("tooltip").style.top = (event.clientY - 220) + "px";
+    if (event.clientX + 20 < document.documentElement.clientWidth - 320)
+        document.getElementById("tooltip").style.left = (event.clientX + 20) + "px";
+    else
+        document.getElementById("tooltip").style.left = (document.documentElement.clientWidth - 320) + "px";
+}
+
 //Stats Pane
 function refreshStats() {
 	//------------
 	// NUMBERS
 	//------------
 	//Core Stats
-	document.getElementById("strNum").innerHTML = player.str;
-	document.getElementById("touNum").innerHTML = player.tou;
-	document.getElementById("speNum").innerHTML = player.spe;
-	document.getElementById("intNum").innerHTML = player.inte;
-	document.getElementById("libNum").innerHTML = player.lib;
-	document.getElementById("senNum").innerHTML = player.sen;
-	document.getElementById("corNum").innerHTML = player.cor;
+	document.getElementById("strNum").innerHTML = Math.floor(player.str);
+	document.getElementById("touNum").innerHTML = Math.floor(player.tou);
+	document.getElementById("speNum").innerHTML = Math.floor(player.spe);
+	document.getElementById("intNum").innerHTML = Math.floor(player.inte);
+	document.getElementById("libNum").innerHTML = Math.floor(player.lib);
+	document.getElementById("senNum").innerHTML = Math.floor(player.sen);
+	document.getElementById("corNum").innerHTML = Math.floor(player.cor);
 	//Combat Stats
 	document.getElementById("hpNum").innerHTML = Math.floor(player.HP) + " / " + player.maxHP();
+    document.getElementById("hpNum").title = "HP: " + Math.floor(player.HP) + " / " + player.maxHP();
 	document.getElementById("lustNum").innerHTML = Math.floor(player.lust) + " / " + player.maxLust();
+    document.getElementById("lustNum").title = "Lust: " + Math.floor(player.lust) + " / " + player.maxLust() + " \nMinimum: " + player.minLust() + "\nLust Resistance: " + (Math.floor((1 - player.lustVuln) * 1000) / 10) + "%";
 	document.getElementById("fatigueNum").innerHTML = Math.floor(player.fatigue) + " / " + player.maxFatigue();
+    document.getElementById("fatigueNum").title = "Fatigue: " + Math.floor(player.fatigue) + " / " + player.maxFatigue();
 	//Advancement
 	document.getElementById("levelNum").innerHTML = player.level;
 	document.getElementById("xpNum").innerHTML = player.XP + " / " + (player.level * 100);
 	document.getElementById("gemNum").innerHTML = player.gems;
+
 	//------------
 	// BARS
 	//------------
@@ -79,15 +95,26 @@ function hideUpDown() {
         document.getElementById(arrows[i]).style.visibility = "hidden";
     }
 }
-function showUpDown(attribute, upDown) {
+function showUpDown(arrowToDisplay, upDown) {
     //Auto-route parameter
-    if (attribute == "inte") attribute = "int";
+    if (arrowToDisplay == "inteArrow") arrowToDisplay = "intArrow";
     //Display arrow
     if (upDown == "up")
-        document.getElementById(attribute).style.backgroundImage = "url(assets/interface/arrow-up.png)";
+        document.getElementById(arrowToDisplay).style.backgroundImage = "url(assets/interface/arrow-up.png)";
     else if (upDown == "down")
-        document.getElementById(attribute).style.backgroundImage = "url(assets/interface/arrow-down.png)";
-    document.getElementById(attribute).style.visibility = "visible";
+        document.getElementById(arrowToDisplay).style.backgroundImage = "url(assets/interface/arrow-down.png)";
+    document.getElementById(arrowToDisplay).style.visibility = "visible";
+}
+function displaySprite(spriteId) {
+    if (spriteId == undefined) {
+        document.getElementById("spriteDisplay").innerHTML = "";
+    }
+    else {
+        var image = new Image();
+        image.src = "assets/sprites/" + spriteId + ".png";
+
+        document.getElementById("spriteDisplay").innerHTML = "<img src=\"assets/sprites/" + spriteId + ".png\">"
+    }
 }
 
 //Bottom menu buttons
@@ -97,32 +124,30 @@ function menu() {
 	}
 }
 
-function addButton(pos, txt, func, arg1, arg2, arg3) {
+function addButton(pos, txt, func, arg1, arg2, arg3, tooltipText, tooltipHeader) {
+    if (tooltipHeader == undefined) tooltipHeader = txt;
+    var callback = createCallBackFunction(func, arg1, arg2, arg3);
 	document.getElementById("button" + pos).innerHTML = txt;
 	document.getElementById("button" + pos).style.visibility = "visible";
-	document.getElementById("button" + pos).onclick = (function() {
-		if (arg1 != undefined) {
-			if (arg2 != undefined) {
-				if (arg3 != undefined) {
-					return function() {
-						func(arg1, arg2, arg3);
-					}
-				}
-				return function() {
-					func(arg1, arg2);
-				}
-			}
-			return function() {
-				func(arg1);
-			}
-		}
-		else {
-			return function() {
-				func();
-			}
-		}
-	})();
+    //document.getElementById("button" + pos).style.opacity = "1";
+	document.getElementById("button" + pos).onclick = callback;
+    document.getElementById("button" + pos).tooltipHeader = tooltipHeader;
+    document.getElementById("button" + pos).tooltipText = tooltipText;
+    return document.getElementById("button" + pos);
 }
+function addButtonDisabled(pos, txt, tooltipText, tooltipHeader) {
+    if (tooltipHeader == undefined) tooltipHeader = txt;
+    document.getElementById("button" + pos).innerHTML = txt;
+    document.getElementById("button" + pos).style.visibility = "visible";
+    //document.getElementById("button" + pos).style.opacity = "0.4";
+    document.getElementById("button" + pos).onclick = null;
+    document.getElementById("button" + pos).tooltipHeader = tooltipHeader;
+    document.getElementById("button" + pos).tooltipText = tooltipText;
+}
+function removeButton(pos) {
+    document.getElementById("button" + pos).style.visibility = "hidden";
+}
+
 function doNext(func) {
 	menu();
 	addButton(0, "Next", func);
@@ -166,4 +191,23 @@ function showMenuButton(menuButton) {
 function setMenuButton(menuButton, text, func) {
 	document.getElementById(menuButton).innerHTML = text;
 	document.getElementById(menuButton).onclick = func;
+}
+
+//Tooltip
+function initializeTooltipEvents() {
+    for (var i = 0; i < 15; i++) {
+        //Create blank variable
+        document.getElementById("button" + i).tooltipHeader = undefined;
+        document.getElementById("button" + i).tooltipText = undefined;
+        //Hook events
+        document.getElementById("button" + i).onmouseover = (function(event) {
+            if (event.currentTarget.tooltipText != undefined) {
+                document.getElementById("tooltip").style.visibility = "visible";
+                document.getElementById("tooltip").innerHTML = "<h4>" + event.currentTarget.tooltipHeader + "</h4><p>" + event.currentTarget.tooltipText + "</p>";
+            }
+        });
+        document.getElementById("button" + i).onmouseout = function() {
+            document.getElementById("tooltip").style.visibility = "hidden";
+        }
+    }
 }

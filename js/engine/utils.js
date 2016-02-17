@@ -37,15 +37,8 @@ function Num2Text(number) {
 }
 
 //Comma display
-function addComma(num) {
-    var str = "";
-    if (num <= 0) return "0";
-    while (num>0){
-        var tmp = num % 1000;
-        str = ( num > 999 ?"," + (tmp < 100 ? ( tmp < 10 ? "00": "0"): ""): "") + tmp + str;
-        num = num / 1000;
-    }
-    return str;
+function formatNumber(num) {
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
 }
 
 //Capitalize letters
@@ -61,15 +54,15 @@ function rand(num) {
 	var result = Math.random() * num;
 	return Math.floor(result);
 }
-function randomChoice(args) {
+function randomChoice() {
     var choice;
-    if (args.length == 1) {
-        choice = int(Math.round(Math.random() * (args[0].length - 1)));
-        return args[0][choice];
+    if (arguments.length == 1) {
+        choice = Math.round(Math.random() * (arguments[0].length - 1));
+        return arguments[0][choice];
     }
     else {
-        choice = int(Math.round(Math.random() * (args.length - 1)));
-        return args[choice];
+        choice = Math.round(Math.random() * (arguments.length - 1));
+        return arguments[choice];
     }
 }
 
@@ -78,6 +71,38 @@ function lookupItem(id) {
     return ItemLib[id];
 }
 
+function lookupKeyItem(id) {
+    return KeyItemIDs[id];
+}
+
 function lookupPerk(id) {
-    return PerkLib[id];
+    return PerkIDs[id];
+}
+
+function lookupStatusEffects(id) {
+    return StatusEffectIDs[id];
+}
+
+//Function
+function createCallBackFunction(func, arg1, arg2, arg3) {
+    if (arg1 != undefined) {
+        if (arg2 != undefined) {
+            if (arg3 != undefined) {
+                return function() {
+                    func(arg1, arg2, arg3);
+                }
+            }
+            return function() {
+                func(arg1, arg2);
+            }
+        }
+        return function() {
+            func(arg1);
+        }
+    }
+    else {
+        return function() {
+            func();
+        }
+    }
 }

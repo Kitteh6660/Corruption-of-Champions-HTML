@@ -8,7 +8,7 @@ CharCreation.initializeNewGame = function() {
     //Initialize player
     player = new Player();
     player.HP = player.maxHP();
-    player.weapon = Items.Weapons.Fists;
+    player.weapon = Items.NOTHING;
     player.armor = Items.Armor.ComfortableClothes;
     //Clear Flags
     flags = [0] * 3000;
@@ -318,7 +318,7 @@ Intro.arrivalPartTwo = function() {
 	else
 		outputText("the urge to ram your cock down his throat.  The strangeness of the thought surprises you.<br><br>");
 	outputText("The imp says, \"<i>I'm amazed you aren't already chasing down my cock, human.  The last Champion was an eager whore for me by the time she woke up.  This lust draft made sure of it.</i>\"");
-	player.modStat("cor", 2);
+	player.modStats("cor", 2);
 	player.changeLust(40, false);
 	doNext(Intro.arrivalPartThree);
 }

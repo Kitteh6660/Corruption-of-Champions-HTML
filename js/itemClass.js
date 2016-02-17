@@ -1,10 +1,11 @@
 ItemLib = []; //Hold item IDs for purpose of looking up or for save data.
 Items = [];
 
-ITEM_TYPE_WEAPON = "Weapons";
-ITEM_TYPE_ARMOR = "Armors";
-ITEM_TYPE_CONSUMABLE = "Consumables";
-ITEM_TYPE_MATERIAL = "Materials";
+ITEM_TYPE_WEAPON = "Weapon";
+ITEM_TYPE_ARMOUR = "Armour";
+ITEM_TYPE_UNDERGARMENT = "Undergarment";
+ITEM_TYPE_CONSUMABLE = "Consumable";
+ITEM_TYPE_MATERIAL = "Material";
 
 function Item(itemId, itemShortName, itemLongName, itemType) {
 	//Required values, will be declared by parameters
@@ -30,8 +31,27 @@ function Item(itemId, itemShortName, itemLongName, itemType) {
 	ItemLib[this.id] = this;
 }
 
+Item.prototype.getTooltipDescription = function() {
+    var text = this.description;
+    text += "<br><br><b>Type:</b> " + this.type;
+    text += "<br><b>Base value:</b> " + this.value;
+    if (this.type == ITEM_TYPE_WEAPON) {
+        text += "<br><b>Attack:</b> " + this.attack;
+    }
+    if (this.type == ITEM_TYPE_ARMOUR || this.type == ITEM_TYPE_UNDERGARMENT) {
+        if (this.defense > 0)
+            text += "<br><b>Defense:</b> " + this.defense;
+        if (this.sexiness > 0)
+            text += "<br><b>Sexiness:</b> " + this.sexiness;
+    }
+    return text;
+}
+
 Item.prototype.canUse = function() {
-	return true;
+    if (this.type == ITEM_TYPE_MATERIAL)
+        return false;
+	else
+        return true;
 }
 
 Item.prototype.useItem = function() {
@@ -39,13 +59,13 @@ Item.prototype.useItem = function() {
 		if (this.consumeEffect != null) {
 			this.consumeEffect();
 		}
-		return true;
+		return false;
 	}
-    if (this.type == ITEM_TYPE_WEAPON || this.type == ITEM_TYPE_ARMOR) {
+    if (this.type == ITEM_TYPE_WEAPON || this.type == ITEM_TYPE_ARMOUR) {
         this.equipItem();
-        return true;
+        return false;
     }
-	return false;
+	return true;
 }
 
 Item.prototype.useText = function() {};
@@ -56,11 +76,11 @@ Item.prototype.equipItem = function() {
     var oldItem = null;
     //Determine if it's weapon or armour.
     if (this.type == ITEM_TYPE_WEAPON) {
-        if (player.weapon.id != Items.Weapons.Fists.id) oldItem = lookupItem(player.weapon.id);
+        if (player.weapon.id != Items.NOTHING.id) oldItem = lookupItem(player.weapon.id);
         player.weapon = this;
     }
-    if (this.type == ITEM_TYPE_ARMOR) {
-        if (player.armor.id != Items.Armor.Naked.id) oldItem = lookupItem(player.armor.id);
+    if (this.type == ITEM_TYPE_ARMOUR) {
+        if (player.armor.id != Items.NOTHING.id) oldItem = lookupItem(player.armor.id);
         player.armor = this;
     }
     //Check if you aren't previously using fists or naked.
@@ -76,5 +96,10 @@ Item.prototype.unequipItem = function() { //TODO
 
 }
 
-Items.NOTHING = new Item("Nothing", "NOTHING!", "nothing", ITEM_TYPE_CONSUMABLE);
-Items.NOTHING.value = 0;
+Items.NOTHING = new Item("Nothing", "NOTHING!", "nothing", ITEM_TYPE_MATERIAL);
+Items.NOTHING.description = "You know, you are not supposed to see this tooltip. Please let Kitteh6660 know so he can fix it.";
+Items.NOTHING.equipmentName = "nothing";
+Items.NOTHING.verb = "punch";
+Items.NOTHING.value = -1;
+Items.NOTHING.defense = 0;
+Items.NOTHING.attack = 0;

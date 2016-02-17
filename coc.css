@@ -20,6 +20,7 @@ footer {
 
 /* Heading Texts */
 h2 {
+    font-size: 1.2em;
 	margin-top: 0;
 	margin-bottom: 0;
 	padding-left: 10px;
@@ -30,9 +31,8 @@ h2 {
 	margin-left: auto;
 	margin-right: auto;
 	width: 920px;
-	background-image: url(assets/interface/background.jpg);
-	background-repeat: no-repeat;
-	background-size: cover;
+    background: url(assets/interface/background.jpg) no-repeat;
+    background-size: cover;
 }
 
 /* Main Text Display */
@@ -85,6 +85,7 @@ h2 {
 	background-image: linear-gradient(to bottom, rgba(255, 0, 0, 0.7), rgba(255, 127, 127, 0.7) 50%, rgba(255, 0, 0, 0.7) 50%);
 	height: 100%;
 	width: 100%;
+    transition: width 0.5s ease-in-out;
 }
 .statlabel {
 	position: relative;
@@ -100,6 +101,9 @@ h2 {
 	font-size: 12px;
 	text-shadow: 1px 1px 5px #333333;
 }
+.statlabel:hover {
+    cursor: help;
+}
 .statnum {
 	position: relative;
 	top: -2px;
@@ -109,10 +113,13 @@ h2 {
 	height: 0;
 	width: 60px;
 	text-align: right;
-	color: #000000;
+	color: black;
 	font-family: Georgia, "Times New Roman", sans-serif;
 	font-size: 18px;
 	text-shadow: 1px 1px 5px #333333;
+}
+.statnum:hover {
+    cursor: help;
 }
 .statupdown {
 	float: inherit;
@@ -129,6 +136,25 @@ h2 {
 	padding-top: 5px;
 	padding-left: 10px;
 	font-family: "Lucida Console", "Courier New", monospace;
+}
+#spriteDisplay {
+    display: inline-block;
+    margin-left: 10px;
+    margin-bottom: 0;
+    height: 80px;
+    width: 100px;
+    bottom: 0px;
+}
+#spriteDisplay img {
+    position: inherit;
+    display: block;
+    vertical-align: text-bottom;
+    bottom: -50%;
+    padding-top: 18px;
+    padding-left: 10px;
+    transform: scale(2);
+    image-rendering: -moz-crisp-edges; /*Needed until Firefox properly resolves this.*/
+    image-rendering: pixelated;
 }
 #strBar, #touBar, #speBar, #intBar, #libBar, #senBar, #corBar, #hpBar, #lustBar, #fatigueBar, #xpBar {}
 #strNum, #touNum, #speNum, #intNum, #libNum, #senNum, #corNum, #hpNum, #lustNum, #fatigueNum, #levelNum, #xpNum, #gemNum {}
@@ -150,7 +176,8 @@ h2 {
 	text-align: center;
 	text-decoration: none;
 	text-shadow: 1px 1px 1px #333333;
-	font-family: Georgia, "Times New Roman", serif;
+	/*font-family: Georgia, "Times New Roman", serif;*/
+    font-family: Papyrus, fantasy;
 	font-size: 16px;
 	font-weight: bold;
 	line-height: 38px;
@@ -165,17 +192,18 @@ h2 {
 	color: #00FFFF;
 	cursor: pointer;
 }
+.button:hover div#tooltip {
+    visibility: visible;
+}
 .button:active {
 	opacity: 0.6;
 	color: #00FFFF;
 }
 #topbuttonset {
 	margin-bottom: 2px;
-	float: top;
 }
 #buttonset {
 	margin-left: 0px;
-	float: bottom;
 	bottom: 200px;
 }
 #buttonMain { background-image: url(assets/interface/button0.jpg); }
@@ -197,3 +225,28 @@ h2 {
 
 /* Others */
 #perkselect { min-width: 200px; }
+#tooltip {
+    position: absolute;
+    display: block;
+    visibility: hidden;
+    z-index: 10;
+    left: 100px;
+    bottom: 100px;
+    width: 300px;
+    height: 202px;
+    background-image: url(assets/interface/tooltip.png);
+    background-size: cover;
+}
+#tooltip h4 {
+    margin: 5px 10px 0px;
+    padding-top: 5px;
+    padding-left: 5px;
+    border-bottom: solid 2px #000000;
+    font-family: Georgia, Times New Roman, serif;
+}
+#tooltip p {
+    margin-top: 0px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 0.8em;
+}

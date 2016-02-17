@@ -15,4 +15,5 @@ function StatusEffect(type, val1, val2, val3, val4) {
 function StatusEffectType(id) {
     //Variables
     this.id = id;
+    StatusEffectIDs[this.id] = this;
 }

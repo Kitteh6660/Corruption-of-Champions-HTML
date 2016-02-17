@@ -59,10 +59,21 @@ function keyPress(e) {
             pressYesByKey();
         case "n":
             pressNoByKey();
+        case "Shift":
+            shiftKeyDown = true;
+        default:
+    }
+}
+function keyDepress(e) {
+    var event = window.event ? window.event : e;
+    switch(event.key) {
+        case "Shift":
+            shiftKeyDown = false;
         default:
     }
 }
 document.addEventListener("keydown", keyPress);
+document.addEventListener("keyup", keyDepress);
 
 function pressButtonByKey(index) {
     if (isButtonVisible(index)) {

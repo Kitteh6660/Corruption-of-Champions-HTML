@@ -25,5 +25,5 @@ function PerkType(id, name, desc, longDesc, keepOnAscension) {
     this.desc = desc;
     this.longDesc = longDesc;
     this.keepOnAscension = keepOnAscension;
-    PerkLib[this.id] = this;
+    PerkIDs[this.id] = this;
 }

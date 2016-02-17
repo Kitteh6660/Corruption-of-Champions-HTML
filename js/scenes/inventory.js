@@ -5,18 +5,28 @@ var currentItemSlot;
 var callNext;
 
 Inventory.inventoryMenu = function() {
+    hideMenus();
 	clearOutput();
 	outputText("<b><u>Equipment:</u></b><br>");
 	outputText("<b>Weapon:</b> " + player.weapon.equipmentName + " (Attack: " + player.weapon.attack + ")<br>");
 	//outputText("<b>Shield:</b> " + player.shield.name + " (Block Rating: " + player.shieldBlock + ")<br>");
-	outputText("<b>Armour:</b> " + player.armor.equipmentName + " (Defense: " + player.armor.defense + ")<br>");
+	outputText("<b>Armour:</b> " + player.armor.equipmentName + " (Defense: " + player.armor.defense + ")<br><br>");
 	//outputText("<b>Upper underwear:</b> " + player.upperGarment.name + "<br>");
 	//outputText("<b>Lower underwear:</b> " + player.lowerGarment.name + "<br>");
 	//outputText("<b>Accessory:</b> " + player.jewelryName + "<br>");
+    if (player.keyItems.length > 0) outputText("<b><u>Key Items:</u></b><br>");
+    for (x = 0; x < player.keyItems.length; x++) outputText(player.keyItems[x].keyName + "<br>");
+    outputText("<br>To discard unwanted items, hold Shift then click any of the items.");
+    if (inCombat()) {
+        callNext = Inventory.inventoryCombatHandler;
+    }
+    else {
+        callNext = Inventory.inventoryMenu;
+    }
 	menu();
 	for (var i = 0; i < 10; i++) { //Supports up to 10 items. You begin with 3 slots.
 		if (player.itemSlots[i].quantity > 0 && i < player.getMaxSlots()) {
-			addButton(i, player.itemSlots[i].itype.shortName + " x" + player.itemSlots[i].quantity, Inventory.useItemInInventory, i);
+			addButton(i, player.itemSlots[i].itype.shortName + " x" + player.itemSlots[i].quantity, Inventory.useItemInInventory, i, null, null, player.itemSlots[i].itype.getTooltipDescription(), capitalize(player.itemSlots[i].itype.longName));
 		}
 	}
 	addButton(10, "Unequip", Inventory.unequipMenu);
@@ -27,8 +37,8 @@ Inventory.unequipMenu = function() {
 	clearOutput();
 	outputText("Which would you like to unequip?<br><br>");
 	menu();
-	if (player.weapon.id != "Fists") {
-		addButton(0, "Weapon", Inventory.unequipWeapon, null, null, null, player.weapon.description, capitalizeFirstLetter(player.weapon.equipmentName));
+	if (player.weapon.id != "Nothing") {
+		addButton(0, "Weapon", Inventory.unequipWeapon, null, null, null, player.weapon.getTooltipDescription(), capitalizeFirstLetter(player.weapon.equipmentName));
 	}
 	/*if (player.shield != ShieldLib.NOTHING) {
 		addButton(1, "Shield", unequipShield, null, null, null, player.shield.description, capitalizeFirstLetter(player.shield.name));
@@ -36,8 +46,8 @@ Inventory.unequipMenu = function() {
 	if (player.jewelry != JewelryLib.NOTHING) {
 		addButton(2, "Accessory", unequipJewel, null, null, null, player.jewelry.description, capitalizeFirstLetter(player.jewelry.name));
 	}*/
-	if (player.armor.id != "Naked") {
-		addButton(5, "Armour", Inventory.unequipArmor, null, null, null, player.armor.description, capitalizeFirstLetter(player.armor.equipmentName));
+	if (player.armor.id != "Nothing") {
+		addButton(5, "Armour", Inventory.unequipArmor, null, null, null, player.armor.getTooltipDescription(), capitalizeFirstLetter(player.armor.equipmentName));
 	}
 	/*if (player.upperGarment != UndergarmentLib.NOTHING) {
 		addButton(6, "Upperwear", unequipUpperwear, null, null, null, player.upperGarment.description, capitalizeFirstLetter(player.upperGarment.name));
@@ -51,13 +61,13 @@ Inventory.unequipMenu = function() {
 Inventory.unequipWeapon = function() {
 	clearOutput();
 	var oldWeapon = lookupItem(player.weapon.id);
-	player.weapon = Items.Weapons.Fists;
+	player.weapon = Items.NOTHING;
 	Inventory.takeItem(oldWeapon, Inventory.unequipMenu);
 }
 Inventory.unequipArmor = function() {
 	clearOutput();
 	var oldArmor = lookupItem(player.armor.id);
-	player.armor = Items.Armor.Naked;
+	player.armor = Items.NOTHING;
 	Inventory.takeItem(oldArmor, Inventory.unequipMenu);
 }
 
@@ -101,10 +111,10 @@ Inventory.useItemInInventory = function(slotNum) {
     clearOutput();
     //if (player.itemSlots[slotNum].itype.type == ITEM_TYPE_CONSUMABLE) {
         var item = player.itemSlots[slotNum].itype;
-        /*if (flags[kFLAGS.SHIFT_KEY_DOWN] == 1) {
-            deleteItemPrompt(item, slotNum);
+        if (shiftKeyDown) {
+            Inventory.deleteItemPrompt(item, slotNum);
             return;
-        }*/
+        }
         if (item.canUse()) { //If an item cannot be used then canUse should provide a description of why the item cannot be used
             player.itemSlots[slotNum].removeOneItem();
             Inventory.useItem(item, player.itemSlots[slotNum]);
@@ -115,6 +125,26 @@ Inventory.useItemInInventory = function(slotNum) {
     //    outputText("You cannot use " + player.itemSlots[slotNum].itype.longName + "!\n\n");
     //}
     Inventory.itemGoNext(); //Normally returns to the inventory menu. In combat it goes to the inventoryCombatHandler function
+}
+
+Inventory.inventoryCombatHandler = function() {
+    outputText("<br><br>");
+    combatRoundOver();
+}
+
+Inventory.deleteItemPrompt = function(item, slotNum) {
+    clearOutput();
+    outputText("Are you sure you want to destroy " + player.itemSlots[slotNum].quantity + "x " + item.shortName + "?  You won't be able to retrieve " + (player.itemSlots[slotNum].quantity == 1 ? "it": "them") + "!");
+    menu();
+    addButton(0, "Yes", Inventory.deleteItem, item, slotNum);
+    addButton(1, "No", Inventory.inventoryMenu);
+    //doYesNo(deleteItem, inventoryMenu);
+}
+Inventory.deleteItem = function(item, slotNum) {
+    clearOutput();
+    outputText(player.itemSlots[slotNum].quantity + "x " + item.shortName + " " + (player.itemSlots[slotNum].quantity == 1 ? "has": "have") + " been destroyed.");
+    player.destroyItems(item, player.itemSlots[slotNum].quantity);
+    doNext(Inventory.inventoryMenu);
 }
 
 Inventory.useItem = function(item, fromSlot) {
@@ -169,30 +199,31 @@ Inventory.takeItemFull = function(itype, showUseNow, source) {
 	menu();
 	for (x = 0; x < 10; x++) {
 		if (player.itemSlots[x].itype != Items.NOTHING && x < player.getMaxSlots())
-			addButton(x, (player.itemSlots[x].itype.shortName + " x" + player.itemSlots[x].itype.quantity), Inventory.replaceItem, itype, x);
+			addButton(x, (player.itemSlots[x].itype.shortName + " x" + player.itemSlots[x].quantity), Inventory.replaceItem, itype, x);
 	}
 	if (source != null) {
 		var currentItemSlot = source;
-		addButton(12, "Put Back", createCallBackFunction2(returnItemToInventory, itype, false));
+		addButton(12, "Put Back", createCallBackFunction(Inventory.returnItemToInventory, itype, false));
 	}
 	if (showUseNow) addButton(13, "Use Now", Inventory.useItemNow, itype, source);
 	addButton(14, "Abandon", callOnAbandon); //Does not doNext - immediately executes the callOnAbandon function
 }
 
 Inventory.returnItemToInventory = function(item, showNext) { //Used only by items that have a sub menu if the player cancels
-	if (!debug) {
-		if (currentItemSlot == null) {
-			Inventory.takeItem(item, callNext, callNext, null); //Give player another chance to put item in inventory
-		}
-		else if (currentItemSlot.quantity > 0) { //Add it back to the existing stack
-			currentItemSlot.quantity++;
-		}
-		else { //Put it back in the slot it came from
-			currentItemSlot.setItemAndQty(item, 1);
-		}
-	}
-	if (getGame().inCombat) {
-		enemyAI();
+    //Return item to inventory
+    if (currentItemSlot == null) {
+        Inventory.takeItem(item, callNext, callNext, null); //Give player another chance to put item in inventory
+    }
+    else if (currentItemSlot.quantity > 0) { //Add it back to the existing stack
+        currentItemSlot.quantity++;
+    }
+    else { //Put it back in the slot it came from
+        currentItemSlot.setItemAndQty(item, 1);
+    }
+    //Post-process
+	if (inCombat()) {
+        outputText("<br><br>");
+		combatRoundOver();
 		return;
 	}
 	if (showNext)
@@ -222,4 +253,11 @@ Inventory.replaceItem = function(itype, slotNum) {
 	Inventory.itemGoNext();
 }
 
-Inventory.itemGoNext = function() { if (callNext != null) doNext(callNext); }
+Inventory.itemGoNext = function() {
+    if (callNext != null) {
+        if (inCombat())
+            callNext();
+        else
+            doNext(callNext);
+    }
+}
