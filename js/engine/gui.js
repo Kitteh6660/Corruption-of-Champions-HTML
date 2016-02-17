@@ -21,7 +21,7 @@ function refreshStats() {
 	document.getElementById("speNum").innerHTML = Math.floor(player.spe);
 	document.getElementById("intNum").innerHTML = Math.floor(player.inte);
 	document.getElementById("libNum").innerHTML = Math.floor(player.lib);
-	document.getElementById("senNum").innerHTML = Math.floor(player.sen);
+	document.getElementById("senNum").innerHTML = Math.floor(player.sens);
 	document.getElementById("corNum").innerHTML = Math.floor(player.cor);
 	//Combat Stats
 	document.getElementById("hpNum").innerHTML = Math.floor(player.HP) + " / " + player.maxHP();
@@ -44,7 +44,7 @@ function refreshStats() {
 	document.getElementById("speBar").style.width = Math.floor((player.spe / 100) * 100) + "%";
 	document.getElementById("intBar").style.width = Math.floor((player.inte / 100) * 100) + "%";
 	document.getElementById("libBar").style.width = Math.floor((player.lib / 100) * 100) + "%";
-	document.getElementById("senBar").style.width = Math.floor((player.sen / 100) * 100) + "%";
+	document.getElementById("senBar").style.width = Math.floor((player.sens / 100) * 100) + "%";
 	document.getElementById("corBar").style.width = Math.floor((player.cor / 100) * 100) + "%";
 	//Combat Stats
 	document.getElementById("hpBar").style.width = Math.floor((player.HP / player.maxHP()) * 100) + "%";
@@ -97,6 +97,7 @@ function hideUpDown() {
 }
 function showUpDown(arrowToDisplay, upDown) {
     //Auto-route parameter
+    if (arrowToDisplay == "sensArrow") arrowToDisplay = "senArrow";
     if (arrowToDisplay == "inteArrow") arrowToDisplay = "intArrow";
     //Display arrow
     if (upDown == "up")

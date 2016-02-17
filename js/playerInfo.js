@@ -163,7 +163,7 @@ function statsScreen() {
 	clearOutput();
 	//Combat Stats
 	var combatStats = "";
-	combatStats += "<b>Lust Resistance:</b> " + 0 + "% (Higher is better)<br>";
+	combatStats += "<b>Lust Resistance:</b> " + ((1 - player.lustVuln) * 100) + "% (Higher is better)<br>";
     combatStats += "<b>Spell Effect Multiplier:</b> " + (player.spellMod() * 100) + "%<br>";
     if (player.teaseLevel < 5) combatStats += "<b>Tease Skill Level:</b> " + player.teaseLevel + " (Exp: " + player.teaseXP + " / " + (10 + (player.teaseLevel + 1) * 5 * (player.teaseLevel + 1)) +  ")<br>";
     else combatStats += "<b>Tease Skill Level:</b> " + player.teaseLevel + " (Exp: MAX)<br>";

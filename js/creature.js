@@ -263,7 +263,7 @@ Creature.prototype.modStats = function() {
         var mod = arguments[i+1];
         //Alternate
         if (attribute == "int") attribute = "inte";
-        if (attribute == "sens") attribute = "sen";
+        if (attribute == "sen") attribute = "sens";
         if (attribute == "lus") attribute = "lust";
         //Skip if resisted or noBimbo
         if (attribute == "resisted" || attribute == "nobimbo") continue;
@@ -311,12 +311,13 @@ Creature.prototype.changeHP = function(amount, display, newpg) {
 		refreshStats();
 	}
 }
-Creature.prototype.changeLust = function(amount, display, newpg) {
+Creature.prototype.changeLust = function(amount, display, newpg, resisted) {
     //Defaulting
     if (display == undefined) display = false;
     if (newpg == undefined) newpg = true;
+    if (resisted == undefined) resisted = true;
     //Main function
-    amount *= this.lustVuln;
+    if (resisted) amount *= this.lustVuln;
 	this.lust += amount;
 	if (this.lust > this.maxLust) this.lust = this.maxLust;
 	if (this.lust < 0) this.lust = 0;

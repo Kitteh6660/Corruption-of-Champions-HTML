@@ -89,7 +89,7 @@ var tempTou = 0;
 var tempSpe = 0;
 var tempInt = 0;
 
-Player.prototype.lustVuln = {
+/*Player.prototype.lustVuln = {
     get lustVuln() {
         var percent = 100;
         //Level-based
@@ -105,7 +105,7 @@ Player.prototype.lustVuln = {
             percent = 25;
         return percent / 100;
     }
-}
+}*/
 
 Player.prototype.minLust = function() {
     return 0;
