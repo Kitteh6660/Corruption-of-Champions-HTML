@@ -590,11 +590,11 @@ function checkCombatOver() {
 }
 
 function cleanupAfterCombat(nextFunc) {
-	if (monster.HP <= 0 || monster.lust >= monster.maxLust) {
+	if (monster.HP <= 0 || monster.lust >= monster.maxLust()) {
         if (nextFunc == undefined) nextFunc = Camp.returnToCampUseOneHour;
         awardPlayer(nextFunc);
 	}
-	else if (player.HP <= 0 || player.lust >= player.maxLust) {
+	else if (player.HP <= 0 || player.lust >= player.maxLust()) {
         if (nextFunc == undefined) nextFunc = Camp.returnToCampUseEightHours;
 		var gemsLost = Math.floor(monster.level + rand(5));
 		if (gemsLost > player.gems) gemsLost = player.gems;

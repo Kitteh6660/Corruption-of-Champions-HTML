@@ -67,18 +67,21 @@ GooGirl.prototype.constructor = GooGirl;
 // COMBAT
 //------------
 GooGirl.prototype.doAI = function() {
-    var chooser = 0;
-    if (GooGirl.findStatusEffect(StatusEffects.Acid) >= 0 && rand(3) == 0) chooser = 0;
+    var chooser;
+    if (monster.findStatusEffect(StatusEffects.Acid) >= 0 && rand(3) == 0 || rand(3) == 0) chooser = 0; //Extra chance if acidic.
     else if (rand(5) == 0) chooser = 1;
     else if (rand(3) == 0) chooser = 2;
     else chooser = 3;
     //Goo Girl chooses what to use!
     switch(chooser) {
         case 0:
-            GooGirl.lustAttack();
+            GooGirl.gooGalAttack();
             break;
         case 1:
-            GooGirl.gooEngulph();
+            if (this.fatigue <= this.maxFatigue() - 25 && player.findStatusEffect(StatusEffects.Bind) < 0)
+                GooGirl.gooEngulph();
+            else
+                GooGirl.gooGalAttack();
             break;
         case 2:
             GooGirl.gooPlay();
@@ -171,7 +174,7 @@ GooGirl.gooGalAttack = function() {
 //Play –
 GooGirl.gooPlay = function() {
     outputText("The goo-girl lunges, wrapping her slimy arms around your waist in a happy hug, hot muck quivering excitedly against you. She looks up, empty eyes confused by your lack of enthusiasm and forms her mouth into a petulant pout before letting go.  You shiver in the cold air, regretting the loss of her embrace. ");
-    player.modStats(3 + rand(3) + player.sens / 10, true);
+    player.changeLust(3 + rand(3) + player.sens / 10, true);
 }
 
 //Throw –
@@ -186,6 +189,7 @@ GooGirl.gooThrow = function() {
 GooGirl.gooEngulph = function() {
     outputText("The goo-girl gleefully throws her entire body at you and, before you can get out of the way, she has engulfed you in her oozing form! Tendrils of " + monster.skinTone + " slime slide up your nostrils and through your lips, filling your lungs with the girl's muck. You begin suffocating!");
     if (player.findStatusEffect(StatusEffects.Bind) < 0) player.createStatusEffect(StatusEffects.Bind, BIND_TYPE_GOO, 0, 0, 0);
+    monster.fatigue += 25;
     combatRoundOver();
 }
 

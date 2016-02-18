@@ -147,18 +147,18 @@ ImpScene.victoryAgainstImp = function() {
 				outputText("<br><br><b>You're too big to rape an imp with " + player.oMultiCockDesc() + ".</b>");
 			else {
                 addButton(0, (player.isTaur() ? "Centaur Rape" : "Male Rape"), (player.isTaur() ? ImpScene.centaurOnImpStart : ImpScene.rapeImpWithDick));
-                if (player.hasItem(Items.Consumables.Condom) && !player.isTaur()) addButton(5, "Use Condom", ImpScene.rapeImpWithDick, true);
+                //if (player.hasItem(Items.Consumables.Condom) && !player.isTaur()) addButton(5, "Use Condom", ImpScene.rapeImpWithDick, true);
             }
  		}
 		if (player.hasVagina()) {
-			if (player.isTaur())
-				addButton(1, "Group Vaginal", ImpScene.centaurGirlOnImps);
-			else
+			//if (player.isTaur())
+			//	addButton(1, "Group Vaginal", ImpScene.centaurGirlOnImps);
+			//else
                 addButton(1, "Female Rape", ImpScene.rapeImpWithPussy);
 		}
-		if (player.hasFuckableNipples()) {
+		/*if (player.hasFuckableNipples()) {
             addButton(2, "NippleFuck", ImpScene.noogaisNippleRape);
-        }
+        }*/
 	}
     else {
         cleanupAfterCombat();
@@ -231,7 +231,7 @@ ImpScene.rapeImpWithPussy = function() {
     player.slimeFeed();
     outputText("You " + player.clothedOrNakedLower("shed your " + player.armor.equipmentName + " without a thought and ") + "approach the masturbating imp, looming over him menacingly.  Your " + player.vaginaDescript(0) + " moistens in anticipation as you gaze down upon his splendid rod. With no hesitation, you lower yourself until your lips are spread wide by his demon-head, the hot pre-cum tingling deliciously.");
     //Too small!
-    if(player.vaginalCapacity() < monster.cockArea(0)) {
+    if (player.vaginalCapacity() < monster.cockArea(0)) {
         outputText("  You frown as you push against him, but his demonic tool is too large for your " + player.vaginaDescript(0) + ".  With a sigh, you shift position and begin grinding your " + player.vaginaDescript(0) + " against his " + monster.cockDescriptShort(0) + ", coating it with fluids of your gender.  Your clit tingles wonderfully as it bumps against every vein on his thick appendage.");
         if(player.breastRows.length > 0 && player.breastRows[0].breastRating > 1) {
             outputText("  You happily tug and pinch on your erect nipples, adding to your pleasure and nearly driving yourself to orgasm.");
@@ -247,7 +247,7 @@ ImpScene.rapeImpWithPussy = function() {
         //Taking it internal is more corruptive!
         player.modStats("cor", 1);
         //Preggers chance!
-        player.knockUp(PregnancyStore.PREGNANCY_IMP, PregnancyStore.INCUBATION_IMP);
+        //player.knockUp(PregnancyStore.PREGNANCY_IMP, PregnancyStore.INCUBATION_IMP);
         player.cuntChange(monster.cockArea(0), true, true, false);
     }
     player.orgasm();

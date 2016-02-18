@@ -45,10 +45,10 @@ Camp.doCamp = function() {
 	menu();
 	addButton(0, "Explore", Areas.GenericExploration.exploreMenu, null, null, null, "Explore to find new regions and visit any discovered regions.");
     //addButton(1, "Places", Camp.placesMenu, null, null, null, "Visit any places you have discovered so far.");
-    //addButton(2, "Camp Actions", Camp.campActionsMenu, null, null, null, "Interact with the camp surroundings.");
-    addButton(5, "Followers", Camp.campFollowersMenu, null, null, null, "Check up on any followers or companions who are joining you in or around your camp. You'll probably just end up sleeping with them.");
-    //addButton(6, "Lovers", Camp.campLoversMenu, null, null, null, "Check up on any lovers you have invited so far and interact with them.");
-    //addButton(7, "Slaves", Camp.campSlavesMenu, null, null, null, "Check up on any slaves you have received and interact with them.");
+    //addButton(5, "Camp Actions", Camp.campActionsMenu, null, null, null, "Interact with the camp surroundings.");
+    if (Camp.followersCount() > 0) addButton(2, "Followers", Camp.campFollowersMenu, null, null, null, "Check up on any followers or companions who are joining you in or around your camp. You'll probably just end up sleeping with them.");
+    if (Camp.loversCount() > 0) addButton(3, "Lovers", Camp.campLoversMenu, null, null, null, "Check up on any lovers you have invited so far and interact with them.");
+    if (Camp.slavesCount() > 0) addButton(4, "Slaves", Camp.campSlavesMenu, null, null, null, "Check up on any slaves you have received and interact with them.");
 	addButton(8, "Masturbate", Camp.doMasturbate);
 	addButton(9, "Sleep", Camp.doSleep);
     //addButton(12, "Stash", Inventory.stashMenu, null, null, null, "The stash allows you to store your items safely until you need them later.");
@@ -66,19 +66,21 @@ Camp.campFollowersMenu = function() {
     clearOutput();
     displaySprite();
     menu();
-    if (gameFlags[JOJO_CAMP] > 0) addButton(0, "Jojo", JojoScene.jojoCamp, null, null, null, "Go find Jojo around the edges of your camp and meditate with him or talk about watch duty.");
+    if (gameFlags[JOJO_CAMP] == 1) addButton(0, "Jojo", JojoScene.jojoCamp, null, null, null, "Go find Jojo around the edges of your camp and meditate with him or talk about watch duty.");
     if (gameFlags[RATHAZUL_CAMP] > 0) addButton(1, "Rathazul", RathazulScene.campRathazul, null, null, null, "Visit with Rathazul to see what alchemical supplies and services he has available at the moment.");
     addButton(14, "Back", Camp.doCamp);
 }
 Camp.campLoversMenu = function() {
     clearOutput();
-    outputText("Not Yet Implemented");
-    doNext(Camp.doCamp);
+    menu();
+    addButton(14, "Back", Camp.doCamp);
 }
 Camp.campSlavesMenu = function() {
     clearOutput();
-    outputText("Not Yet Implemented");
-    doNext(Camp.doCamp);
+    displaySprite();
+    menu();
+    if (gameFlags[JOJO_CAMP] == 2) addButton(0, "Jojo", JojoScene.jojoCampCorrupt, null, null, null, "Call your corrupted pet into camp in order to relieve your desires in a variety of sexual positions? He's ever so willing after your last encounter with him.");
+    addButton(14, "Back", Camp.doCamp);
 }
 
 //ACTIONS
@@ -127,4 +129,20 @@ Camp.bedDesc = function() {
 }
 Camp.homeDesc = function() {
     return "tent";
+}
+
+Camp.followersCount = function() {
+    var count = 0;
+    if (gameFlags[JOJO_CAMP] > 0 && gameFlags[JOJO_CORRUPTION_STAGE] < 5) count++;
+    if (gameFlags[RATHAZUL_CAMP] > 0) count++;
+    return count;
+}
+Camp.loversCount = function() {
+    var count = 0;
+    return count;
+}
+Camp.slavesCount = function() {
+    var count = 0;
+    if (gameFlags[JOJO_CAMP] > 0 && gameFlags[JOJO_CORRUPTION_STAGE] >= 5) count++;
+    return count;
 }

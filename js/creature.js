@@ -291,7 +291,7 @@ Creature.prototype.changeHP = function(amount, display, newpg) {
     if (newpg == undefined) newpg = true;
     //Main function
 	this.HP += amount;
-	if (this.HP > this.maxHP) this.HP = this.maxHP;
+	if (this.HP > this.maxHP()) this.HP = this.maxHP();
 	if (this.HP < 0) this.HP = 0;
 	if (display) {
 		if (amount < 0)
@@ -319,7 +319,7 @@ Creature.prototype.changeLust = function(amount, display, newpg, resisted) {
     //Main function
     if (resisted) amount *= this.lustVuln;
 	this.lust += amount;
-	if (this.lust > this.maxLust) this.lust = this.maxLust;
+	if (this.lust > this.maxLust()) this.lust = this.maxLust();
 	if (this.lust < 0) this.lust = 0;
 	if (display) {
 		if (amount < 0)
@@ -345,7 +345,7 @@ Creature.prototype.changeFatigue = function(amount, display, newpg) {
     if (newpg == undefined) newpg = true;
     //Main function
 	this.fatigue += amount;
-	if (this.fatigue > this.maxFatigue) this.fatigue = this.maxFatigue;
+	if (this.fatigue > this.maxFatigue()) this.fatigue = this.maxFatigue();
 	if (this.fatigue < 0) this.fatigue = 0;
 	if (display) {
 		if (amount < 0)

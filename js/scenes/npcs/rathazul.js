@@ -129,7 +129,7 @@ RathazulScene.rathazulWorkOffer = function() {
     //Item crafting offer
     if (player.hasItem(Items.Materials.GreenGel)) { //Gel
         if (gameFlags[RATHAZUL_ARMOUR_COUNTER] == 0)
-            outputText("He pipes up with a bit of hope in his voice, \"<i>I can smell the essence of the tainted lake-slimes you've defeated, and if you'd let me, I could turn it into something a bit more useful to you. You see, the slimes are filled with the tainted essence of the world-mother herself, and once the taint is burned away, the remaining substance remains very flexible but becomes nearly impossible to cut through. With the gel of five defeated slimes I could craft you a durable suit of armor.</i>\"<br><br>");
+            outputText("He pipes up with a bit of hope in his voice, \"<i>I can smell the essence of the tainted lake-slimes you've defeated, and if you'd let me, I could turn it into something a bit more useful to you. You see, the slimes are filled with the tainted essence of the world-mother herself, and once the taint is burned away, the remaining substance remains very flexible but becomes nearly impossible to cut through. With the gel of five defeated slimes I could craft you a durable suit of armor.</i>\"<br>");
         else
             outputText("He pipes up with a bit of excitement in his voice, \"<i>With just five pieces of slime-gel I could make another suit of armor...</i>\"<br>");
         if (player.hasItem(Items.Materials.GreenGel, 5)) {
@@ -152,14 +152,12 @@ RathazulScene.rathazulWorkOffer = function() {
             outputText("You realize you're still a bit short of chitin.<br><br>");
         }
     }
-    //SPOIDAH
-    if (player.hasItem(Items.Materials.SpiderSilk) && flags[RATHAZUL_SILK_ARMOR_COUNTDOWN] + flags[UNKNOWN_FLAG_NUMBER_00275] == 0) {
+    if (player.hasItem(Items.Materials.SpiderSilk) && flags[RATHAZUL_SILK_ARMOR_COUNTDOWN] + flags[UNKNOWN_FLAG_NUMBER_00275] == 0) { //SPOIDAH
         showArmorMenu = true;
         totalOffers++;
         outputText("\"<i>Oooh, is that some webbing from a giant spider or spider-morph? Most excellent! With a little bit of alchemical treatment, it is possible I could loosen the fibers enough to weave them into something truly magnificent - armor, or even a marvelous robe,</i>\" offers RathazulScene.<br><br>");
     }
-    //Dragonscale
-    if (player.hasItem(Items.Materials.DragonScale)) {
+    if (player.hasItem(Items.Materials.DragonScale)) { //Dragonscale
         showArmorMenu = true;
         totalOffers++;
         outputText("\"<i>Oooh, is that dragon scale? If you happen to have five of these, I can work them into armor,</i>\" Rathazul says.<br><br>");

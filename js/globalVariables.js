@@ -1,5 +1,5 @@
 //Variables that can be set as development progresses.
-var gameVersion = "0.1 alpha";
+var gameVersion = "0.1.1 alpha";
 var saveVersion = 1; //If this value is increased, the saves will be upgraded to accommodate the new changes.
 var levelCap = 5; //Determines the maximum level a player can attain. This will be raised as dungeons are added.
 

@@ -255,9 +255,9 @@ Inventory.replaceItem = function(itype, slotNum) {
 
 Inventory.itemGoNext = function() {
     if (callNext != null) {
-        if (inCombat())
+        /*if (inCombat())
             callNext();
-        else
+        else*/
             doNext(callNext);
     }
 }

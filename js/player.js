@@ -1415,22 +1415,18 @@ Player.prototype.hasItem = function(itype, minQuantity) {
 
 Player.prototype.itemCount = function(itype) {
 	var count = 0;
-	for (var itemSlot in this.itemSlots) {
-		if (itemSlot.itype == itype) count += itemSlot.quantity;
+	for (var i = 0; i < this.itemSlots.length; i++) {
+		if (this.itemSlots[i].itype == itype) count += this.itemSlots[i].quantity;
 	}
 	return count;
 }
 
 Player.prototype.roomInExistingStack = function(itype) {
 	for (var i = 0; i < this.itemSlots.length; i++) {
-		if (this.itemSlot(i).itype == itype && this.itemSlot(i).quantity != 0 && this.itemSlot(i).quantity < 5)
+		if (this.itemSlots[i].itype == itype && this.itemSlots[i].quantity != 0 && this.itemSlots[i].quantity < 5)
 			return i;
 	}
 	return -1;
-}
-
-Player.prototype.itemSlot = function(idx) {
-	return this.itemSlots[idx];
 }
 
 Player.prototype.emptySlot = function() {
@@ -1442,7 +1438,7 @@ Player.prototype.emptySlot = function() {
 
 Player.prototype.destroyItems = function(itype, numOfItemToRemove) {
 	for (var slotNum = 0; slotNum < this.itemSlots.length; slotNum += 1) {
-		if (this.itemSlot(slotNum).itype == itype) {
+		if (this.itemSlots[slotNum].itype == itype) {
 			while (this.itemSlots[slotNum].quantity > 0 && numOfItemToRemove > 0) {
 				this.itemSlots[slotNum].removeOneItem();
 				numOfItemToRemove--;
