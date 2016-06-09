@@ -1,6 +1,8 @@
 Areas.Lake = [];
 
-Areas.Lake.explore = function() {
+addToGameFlags(AMILY_VILLAGE_ACCESSIBLE);
+
+Areas.Lake.explore = function () {
     clearOutput();
     exploration.exploredLake++; //Increment counter
     var choice = [];
@@ -10,7 +12,7 @@ Areas.Lake.explore = function() {
     //choice[choice.length] = 3; //Fetish Cultists & Zealots after factory
     choice[choice.length] = 4; //Green Slime & Goo Girl
     //choice[choice.length] = 8;
-    if (AMILY_VILLAGE_ACCESSIBLE == 0) choice[choice.length] = 9; //Discovering the Town Ruins/Amily Encounter
+    if (gameFlags[AMILY_VILLAGE_ACCESSIBLE] == 0) choice[choice.length] = 9; //Discovering the Town Ruins/Amily Encounter
     choice[choice.length] = 99; //Nothing out of the ordinary
     var select = choice[rand(choice.length)];
     
@@ -39,7 +41,7 @@ Areas.Lake.explore = function() {
                 GreenSlimeScene.encounterSlime();
             break;
         case 9: //Discover the town ruins/Start Amily/Shouldra Encounters
-            if (AMILY_VILLAGE_ACCESSIBLE == 0) {
+            if (gameFlags[AMILY_VILLAGE_ACCESSIBLE] == 0) {
                 TownRuins.firstExploration();
             }              
             break;
