@@ -1,17 +1,21 @@
 function mainMenu() {
     Data.loadSettings();
 	clearOutput();
+
+    // Check to see if the user has a bad browser
 	if (typeof(Storage) !== "undefined") {
 		// All good to go!
 	}
     else if (GetIEVersion() > 0) {
         errorOldInternetExplorerEwwww();
         return;
-    }
+    } 
     else {
 		errorOldBrowser();
         return;
 	}
+
+    // Load the start screen
     outputText("<img src=\"assets/interface/CoCLogo.png\" height=\"300\" width=\"400\"><br>");
 	outputText("Corruption of Champions: HTML Edition (" + gameVersion + ")<br><br>");
 	outputText("Original CoC by Fenoxo. Rewritten by Kitteh6660.");
@@ -27,6 +31,11 @@ function mainMenu() {
 	addButton(1, "Settings", settingsScreenMain);
     addButton(2, "Credits", creditsScreen);
 }
+//---------
+// GetIEVersion(), errorOldBrowser(), and errorOldInternetExplorereEwwww()
+// Used for browser compatibility checks
+//---------
+
 
 function GetIEVersion() {
     var sAgent = window.navigator.userAgent;
@@ -40,7 +49,7 @@ function GetIEVersion() {
     else if (!!navigator.userAgent.match(/Trident\/7\./))
         return 11;
 
-    else
+    else 
         return 0; //It is not IE
 }
 

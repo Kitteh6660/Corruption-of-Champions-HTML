@@ -43,7 +43,7 @@ const AMILY_BIRTH_TOTAL                                           =   40; // Ami
 const AMILY_INCUBATION                                            =   41; //    0 = not pregnant, otherwise hours till birth 168Amily Incubation.    0=Not Pregnant, Otherwise Hours Till Birth Starting From 168
 const AMILY_FUCK_COUNTER                                          =   42; // Amily Fuck Counter.
 const AMILY_FOLLOWER                                              =   43; // Amily Follower. 0=Not Follower, 1=Follower 2=Corrupted Follower?
-const AMILY_VILLAGE_ACCESSIBLE                                    =   44; // Amily Village Accessible.    Related To 36]
+//const AMILY_VILLAGE_ACCESSIBLE                                    =   44; // Amily Village Accessible.    Related To 36]
 const AMILY_WANG_LENGTH                                           =   45; // Amily's Wang Length" Description="Starts 4x1, maxes @ 13x2
 const AMILY_WANG_GIRTH                                            =   46; // Amily Penis Gith.    Default=0
 const AMILY_CUP_SIZE                                              =   47; //  5-JanAmily's Cup Size (1 to 5)

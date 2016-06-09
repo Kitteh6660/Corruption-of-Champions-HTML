@@ -49,6 +49,8 @@ const JOJO_NIGHT_WATCH                  = "Jojo_Night_Watch";
 //Marble
 const MARBLE_CAMP                       = "Marble_Camp";
 
+//Amily
+var AMILY_VILLAGE_ACCESSIBLE			= 0;
 
 //------------
 // ENCOUNTERS
