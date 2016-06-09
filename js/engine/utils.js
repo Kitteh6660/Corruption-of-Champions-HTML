@@ -1,3 +1,6 @@
+// Miscellenious functions
+
+
 const NUMBER_WORDS_NORMAL       = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"];
 const NUMBER_WORDS_CAPITAL      = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten"];
 const NUMBER_WORDS_POSITIONAL   = ["zeroth", "first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth"];

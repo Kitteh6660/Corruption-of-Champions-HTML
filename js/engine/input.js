@@ -1,3 +1,13 @@
+// The functions in this file allow for keyboard input.
+// Top row of buttons = 12345
+// Second row of buttions = 67890 OR qwerty
+// Third row of buttons = asdfg
+//
+// Uncertain if these are implemented anywhere yet:
+// Space will handle a screen with a Next button
+// Y and N will handle a yes or No
+// Also will register a shift depress.
+
 function keyPress(e) {
     var event = window.event ? window.event : e;
     switch(event.key) {

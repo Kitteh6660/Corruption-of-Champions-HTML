@@ -1,6 +1,8 @@
 Camp = [];
 
+addToGameFlags(HAS_KEY_ITEM);
 
+var stashbool = false;
 
 
 //MENUS
@@ -54,8 +56,10 @@ Camp.doCamp = function() {
     if (Camp.slavesCount() > 0) addButton(4, "Slaves", Camp.campSlavesMenu, null, null, null, "Check up on any slaves you have received and interact with them.");
 	addButton(8, "Masturbate", Camp.doMasturbate);
 	addButton(9, "Sleep", Camp.doSleep);
-    //addButton(12, "Stash", Inventory.stashMenu, null, null, null, "The stash allows you to store your items safely until you need them later.");
-	addButton(13, "Inventory", Inventory.inventoryMenu, null, null, null, "The inventory allows you to use an item. Be careful as this leaves you open to a counterattack when in combat.");
+    if (Inventory.showStash(stashbool) == true) {
+        addButton(12, "Stash", Inventory.stashMenu, null, null, null, "The stash allows you to store your items safely until you need them later.");
+    };    
+    addButton(13, "Inventory", Inventory.inventoryMenu, null, null, null, "The inventory allows you to use an item. Be careful as this leaves you open to a counterattack when in combat.");
     //addButton(14, "Codex", Codex.readCodex);
 }
 

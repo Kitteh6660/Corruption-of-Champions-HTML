@@ -744,7 +744,7 @@ Creature.prototype.createKeyItem = function(keyName, value1, value2, value3, val
     //Start the array if its the first bit
     if (this.keyItems.length == 0)
     {
-        //trace("New Key Item Started Array! " + keyName);
+        outputText("New Key Item Started Array! " + keyName);
         this.keyItems.push(newKeyItem);
         arrayed = true;
         keySlot = 0;
@@ -752,7 +752,7 @@ Creature.prototype.createKeyItem = function(keyName, value1, value2, value3, val
     //If it belongs at the end, push it on
     if (this.keyItems[keyItems.length - 1].keyName < keyName && !arrayed)
     {
-        //trace("New Key Item Belongs at the end!! " + keyName);
+        outputText("New Key Item Belongs at the end!! " + keyName);
         this.keyItems.push(newKeyItem);
         arrayed = true;
         keySlot = keyItems.length - 1;
@@ -760,7 +760,7 @@ Creature.prototype.createKeyItem = function(keyName, value1, value2, value3, val
     //If it belongs in the beginning, splice it in
     if (this.keyItems[0].keyName > keyName && !arrayed)
     {
-        //trace("New Key Item Belongs at the beginning! " + keyName);
+        outputText("New Key Item Belongs at the beginning! " + keyName);
         this.keyItems.splice(0, 0, newKeyItem);
         arrayed = true;
         keySlot = 0;
@@ -768,7 +768,7 @@ Creature.prototype.createKeyItem = function(keyName, value1, value2, value3, val
     //Find the spot it needs to go in and splice it in.
     if (!arrayed)
     {
-        //trace("New Key Item using alphabetizer! " + keyName);
+        outputText("New Key Item using alphabetizer! " + keyName);
         counter = this.keyItems.length;
         while (counter > 0 && !arrayed)
         {
@@ -804,7 +804,7 @@ Creature.prototype.createKeyItem = function(keyName, value1, value2, value3, val
     //Fallback
     if (!arrayed)
     {
-        //trace("New Key Item Belongs at the end!! " + keyName);
+        outputText("New Key Item Belongs at the end!! " + keyName);
         this.keyItems.push(newKeyItem);
         keySlot = this.keyItems.length - 1;
     }
@@ -814,7 +814,7 @@ Creature.prototype.createKeyItem = function(keyName, value1, value2, value3, val
     this.keyItems[keySlot].value2 = value2;
     this.keyItems[keySlot].value3 = value3;
     this.keyItems[keySlot].value4 = value4;
-    //trace("NEW KEYITEM FOR PLAYER in slot " + keySlot + ": " + keyItems[keySlot].keyName);
+    outputText("NEW KEYITEM FOR PLAYER in slot " + keySlot + ": " + keyItems[keySlot].keyName);
 }
 Creature.prototype.removeKeyItem = function(ktype) {
     var counter = this.hasKeyItem(ktype);

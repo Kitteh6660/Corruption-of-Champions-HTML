@@ -1,4 +1,7 @@
 Inventory = [];
+var gearStorage = [];
+
+var keyItemList = [];
 
 const inventorySlotName = ["first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth"];
 var currentItemSlot;
@@ -7,15 +10,22 @@ var callNext;
 Inventory.inventoryMenu = function() {
     hideMenus();
 	clearOutput();
-	outputText("<b><u>Equipment:</u></b><br>");
+    outputText("<b><u>Equipment:</u></b><br>");
 	outputText("<b>Weapon:</b> " + player.weapon.equipmentName + " (Attack: " + player.weapon.attack + ")<br>");
 	//outputText("<b>Shield:</b> " + player.shield.name + " (Block Rating: " + player.shieldBlock + ")<br>");
 	outputText("<b>Armour:</b> " + player.armor.equipmentName + " (Defense: " + player.armor.defense + ")<br><br>");
 	//outputText("<b>Upper underwear:</b> " + player.upperGarment.name + "<br>");
 	//outputText("<b>Lower underwear:</b> " + player.lowerGarment.name + "<br>");
 	//outputText("<b>Accessory:</b> " + player.jewelryName + "<br>");
-    if (player.keyItems.length > 0) outputText("<b><u>Key Items:</u></b><br>");
-    for (x = 0; x < player.keyItems.length; x++) outputText(player.keyItems[x].keyName + "<br>");
+    
+    //Following three are for debugging
+    //outputText(gameFlags[HAS_WEAPON_RACK]);
+    //outputText(gameFlags[HAS_ARMOR_RACK]);
+    //outputText(gameFlags[HAS_EQUIPMENT_RACK]);
+    
+    // Bug here. keyItemList needs to either be saved or generated on load so the key items display properly.
+    if (keyItemList.length > 0) outputText("<b><u>Key Items:</u></b><br>");
+    for (x = 0; x < keyItemList.length; x++) outputText(keyItemList[x].keyName + "<br>");
     outputText("<br>To discard unwanted items, hold Shift then click any of the items.");
     if (inCombat()) {
         callNext = Inventory.inventoryCombatHandler;
@@ -261,3 +271,252 @@ Inventory.itemGoNext = function() {
             doNext(callNext);
     }
 }
+
+
+// New Function to replace awful code in creature.js for Key Items.
+// Will have to decide later whether we want to bother alphabetizing the list of key items.
+
+Inventory.newKeyItemAdd = function (name, var1, var2, var3, var4) {
+    keyItemList.push({keyName: name, 
+                      value1: var1, 
+                      value2: var2, 
+                      value3: var3, 
+                      value4: var4});
+    var keySlot = keyItemList.length;
+    outputText("NEW KEYITEM FOR PLAYER is " + keyItemList[keySlot-1].keyName);
+};
+
+// New function to replace bad code. This goes through the Key Items array and returns the index if there's a match.
+
+Inventory.hasKeyItem = function(name) {
+    if (name == undefined)
+        return -1;
+    for (var counter = 0; counter < keyItemList.length; counter++)
+        {
+            outputText(counter);
+            if (keyItemList[counter].keyName == ktype.value)
+                return counter;
+        }
+    return -1;
+};
+
+
+// This function returns a boolean. Used to decide whether to show the stash button or not.
+Inventory.showStash = function(bool) {
+    // Code in Anemone Barrel, Jewelry Box, Storage Chests, and Dresser when we get that far. full code from original is:
+    // return player.hasKeyItem("Equipment Rack - Weapons") >= 0 || player.hasKeyItem("Equipment Rack - Armor") >= 0 || itemStorage.length > 0 || flags[kFLAGS.ANEMONE_KID] > 0 || player.hasKeyItem("Equipment Storage - Jewelry Box") >= 0 || flags[kFLAGS.CAMP_CABIN_FURNITURE_DRESSER] > 0;
+    if (gameFlags[HAS_ARMOR_RACK] == 1 || gameFlags[HAS_WEAPON_RACK] == 1 || gameFlags[HAS_EQUIPMENT_RACK] == 1) {
+        return true;
+    }
+    else
+        {
+            return false;
+        }
+   
+};
+
+// This function handles the Stash menu.
+Inventory.stashMenu = function () {
+    hideMenus();
+	clearOutput();
+	//spriteSelect(-1);
+	menu();
+	/* Anemone Kid stuff
+    if (flags[kFLAGS.ANEMONE_KID] > 0) {
+        kGAMECLASS.anemoneScene.anemoneBarrelDescription();
+		if (model.time.hours >= 6) addButton(4, "Anemone", kGAMECLASS.anemoneScene.approachAnemoneBarrel);
+	}
+    */
+    /* Camp Chest Stuff
+    if (player.hasKeyItem("Camp - Chest") >= 0 || player.hasKeyItem("Camp - Murky Chest") >= 0 || player.hasKeyItem("Camp - Ornate Chest") >= 0) {
+        var chestArray:Array = [];
+		if (player.hasKeyItem("Camp - Chest") >= 0) chestArray.push("a large wood and iron chest");
+		if (player.hasKeyItem("Camp - Murky Chest") >= 0) chestArray.push("a medium damp chest");
+		if (player.hasKeyItem("Camp - Ornate Chest") >= 0) chestArray.push("a medium gilded chest");
+		outputText("You have " + formatStringArray(chestArray) + " to help store excess items located ");
+		if (camp.homeDesc() == "cabin") outputText("inside your cabin");
+		else outputText("near the portal entrance");
+		outputText(".\n\n");
+		addButton(0, "Chest Store", pickItemToPlaceInCampStorage);
+		if (hasItemsInStorage()) addButton(1, "Chest Take", pickItemToTakeFromCampStorage);
+    }
+    */
+	// Weapon Rack
+    if (gameFlags[HAS_WEAPON_RACK] == 1) {
+        outputText("There's a weapon rack set up here, set up to hold up to nine various weapons.<br><br>");
+		addButton(2, "W.Rack Put", pickItemToPlaceInWeaponRack);
+		//if (weaponRackDescription()) addButton(3, "W.Rack Take", pickItemToTakeFromWeaponRack);
+    }
+    //Armor Rack
+
+	if (gameFlags[HAS_ARMOR_RACK] == 1) {
+        outputText("Your camp has an armor rack set up to hold your various sets of gear.  It appears to be able to hold nine different types of armor.<br><br>");
+        addButton(5, "A.Rack Put", pickItemToPlaceInArmorRack);
+		//if (armorRackDescription()) addButton(6, "A.Rack Take", pickItemToTakeFromArmorRack);
+    }
+
+	//Shield Rack
+    
+	if (gameFlags[HAS_EQUIPMENT_RACK] == 1) {
+        outputText("There's a shield rack set up here, set up to hold up to nine various shields.<br><br>");
+		addButton(7, "S.Rack Put", pickItemToPlaceInShieldRack);
+		//if (shieldRackDescription()) addButton(8, "S.Rack Take", pickItemToTakeFromShieldRack);
+    }
+    
+    /* Jewelry Box Code
+			if (player.hasKeyItem("Equipment Storage - Jewelry Box") >= 0) {
+				outputText("Your jewelry box is located ");
+				if (flags[kFLAGS.CAMP_BUILT_CABIN] > 0 && flags[kFLAGS.CAMP_CABIN_FURNITURE_BED])
+				{
+					if (flags[kFLAGS.CAMP_CABIN_FURNITURE_DRESSER]) outputText("on your dresser inside your cabin.");
+					else
+					{
+						if (flags[kFLAGS.CAMP_CABIN_FURNITURE_NIGHTSTAND]) outputText("on your nightstand inside your cabin.");
+						else  outputText("under your bed inside your cabin.");
+					}
+				}
+				else outputText("next to your bedroll.");	
+				addButton(10, "J.Box Put", inventory.pickItemToPlaceInJewelryBox);
+				if (inventory.jewelryBoxDescription()) addButton(11, "J.Box Take", inventory.pickItemToTakeFromJewelryBox);
+				outputText("\n\n", false);
+			}*/
+    
+    /* Dresser Code
+			if (flags[kFLAGS.CAMP_CABIN_FURNITURE_DRESSER] > 0) {
+				outputText("You have a dresser inside your cabin to store nine different types of undergarments.");
+				addButton(12, "Dresser Put", inventory.pickItemToPlaceInDresser);
+				if (inventory.dresserDescription()) addButton(13, "Dresser Take", inventory.pickItemToTakeFromDresser);
+				outputText("\n\n");
+			}*/
+    addButton(14, "Back", Camp.doCamp); //check out playerMenu too
+};
+
+
+// The following functions feed parameters to the main stashing function
+function pickItemToPlaceInWeaponRack() {
+    pickItemToPlaceInStorage(placeInWeaponRack, weaponAcceptable, "weapon rack", true);
+};
+
+function pickItemToPlaceInShieldRack() {
+ pickItemToPlaceInStorage(placeInShieldRack, shieldAcceptable, "shield rack", true);   
+};
+
+function pickItemToPlaceInArmorRack() {
+    pickItemToPlaceInStorage(placeInArmorRack, armorAcceptable, "armor rack", true);    
+};
+
+
+//function pickItemToPlaceInCampStorage() { pickItemToPlaceInStorage(placeInCampStorage, allAcceptable, "storage containers", false); };
+//function pickItemToPlaceInJewelryBox() { pickItemToPlaceInStorage(placeInJewelryBox, jewelryAcceptable, "jewelry box", true); };
+//function pickItemToPlaceInDresser() { pickItemToPlaceInStorage(placeInDresser, undergarmentAcceptable, "dresser", true); };
+
+// These functions test to see if the right item type is being put into the right stash.
+function allAcceptable(itype) { return true; };
+function armorAcceptable(itype) { 
+    if (itype == ITEM_TYPE_ARMOUR) return true;
+    return false; };
+function weaponAcceptable(itype) { 
+    if (itype == ITEM_TYPE_WEAPON) return true;
+    return false; };
+function shieldAcceptable(itype) {
+    if (itype == ITEM_TYPE_SHIELD) return true;
+    return false; };
+//function jewelryAcceptable(itype) { return itype is Jewelry; };
+//function undergarmentAcceptable(itype) { return itype is Undergarment; };
+
+
+// This function lets the player select an item to put into storage
+// CANNOT TEST UNTIL SOME MORE THINGS ARE PUT INTO THE GAME
+
+function pickItemToPlaceInStorage(placeInStorageFunction, typeAcceptableFunction, text, showEmptyWarning) {
+    clearOutput(); 
+    hideUpDown();
+	outputText("What item slot do you wish to empty into your " + text + "?");
+	menu();
+    var foundItem = false;
+    for (x = 0; x < 10; x++) {
+	    if (player.itemSlots[x].unlocked && player.itemSlots[x].quantity > 0 && typeAcceptableFunction(player.itemSlots[x].itype)) {
+            addButton(x, (player.itemSlots[x].itype.shortName + " x" + player.itemSlots[x].quantity), placeInStorageFunction, x);
+            foundItem = true;
+        }
+         
+    }
+    if (showEmptyWarning && !foundItem) outputText("\n<b>You have no appropriate items to put in this " + text + ".</b>");
+    addButton(14, "Back", Inventory.stashMenu);
+    
+};
+    
+
+/* For storage chests
+function placeInCampStorage(slotNum) {
+    placeIn(itemStorage, 0, itemStorage.length, slotNum);
+	doNext(pickItemToPlaceInCampStorage);
+};
+*/
+
+// For armor rack
+function placeInArmorRack(slotNum) {
+    placeIn(gearStorage, 9, 18, slotNum);
+    doNext(pickItemToPlaceInArmorRack);
+};
+		
+// For weapon rack
+function placeInWeaponRack(slotNum) {
+    placeIn(gearStorage, 0, 9, slotNum);
+	doNext(pickItemToPlaceInWeaponRack);
+};
+
+// For shield rack
+function placeInShieldRack(slotNum) {
+    placeIn(gearStorage, 36, 45, slotNum);
+	doNext(pickItemToPlaceInShieldRack);
+};
+
+/* For jewelry box
+function placeInJewelryBox(slotNum) {
+    placeIn(gearStorage, 18, 27, slotNum);
+	doNext(pickItemToPlaceInJewelryBox);
+};
+*/
+
+/* For dresser
+function placeInDresser(slotNum) {
+    placeIn(gearStorage, 27, 36, slotNum);
+	doNext(pickItemToPlaceInDresser);
+}
+*/
+
+// This function put the item into the gearStorage array for later retrieval
+function placeIn(storage, startSlot, endSlot, slotNum) {
+    clearOutput();
+			var x = startSlot; // Get the starting slot in the gearStorage array
+			var temp = 5 - storage[x].quantity; // Used for numbering
+			var itype = player.itemSlots[slotNum].itype; // Item type of the item we're placing
+			var qty = player.itemSlots[slotNum].quantity; // Quantity we have in inventory of the item we're placing
+			var orig = qty; // Used for tracking numbers
+			player.itemSlots[slotNum].emptySlot(); // Empty the slot
+			for (x = startSlot; x < endSlot && qty > 0; x++) { //Find any slots which already hold the item that is being stored
+				if (storage[x].itype == itype && storage[x].quantity < 5) {
+					temp = 5 - storage[x].quantity;
+					if (qty < temp) temp = qty;
+					outputText("You add " + temp + "x " + itype.shortName + " into storage slot " + num2Text(x + 1 - startSlot) + ".\n");
+					storage[x].quantity += temp;
+					qty -= temp;
+					if (qty == 0) return;
+				}
+			}
+			for (x = startSlot; x < endSlot && qty > 0; x++) { //Find any empty slots and put the item(s) there
+                if (storage[x].quantity == 0) {
+					storage[x].setItemAndQty(itype, qty);
+					outputText("You place " + qty + "x " + itype.shortName + " into storage slot " + num2Text(x + 1 - startSlot) + ".\n");
+					qty = 0;
+					return;
+				}
+			}
+			outputText("There is no room for " + (orig == qty ? "" : "the remaining ") + qty + "x " + itype.shortName + ".  You leave " + (qty > 1 ? "them" : "it") + " in your inventory.\n");
+			player.itemSlots[slotNum].setItemAndQty(itype, qty);
+		};
+	
+
+
+    

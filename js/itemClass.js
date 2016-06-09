@@ -6,6 +6,7 @@ ITEM_TYPE_ARMOUR = "Armour";
 ITEM_TYPE_UNDERGARMENT = "Undergarment";
 ITEM_TYPE_CONSUMABLE = "Consumable";
 ITEM_TYPE_MATERIAL = "Material";
+ITEM_TYPE_SHIELD = "Shield";
 
 function Item(itemId, itemShortName, itemLongName, itemType) {
 	//Required values, will be declared by parameters
