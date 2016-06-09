@@ -10,8 +10,10 @@ Areas.Lake.explore = function() {
     //choice[choice.length] = 3; //Fetish Cultists & Zealots after factory
     choice[choice.length] = 4; //Green Slime & Goo Girl
     //choice[choice.length] = 8;
+    if (AMILY_VILLAGE_ACCESSIBLE == 0) choice[choice.length] = 9; //Discovering the Town Ruins/Amily Encounter
     choice[choice.length] = 99; //Nothing out of the ordinary
     var select = choice[rand(choice.length)];
+    
     switch(select) {
         case 0: //Goblin and Imp encounters.
             Areas.GenericExploration.genericGobImpEncounters();
@@ -35,6 +37,11 @@ Areas.Lake.explore = function() {
                 GooGirlScene.encounterGooGirl();
             else //OOZE!
                 GreenSlimeScene.encounterSlime();
+            break;
+        case 9: //Discover the town ruins/Start Amily/Shouldra Encounters
+            if (AMILY_VILLAGE_ACCESSIBLE == 0) {
+                TownRuins.firstExploration();
+            }              
             break;
         default:
             if (rand(2) == 0) {
