@@ -16,7 +16,7 @@ Camp.doCamp = function() {
 	playerMenu = Camp.doCamp;
 	//Display texts
 	clearOutput();
-	/*if(isabellaFollower()) {
+	/*if (isabellaFollower()) {
 		outputText("Your campsite got a lot more comfortable once Isabella moved in.  Carpets cover up much of the barren ground, simple awnings tied to the rocks provide shade, and hand-made wooden furniture provides comfortable places to sit and sleep.  ", false);
 	}
 	else {*/

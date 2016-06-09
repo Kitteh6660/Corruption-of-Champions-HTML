@@ -58,10 +58,10 @@ RathazulScene.campRathazul = function() {
         marblePurification.visitRathazulToPurifyMarbleAfterLaBovaStopsWorkin();
         return;
     }*/
-    if (flags[RATHAZUL_SILK_ARMOR_COUNTDOWN] == 1 && flags[UNKNOWN_FLAG_NUMBER_00275] > 0) {
+    /*if (flags[RATHAZUL_SILK_ARMOR_COUNTDOWN] == 1 && flags[UNKNOWN_FLAG_NUMBER_00275] > 0) {
         RathazulScene.collectRathazulArmor();
         return;
-    }
+    }*/
     //Special rathazul/follower scenes scenes.
     /*if (rand(6) == 0 && flags[RATHAZUL_CAMP_INTERACTION_COUNTDOWN] == 0) {
         flags[RATHAZUL_CAMP_INTERACTION_COUNTDOWN] = 3;
@@ -123,7 +123,7 @@ RathazulScene.rathazulWorkOffer = function() {
         return true;
     }*/
     if (player.hasItem(Items.Consumables.BlackEgg) || player.hasItem(Items.Consumables.LargeBlackEgg)) {
-        flags[PC_KNOWS_ABOUT_BLACK_EGGS] = 1;
+        gameFlags[9999] = 1; //PC_KNOWS_ABOUT_BLACK_EGGS
         outputText("He eyes the onyx egg in your inventory and offers a little advice. \"<i>Be careful with black eggs. They can turn your skin to living latex or rubber. The smaller ones are usually safer, but everyone reacts differently. I'd get rid of them, if you want my opinion.</i>\"<br><br>");
     }
     //Item crafting offer
@@ -152,7 +152,7 @@ RathazulScene.rathazulWorkOffer = function() {
             outputText("You realize you're still a bit short of chitin.<br><br>");
         }
     }
-    if (player.hasItem(Items.Materials.SpiderSilk) && flags[RATHAZUL_SILK_ARMOR_COUNTDOWN] + flags[UNKNOWN_FLAG_NUMBER_00275] == 0) { //SPOIDAH
+    /*if (player.hasItem(Items.Materials.SpiderSilk) && flags[RATHAZUL_SILK_ARMOR_COUNTDOWN] + flags[UNKNOWN_FLAG_NUMBER_00275] == 0) { //SPOIDAH
         showArmorMenu = true;
         totalOffers++;
         outputText("\"<i>Oooh, is that some webbing from a giant spider or spider-morph? Most excellent! With a little bit of alchemical treatment, it is possible I could loosen the fibers enough to weave them into something truly magnificent - armor, or even a marvelous robe,</i>\" offers RathazulScene.<br><br>");
@@ -161,7 +161,7 @@ RathazulScene.rathazulWorkOffer = function() {
         showArmorMenu = true;
         totalOffers++;
         outputText("\"<i>Oooh, is that dragon scale? If you happen to have five of these, I can work them into armor,</i>\" Rathazul says.<br><br>");
-    }
+    }*/
     //Marae bark armor
     if (player.hasKeyItem("Tentacled Bark Plates") >= 0 || player.hasKeyItem("Divine Bark Plates") >= 0) showArmorMenu = true;
     //Item purification offer
@@ -208,8 +208,8 @@ RathazulScene.rathazulWorkOffer = function() {
     //Reducto
     if (gameFlags[RATHAZUL_CAMP] > 0 && gameFlags[RATHAZUL_PURCHASE_COUNTER]) {
         outputText("The rat hurries over to his supplies and produces a container of paste, looking rather proud of himself, \"<i>Good news everyone! I've developed a paste you could use to shrink down any, ah, oversized body parts. The materials are expensive though, so I'll need ");
-        outputText(flags[AMILY_MET_RATHAZUL] >= 2 ? "50" : 100);
-        outputText(" gems for each jar of ointment you want.</i>\"<br><br>");
+        //outputText(gameFlags[AMILY_MET_RATHAZUL] >= 2 ? "50" : 100);
+        outputText("100 gems for each jar of ointment you want.</i>\"<br><br>");
         reductos = true;
         totalOffers++;
     }
@@ -297,7 +297,7 @@ RathazulScene.rathazulArmorMenu = function() {
     if (player.hasItem(Items.Materials.BeeChitin, 5)) {
         addButton(1, "BeeArmor", RathazulScene.craftCarapace);
     }
-    if (player.hasItem(Items.Materials.SpiderSilk) && flags[RATHAZUL_SILK_ARMOR_COUNTDOWN] + flags[UNKNOWN_FLAG_NUMBER_00275] == 0) {
+    /*if (player.hasItem(Items.Materials.SpiderSilk) && flags[RATHAZUL_SILK_ARMOR_COUNTDOWN] + flags[UNKNOWN_FLAG_NUMBER_00275] == 0) {
         addButton(2, "SpiderSilk", RathazulScene.craftSilkArmor);
     }
     if (player.hasItem(Items.Materials.DragonScale, 2)) {
@@ -308,7 +308,7 @@ RathazulScene.rathazulArmorMenu = function() {
     }
     if (player.hasKeyItem("Divine Bark Plates") >= 0) {
         addButton(6, "D.Bark Armor", RathazulScene.craftMaraeArmor, true);
-    }
+    }*/
     addButton(14, "Back", RathazulScene.returnToRathazulMenu);
 }
 //Gel Armour
@@ -395,23 +395,23 @@ RathazulScene.chooseArmorOrRobes = function(armorType) {
     else
         outputText("You head back to your camp");
     outputText(", wondering if the old rodent will actually deliver the wondrous item that he's promised you.");
-    flags[UNKNOWN_FLAG_NUMBER_00275] = armorType;
-    flags[RATHAZUL_SILK_ARMOR_COUNTDOWN] = 24;
+    //flags[UNKNOWN_FLAG_NUMBER_00275] = armorType;
+    //flags[RATHAZUL_SILK_ARMOR_COUNTDOWN] = 24;
     doNext(Camp.returnToCampUseOneHour);
 }
 RathazulScene.collectRathazulArmor = function() {
     clearOutput();
     outputText("Rathazul beams and ejaculates, \"<i>Good news everyone! Your ");
-    if (flags[UNKNOWN_FLAG_NUMBER_00275] == 1)
+    if (gameFlags[9999] == 1)
         outputText("armor");
-    else if (flags[UNKNOWN_FLAG_NUMBER_00275] == 2)
+    else if (gameFlags[9999] == 2)
         outputText("robe");
     else
         outputText("undergarment");
     outputText(" is finished!</i>\"<br><br>");
 
     var itype;
-    switch(flags[UNKNOWN_FLAG_NUMBER_00275]) {
+    switch(gameFlags[9999]) {
         case 1: //Armor
             //outputText(images.showImage("rathazul-craft-silkarmor"));
             outputText("A glittering white suit of armor sits atop a crude armor rack, reflecting the light that plays across its surface beautifully. You definitely didn't expect anything like this! It looks nearly identical to a set of light platemail, though instead of having a cold metal surface, the armor feels slightly spongy, with just a little bit of give in it.<br><br>");
@@ -453,8 +453,8 @@ RathazulScene.collectRathazulArmor = function() {
     }
     //Reset counters
     gameFlags[RATHAZUL_PURCHASE_COUNTER]++;
-    flags[UNKNOWN_FLAG_NUMBER_00275] = 0;
-    flags[RATHAZUL_SILK_ARMOR_COUNTDOWN] = 0;
+    gameFlags[9999] = 0;
+    gameFlags[9999] = 0;
     Inventory.takeItem(itype, RathazulScene.returnToRathazulMenu);
 }
 //Dragonscale Armour
@@ -664,10 +664,10 @@ RathazulScene.purifySomething = function() {
     if (player.hasItem(Items.Consumables.SuccubiMilk)) {
         addButton(1, "Succubi Milk", RathazulScene.purifyItem, Items.Consumables.SuccubiMilk);
     }
-    /*if (player.hasItem(Items.Consumables.SuccubiDelight)) {
+    if (player.hasItem(Items.Consumables.SuccubiDelight)) {
         addButton(2, "S. Delight", RathazulScene.purifyItem, Items.Consumables.SuccubiDelight);
     }
-    if (player.hasItem(Items.Consumables.LaBova)) {
+    /*if (player.hasItem(Items.Consumables.LaBova)) {
         addButton(3, "LaBova", RathazulScene.purifyItem, Items.Consumables.LaBova);
     }
     if (player.hasItem(Items.Consumables.MinotaurCum)) {
@@ -713,11 +713,11 @@ RathazulScene.purifyItem = function(item) {
 
 //For Minerva purification.
 RathazulScene.purificationByRathazulBegin = function() {
-    outputText("Hoping the rodent-morph alchemist can assist you, you waste no time in approaching him. Rathazul looks up when he sees you, raising an eye curiously. \"<i>Is something the matter, " + player.short + "?</i>\"");
+    outputText("Hoping the rodent-morph alchemist can assist you, you waste no time in approaching him. Rathazul looks up when he sees you, raising an eye curiously. \"<i>Is something the matter, " + player.name + "?</i>\"");
     outputText("<br><br>You nod, and ask him if he knows anything about either killing pests or purifying the corruption from people as well as objects. At his bemused expression, you explain about Minerva and her conditions, repeating your query if he could possibly help you. Rathazul looks downcast and shakes his head.");
     outputText("<br><br>\"<i>I am afraid that I have never truly succeeded in my efforts to create a potion to purify the corrupted themselves.</i>\" The rat alchemist explains sadly. \"<i>The problem is there is very little, if anything, in this world that is capable of removing corruption from a consumer... But, I do have a theoretical recipe. If you can just find me some foodstuffs that would lower corruption and soothe the libido, and bring them to me, then I might be able to complete it. I can suggest pure giant bee honey as one, but I need at least two other items that can perform at least one of those effects. You said that the spring was able to keep your friend's corruption in check? Maybe some of the plants that grow there would be viable; bring me some samples, and a fresh dose of pure honey, and we’ll see what I can do.</i>\" He proclaims, managing to shake off his old depression and sound determined.");
     outputText("<br><br>With that in mind, you walk away from him; gathering the items that could cure Minerva is your responsibility.");
-    flags[MINERVA_PURIFICATION_RATHAZUL_TALKED] = 2;
+    gameFlags[9999] = 2; //MINERVA_PURIFICATION_RATHAZUL_TALKED
     doNext(Camp.returnToCampUseOneHour);
 }
 
@@ -739,7 +739,7 @@ RathazulScene.rathazulMakesPurifyPotion = function() {
 //Debimbo Draft
 RathazulScene.rathazulDebimboOffer = function() {
     clearOutput();
-    if (flags[RATHAZUL_DEBIMBO_OFFERED] == 0) {
+    if (gameFlags[9999] == 0) { //RATHAZUL_DEBIMBO_OFFERED
         /*if (SophieBimboScene.bimboSophie()) {
             outputText("Rathazul glances your way as you approach his lab, a thoughtful expression on his age-lined face. \"<i>Tell me, [name], do you truly enjoy having that vacuous idiot around, lusting after you at all hours of the day?</i>\" he asks, shaking his head in frustration. \"<i>She's clearly been subjected to the effects of Bimbo Liqueur, which as you can plainly see are quite indeed potent. However, like most things in Mareth, it can be countered - at least partially.</i>\" Rathazul folds his long, clawed fingers together, his tail lashing behind him as he thinks. \"<i>Perhaps with a sufficient quantity of something called Scholar's Tea... I could counter the stupefying effects of the elixir... oh my, yes... hmm...</i>\" Rathazul nods, stroking at the few long wisps of fur that hang from his chin.");
             outputText("<br><br>You await");
@@ -758,7 +758,7 @@ RathazulScene.rathazulDebimboOffer = function() {
                 outputText("<br><br>Rathazul glances your way as you approach his lab, a thoughtful expression on his age-lined face. \"<i>I see you happen to have drank a can of Bro Brew in the past. If you ever need me to restore your intelligence capabilities, bring me five scholar teas and 250 gems. Thanks Marae you're not a bimbo; that would have been worse.</i>\"");
             }
         //}
-        flags[RATHAZUL_DEBIMBO_OFFERED] = 1;
+        gameFlags[9999] = 1; //RATHAZUL_DEBIMBO_OFFERED
     }
     //Rath menu
     doNext(RathazulScene.returnToRathazulMenu);

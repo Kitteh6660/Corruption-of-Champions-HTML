@@ -19,7 +19,7 @@ Cock.prototype.cockArea = function() {
 }
 Cock.prototype.thickenCock = function(amount) {
     //Diminishing returns!
-    if (!flags[HYPER_HAPPY]) {
+    if (!hyperHappy) {
         if (this.cockThickness >= 6 && this.cockThickness < 10)
             amount *= 0.8;
         else if (this.cockThickness >= 10 && this.cockThickness < 14)
@@ -38,7 +38,7 @@ Cock.prototype.thickenCock = function(amount) {
 }
 Cock.prototype.increaseCock = function(amount) {
     //Diminishing returns!
-    if (!flags[HYPER_HAPPY]) {
+    if (!hyperHappy) {
         if (this.cockLength >= 30 && this.cockLength < 50)
             amount *= 0.8;
         else if (this.cockLength >= 50 && this.cockLength < 70)

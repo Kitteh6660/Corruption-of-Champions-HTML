@@ -10,6 +10,8 @@ function Vagina(wetness, looseness, virgin, vagType) {
 	this.vaginalWetness = wetness;
 	this.vaginalLooseness = looseness;
 	this.virgin = virgin;
+    //Misc
+    this.clitPierced = 0;
 }
 
 function fixVagina(pussy) { //Fix any undefined numbers.

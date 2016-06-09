@@ -1,0 +1,23 @@
+Version 0.1.2 (June 09, 2016)
+
+* Added Giacomo. Note that Cerulean Potion is not available yet and masturbation with toys are not implemented.
+* Added Lumi the Goblin Alchemist. Currently enhancing items are not available.
+* Added Farm, along with Whitney and Kelt. Marble will come later.
+* Added Marcus & Lucia to desert, complete with Succubi Delight. The potion can be purified.
+* Added Town Ruins stub.
+* Several more items!
+* Fixed NaN lust from Sand Witch.
+
+Version 0.1.1 (February 18, 2016)
+
+* Jojo can now be corrupted and taken as slave.
+* Fixed Goo girl attacks.
+* The function for checking the number of items now work properly.
+
+Version 0.1 (February 16, 2016)
+
+* Many more implementation of core functions. By now, I should be able to import and clean practically any content imported from Flash!
+* Addition of Forest, Lake, Desert, and Mountain.
+* Addition of Bee Girls, Green Slimes, Goo Girls, Hellhounds, Minotaurs, Nagas, and Sand Witches!
+* Rathazul and Jojo are in the game. You can even invite them to your camp.
+* Functional Perks and Status Effects!

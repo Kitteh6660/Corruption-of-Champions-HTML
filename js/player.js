@@ -1121,7 +1121,7 @@ Player.prototype.bodyType = function() {
 }
 
 Player.prototype.lengthChange = function(amount, ncocks) {
-    if (amount < 0 && flags[HYPER_HAPPY])  // Early return for hyper-happy cheat if the call was *supposed* to shrink a cock.
+    if (amount < 0 && hyperHappy)  // Early return for hyper-happy cheat if the call was *supposed* to shrink a cock.
     {
         return;
     }
@@ -1318,12 +1318,6 @@ Player.prototype.clearStatuses = function() {
     if (this.findStatusEffect(StatusEffects.ChargeWeapon) >= 0) this.removeStatusEffect(StatusEffects.ChargeWeapon);
     if (this.findStatusEffect(StatusEffects.Disarmed) >= 0) {
         this.removeStatusEffect(StatusEffects.Disarmed);
-        if (weapon == Items.NOTHING) {
-            player.weapon = lookupItem(flags[PLAYER_DISARMED_WEAPON_ID]);
-        }
-        else {
-            flags[BONUS_ITEM_AFTER_COMBAT_ID] = flags[PLAYER_DISARMED_WEAPON_ID];
-        }
     }
     if (this.findStatusEffect(StatusEffects.AnemoneVenom) >= 0) {
         this.modStats("str", this.statusEffectValue(StatusEffects.AnemoneVenom, 1));

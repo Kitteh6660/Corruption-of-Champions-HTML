@@ -6,6 +6,7 @@ Areas.Desert.explore = function() {
     var choice = [];
     choice[choice.length] = 0; //Sand Witch
     choice[choice.length] = 1; //Naga
+    choice[choice.length] = 2; //Marcus and Lucia
     choice[choice.length] = 99; //Nothing out of the ordinary, possibly find mirage
     var select = choice[rand(choice.length)];
     switch(select) {
@@ -14,6 +15,9 @@ Areas.Desert.explore = function() {
             break;
         case 1: //Naga
             NagaScene.nagaEncounter();
+            break;
+        case 2: //Marcus and Lucia
+            WandererScene.wandererRouter();
             break;
         default:
             if (rand(4) > 0) { //Find nothing.

@@ -100,7 +100,7 @@ Minotaur.minoPheromones = function() {
     var lustDamage = 0;
     outputText("The minotaur smiles at you and lifts his loincloth, flicking it at you. Thick ropes of pre-cum fly through the air, ");
     //sometimes get hit with the pre for stronger effect!
-    if(rand(3) == 0) {
+    if (rand(3) == 0) {
         outputText("slapping into your face before you can react!  You wipe the slick snot-like stuff out of your eyes and nose, ");
         if (player.lust > 75) {
             outputText("swallowing it into your mouth without thinking. ");

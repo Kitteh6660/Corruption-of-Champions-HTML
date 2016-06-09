@@ -78,8 +78,48 @@ Items.Consumables.SuccubiMilk.consumeEffect = createCallBackFunction(ConsumableE
 
 Items.Consumables.SuccubiMilkPurified = new Item("P.S.Mlk", "P.S.Milk", "an untainted bottle of Succubi milk", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.SuccubiMilkPurified.description = "This milk-bottle is filled to the brim with a creamy white milk of dubious origin. A pink label proudly labels it as \"<i>Succubi Milk</i>\". In small text at the bottom of the label it reads: \"<i>To bring out the succubus in YOU!</i>\" Rathazul has purified this to prevent corruption upon use.";
-Items.Consumables.SuccubiMilk.consumeEffect = createCallBackFunction(ConsumableEffects.demonTFs, 1, true);
+Items.Consumables.SuccubiMilkPurified.consumeEffect = createCallBackFunction(ConsumableEffects.demonTFs, 1, true);
 Items.Consumables.SuccubiMilkPurified.value = 20;
+
+Items.Consumables.SuccubiDelight = new Item("SDelite", "S.Delite", "a bottle of 'Succubi's Delight'", ITEM_TYPE_CONSUMABLE);
+Items.Consumables.SuccubiDelight.description = "This precious fluid is often given to men a succubus intends to play with for a long time.";
+Items.Consumables.SuccubiDelight.consumeEffect = createCallBackFunction(ConsumableEffects.succubiDelight, false);
+
+Items.Consumables.SuccubiMilkPurified = new Item("PSDelit", "PSDelit", "an untainted bottle of \"Succubi's Delight\"", ITEM_TYPE_CONSUMABLE);
+Items.Consumables.SuccubiMilkPurified.description = "This precious fluid is often given to men a succubus intends to play with for a long time.  It has been partially purified by Rathazul to prevent corruption.";
+Items.Consumables.SuccubiMilkPurified.consumeEffect = createCallBackFunction(ConsumableEffects.succubiDelight, true);
+Items.Consumables.SuccubiMilkPurified.value = 20;
+
+
+//------------
+// NON-TFs
+//------------
+Items.Consumables.FishFillet = new Item("FishFil", "F. Fillet", "a fish fillet", ITEM_TYPE_CONSUMABLE);
+Items.Consumables.FishFillet.description = "A perfectly cooked piece of fish. You're not sure what type of fish is, since you're fairly certain \"delicious\" is not a valid species.";
+Items.Consumables.FishFillet.consumeEffect = ConsumableEffects.fishFillet;
+
+Items.Consumables.LustDraft = new Item("L.Draft", "LustDraft", "a vial of roiling bubble-gum pink fluid", ITEM_TYPE_CONSUMABLE);
+Items.Consumables.LustDraft.description = "This vial of bright pink fluid bubbles constantly inside the glass, as if eager to escape. It smells very sweet, and has \"Lust\" inscribed on the side of the vial.";
+Items.Consumables.LustDraft.consumeEffect = ConsumableEffects.lustDraft;
+Items.Consumables.LustDraft.value = 20;
+
+Items.Consumables.OviElixir = new Item("OviElix", "Ovi Elixir", "a salve marked as 'Reducto'", ITEM_TYPE_CONSUMABLE);
+Items.Consumables.OviElixir.description = "This container full of paste can be used to shrink a body part down by a significant amount.";
+Items.Consumables.OviElixir.consumeEffect = ConsumableEffects.oviElixir;
+Items.Consumables.OviElixir.value = 30;
+
+Items.Consumables.Reducto = new Item("Reducto", "Reducto", "a salve marked as 'Reducto'", ITEM_TYPE_CONSUMABLE);
+Items.Consumables.Reducto.description = "This container full of paste can be used to shrink a body part down by a significant amount.";
+Items.Consumables.Reducto.consumeEffect = ConsumableEffects.reductoMenu;
+Items.Consumables.Reducto.value = 30;
+
+Items.Consumables.ScholarsTea = new Item("Smart T", "Scholars T.", "a cup of scholar's tea", ITEM_TYPE_CONSUMABLE);
+Items.Consumables.ScholarsTea.description = "This potent tea supposedly has mind-strengthening effects.";
+Items.Consumables.ScholarsTea.consumeEffect = ConsumableEffects.scholarsTea;
+
+Items.Consumables.VitalityTincture = new Item("Vital T", "Vitality T.", "a fish fillet", ITEM_TYPE_CONSUMABLE);
+Items.Consumables.VitalityTincture.description = "This powerful brew is supposedly good for the strengthening the body.";
+Items.Consumables.VitalityTincture.consumeEffect = ConsumableEffects.vitalityTincture;
 
 //------------
 // DYES/OILS/LOTIONS

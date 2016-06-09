@@ -19,12 +19,12 @@ Areas.Lake.explore = function() {
         case 1: //Rathazul if he isn't in your camp.
             RathazulScene.encounterRathazul();
             break;
-        case 2: //Attempt to find the farm or find item (Farm not yet implemented)
+        case 2: //Attempt to find the farm or find item
             if (rand(100) < 40) {
                 Areas.Lake.findLakeLoot();
             }
             else {
-                Areas.Lake.findLakeLoot(); //This line will be replaced with farm.
+                Places.Farm.farmExploreEncounter();
             }
             break;
         case 3: //Fetish Cultists and Zealots, encounterable if factory is shut down (Not yet implemented)

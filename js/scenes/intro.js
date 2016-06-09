@@ -11,7 +11,7 @@ CharCreation.initializeNewGame = function() {
     player.weapon = Items.NOTHING;
     player.armor = Items.Armor.ComfortableClothes;
     //Clear Flags
-    flags = [0] * 3000;
+    //flags = [0] * 3000;
     //Route to character naming
     CharCreation.chooseName();
 }

@@ -55,12 +55,16 @@ function keyPress(e) {
         //Next and yes/no
         case " ":
             pressNextByKey();
+            break;
         case "y":
             pressYesByKey();
+            break;
         case "n":
             pressNoByKey();
+            break;
         case "Shift":
             shiftKeyDown = true;
+            break;
         default:
     }
 }
@@ -69,6 +73,7 @@ function keyDepress(e) {
     switch(event.key) {
         case "Shift":
             shiftKeyDown = false;
+            break;
         default:
     }
 }

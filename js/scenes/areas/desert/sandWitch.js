@@ -96,7 +96,7 @@ SandWitch.lustAttack = function() {
             outputText("You desperately grab for it, but are too late!  It pushes firmly against your rectum and slips inside instantaneously. You groan in frustration as it begins pulsing and vibrating, sometimes even seeming to change size. ");
         }
         player.createStatusEffect(StatusEffects.StoneLust, 0, 0, 0, 0);
-        player.changeLust(4 + (player.sen / 10), true);
+        player.changeLust(4 + (player.sens / 10), true);
     }
 }
 

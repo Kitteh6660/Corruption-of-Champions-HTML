@@ -14,6 +14,11 @@ PerkLib.Tank = new PerkType("Tank", "Tank", "Raises max HP by 50.", "You choose 
 PerkLib.Tank2 = new PerkType("Tank2", "Tank 2", "Raises max HP by 1 per point of Toughness.", "You choose the 'Tank 2' perk, granting an extra maximum HP for each point of toughness.");
 
 //------------
+// EQUIPMENT
+//------------
+PerkLib.WizardsFocus = new PerkType("Wizard", "Wizard's Focus", "Your wizard's staff grants you additional focus, amplifying the power of your spells.");
+
+//------------
 // EVENTS
 //------------
 //Jojo

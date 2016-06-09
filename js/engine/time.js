@@ -16,5 +16,5 @@ Time.advanceMinutes = function(minutes) {
 	}
 }
 Time.advanceHours = function(hours) {
-	Time.advanceMinutes(hours * 60);
+    Time.advanceMinutes(hours * 60);
 }

@@ -534,7 +534,7 @@ function appearanceScreen() {
                 outputText(" Two huge horns erupt from your forehead, curving outward at first, then forwards. The weight of them is heavy, and they end in dangerous looking points.");
             break;
         case HORNS_DRACONIC_X2:
-            if (flags[USE_METRICS] > 0)
+            if (useMetrics)
                 outputText(" A pair of " + num2Text(Math.floor(player.horns*2.54)) + " centimetre horns grow from the sides of your head, sweeping backwards and adding to your imposing visage.");
             else
                 outputText(" A pair of " + num2Text(player.horns) + " inch horns grow from the sides of your head, sweeping backwards and adding to your imposing visage.");
@@ -966,7 +966,7 @@ function appearanceScreen() {
             }
             else
             { //Surely Benoit and Cotton deserve their place in this list
-                if (player.pregnancyType == PREGNANCY_IZMA || player.pregnancyType == PREGNANCY_MOUSE || player.pregnancyType == PREGNANCY_AMILY || (player.pregnancyType == PREGNANCY_JOJO && (gameFlags[JOJO_CORRUPTION_STAGE] <= 0 || flags[JOJO_BIMBO_STATE] >= 3)) || player.pregnancyType == PREGNANCY_EMBER || player.pregnancyType == PREGNANCY_BENOIT || player.pregnancyType == PREGNANCY_COTTON || player.pregnancyType == PREGNANCY_URTA || player.pregnancyType == PREGNANCY_BEHEMOTH)
+                if (player.pregnancyType == PREGNANCY_IZMA || player.pregnancyType == PREGNANCY_MOUSE || player.pregnancyType == PREGNANCY_AMILY || (player.pregnancyType == PREGNANCY_JOJO && (gameFlags[JOJO_CORRUPTION_STAGE] <= 0 || gameFlags[JOJO_BIMBO_STATE] >= 3)) || player.pregnancyType == PREGNANCY_EMBER || player.pregnancyType == PREGNANCY_BENOIT || player.pregnancyType == PREGNANCY_COTTON || player.pregnancyType == PREGNANCY_URTA || player.pregnancyType == PREGNANCY_BEHEMOTH)
                     outputText("<br><b>Your belly protrudes unnaturally far forward, bulging with the spawn of one of this land's natives.</b>");
                 else if (player.pregnancyType != PREGNANCY_MARBLE)
                     outputText("<br><b>Your belly protrudes unnaturally far forward, bulging with the unclean spawn of some monster or beast.</b>");
@@ -1068,7 +1068,7 @@ function appearanceScreen() {
     else if (player.breastRows.length == 1) {
         outputText("You have " + num2Text(player.breastRows[0].breasts) + " " + player.breastDescript(temp) + ", each supporting ");
         outputText(num2Text(player.breastRows[0].nipplesPerBreast) + " "); //Number of nipples.
-        if (flags[USE_METRICS] > 0)
+        if (useMetrics)
             outputText(Math.floor(player.breastRows[0].nippleLength * 2.54 * 10) / 10 + "-cm "); //Centimeter display
         else
             outputText(Math.floor(player.breastRows[0].nippleLength * 10) / 10 + "-inch "); //Inches display
@@ -1099,7 +1099,7 @@ function appearanceScreen() {
                 breastListText += "Your fifth and final mammory grouping swells with ";
             breastListText += num2Text(player.breastRows[temp].breasts) + " " + player.breastDescript(temp) + " with ";
             breastListText += num2Text(player.breastRows[temp].nipplesPerBreast) + " "; //Number of nipples per breast
-            if (flags[USE_METRICS] > 0 )
+            if (useMetrics )
                 breastListText += Math.floor(player.breastRows[temp].nippleLength * 2.54 * 10) / 10 + "-cm "; //Centimeter
             else
                 breastListText += Math.floor(player.breastRows[temp].nippleLength * 10) / 10 + "-inch "; //Inches
@@ -1129,13 +1129,13 @@ function appearanceScreen() {
     if (player.cocks.length == 1) {
         if (player.isTaur())
             outputText("<br>Your equipment has shifted to lie between your hind legs, like a feral animal.");
-        if (flags[USE_METRICS] > 0)
+        if (useMetrics)
             outputText("<br>Your " + player.cockDescript(temp) + " is " + Math.round(player.cocks[temp].cockLength * 10 * 2.54) / 10 + " cm long and ");
         else
             outputText("<br>Your " + player.cockDescript(temp) + " is " + Math.round(player.cocks[temp].cockLength * 10) / 10 + " inches long and ");
         if (Math.round(10 * player.cocks[temp].cockThickness) / 10 < 10)
         {
-            if (flags[USE_METRICS] > 0) {
+            if (useMetrics) {
                 if (Math.round(player.cocks[temp].cockThickness * 10 * 2.54) / 10 == 1)
                     outputText(Math.round(player.cocks[temp].cockThickness * 10 * 2.54) / 10 + " centimetre thick.");
                 else
@@ -1430,7 +1430,7 @@ function appearanceScreen() {
             outputText("<br>Your womanly parts have shifted to lie between your hind legs, in a rather feral fashion.");
         outputText("<br>");
         if (player.vaginas.length == 1) {
-            if (flags[USE_METRICS] > 0)
+            if (useMetrics)
                 outputText("You have a " + player.vaginaDescript(0) + ", with a " + Math.floor(player.vaginas[0].clitLength * 10 * 2.54) / 10 + "-centimetre clit");
             else
                 outputText("You have a " + player.vaginaDescript(0) + ", with a " + Math.floor(player.vaginas[0].clitLength * 10) / 10 + "-inch clit");
@@ -1439,7 +1439,7 @@ function appearanceScreen() {
             outputText(". ");
         }
         if (player.vaginas.length > 1) {
-            if (flags[USE_METRICS] > 0)
+            if (useMetrics)
                 outputText("You have " + player.vaginas.length + " " + player.vaginaDescript(0) + "s, with " + Math.floor(player.vaginas[0].clitLength * 10 * 2.54) / 10 + "-centimetre clits each. ");
             else
                 outputText("You have " + player.vaginas.length + " " + player.vaginaDescript(0) + "s, with " + Math.floor(player.vaginas[0].clitLength * 10) / 10 + "-inch clits each. ");
@@ -1549,8 +1549,8 @@ function appearanceScreen() {
             outputText("<br>Looking positively perverse, a " + player.cocks[0].pShortDesc + " adorns your " + player.cockDescript(0) + ".");
         }
     }
-    if (flags[UNKNOWN_FLAG_NUMBER_00286] == 1)
-        outputText("<br>A magical, ruby-studded bar pierces your belly button, allowing you to summon Ceraph on a whim.");
+    //if (flags[UNKNOWN_FLAG_NUMBER_00286] == 1)
+    //    outputText("<br>A magical, ruby-studded bar pierces your belly button, allowing you to summon Ceraph on a whim.");
     if (player.hasVagina())
     {
         if (player.vaginas[0].labiaPierced > 0)

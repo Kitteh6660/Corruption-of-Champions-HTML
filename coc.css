@@ -97,7 +97,7 @@ h2 {
 	width: 100px;
 	display: block;
 	color: #000000;
-	font-family: Georgia, "Times New Roman", sans-serif;
+	font-family: "Palatino Linotype", Palatino, Georgia, "Times New Roman", sans-serif;
 	font-size: 12px;
 	text-shadow: 1px 1px 5px #333333;
 }
@@ -114,7 +114,7 @@ h2 {
 	width: 60px;
 	text-align: right;
 	color: black;
-	font-family: Georgia, "Times New Roman", sans-serif;
+	font-family: "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
 	font-size: 18px;
 	text-shadow: 1px 1px 5px #333333;
 }
@@ -177,7 +177,7 @@ h2 {
 	text-decoration: none;
 	text-shadow: 1px 1px 1px #333333;
 	/*font-family: Georgia, "Times New Roman", serif;*/
-    font-family: Papyrus, fantasy;
+    font-family: "Palatino Linotype", Palatino, Georgia, serif;
 	font-size: 16px;
 	font-weight: bold;
 	line-height: 38px;

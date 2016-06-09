@@ -1,4 +1,15 @@
 //------------
+// STATS
+//------------
+const TIMES_TRANSFORMED                 = "Times_Transformed";
+const TIMES_ORGASMED                    = "Times_Orgasmed";
+
+//------------
+// MISC
+//------------
+const HAIR_GROWTH_STOPPED_BECAUSE_LIZARD= "Hair_Growth_Stopped";
+
+//------------
 // CODEX
 //------------
 //Codex Entry, will be used at a point.
@@ -45,14 +56,61 @@ const JOJO_MEDITATION_COUNTER           = "Jojo_Meditation_Counter";
 const JOJO_TRAINING_COUNTER             = "Jojo_Training_Counter";
 const JOJO_TRAINING_UNLOCKED            = "Jojo_Training_Unlocked";
 const JOJO_NIGHT_WATCH                  = "Jojo_Night_Watch";
+const JOJO_BIMBO_STATE                  = "Jojo_Bimbo_State";
 
 //Marble
+const MARBLE_MET                        = "Marble_Met";
 const MARBLE_CAMP                       = "Marble_Camp";
-
+const MARBLE_ADDICTION                  = "Marble_Addiction";
+const MARBLE_AFFECTION                  = "Marble_Affection";
+const MARBLE_WARNING                    = "Marble_Warning";
+const NO_MORE_MARBLE                    = "No_More_Marble";
+const MARBLE_RAPE_ATTEMPTED             = "Marble_Rape_Attempted";
+const MURBLE_FARM_TALK_LEVELS           = "Marble_Farm_Talk_Levels";
 
 //------------
 // ENCOUNTERS
 //------------
+//--[[ NON-COMBAT ]]--
+//Callu
+const MET_OTTERGIRL                     = "Met_OtterGirl";
+
+//Giacomo
+const GIACOMO_MET                       = "Giacomo_Met";
+const GIACOMO_WORMS_OFFERED             = "Giacomo_Worms_Offered";
+
+//Lumi
+const LUMI_MET                          = "Lumi_Met";
+
+//Marcus & Lucia
+const WANDERER_MET                      = "Wanderer_Met";
+const WANDERER_DEMON                    = "Wanderer_Demon";
+const WANDERER_EPILOGUE                 = "Wanderer_Epilogue";
+
+//Whitney & Farm
+const FARM_DISABLED                     = "Farm_Disabled";
+const FARM_CORRUPTION_STARTED           = "Farm_Corruption_Started";
+const MET_WHITNEY                       = "Met_Whitney";
+const WHITNEY_FLIPPED_OUT_OVER_KELLY    = "Whitney_Flipped_Out_Over_Kelly";
+
+const KELT_MET                          = "Kelt_Met";
+const KELT_SUBMISSIVENESS               = "Kelt_Submissiveness";
+const NEVER_RESIST_KELT                 = "Never_Resist_Kelt";
+const KELT_BAD_END_WARNING              = "Kelt_Bad_End_Warning";
+const KELT_DISABLED                     = "Kelt_Disabled";
+const KELT_KILLED                       = "Kelt_Killed";
+const KELT_BREAK_LEVEL                  = "Kelt_Break_Level";
+const KELLY_CUNT_TYPE                   = "Kelly_Cunt_Type";
+const KELLY_COCK_SIZE                   = "Kelly_Cock_Size";
+const TIMES_PUNISHED_KELLY              = "Times_Punished_Kelly";
+const TIMES_RIM_JOBBED_BY_KELLY         = "Times_Rim_Jobbed_By_Kelly";
+const TIMES_RIDDEN_KELLY_FOR_PUNISHMENT = "Times_Ridden_Kelly_For_Punishment";
+const KELLY_BONUS_TIT_ROWS              = "Kelly_Bonus_Tits_Row";
+const KELLY_LACTATING                   = "Kelly_Lactating";
+const KELLY_DISOBEYING_COUNTER          = "Kelly_Disobeying_Counter";
+const KELLY_VAGINALLY_FUCKED_COUNT      = "Kelly_Vaginally_Fucked_Count";
+
+//--[[ COMBAT ]]--
 //Minotaur
 const MINOTAUR_TF2                      = "Minotaur_TF2"; //One-time silly mode scene.
 const MINOTAUR_AND_COWGIRL              = "Minotaur_And_CowGirl";

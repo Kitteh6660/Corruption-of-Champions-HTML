@@ -1,4 +1,5 @@
 Areas = [];
+Places = [];
 
 Areas.GenericExploration = [];
 
@@ -28,6 +29,7 @@ Areas.GenericExploration.tryDiscover = function() {
     }
     else {
         exploration.explored++;
+        //Find zones
         if (exploration.exploredForest <= 0) {
             outputText("You walk for quite some time, roaming the hard-packed and pink-tinged earth of the demon-realm. Rust-red rocks speckle the wasteland, as barren and lifeless as anywhere else you've been. A cool breeze suddenly brushes against your face, as if gracing you with its presence. You turn towards it and are confronted by the lush foliage of a very old looking forest. You smile as the plants look fairly familiar and non-threatening. Unbidden, you remember your decision to test the properties of this place, and think of your campsite as you walk forward. Reality seems to shift and blur, making you dizzy, but after a few minutes you're back, and sure you'll be able to return to the forest with similar speed.<br><br><b>You've discovered the Forest!</b>");
             exploration.exploredForest = 1;
@@ -53,7 +55,23 @@ Areas.GenericExploration.tryDiscover = function() {
             exploration.exploredMountain = 1;
             return;
         }
-        outputText("You wander around, fruitlessly searching for new places.");
+        //Find encounters
+        if (rand(100) > 0) {
+            switch(rand(4)) {
+                case 0:
+                    Areas.GenericExploration.genericGobImpEncounters();
+                    break;
+                case 1:
+                    GiacomoScene.giacomoEncounter();
+                    break;
+                case 2:
+                case 3:
+            }
+        }
+        else {
+            //Easter egg
+            outputText("You wander around, fruitlessly searching for new places.");
+        }
     }
 }
 

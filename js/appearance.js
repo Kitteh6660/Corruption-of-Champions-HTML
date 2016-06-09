@@ -76,7 +76,7 @@ Appearance.hairDescription = function(i_creature) {
     }
     //if medium length refer to as locks sometimes
     //CUT - locks is plural and screws up tense.
-    /*if(creature.hairLength >= 3 && creature.hairLength < 16 && rand(2) == 0) {
+    /*if (creature.hairLength >= 3 && creature.hairLength < 16 && rand(2) == 0) {
      descript += "locks of hair";
      return descript;
      }*/
@@ -479,7 +479,7 @@ Appearance.cockDescription = function(cockType, length, girth, lust, cumQ, isPie
     if (isGooey == undefined) isGooey = false;
     //Now do these!
     if (rand(2) == 0) {
-        if(cockType == CockTypesEnum.HUMAN)
+        if (cockType == CockTypesEnum.HUMAN)
             return Appearance.cockAdjective(cockType, length, girth, lust, cumQ, isPierced, hasSock, isGooey) + " " + Appearance.cockNoun(cockType);
         else
             return Appearance.cockAdjective(cockType, length, girth, lust, cumQ, isPierced, hasSock, isGooey) + ", " + Appearance.cockNoun(cockType);
@@ -839,11 +839,11 @@ Appearance.cockAdjectives = function(i_cockLength, i_cockThickness, i_cockType, 
     }
     //Length/Thickness done.  Moving on to special animal characters/lust stuff.
     /*Animal Fillers - turned off due to duplication in noun segment
-     else if(type == 1 && descripts == 0 && rand(2) == 0) {
-     if(rand(2) == 0) descript += "flared ";
+     else if (type == 1 && descripts == 0 && rand(2) == 0) {
+     if (rand(2) == 0) descript += "flared ";
      else descript += "musky ";
      }
-     else if(type == 2 && descripts == 0 && rand(2) == 0) {
+     else if (type == 2 && descripts == 0 && rand(2) == 0) {
      descript += "musky ";
      }*/
     //FINAL FALLBACKS - lust descriptors
@@ -1308,8 +1308,9 @@ Appearance.vaginaDescript = function(i_creature, i_vaginaIndex, forceDesc) {
     if (description != "")
         description += " ";
 
-    if (flags[SFW_MODE] > 0) { //Removes something that might offend sensitive people.
-        options = ["cooter"];
+    if (SFWMode > 0) { //Removes something that might offend sensitive people.
+        options = ["cooter",
+            "entrance"];
     }
     else {
         options = ["vagina",
@@ -1323,7 +1324,7 @@ Appearance.vaginaDescript = function(i_creature, i_vaginaIndex, forceDesc) {
     }
     description += randomChoice(options);
     //Something that would be nice to have but needs a variable in Creature or Character.
-    //if(i_creature.bunnyScore() >= 3) description += "rabbit hole";
+    //if (i_creature.bunnyScore() >= 3) description += "rabbit hole";
 
     return description;
 }
@@ -1375,7 +1376,7 @@ Appearance.clitDescription = function(i_creature) {
             haveDescription = true;
         }
         /*Horse descriptors - 50%
-         if(creature.skinType == 1 > 2 && !descripted && rand(2) == 0) {
+         if (creature.skinType == 1 > 2 && !descripted && rand(2) == 0) {
          descripted = true;
          descript += "mare-";
          }*/
@@ -1419,7 +1420,7 @@ Appearance.clitDescription = function(i_creature) {
         "clit",
         "clit",
         "button"];
-    if (flags[SFW_MODE] > 0) {
+    if (SFWMode > 0) {
         options = ["bump", "button"];
     }
     description += randomChoice(options);
@@ -1731,7 +1732,7 @@ Appearance.buttDescription = function(i_character) {
         "bottom"];
 
     description += randomChoice(options);
-    //if(rando == 2) desc += "cheeks";
+    //if (rando == 2) desc += "cheeks";
     return description;
 }
 
@@ -1844,7 +1845,7 @@ Appearance.assholeDescript = function(i_creature, forceDesc) {
     }
 
     //asshole descriptor
-    if (flags[SFW_MODE] > 0) {
+    if (SFWMode > 0) {
         description += randomChoice("rear end",
             "backdoor");
     }
@@ -2266,7 +2267,7 @@ Appearance.allBreastsDescript = function(creature) {
     var storage = "";
     if (creature.breastRows.length == 0) return "unremarkable chest muscles ";
     if (creature.breastRows.length == 2) {
-        //if(creature.totalBreasts() == 4) storage += "quartet of ";
+        //if (creature.totalBreasts() == 4) storage += "quartet of ";
         storage += "two rows of ";
     }
     if (creature.breastRows.length == 3) {
@@ -2374,7 +2375,7 @@ Appearance.biggestBreastSizeDescript = function(creature) {
         else descript += "breasts";
     }
     if (temp14 == 3) {
-        //if(creature.breastRows[temp142].breastRating > 6) descript += "rack";
+        //if (creature.breastRows[temp142].breastRating > 6) descript += "rack";
         descript += "breasts";
     }
     if (temp14 == 4) descript += "tits";

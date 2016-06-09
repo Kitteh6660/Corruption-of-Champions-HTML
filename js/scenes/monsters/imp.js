@@ -233,7 +233,7 @@ ImpScene.rapeImpWithPussy = function() {
     //Too small!
     if (player.vaginalCapacity() < monster.cockArea(0)) {
         outputText("  You frown as you push against him, but his demonic tool is too large for your " + player.vaginaDescript(0) + ".  With a sigh, you shift position and begin grinding your " + player.vaginaDescript(0) + " against his " + monster.cockDescriptShort(0) + ", coating it with fluids of your gender.  Your clit tingles wonderfully as it bumps against every vein on his thick appendage.");
-        if(player.breastRows.length > 0 && player.breastRows[0].breastRating > 1) {
+        if (player.breastRows.length > 0 && player.breastRows[0].breastRating > 1) {
             outputText("  You happily tug and pinch on your erect nipples, adding to your pleasure and nearly driving yourself to orgasm.");
         }
         outputText("\n\nYou lose track of time as you languidly pump against the imp's " + monster.cockDescriptShort(0) + ".  At long last you feel your " + player.vaginaDescript(0) + " ripple and quiver.  Your " + player.legs() + " give out as you lose your muscle control and collapse against the small demon.  You gasp as his " + monster.cockDescriptShort(0) + " erupts against you, splattering your chest with hot demonic cum that rapidly soaks into your skin.  You giggle as you rise up from the exhausted imp, feeling totally satisfied.");

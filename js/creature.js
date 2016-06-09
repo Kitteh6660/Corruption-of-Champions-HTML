@@ -231,6 +231,14 @@ Creature.prototype.criticalChance = function() {
 }
 Creature.prototype.spellMod = function() {
     var multiplier = 1;
+    //Permanent base increase
+    if (this.findPerk(PerkLib.Spellpower) >= 0) {
+        multiplier += 0.5;
+    }
+    //Others
+    if (this.findPerk(PerkLib.WizardsFocus) >= 0) {
+        multiplier += this.perkValue(PerkLib.WizardsFocus, 1);
+    }
     return multiplier;
 }
 
@@ -239,7 +247,7 @@ Creature.prototype.baseXP = function() {
     return[5, 10, 20, 30, 40, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105, 110, 115, 120, 125][Math.round(this.level)] || 200;
 }
 Creature.prototype.bonusXP = function() {
-    return rand([5, 10, 20, 30, 40, 50, 55, 60, 65, 70, 75, 80, 82, 84, 86, 88, 90, 92, 94, 96, 98][Math.round(this.level)] || 130);
+    return rand([5, 10, 20, 30, 40, 50, 55, 60, 65, 70, 75, 80, 82, 84, 86, 88, 90, 92, 94, 96, 98][Math.round(this.level)] || 100);
 }
 Creature.prototype.getAwardableXP = function() {
     var xpGained = this.baseXP() + this.bonusXP() + this.additionalXP;
@@ -477,6 +485,7 @@ Creature.prototype.orgasm = function() {
 	this.changeLust(-this.lust);
 	this.hoursSinceCum = 0;
 	if (this == player) {
+        gameFlags[TIMES_ORGASMED]++;
 		refreshStats();
 	}
 }
@@ -1150,7 +1159,7 @@ Creature.prototype.cumQ = function() {
 	//trace("CUM ESTIMATE: " + int(1.25*2*cumMultiplier*2*(lust + 50)/10 * (hoursSinceCum+10)/24)/10 + "(no balls), " + int(ballSize*balls*cumMultiplier*2*(lust + 50)/10 * (hoursSinceCum+10)/24)/10 + "(withballs)");
 	var lustCoefficient = (this.lust + 50) / 10;
 	//If realistic mode is enabled, limits cum to capacity.
-	if (flags[HUNGER_ENABLED] >= 1) {
+	if (hungerEnabled >= 1) {
 		lustCoefficient = (this.lust + 50) / 5;
 		if (this.findPerk(PerkLib.PilgrimsBounty) >= 0) lustCoefficient = 30;
 		var percent = 0;
@@ -2194,7 +2203,7 @@ Creature.prototype.removeBreastRow = function(arraySpot, totalRemoved) {
 }
 
 Creature.prototype.shrinkTits = function(ignore_hyper_happy) {
-    if (flags[HYPER_HAPPY] && !ignore_hyper_happy) return;
+    if (hyperHappy && !ignore_hyper_happy) return;
     if (this.breastRows.length == 1) {
         if (this.breastRows[0].breastRating > 0) {
             //Shrink if bigger than N/A cups
@@ -2267,7 +2276,7 @@ Creature.prototype.growTits = function(amount, rowsGrown, display, growthType) {
             temp3 += amount;
             //Reuse temp to store growth amount for diminishing returns.
             temp = amount;
-            if (!flags[HYPER_HAPPY])
+            if (!hyperHappy)
             {
                 //Diminishing returns!
                 if (this.breastRows[temp2].breastRating > 3) {
@@ -2307,7 +2316,7 @@ Creature.prototype.growTits = function(amount, rowsGrown, display, growthType) {
         }
     }
     
-    if (!flags[HYPER_HAPPY]) {
+    if (!hyperHappy) {
         //Diminishing returns!
         if (this.breastRows[0].breastRating > 3) {
             if (this.findPerk(PerkLib.BigTits) < 0) amount/=1.5;

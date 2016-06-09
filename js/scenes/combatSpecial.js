@@ -87,15 +87,15 @@ function spellMod() {
 }
 
 function spellPerkUnlock() {
-    if(flags[SPELLS_CAST] >= 5 && player.findPerk(PerkLib.SpellcastingAffinity) < 0) {
+    if (flags[SPELLS_CAST] >= 5 && player.findPerk(PerkLib.SpellcastingAffinity) < 0) {
         outputText("<b>You've become more comfortable with your spells, unlocking the Spellcasting Affinity perk and reducing fatigue cost of spells by 20%!</b><br><br>");
         player.createPerk(PerkLib.SpellcastingAffinity, 20, 0, 0, 0);
     }
-    if(flags[SPELLS_CAST] >= 15 && player.perkValue(PerkLib.SpellcastingAffinity, 1) < 35) {
+    if (flags[SPELLS_CAST] >= 15 && player.perkValue(PerkLib.SpellcastingAffinity, 1) < 35) {
         outputText("<b>You've become more comfortable with your spells, further reducing your spell costs by an additional 15%!</b><br><br>");
         player.setPerkValue(PerkLib.SpellcastingAffinity, 1, 35);
     }
-    if(flags[SPELLS_CAST] >= 45 && player.perkValue(PerkLib.SpellcastingAffinity, 1) < 50) {
+    if (flags[SPELLS_CAST] >= 45 && player.perkValue(PerkLib.SpellcastingAffinity, 1) < 50) {
         outputText("<b>You've become more comfortable with your spells, further reducing your spell costs by an additional 15%!</b><br><br>");
         player.setPerkValue(PerkLib.SpellcastingAffinity, 1, 50);
     }

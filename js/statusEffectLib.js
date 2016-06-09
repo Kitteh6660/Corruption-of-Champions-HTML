@@ -15,6 +15,9 @@ VENOM_TYPE_NAGA = 1;
 StatusEffects.BonusACapacity = new StatusEffectType("Bonus aCapacity");
 StatusEffects.BonusVCapacity = new StatusEffectType("Bonus vCapacity");
 
+//Penalties
+StatusEffects.Infested = new StatusEffectType("Infested");
+
 //------------
 // COMBAT
 //------------
