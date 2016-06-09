@@ -3,6 +3,7 @@
 //The default value for all of these flags is zero. To change the value of a flag, you have to call gameFlags[NAMEOFFLAG] = int or whatever it's getting set to. If you use addToGameFlags and set flags in this way, your values will be saved.
 
 
+<<<<<<< HEAD
 //------------
 // STATS
 //------------
@@ -14,6 +15,8 @@ const TIMES_ORGASMED                    = "Times_Orgasmed";
 //------------
 const HAIR_GROWTH_STOPPED_BECAUSE_LIZARD= "Hair_Growth_Stopped";
 
+=======
+>>>>>>> f4e1aa7991098d8740d8d0e6b0e959f820ff0c9e
 //------------
 // CODEX
 //------------
@@ -76,6 +79,7 @@ const MURBLE_FARM_TALK_LEVELS           = "Marble_Farm_Talk_Levels";
 //Amily
 const AMILY_VILLAGE_ACCESSIBLE			= "Amily_Village_Accessible";
 const AMILY_VILLAGE_EXPLORED             = "Amily_Village_Explored";  // How many times has the TownRuins been explored? Used in achievement.
+
 
 //------------
 // ENCOUNTERS
