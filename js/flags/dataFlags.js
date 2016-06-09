@@ -68,6 +68,9 @@ const NO_MORE_MARBLE                    = "No_More_Marble";
 const MARBLE_RAPE_ATTEMPTED             = "Marble_Rape_Attempted";
 const MURBLE_FARM_TALK_LEVELS           = "Marble_Farm_Talk_Levels";
 
+//Amily
+const AMILY_VILLAGE_ACCESSIBLE			= "Amily_Village_Accessible";
+
 //------------
 // ENCOUNTERS
 //------------

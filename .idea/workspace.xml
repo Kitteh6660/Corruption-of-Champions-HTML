@@ -2,56 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8a292ce1-df00-4848-8a40-d7241dab169d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/sprites/giacomo.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/sprites/kelt.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/sprites/lumi.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/sprites/marble.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/sprites/markus_and_lucia.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/sprites/whitney.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/items/specialConsumables/oviElixir.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/items/specialConsumables/reducto.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/items/transformationEffects.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/scenes/areas/desert/marcusLucia.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/scenes/areas/forest/tentacleBeast.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/scenes/areas/lake/callu.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/scenes/masturbations.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/scenes/npcs/giacomo.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/scenes/npcs/lumi.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/scenes/npcs/marble.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/scenes/places/farm.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/scenes/places/farm/kelt.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/scenes/places/farm/whitney.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coc.css" afterPath="$PROJECT_DIR$/coc.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/scenes/places.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/scenes/places/townruins.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coc.html" afterPath="$PROJECT_DIR$/coc.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/appearance.js" afterPath="$PROJECT_DIR$/js/appearance.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/cockClass.js" afterPath="$PROJECT_DIR$/js/cockClass.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/creature.js" afterPath="$PROJECT_DIR$/js/creature.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/engine/input.js" afterPath="$PROJECT_DIR$/js/engine/input.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/engine/text.js" afterPath="$PROJECT_DIR$/js/engine/text.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/engine/time.js" afterPath="$PROJECT_DIR$/js/engine/time.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/flags/dataFlags.js" afterPath="$PROJECT_DIR$/js/flags/dataFlags.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/flags/legacyFlags.js" afterPath="$PROJECT_DIR$/js/flags/legacyFlags.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/globalVariables.js" afterPath="$PROJECT_DIR$/js/globalVariables.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/items/consumableEffects.js" afterPath="$PROJECT_DIR$/js/items/consumableEffects.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/items/consumables.js" afterPath="$PROJECT_DIR$/js/items/consumables.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/keyItemLib.js" afterPath="$PROJECT_DIR$/js/keyItemLib.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/perkLib.js" afterPath="$PROJECT_DIR$/js/perkLib.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/player.js" afterPath="$PROJECT_DIR$/js/player.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/playerInfo.js" afterPath="$PROJECT_DIR$/js/playerInfo.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/areas/desert.js" afterPath="$PROJECT_DIR$/js/scenes/areas/desert.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/areas/desert/sandWitch.js" afterPath="$PROJECT_DIR$/js/scenes/areas/desert/sandWitch.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/main.js" afterPath="$PROJECT_DIR$/js/main.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/areas/lake.js" afterPath="$PROJECT_DIR$/js/scenes/areas/lake.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/areas/mountain/hellhound.js" afterPath="$PROJECT_DIR$/js/scenes/areas/mountain/hellhound.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/areas/mountain/minotaur.js" afterPath="$PROJECT_DIR$/js/scenes/areas/mountain/minotaur.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/camp.js" afterPath="$PROJECT_DIR$/js/scenes/camp.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/combatSpecial.js" afterPath="$PROJECT_DIR$/js/scenes/combatSpecial.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/exploration.js" afterPath="$PROJECT_DIR$/js/scenes/exploration.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/intro.js" afterPath="$PROJECT_DIR$/js/scenes/intro.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/monsters/imp.js" afterPath="$PROJECT_DIR$/js/scenes/monsters/imp.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/npcs/rathazul.js" afterPath="$PROJECT_DIR$/js/scenes/npcs/rathazul.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/statusEffectLib.js" afterPath="$PROJECT_DIR$/js/statusEffectLib.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/vaginaClass.js" afterPath="$PROJECT_DIR$/js/vaginaClass.js" />
     </list>
     <ignored path="Corruption-of-Champions-HTML.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -85,8 +43,8 @@
       <file leaf-file-name="coc.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/coc.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-93.5">
-              <caret line="143" column="65" selection-start-line="143" selection-start-column="65" selection-end-line="143" selection-end-column="65" />
+            <state vertical-scroll-proportion="-96.76923">
+              <caret line="148" column="65" selection-start-line="148" selection-start-column="65" selection-end-line="148" selection-end-column="65" />
               <folding />
             </state>
           </provider>
@@ -102,11 +60,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="globalVariables.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="globalVariables.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/globalVariables.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.66885245">
+            <state vertical-scroll-proportion="0.0">
               <caret line="24" column="29" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dataFlags.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/js/flags/dataFlags.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.58196723">
+              <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -174,7 +142,6 @@
         <option value="$PROJECT_DIR$/js/playerInfo.js" />
         <option value="$PROJECT_DIR$/js/scenes/npcs/marble.js" />
         <option value="$PROJECT_DIR$/js/scenes/places/farm.js" />
-        <option value="$PROJECT_DIR$/js/flags/dataFlags.js" />
         <option value="$PROJECT_DIR$/js/items/consumables.js" />
         <option value="$PROJECT_DIR$/js/items/consumableEffects.js" />
         <option value="$PROJECT_DIR$/js/items/transformationEffects.js" />
@@ -185,6 +152,7 @@
         <option value="$PROJECT_DIR$/js/scenes/areas/desert.js" />
         <option value="$PROJECT_DIR$/js/scenes/areas/desert/sandWitch.js" />
         <option value="$PROJECT_DIR$/js/globalVariables.js" />
+        <option value="$PROJECT_DIR$/js/flags/dataFlags.js" />
       </list>
     </option>
   </component>
@@ -894,16 +862,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/flags/dataFlags.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="87" column="62" selection-start-line="87" selection-start-column="62" selection-end-line="87" selection-end-column="62" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/scenes/places/farm/whitney.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.22131148">
@@ -1002,16 +960,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/coc.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-93.5">
-          <caret line="143" column="65" selection-start-line="143" selection-start-column="65" selection-end-line="143" selection-end-column="65" />
+        <state vertical-scroll-proportion="-96.76923">
+          <caret line="148" column="65" selection-start-line="148" selection-start-column="65" selection-end-line="148" selection-end-column="65" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/globalVariables.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.66885245">
+        <state vertical-scroll-proportion="0.0">
           <caret line="24" column="29" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/flags/dataFlags.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.58196723">
+          <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
           <folding />
         </state>
       </provider>
