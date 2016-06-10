@@ -3,7 +3,6 @@
 //The default value for all of these flags is zero. To change the value of a flag, you have to call gameFlags[NAMEOFFLAG] = int or whatever it's getting set to. If you use addToGameFlags and set flags in this way, your values will be saved.
 
 
-<<<<<<< HEAD
 //------------
 // STATS
 //------------
@@ -15,8 +14,6 @@ const TIMES_ORGASMED                    = "Times_Orgasmed";
 //------------
 const HAIR_GROWTH_STOPPED_BECAUSE_LIZARD= "Hair_Growth_Stopped";
 
-=======
->>>>>>> f4e1aa7991098d8740d8d0e6b0e959f820ff0c9e
 //------------
 // CODEX
 //------------
@@ -77,9 +74,11 @@ const MARBLE_RAPE_ATTEMPTED             = "Marble_Rape_Attempted";
 const MURBLE_FARM_TALK_LEVELS           = "Marble_Farm_Talk_Levels";
 
 //Amily
-const AMILY_VILLAGE_ACCESSIBLE			= "Amily_Village_Accessible";
+const AMILY_VILLAGE_ACCESSIBLE			= "Amily_Village_Accessible"; // Can you access the Town Ruins?
 const AMILY_VILLAGE_EXPLORED             = "Amily_Village_Explored";  // How many times has the TownRuins been explored? Used in achievement.
-
+const AMILY_MET                         = "Amily_Met" // Has Amily been met yet?
+const AMILY_PC_GENDER                   = "Amily_PC_Gender" // Used for gender checks with Amily to switch between scenes.
+const AMILY_MET_AS                      = "Amily_Met_As" // Marks the player gender that met with Amily first
 
 //------------
 // ENCOUNTERS
