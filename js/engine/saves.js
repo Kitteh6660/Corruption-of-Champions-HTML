@@ -1,3 +1,5 @@
+// This code handles saving and loading of games.
+
 Data = [];
 Data.totalSlots = 14;
 

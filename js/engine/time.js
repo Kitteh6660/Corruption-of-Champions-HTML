@@ -1,3 +1,6 @@
+// These functions handle changing the clock.
+// Right now there is no day counter.
+
 Time = [];
 Time.increment = function() {
 	time.minutes++;

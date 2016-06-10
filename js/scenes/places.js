@@ -19,7 +19,7 @@ Places.placesMenu = function() {
 	//if (player.findStatusEffect(StatusEffects.HairdresserMeeting) >= 0) addButton(8, "Salon", kGAMECLASS.mountain.salon.salonGreeting, null, null, null, "Visit the salon for hair services.");
 	
 	//if (player.statusEffectv1(StatusEffects.TelAdre) >= 1) addButton(10, "Tel'Adre", kGAMECLASS.telAdre.telAdreMenu, null, null, null, "Visit the city of Tel'Adre in desert, easily recognized by the massive tower.");	    
-    if (AMILY_VILLAGE_ACCESSIBLE == 1) {
+    if (gameFlags[AMILY_VILLAGE_ACCESSIBLE] == 1) {
 		addButton(11, "Town Ruins", TownRuins.exploreVillageRuin, null, null, null, "Visit the village ruins."); 
     }
 	addButton(14, "Back", Camp.doCamp);

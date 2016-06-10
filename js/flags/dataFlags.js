@@ -1,3 +1,8 @@
+// So, a bit of weirdness about these game flags. They're constants because of how the save files work. When the player reaches an area where a flag would come into play, addToGameFlags() is called with these flags. This function fills an array full of these constant names and a value. That's what the game grabs when a save is loaded. So, while it may seem smart to change all of these into variables, don't!
+
+//The default value for all of these flags is zero. To change the value of a flag, you have to call gameFlags[NAMEOFFLAG] = int or whatever it's getting set to. If you use addToGameFlags and set flags in this way, your values will be saved.
+
+
 //------------
 // STATS
 //------------
@@ -69,7 +74,11 @@ const MARBLE_RAPE_ATTEMPTED             = "Marble_Rape_Attempted";
 const MURBLE_FARM_TALK_LEVELS           = "Marble_Farm_Talk_Levels";
 
 //Amily
-const AMILY_VILLAGE_ACCESSIBLE			= "Amily_Village_Accessible";
+const AMILY_VILLAGE_ACCESSIBLE			= "Amily_Village_Accessible"; // Can you access the Town Ruins?
+const AMILY_VILLAGE_EXPLORED             = "Amily_Village_Explored";  // How many times has the TownRuins been explored? Used in achievement.
+const AMILY_MET                         = "Amily_Met" // Has Amily been met yet?
+const AMILY_PC_GENDER                   = "Amily_PC_Gender" // Used for gender checks with Amily to switch between scenes.
+const AMILY_MET_AS                      = "Amily_Met_As" // Marks the player gender that met with Amily first
 
 //------------
 // ENCOUNTERS
@@ -124,3 +133,13 @@ const NAGA_FUCKED_AS_NAGA               = "Naga_Fucked_As_Naga";
 
 //Sand Witch
 const SAND_WITCH_RAPED                  = "Sand_Witch_Raped";
+
+//------------
+// KEY ITEMS
+//------------
+// Racks
+
+const HAS_KEY_ITEM                          = "Has_Key_Item" // Does the player have any key items?
+const HAS_ARMOR_RACK                        = "Has_Armor_Rack" // Does the player have the armor rack?
+const HAS_WEAPON_RACK                       = "Has_Weapon_Rack" // Does the player have the weapon rack?
+const HAS_EQUIPMENT_RACK                    = "Has_Equipment_Rack" // Does the player have the equipment rack?

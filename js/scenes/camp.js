@@ -1,21 +1,26 @@
 Camp = [];
 
+addToGameFlags(HAS_KEY_ITEM);
 
+var stashbool = false;
 
 
 //MENUS
-Camp.doCamp = function() {
-	//Set some stuff   
-	gameStarted = true;
+Camp.doCamp = function () {
+	//Set some stuff
+    outputText("Got to Camp");
+    gameStarted = true;
 	showStats();
     showMenus();
 	hideUpDown();
     displaySprite();
     setMenuButton("buttonMain", "Main Menu", mainMenu);
-	if (player.XP >= player.level * 100 && player.level < levelCap)
-		showMenuButton("buttonLevel");
-	else
-		hideMenuButton("buttonLevel");
+	if (player.XP >= player.level * 100 && player.level < levelCap) {
+        showMenuButton("buttonLevel");
+        } 
+        else {
+		  hideMenuButton("buttonLevel");
+    }
 	playerMenu = Camp.doCamp;
 	//Display texts
 	clearOutput();
@@ -29,7 +34,7 @@ Camp.doCamp = function() {
 			//if (!isabellaFollower()) outputText("Your new home is as comfy as a camp site can be.  ", false);
 			outputText("The fire-pit ");
 			//if (flags[kFLAGS.CAMP_BUILT_CABIN] > 0 && flags[kFLAGS.CAMP_CABIN_FURNITURE_BED] > 0) outputText("is ", false);
-			/*else */outputText("and tent are both ");
+			/*else */ outputText("and tent are both ");
 			outputText("set up perfectly, and in good repair.  ");
 		}
 	//}
@@ -54,10 +59,15 @@ Camp.doCamp = function() {
     if (Camp.slavesCount() > 0) addButton(4, "Slaves", Camp.campSlavesMenu, null, null, null, "Check up on any slaves you have received and interact with them.");
 	addButton(8, "Masturbate", Camp.doMasturbate);
 	addButton(9, "Sleep", Camp.doSleep);
-    //addButton(12, "Stash", Inventory.stashMenu, null, null, null, "The stash allows you to store your items safely until you need them later.");
-	addButton(13, "Inventory", Inventory.inventoryMenu, null, null, null, "The inventory allows you to use an item. Be careful as this leaves you open to a counterattack when in combat.");
+    if (Inventory.showStash(stashbool) == true) {
+        addButton(12, "Stash", Inventory.stashMenu, null, null, null, "The stash allows you to store your items safely until you need them later.");
+    };    
+    addButton(13, "Inventory", Inventory.inventoryMenu, null, null, null, "The inventory allows you to use an item. Be careful as this leaves you open to a counterattack when in combat.");
     //addButton(14, "Codex", Codex.readCodex);
 }
+
+
+
 
 /* Placeholder
 Camp.placesMenu = function() {
@@ -67,8 +77,6 @@ Camp.placesMenu = function() {
 }
 */
 
-
-
 Camp.campFollowersMenu = function() {
     clearOutput();
     displaySprite();
@@ -76,19 +84,21 @@ Camp.campFollowersMenu = function() {
     if (gameFlags[JOJO_CAMP] == 1) addButton(0, "Jojo", JojoScene.jojoCamp, null, null, null, "Go find Jojo around the edges of your camp and meditate with him or talk about watch duty.");
     if (gameFlags[RATHAZUL_CAMP] > 0) addButton(1, "Rathazul", RathazulScene.campRathazul, null, null, null, "Visit with Rathazul to see what alchemical supplies and services he has available at the moment.");
     addButton(14, "Back", Camp.doCamp);
-}
+};
+
 Camp.campLoversMenu = function() {
     clearOutput();
     menu();
     addButton(14, "Back", Camp.doCamp);
-}
+};
+
 Camp.campSlavesMenu = function() {
     clearOutput();
     displaySprite();
     menu();
     if (gameFlags[JOJO_CAMP] == 2) addButton(0, "Jojo", JojoScene.jojoCampCorrupt, null, null, null, "Call your corrupted pet into camp in order to relieve your desires in a variety of sexual positions? He's ever so willing after your last encounter with him.");
     addButton(14, "Back", Camp.doCamp);
-}
+};
 
 //ACTIONS
 Camp.doMasturbate = function() {
@@ -97,7 +107,7 @@ Camp.doMasturbate = function() {
     player.orgasm();
     Time.advanceMinutes(30 - Math.floor(player.sen / 4));
     doNext(Camp.doCamp);
-}
+};
 
 Camp.doSleep = function() {
     //For now
@@ -107,49 +117,56 @@ Camp.doSleep = function() {
     player.changeHP(15 * 8, true);
     player.changeLust(player.lib * 0.04 * 8, false);
     doNext(Camp.doCamp);
-}
+};
 
 //UTILS
 Camp.returnToCampUseOneHour = function() {
 	Time.advanceHours(1);
 	Camp.doCamp();
-}
+};
+
 Camp.returnToCampUseTwoHours = function() {
 	Time.advanceHours(2);
 	Camp.doCamp();
-}
+};
+
 Camp.returnToCampUseFourHours = function() {
 	Time.advanceHours(4);
 	Camp.doCamp();
-}
+};
+
 Camp.returnToCampUseEightHours = function() {
 	Time.advanceHours(8);
 	Camp.doCamp();
-}
+};
+
 Camp.returnToCampUseCustomMinutes = function(minutes) {
 	Time.advanceMinutes(minutes);
 	Camp.doCamp();
-}
+};
 
 Camp.bedDesc = function() {
     return "bedroll";
-}
+};
+
 Camp.homeDesc = function() {
     return "tent";
-}
+};
 
 Camp.followersCount = function() {
     var count = 0;
     if (gameFlags[JOJO_CAMP] > 0 && gameFlags[JOJO_CORRUPTION_STAGE] < 5) count++;
     if (gameFlags[RATHAZUL_CAMP] > 0) count++;
     return count;
-}
+};
+
 Camp.loversCount = function() {
     var count = 0;
     return count;
-}
+};
+
 Camp.slavesCount = function() {
     var count = 0;
     if (gameFlags[JOJO_CAMP] > 0 && gameFlags[JOJO_CORRUPTION_STAGE] >= 5) count++;
     return count;
-}
+};
