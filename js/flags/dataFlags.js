@@ -83,6 +83,7 @@ const AMILY_OFFER_ACCEPTED              = "Amily_Offer_Accepted" // You've taken
 const AMILY_AFFECTION                   = "Amily_Affection" // Amily's Affection level toward PC.
 const AMILY_OFFERED_DEFURRY             = "Amily_Offered_Defurry" // Refused Amily's offer because she's a mouse.
 const AMILY_FUCK_COUNTER                = "Amily_Fuck_Counter" // How many times you fucked Amily.
+const AMILY_NOT_FURRY                   = "Amily_Not_Furry" // If active, Amily has been defurred.
 
 //------------
 // ENCOUNTERS

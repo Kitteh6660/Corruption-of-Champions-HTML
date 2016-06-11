@@ -16,7 +16,7 @@ The initial male meeting offers a rejection option because she's a furry. See am
 
 
 
-addToGameFlags(AMILY_MET, AMILY_MET_AS, AMILY_PC_GENDER, AMILY_OFFER_ACCEPTED, AMILY_AFFECTION, AMILY_OFFERED_DEFURRY, AMILY_FUCK_COUNTER);
+addToGameFlags(AMILY_MET, AMILY_MET_AS, AMILY_PC_GENDER, AMILY_OFFER_ACCEPTED, AMILY_AFFECTION, AMILY_OFFERED_DEFURRY, AMILY_FUCK_COUNTER, AMILY_NOT_FURRY);
 
 // Amily.start is the holder for encounters inside of the Town Ruins
 Amily.start = function () {
@@ -451,7 +451,7 @@ function acceptAmilysOfferHesitantly() {
 			//Offer accepted
 	gameFlags[AMILY_OFFER_ACCEPTED] = 1;
 			//{+5 Affection}
-	gameFLags[AMILY_AFFECTION] += 5;
+	gameFlags[AMILY_AFFECTION] += 5;
 	//[/ Go to [First Time Sex]]
 	doNext(amilySexHappens);
     
@@ -550,6 +550,12 @@ function amilySexHappens() {
 };
 
 
+/******
+*
+* First time having sex with Amily
+*
+*******/
+
 
 
 //Function formerly known as stickItInMouseTwatForTheFirstTimeNOTWORTHALLBULLSHIT()
@@ -572,21 +578,123 @@ function amilySexFirstTime() {
 
 }  
 
+// Was FirstTimeAmilyTakeCharge
+// "Take charge" (i.e be a total douche) during first sexual encounter with Amily
 function amilySexFirstTimeTakeCharge () {
-    outputText("amilySexFirstTimeTakeCharge");
-doNext(Camp.doCamp);    
-}
+    clearOutput();
+	//outputText(images.showImage("amily-forest-takecharge"), false);
+	//amilySprite();
+	outputText("You decide that the scenery doesn't matter; Amily promised you sex, and you want that sex. Without a word you step forward and give her a mighty push, sending her falling onto her butt with a squeak as you thrust her towards the \"<i>bed</i>\" - that she lands in it is more coincidence than anything. You drop down on top of her, pinning her arms and legs with your own.<br><br>");
 
+    outputText("\"<i>Hey, what's the big idea?</i>\" She protests indignantly.<br><br>");
 
+	outputText("\"<i>You wanted sex with me, so just shut up, lie back and take it.</i>\" You snap back at her.<br><br>");
+
+	outputText("Amily goes quiet, her eyes hardening into gimlets. It's pretty obvious she's not happy about this in the slightest, but she doesn't protest as you roughly pull off her shirt and her pants, exposing her pink sex, and then begin to tear off your own clothes.<br><br>");
+
+	//(If player has penis 14 inches or more long)
+	if (player.cocks[0].cockLength >= 14) {
+	    // And said huge cock is human..
+        if (player.cocks[0].cockType == CockTypesEnum.HUMAN || player.cocks[0].cockType.Index > 3) {
+					outputText("Her eyes go wide with shock and fear as you reveal your impressively sized member, already growing erect and hard. \"<i>You can't stick that in me! It'll never fit!</i>\" She squeals.<br><br>");
+					outputText("\"<i>I'll make it fit!</i>\" You assure her.<br><br>");
+		}
+		// Or demon...
+        else if (player.cocks[0].cockType == CockTypesEnum.DEMON) {
+			outputText("Horror and disgust write themselves on her features as your knobbly, diabolic penis is revealed to her. \"<i>What kind of monster are you?! You'll kill me with that unholy thing!</i>\"<br><br>");
+			outputText("\"<i>Just shut up and you'll enjoy this.</i>\" You promise her.<br><br>");
+		}
+		// Or equine... 
+        else if (player.cocks[0].cockType == CockTypesEnum.HORSE) {
+            outputText("Her eyes go wide with shock and fear as she discovers your stallion-like cock. \"<i>Even in this world, being hung like a horse isn't a good thing! I can't take something like that!</i>\"<br><br>");
+			outputText("\"<i>How do you know until you've tried?</i>\" You ask.<br><br>");
+        }
+		// or Canine/Knotted
+		else if (player.hasKnot(0)) {
+            outputText("\"<i>You can't be serious!</i>\" She protests when she sees what you have hidden in your pants.<br><br>");
+			outputText("You don't bother to answer her, instead licking your lips as you imagine what she'll feel like wrapped around your cock.<br><br>");
+        }
+    }
+	outputText("Without further ado, you thrust into her, eliciting a shriek of equal parts pain and rage. Ignoring that, you focus on trying to squeeze as much as your cock as you can into her warm, tight, velvety depths. She sobs and moans as you struggle, ");
+
+    if (player.cocks[0].cockLength >= 14) outputText("failing to fit in more than a foot of your cock's length, ");
+	
+    outputText("but she doesn't try very hard to fight you off.<br><br>");
+
+	outputText("Your hips thrust back and forth, harder and faster as you grow more and more aroused. Her cunt grips you like a vice, and you can feel the warm delicious pressure building up inside you. Stronger and stronger it grows, until you cannot hold it back any more and with a roar let your cum gush out, flooding her as deeply as you can.<br><br>");
+
+	outputText("Only when you are sure that the last of your climax is over do you pull out, carelessly striding over to retrieve your clothing and start getting dressed. Amily stares at you, her eyes hard and sharp as flints. \"<i>Was it good for you?</i>\" She spits. \"<i>Let's hope we've both gotten what we want out of this.</i>\"<br><br>");
+
+	outputText("\"<i>I'll be happy to come back and do it again if you need.</i>\" You jeer back, finishing dressing yourself and leaving her without so much as a backwards glance.<br><br>");
+	player.orgasm();
+	// Lower affection because you were an ass!
+	gameFlags[AMILY_AFFECTION] -= 5;
+    // Add this later
+    //amilyPreggoChance(); 
+	doNext(Camp.returnToCampUseOneHour);
+};
+    
+ //Was beSomeKindofNervousDoucheAndWaitForAmily
+// Wait for Amily to make the first move during first sexual encounter.
 function amilySexFirstTimeHesitate () {
-    outputText("amilySexFirstTimeHesitate");
-doNext(Camp.doCamp);    
+    clearOutput();
+	//outputText(images.showImage("amily-forest-plainfuck"), false);
+	//amilySprite();
+	outputText("Amily may be a cute little girl, but you're not sure it's really a good idea to... proceed... So you just wait for her to decide whether she really wants to have sex here and now. After a few moments, when it's clear that you're not going to do anything, she frowns a little and steps up to you. Looking up into your eyes, you suddenly realize she wants a kiss. Bending down your head, you plan to give her a rather chaste kiss, but Amily obviously has other ideas. You feel your tongue entering her mouth, and what was intended as a short, innocent kiss turns into a very hot, rather 'not-so-innocent' one.  Suddenly you feel her little hand (or paw?) grabbing your ass.<br><br>");
+
+	outputText("Despite this passionate display, though, she doesn't seem to really be 'feeling' it, more going through the motions to arouse you. You are too horny to care that much.<br><br>");
+
+	//(If player has a penis 14" long or more)
+	if (player.cocks[0].cockLength >= 14) {
+	outputText("She leads you to her 'bed' and makes you sit down before stripping in front of you and kneeling down to help you take off your clothes.  At the sight of your huge penis, she's obviously unsure of how to proceed. After a moment or two thinking about it, she begins to stroke it with her hand. Once she has you hard and almost ready to explode on her, she sits back directly in front of you, guides the tip of your member into her netherlips and resumes stroking. She adds her other hand and her tail and continues to give you a combined hand- and tail-job until you orgasm. While it doesn't feel bad, you get the feeling that it could have been much better - and you also realize that Amily seems to be... disappointed.<br><br>");
+	}
+	
+    else outputText("At the sight of your member, she grins and begins stroking it. \"<i>You are obviously the right size for me...</i>\" Before long, you're hard and almost desperately waiting for her to start doing 'it' for real. Never losing her grin, she slowly lowers herself onto you and guides your penis into her netherlips. The feeling is better than you imagined, but still, something doesn't feel quite right... However, as soon as the mouse-girl starts moving up and down, you forget anything but the pleasure you feel. It doesn't take long before you can't hold back anymore. Afterwards, Amily looks into your eyes for a moment before standing up and putting on her clothes again. You get the distinct feeling that she's somehow disappointed.<br><br>");
+
+	outputText("Seeing as how she clearly has no further need for you, you quietly excuse yourself, get dressed and leave.");
+	// Lower affection slightly because you were timid
+    gameFlags[AMILY_AFFECTION] -= 2;
+    // Code later
+    //amilyPreggoChance();
+	player.orgasm();
+	doNext(Camp.returnToCampUseOneHour);
+		
 }
 
-
+// Was kissAmilyInDaMoufFirstTimeIsSomehowBetterThatWay
+// Kiss Amily first before going further during first sexual encounter
 function amilySexFirstTimeKiss () {
-    outputText("amilySexFirstTimeKiss");
-doNext(Camp.doCamp);    
+    clearOutput();
+	//amilySprite();
+	//outputText(images.showImage("amily-forest-kissingfuck"), false);
+	outputText("While the scenery certainly isn't anything you'd call \"<i>romantic</i>\" or \"<i>arousing</i>\", the eager little mouse-girl in front of you is quite appealing, so you step up to her, take her in your arms and lightly kiss her. Seeing her eyes widen in surprise for a moment, she soon closes her eyes and returns the kiss. Continuing the kiss you two begin to explore each other. Along the way, you help each other out of your clothes and slowly, almost reluctantly step back so you can for the first time see each other without anything in the way.<br><br>");
+
+	//(If player has a penis 14" long or more)
+	if (player.cocks[0].cockLength >= 14) outputText("At the size of your penis, Amily's eyes widen, but she still seems to be almost mesmerized. Slowly, blushing furiously and avoiding your gaze, she touches it and begins stroking your member. It soon turns into a veritable hand-job. Not taking her hand away, the mouse-girl guides you to the 'bed' and asks you to lie down. She continues stroking your penis with her hand, but also uses her tail and her tongue to bring you closer and closer to orgasm. Just before you can't hold back anymore, she sits down on your legs and slowly guides the tip of your penis to her netherlips. Soon, this 'almost penetration' overwhelms you and sends you over the edge.<br><br>");
+	
+    else {
+	outputText("She looks down between your legs and, blushing, smiles. \"<i>It's nice to see a " + player.mf("man","woman") + " who hasn't gone insane about that part.</i>\" She murmurs to you, holding you as tightly as she can. Despite the fact you can feel her hands pressed against your back, you suddenly become aware of something stroking your penis as well; it takes a bit of wriggling, which presses her small, perky breasts to your chest in the most interesting way, but you can see that she is using her tail. Working in synch as best you can, the two of you crabwalk over to the pile of bedding and topple over; you land on your back, and she lands on you.<br><br>");
+
+	outputText("By this point, your member is rock hard, and Amily pushes, somewhat reluctantly, against your grip, positioning herself so that the two of you are crotch to crotch. Looking up at her, you start to mouth the question \"<i>Are you okay with this?</i>\" to her, but she smiles, nods her head insistently, and then her lips seal themselves against yours again. Her vagina hovers almost teasingly against the tip of your cock as she works up the courage to make the final plunge... and plunge she does, suddenly skewering herself to the hilt upon you, to your shock. You can feel her pained wince, muscles clenching in pain all up her body, and you hold her tighter, kiss her deeper, in an effort to try and comfort her. You lie there, holding her, until she relaxes and unclenches, slowly beginning to work herself back and forth.<br><br>");
+	}
+	
+    outputText("Enjoying the sensations, you start caressing her to increase her pleasure, too. It doesn't take long for you both to orgasm, before Amily sinks down on you, looking into your eyes with a smile on her face.<br><br>");
+
+	outputText("\"<i>...That was... wow. Uh, I mean.</i>\" She hastily corrects herself, blushing. \"<i>I guess you weren't so bad... I knew I had a good feeling about you.</i>\" She smiles. \"<i>You do know I'm not neccessarily pregnant, right? We're going to have to do this again.</i>\"<br><br>");
+
+	outputText("You smile, and tell her that you're happy to do it with her as often as it takes. She blushes so red ");
+    if (gameFlags[AMILY_NOT_FURRY] == 0) outputText("it's almost like the fur on her cheeks has turned red.");
+        else outputText("she nearly resembles an imp!");
+    
+    outputText("  Excusing yourself, you get dressed, receiving a lazy wave goodbye and a happy smile as you head out of the door and head for the main street, from there finding the way back to your camp.<br><br>");
+	
+    // Amily liked her first time!
+    gameFlags[AMILY_AFFECTION] += 3;
+    player.orgasm();
+    // Pregnancy check. Uncomment after adding
+    //amilyPreggoChance();
+	doNext(Camp.returnToCampUseOneHour);
+	
 }
 
 
