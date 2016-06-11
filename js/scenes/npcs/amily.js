@@ -1,11 +1,11 @@
 Amily = [];
 
-addToGameFlags(AMILY_MET, AMILY_MET_AS, AMILY_PC_GENDER);
+addToGameFlags(AMILY_MET, AMILY_MET_AS, AMILY_PC_GENDER, AMILY_OFFER_ACCEPTED);
 
 // Amily.start is the holder for encounters inside of the Town Ruins
 Amily.start = function () {
-    outputText("Amily Encounters Start");
     // BOOKKEEPING
+    menu();
     // set initial gender flag
     if (gameFlags[AMILY_MET] == 0) gameFlags[AMILY_PC_GENDER] = player.gender;
      // Reset worm block if worms have been eliminated from the player
@@ -123,10 +123,29 @@ Amily.start = function () {
 			//Set flag for 'last gender met as'
 			flags[kFLAGS.AMILY_PC_GENDER] = player.gender;
 			return; */
-            doNext(Camp.doCamp);
+            gameFlags[AMILY_PC_GENDER] = player.gender;
+            doNext(Camp.returnToCampUseOneHour);
 					}
+            else if (player.gender == 1 && gameFlags[AMILY_OFFER_ACCEPTED] == 0) {
+			     outputText("Wandering into the ruined village, you set off in search of Amily.<br><br>");
+						/*NOPE!
+						//[Player meets the requirements to stalk Amily]
+						if (player.spe > 50 && player.inte > 40) {
+							outputText("Using all of your knowledge, skill and cunning, you sneak and squirm through the ruins until you finally find yourself coming up right behind the dusty mouse girl. She's picking berries off of a small bush and hasn't noticed you yet.\n\n", false);
+							outputText("How do you approach her?", false);
+							//Announce yourself / Scare her
+							simpleChoices("Announce",remeetingAmilyAnnounceSelf,"Scare",remeetingAmilyScare,"",0,"",0,"",0);
+						}
+						//[Player does not meets the requirements to stalk Amily]*/
+					   //else { */
+                    outputText("After wondering for a while how on earth you are going to track down Amily, you hear a whistle. Looking around, you see her waving cheekily at you from around a corner; it's pretty obvious that you have a long way to go before you'll be able to beat her at this kind of game.<br><br>");
+				    //amilyRemeetingContinued();
+					//Set flag for 'last gender met as'
+					gameFlags[AMILY_PC_GENDER] = player.gender;
+                    doNext(Camp.returnToCampUseOneHour);
+				}
         
-        //Desparate Plea response (Affection 50 without any sex, requires PC to be male in previous encounter)
+        //Desperate Plea response (Affection 50 without any sex, requires PC to be male in previous encounter)
         /*
         if (flags[kFLAGS.AMILY_AFFECTION] >= 50 && flags[kFLAGS.AMILY_FUCK_COUNTER] == 0 && flags[kFLAGS.AMILY_PC_GENDER] == 1) {
 		  outputText("Wandering into the ruined village, you set off in search of Amily.\n\n", false);
@@ -149,57 +168,214 @@ Amily.start = function () {
 		simpleChoices("Accept Her", desperateAmilyPleaAcceptHer, "RejectFurry", fur, "RejectGently", desperateAmilyPleaTurnDown, "BluntReject", desperateAmilyPleaTurnDownBlunt, "", null);
 		return;
 		}*/
-        
-        
-        
+    }
+    
+    // Female Meeting
+    else if (player.gender == 2) {
+        //First time
+		if (gameFlags[AMILY_MET] == 0) {
+        //Set flag for what she met the player as.
+		gameFlags[AMILY_MET_AS] = player.gender;
+        //set 'met' to true
+		gameFlags[AMILY_MET]++;
+        outputText("You wind your way deep into the maze of dusty crumbling buildings and twisted saplings, looking for any sign of life – or, failing that, something that can help you in your quest.  Bending down to rummage through an old heap of rubbish, you complain aloud that this is hardly the sort of thing you expected to be doing as a champion. Suddenly, you hear a 'thwip' and something shoots past your face, embedding into the stone beside your head and trembling with the impact.<br><br>");
+
+        outputText("\"<i>Don't make any sudden moves!</i>\" A voice calls out, high pitched and a little squeaky, but firm and commanding. You freeze to avoid giving your assailant a reason to shoot at you again. \"<i>Stand up and turn around, slowly,</i>\" it commands again. You do as you are told.<br><br>");
+        // temp
+        /*[Jojo previously encountered] NEED TO SEE JOJO CODE
+        if (monk > 0) {
+				outputText("The creature that has cornered you is clearly of the same race as Jojo, though notably a female member of his species. Her fur is thick with dust, but you can still easily make out its auburn color. Her limbs and midriff are wiry, hardened as much by meals that are less than frequent as by constant exercise and physical exertion. Her buttocks are non-existent, and her breasts can't be any larger than an A-cup. She wears a tattered pair of pants and an equally ragged-looking shirt. A very large and wicked-looking dagger – more of a short sword really – is strapped to her hip, and she is menacing you with a blowpipe.\n\n", false);
+				}
+				//[Jojo not previously encountered]
+				else { */ 
+        outputText("You have been cornered by a very strange being: a bipedal female humanoid with the unmistakable features of a giant mouse; paw-like feet, a muzzled head with long whiskers, large mouse ears, and a body covered in dust-caked auburn fur. It doesn't look like she has had a very easy life; her clothing consists of a dirty, tattered set of pants and shirt, while her limbs and midriff are wiry, hardened as much by meals that are less than frequent as by constant exercise and physical exertion. Her buttocks are non-existent, and her breasts can't be any larger than an A-cup. Still, she looks quite capable of defending herself; not only is she brandishing a blowpipe, clearly ready to spit another doubtlessly-poisoned dart at you, but she has a formidable-looking knife strapped to her hip.<br><br>");
+                //}
+		outputText("She looks at you for a few long moments, and then lowers her blowpipe, \"<i>I'm sorry about that, but I thought you were another demon. They destroyed this place years ago, but some of the damn scavengers still occasionally drift through. Not so much lately, of course. I've made something of an impression on them.</i>\" She grins malevolently, one hand caressing the blade of her knife in an almost sensual fashion. \"<i>My name is Amily, the last survivor of this village. All of my people are gone now; they're scattered, dead, enslaved, or worse. What about you? ");
+        if (player.humanScore() > 4) outputText("Are you ");
+		  else outputText("Were you ");
+		outputText("one of those... humans, I've heard sometimes wander into this world?</i>\"<br><br>");
+
+        outputText("You admit that, yes, you are a human, and then ask her why she remains here in this empty wasteland of a settlement.<br><br>");
+
+        outputText("\"<i>I was born here, I grew up here, and I would have gotten married and settled down here if it hadn't been for those demons.</i>\" She spits the word 'demons' with contempt. \"<i>After it was all over, I had nowhere else to go. So I stayed here. I've still got nowhere else to go, to be honest. I haven't found any other settlements of my own people, and I'd sooner die than give myself over to the demons. But it seems that if I'm ever going to see more of my people living free, I'm going to have to take the leading role...</i>\"<br><br>");
+
+        outputText("She shakes her head and smiles at you wistfully. \"<i>Listen to me, rambling. I'm sorry again for attacking you. But, take care out there; there's a lot of freaky monsters that will do the most unspeakable things to a woman if they can catch her.</i>\"<br><br>");
+
+        outputText("You thank her, and she brushes it off.<br><br>");
+
+        outputText("\"<i>Hey, us girls gotta stick together, right?</i>\" She winks at you then wanders off behind a partially collapsed wall, disappearing into the rubble.");
+        //Set flag for 'last gender met as'
+		gameFlags[AMILY_PC_GENDER] = player.gender;
+        doNext(Camp.returnToCampUseOneHour);
+		//return;
+            }
+        else {
+            outputText("DEBUGGING: Met Amily Once as Female, first meeting only.");
+            doNext(Camp.doCamp);
+        }
+/* //Lesbo lovin confession!
+		if (flags[kFLAGS.AMILY_CONFESSED_LESBIAN] == 0 && flags[kFLAGS.AMILY_AFFECTION] >= 25) {
+		  amilyIsTotallyALesbo();
+		  return;
+		}
+		//Amily totally grows a wang for you once she loves you
+		if (flags[kFLAGS.AMILY_CONFESSED_LESBIAN] == 2 && flags[kFLAGS.AMILY_WANG_LENGTH] == 0) {
+		  amilyPostConfessionGirlRemeeting();
+		  return;
+		}
+		//If PC shot down love confession, cap affection at 35 and re-offer?
+        if (flags[kFLAGS.AMILY_AFFECTION] > 35 && flags[kFLAGS.AMILY_CONFESSED_LESBIAN] == 1) {
+		  flags[kFLAGS.AMILY_AFFECTION] = 35;
+		  amilyIsTotallyALesbo();
+		  return;
+		}
+	*/	
+
+    
+    
     }
 
-    doNext(Camp.doCamp);
+		
+    // Herm meeting.
+    else if (player.gender == 3) {
+		//First time. Amily will meet you once and reject you until you change gender.
+		if (gameFlags[AMILY_MET] == 0) {
+            //Set flag for what she met the player as.
+			gameFlags[AMILY_MET_AS] = player.gender;
+            //set 'met' to true
+			gameFlags[AMILY_MET]++;
+            outputText("You wind your way deep into the maze of dusty crumbling buildings and twisted saplings, looking for any sign of life – or, failing that, something that can help you in your quest.  Bending down to rummage through an old heap of rubbish, you complain aloud that this is hardly the sort of thing you expected to be doing as a champion. Suddenly, you hear a 'thwip' and something shoots past your face, embedding into the stone beside your head and trembling with the impact.<br><br>");
+
+            outputText("\"<i>Don't make any sudden moves!</i>\" A voice calls out, high pitched and a little squeaky, but firm and commanding. You freeze to avoid giving your assailant a reason to shoot at you again. \"<i>Stand up and turn around, slowly,</i>\" it commands again. You do as you are told.<br><br>");
+            /* [Jojo previously encountered] NEED TO EXAMINE JOJO CODE
+            if (monk > 0) {
+			     outputText("The creature that has cornered you is clearly of the same race as Jojo, though notably a female member of his species. Her fur is thick with dust, but you can still easily make out its auburn color. Her limbs and midriff are wiry, hardened as much by meals that are less than frequent as by constant exercise and physical exertion. Her buttocks are non-existent, and her breasts can't be any larger than an A-cup. She wears a tattered pair of pants and an equally ragged-looking shirt. A very large and wicked-looking dagger – more of a short sword really – is strapped to her hip, and she is menacing you with a blowpipe.\n\n", false);
+						}
+						//[Jojo not previously encountered]
+						else { */
+            outputText("You have been cornered by a very strange being: a bipedal female humanoid with the unmistakable features of a giant mouse; paw-like feet, a muzzled head with long whiskers, large mouse ears, and a body covered in dust-caked auburn fur. It doesn't look like she has had a very easy life; her clothing consists of a dirty, tattered set of pants and shirt, while her limbs and midriff are wiry, hardened as much by meals that are less than frequent as by constant exercise and physical exertion. Her buttocks are non-existent, and her breasts can't be any larger than an A-cup. Still, she looks quite capable of defending herself; not only is she brandishing a blowpipe, clearly ready to spit another doubtlessly-poisoned dart at you, but she has a formidable-looking knife strapped to her hip.<br><br>");
+						//}
+            outputText("She looks at you for a few long moments, and then lowers her blowpipe, \"<i>I'm sorry about that, but I thought you were another demon. They destroyed this place years ago, but some of the damn scavengers still occasionally drift through. Not so much lately, of course. I've made something of an impression on them.</i>\" She grins malevolently, one hand caressing the blade of her knife in an almost sensual fashion. \"<i>My name is Amily, the last survivor of this village. All of my people are gone now; they're scattered, dead, enslaved, or worse. What about you? ");
+            if (player.humanScore() > 4) outputText("Are you ");
+			     else outputText("Were you ");
+            outputText("one of those... humans, I've heard sometimes wander into this world?</i>\"<br><br>");
+
+            outputText("You admit that, yes, you are a human, and then ask her why she remains here in this empty wasteland of a settlement.<br><br>");
+
+            outputText("\"<i>I was born here, I grew up here, and I would have gotten married and settled down here if it hadn't been for those demons.</i>\" She spits the word 'demons' with contempt. \"<i>After it was all over, I had nowhere else to go. So I stayed here. I've still got nowhere else to go, to be honest. I haven't found any other settlements of my own people, and I'd sooner die than give myself over to the demons. But it seems that if I'm ever going to see more of my people living free, I'm going to have to take the leading role...</i>\"<br><br>");
+
+            outputText("She looks thoughtful. \"<i>You know...</i>\" She begins, but stops and ");
+            //[If breasts are flat, manly breasts]
+			if (player.biggestTitSize() < 1) outputText("sniffs the air intensely, her whiskers quivering. ");
+			//[If breasts are A-cup or bigger]
+            else outputText("stares at the bulge in your top, as well as the bulge in your bottom.  ");
+            outputText("\"<i>Never mind,</i>\" she says after a moment. \"<i>You're a hermaphrodite, aren't you? Forget I mentioned it.</i>\"<br><br>");
+
+            outputText("She turns and walks away, vanishing into the dust and the rubble like magic.");
+            //Set flag for 'last gender met as'
+			gameFlags[AMILY_PC_GENDER] = player.gender;
+            doNext(Camp.returnToCampUseOneHour);
+			}
+            /* Additional Herm Scenes
+            //Medium affection 33% chance, guaranteed by 20.
+			//Requires she hasn't yet given this scene!
+			if (((flags[kFLAGS.AMILY_AFFECTION] >= 15 && rand(3) == 0) || flags[kFLAGS.AMILY_AFFECTION] >= 20) && flags[kFLAGS.AMILY_HERM_QUEST] == 0) {
+			     whyNotHerms();
+				return;
+				}
+            if (flags[kFLAGS.AMILY_HERM_QUEST] == 1) {
+                maybeHermsAintAllBadBITCH();
+				return;
+				    }*/
+  
+    
+    }
+        
+    // Genderless meeting
+    else if (player.gender == 0) {
+        //[First Meeting]
+		if (gameFlags[AMILY_MET] == 0) {
+            gameFlags[AMILY_MET_AS] = player.gender;
+            //set 'met' to true
+            gameFlags[AMILY_MET]++;
+            outputText("You wind your way deep into the maze of dusty crumbling buildings and twisted saplings, looking for any sign of life – or, failing that, something that can help you in your quest.  Bending down to rummage through an old heap of rubbish, you complain aloud that this is hardly the sort of thing you expected to be doing as a champion. Suddenly, you hear a 'thwip' and something shoots past your face, embedding into the stone beside your head and trembling with the impact.<br><br>");
+
+            outputText("\"<i>Don't make any sudden moves!</i>\" A voice calls out, high pitched and a little squeaky, but firm and commanding. You freeze to avoid giving your assailant a reason to shoot at you again. \"<i>Stand up and turn around, slowly,</i>\" it commands again. You do as you are told.<br><br>");
+            /*
+						//[Jojo previously encountered]
+						if (monk > 0) {
+							outputText("The creature that has cornered you is clearly of the same race as Jojo, though notably a female member of his species. Her fur is thick with dust, but you can still easily make out its auburn color. Her limbs and midriff are wiry, hardened as much by meals that are less than frequent as by constant exercise and physical exertion. Her buttocks are non-existent, and her breasts can't be any larger than an A-cup. She wears a tattered pair of pants and an equally ragged-looking shirt. A very large and wicked-looking dagger – more of a short sword really – is strapped to her hip, and she is menacing you with a blowpipe.\n\n", false);
+						}
+						//[Jojo not previously encountered]
+						else { */
+            outputText("You have been cornered by a very strange being: a bipedal female humanoid with the unmistakable features of a giant mouse; paw-like feet, a muzzled head with long whiskers, large mouse ears, and a body covered in dust-caked auburn fur. It doesn't look like she has had a very easy life; her clothing consists of a dirty, tattered set of pants and shirt, while her limbs and midriff are wiry, hardened as much by meals that are less than frequent as by constant exercise and physical exertion. Her buttocks are non-existent, and her breasts can't be any larger than an A-cup. Still, she looks quite capable of defending herself; not only is she brandishing a blowpipe, clearly ready to spit another doubtlessly-poisoned dart at you, but she has a formidable-looking knife strapped to her hip.<br><br>");
+                    //}
+            outputText("She looks at you for a few long moments, and then lowers her blowpipe, \"<i>I'm sorry about that, but I thought you were another demon. They destroyed this place years ago, but some of the damn scavengers still occasionally drift through. Not so much lately, of course. I've made something of an impression on them.</i>\" She grins malevolently, one hand caressing the blade of her knife in an almost sensual fashion. \"<i>My name is Amily, the last survivor of this village. All of my people are gone now; they're scattered, dead, enslaved, or worse. What about you? ");
+            if (player.humanScore() > 4) outputText("Are you ", false);
+			     else outputText("Were you ", false);
+			outputText("one of those... humans, I've heard sometimes wander into this world?</i>\"<br><br>");
+
+            outputText("You admit that, yes, you are a human, and then ask her why she remains here in this empty wasteland of a settlement.<br><br>");
+
+            outputText("\"<i>I was born here, I grew up here, and I would have gotten married and settled down here if it hadn't been for those demons.</i>\" She spits the word 'demons' with contempt. \"<i>After it was all over, I had nowhere else to go. So I stayed here. I've still got nowhere else to go, to be honest. I haven't found any other settlements of my own people, and I'd sooner die than give myself over to the demons. But it seems that if I'm ever going to see more of my people living free, I'm going to have to take the leading role...</i>\"<br><br>");
+
+            //(If breasts < A-Cup)
+			if (player.biggestTitSize() < 1) {
+			    outputText("She stares at you intently, and you ask her what the matter is.<br><br>");
+
+                outputText("\"<i>You see, that role I was talking about? I've had a long time to think about it, and there's no one else for it. If there are ever going to be more of my kind born into freedom, they're going to have to be born. Literally; I need to find a mate that is pure, one that can give me strong and pure children of my own kind,</i>\" she explains, one hand absently touching her flat belly. \"<i>The few males of my kind that I've managed to find are demon slaves – far too corrupt to make suitable mates, even if I could free them. I've heard, though, that humans are strangely weak breeders; your seed would be free of taint, and you would father more of my own kind. Unlike, say, an imp or a minotaur.</i>\"<br><br>");
+
+                outputText("She tucks her blowpipe into her belt and takes several uncertain steps towards you, trying to appear winning – flirtatious even – despite her grimy appearance and clear inexperience with the matter. \"<i>Please, will you help me? You said something about being a champion – if you lay with me and help me bring more of my people into this world, free of the demons and untouched by their perverse taint, you will be striking another kind of blow against their corrupt stranglehold on Mareth.</i>\"<br><br>");
+
+				outputText("Sheepishly, you look down at the ground and confess that as much as you might like to help, that's actually impossible.<br><br>");
+
+				outputText("Amily looks hurt. \"<i>Why?</i>\" she demands desperately.<br><br>");
+
+				outputText("Highly embarrassed but unable to think of a way to articulate it, you drop your pants and let her see the flat and featureless expanse of flesh that is your crotch.<br><br>");
+
+				outputText("Amily's eyes bug out, her jaw falls slack and she stares at you, clearly gobsmacked. Then she spits a stream of incoherent, dumbfounded profanities. Finally, she shakes her head. \"<i>Well... that's a new one. I guess... it makes sense. Damn, just when you thought you'd seen it all. I suppose I should go now,</i>\" she tells you and turns to leave.<br><br>");
+
+				outputText("She stops, however, just before rounding a wall. \"<i>There's this stuff you'll find in bottles called Incubus Draft. If you drink that, it'll make you a boy - but I'd find an alchemist first, so he can remove the corruption from it.</i>\"<br><br>");
+
+				outputText("She continues walking away. After she has vanished, though, another musing drifts back to you. \"<i>There's also this stuff called Succubus Milk you can do the same thing with, if you want to be a girl.</i>\"<br><br>");
+               	}
+			//(If breasts > A-Cup)
+            else {
+				outputText("She shakes her head and smiles at you wistfully. \"<i>Listen to me, rambling. I'm sorry again for attacking you. But, take care out there; there's a lot of freaky monsters that will do the most unspeakable things to a woman if they can catch her.</i>\"<br><br>");
+
+				outputText("Blushing, you explain to her that you aren't actually a woman. She looks very puzzled at this.<br><br>");
+
+				outputText("\"<i>But you have boobs... and I don't see a crotch-bulge,</i>\" she says, sounding almost petulant. \"<i>I don't smell a vagina, either... Wait, are you telling me you don't have either pair of genitals?</i>\" she asks, clearly dumbfounded.<br><br>");
+
+				outputText("Embarrassed, you admit that is so.<br><br>");
+
+				outputText("Amily stares at you, clearly at a loss for words, and then shakes her head in disbelief. She tries to give you a smile. \"<i>Well... us girls gotta stick together, right? If you look for a bottle of Succubus Milk – Imps seem to carry it on occasion, though I don't know why – then you can drink it to get your vagina back. Also, I'd find an alchemist first, so he can remove the corruption from it.</i>\"<br><br>");
+
+				outputText("Having evidently regained her confidence, she winks and then vanishes behind a tumbled-down wall, leaving you alone.");
+						
+                }
+            //Set flag for 'last gender met as'
+			gameFlags[AMILY_PC_GENDER] = player.gender;
+			doNext(Camp.returnToCampUseOneHour);
+			//return;
+			}
+				}
+	
+    //DEBUGGING
+    outputText("<br><br> DEBUGGING: If you see this and there's no other text above it, you went through Amily.start and didn't hit a meeting. If there is text, all is well. This is normal behavior for now until more meetings are programmed in. Click next to move back to camp and move forward an hour.")
+    doNext(Camp.returnToCampUseOneHour);
+
 };
+        
+        
+          
+               
+
+
 
 /* Holding comment for stuff from the original CoC code
 
- //Man Meetinz!
-				if (player.gender == 1) {
-					
-				
-						
-						
-					
-					//[Remeeting if previously refused]
-					else if (player.gender == 1 && flags[kFLAGS.AMILY_OFFER_ACCEPTED] == 0) {
-						outputText("Wandering into the ruined village, you set off in search of Amily.\n\n", false);
-						/*NOPE!
-						//[Player meets the requirements to stalk Amily]
-						if (player.spe > 50 && player.inte > 40) {
-							outputText("Using all of your knowledge, skill and cunning, you sneak and squirm through the ruins until you finally find yourself coming up right behind the dusty mouse girl. She's picking berries off of a small bush and hasn't noticed you yet.\n\n", false);
-							outputText("How do you approach her?", false);
-							//Announce yourself / Scare her
-							simpleChoices("Announce",remeetingAmilyAnnounceSelf,"Scare",remeetingAmilyScare,"",0,"",0,"",0);
-						}
-						//[Player does not meets the requirements to stalk Amily]*/
-					/*	//else {
-						outputText("After wondering for a while how on earth you are going to track down Amily, you hear a whistle. Looking around, you see her waving cheekily at you from around a corner; it's pretty obvious that you have a long way to go before you'll be able to beat her at this kind of game.\n\n", false);
-						amilyRemeetingContinued();
-						//Set flag for 'last gender met as'
-						flags[kFLAGS.AMILY_PC_GENDER] = player.gender;
-						return;
-					}
-				}
-
-
-		
-        
-        
-        
-        
-        
-        
-        
-			
-			
-			
-			//Preggo birthing!
+ 			//Preggo birthing!
 			if (pregnancy.isPregnant && pregnancy.incubation == 0) {
 				fuckingMouseBitchPopsShitOut();
 				pregnancy.knockUpForce(); //Clear Pregnancy
@@ -222,185 +398,9 @@ Amily.start = function () {
 				}
                 
            
-				//GIRL MEETINZ
-				else if (player.gender == 2) {
-					//First time
-					if (flags[kFLAGS.AMILY_MET] == 0) {
-						//Set flag for what she met the player as.
-						flags[kFLAGS.AMILY_MET_AS] = player.gender;
-						//set 'met' to true
-						flags[kFLAGS.AMILY_MET]++;
-						outputText("You wind your way deep into the maze of dusty crumbling buildings and twisted saplings, looking for any sign of life – or, failing that, something that can help you in your quest.  Bending down to rummage through an old heap of rubbish, you complain aloud that this is hardly the sort of thing you expected to be doing as a champion. Suddenly, you hear a 'thwip' and something shoots past your face, embedding into the stone beside your head and trembling with the impact.\n\n", false);
-
-						outputText("\"<i>Don't make any sudden moves!</i>\" A voice calls out, high pitched and a little squeaky, but firm and commanding. You freeze to avoid giving your assailant a reason to shoot at you again. \"<i>Stand up and turn around, slowly,</i>\" it commands again. You do as you are told.\n\n", false);
-
-						//[Jojo previously encountered]
-						if (monk > 0) {
-							outputText("The creature that has cornered you is clearly of the same race as Jojo, though notably a female member of his species. Her fur is thick with dust, but you can still easily make out its auburn color. Her limbs and midriff are wiry, hardened as much by meals that are less than frequent as by constant exercise and physical exertion. Her buttocks are non-existent, and her breasts can't be any larger than an A-cup. She wears a tattered pair of pants and an equally ragged-looking shirt. A very large and wicked-looking dagger – more of a short sword really – is strapped to her hip, and she is menacing you with a blowpipe.\n\n", false);
-						}
-						//[Jojo not previously encountered]
-						else {
-							outputText("You have been cornered by a very strange being: a bipedal female humanoid with the unmistakable features of a giant mouse; paw-like feet, a muzzled head with long whiskers, large mouse ears, and a body covered in dust-caked auburn fur. It doesn't look like she has had a very easy life; her clothing consists of a dirty, tattered set of pants and shirt, while her limbs and midriff are wiry, hardened as much by meals that are less than frequent as by constant exercise and physical exertion. Her buttocks are non-existent, and her breasts can't be any larger than an A-cup. Still, she looks quite capable of defending herself; not only is she brandishing a blowpipe, clearly ready to spit another doubtlessly-poisoned dart at you, but she has a formidable-looking knife strapped to her hip.\n\n", false);
-						}
-						outputText("She looks at you for a few long moments, and then lowers her blowpipe, \"<i>I'm sorry about that, but I thought you were another demon. They destroyed this place years ago, but some of the damn scavengers still occasionally drift through. Not so much lately, of course. I've made something of an impression on them.</i>\" She grins malevolently, one hand caressing the blade of her knife in an almost sensual fashion. \"<i>My name is Amily, the last survivor of this village. All of my people are gone now; they're scattered, dead, enslaved, or worse. What about you? ", false);
-						if (player.humanScore() > 4) outputText("Are you ", false);
-						else outputText("Were you ", false);
-						outputText("one of those... humans, I've heard sometimes wander into this world?</i>\"\n\n", false);
-
-						outputText("You admit that, yes, you are a human, and then ask her why she remains here in this empty wasteland of a settlement.\n\n", false);
-
-						outputText("\"<i>I was born here, I grew up here, and I would have gotten married and settled down here if it hadn't been for those demons.</i>\" She spits the word 'demons' with contempt. \"<i>After it was all over, I had nowhere else to go. So I stayed here. I've still got nowhere else to go, to be honest. I haven't found any other settlements of my own people, and I'd sooner die than give myself over to the demons. But it seems that if I'm ever going to see more of my people living free, I'm going to have to take the leading role...</i>\"\n\n", false);
-
-						outputText("She shakes her head and smiles at you wistfully. \"<i>Listen to me, rambling. I'm sorry again for attacking you. But, take care out there; there's a lot of freaky monsters that will do the most unspeakable things to a woman if they can catch her.</i>\"\n\n", false);
-
-						outputText("You thank her, and she brushes it off.\n\n", false);
-
-						outputText("\"<i>Hey, us girls gotta stick together, right?</i>\" She winks at you then wanders off behind a partially collapsed wall, disappearing into the rubble.", false);
-						//Set flag for 'last gender met as'
-						flags[kFLAGS.AMILY_PC_GENDER] = player.gender;
-						doNext(camp.returnToCampUseOneHour);
-						return;
-					}
-					//Lesbo lovin confession!
-					if (flags[kFLAGS.AMILY_CONFESSED_LESBIAN] == 0 && flags[kFLAGS.AMILY_AFFECTION] >= 25) {
-						amilyIsTotallyALesbo();
-						return;
-					}
-					//Amily totally grows a wang for you once she loves you
-					if (flags[kFLAGS.AMILY_CONFESSED_LESBIAN] == 2 && flags[kFLAGS.AMILY_WANG_LENGTH] == 0) {
-						amilyPostConfessionGirlRemeeting();
-						return;
-					}
-					//If PC shot down love confession, cap affection at 35 and re-offer?
-					if (flags[kFLAGS.AMILY_AFFECTION] > 35 && flags[kFLAGS.AMILY_CONFESSED_LESBIAN] == 1) {
-						flags[kFLAGS.AMILY_AFFECTION] = 35;
-						amilyIsTotallyALesbo();
-						return;
-					}
-				}
-				//Herm Meetinz
-				else if (player.gender == 3) {
-					//First time
-					if (flags[kFLAGS.AMILY_MET] == 0) {
-						//Set flag for what she met the player as.
-						flags[kFLAGS.AMILY_MET_AS] = player.gender;
-						//set 'met' to true
-						flags[kFLAGS.AMILY_MET]++;
-						outputText("You wind your way deep into the maze of dusty crumbling buildings and twisted saplings, looking for any sign of life – or, failing that, something that can help you in your quest.  Bending down to rummage through an old heap of rubbish, you complain aloud that this is hardly the sort of thing you expected to be doing as a champion. Suddenly, you hear a 'thwip' and something shoots past your face, embedding into the stone beside your head and trembling with the impact.\n\n", false);
-
-						outputText("\"<i>Don't make any sudden moves!</i>\" A voice calls out, high pitched and a little squeaky, but firm and commanding. You freeze to avoid giving your assailant a reason to shoot at you again. \"<i>Stand up and turn around, slowly,</i>\" it commands again. You do as you are told.\n\n", false);
-
-						//[Jojo previously encountered]
-						if (monk > 0) {
-							outputText("The creature that has cornered you is clearly of the same race as Jojo, though notably a female member of his species. Her fur is thick with dust, but you can still easily make out its auburn color. Her limbs and midriff are wiry, hardened as much by meals that are less than frequent as by constant exercise and physical exertion. Her buttocks are non-existent, and her breasts can't be any larger than an A-cup. She wears a tattered pair of pants and an equally ragged-looking shirt. A very large and wicked-looking dagger – more of a short sword really – is strapped to her hip, and she is menacing you with a blowpipe.\n\n", false);
-						}
-						//[Jojo not previously encountered]
-						else {
-							outputText("You have been cornered by a very strange being: a bipedal female humanoid with the unmistakable features of a giant mouse; paw-like feet, a muzzled head with long whiskers, large mouse ears, and a body covered in dust-caked auburn fur. It doesn't look like she has had a very easy life; her clothing consists of a dirty, tattered set of pants and shirt, while her limbs and midriff are wiry, hardened as much by meals that are less than frequent as by constant exercise and physical exertion. Her buttocks are non-existent, and her breasts can't be any larger than an A-cup. Still, she looks quite capable of defending herself; not only is she brandishing a blowpipe, clearly ready to spit another doubtlessly-poisoned dart at you, but she has a formidable-looking knife strapped to her hip.\n\n", false);
-						}
-						outputText("She looks at you for a few long moments, and then lowers her blowpipe, \"<i>I'm sorry about that, but I thought you were another demon. They destroyed this place years ago, but some of the damn scavengers still occasionally drift through. Not so much lately, of course. I've made something of an impression on them.</i>\" She grins malevolently, one hand caressing the blade of her knife in an almost sensual fashion. \"<i>My name is Amily, the last survivor of this village. All of my people are gone now; they're scattered, dead, enslaved, or worse. What about you? ", false);
-						if (player.humanScore() > 4) outputText("Are you ", false);
-						else outputText("Were you ", false);
-						outputText("one of those... humans, I've heard sometimes wander into this world?</i>\"\n\n", false);
-
-						outputText("You admit that, yes, you are a human, and then ask her why she remains here in this empty wasteland of a settlement.\n\n", false);
-
-						outputText("\"<i>I was born here, I grew up here, and I would have gotten married and settled down here if it hadn't been for those demons.</i>\" She spits the word 'demons' with contempt. \"<i>After it was all over, I had nowhere else to go. So I stayed here. I've still got nowhere else to go, to be honest. I haven't found any other settlements of my own people, and I'd sooner die than give myself over to the demons. But it seems that if I'm ever going to see more of my people living free, I'm going to have to take the leading role...</i>\"\n\n", false);
-
-						outputText("She looks thoughtful. \"<i>You know...</i>\" She begins, but stops and ", false);
-						//[If breasts are flat, manly breasts]
-						if (player.biggestTitSize() < 1) outputText("sniffs the air intensely, her whiskers quivering. ", false);
-						//[If breasts are A-cup or bigger]
-						else outputText("stares at the bulge in your top, as well as the bulge in your bottom.  ", false);
-						outputText("\"<i>Never mind,</i>\" she says after a moment. \"<i>You're a hermaphrodite, aren't you? Forget I mentioned it.</i>\"\n\n", false);
-
-						outputText("She turns and walks away, vanishing into the dust and the rubble like magic.", false);
-						//Set flag for 'last gender met as'
-						flags[kFLAGS.AMILY_PC_GENDER] = player.gender;
-						doNext(camp.returnToCampUseOneHour);
-						return;
-					}
-					//Medium affection 33% chance, guaranteed by 20.
-					//Requires she hasn't yet given this scene!
-					if (((flags[kFLAGS.AMILY_AFFECTION] >= 15 && rand(3) == 0) || flags[kFLAGS.AMILY_AFFECTION] >= 20) && flags[kFLAGS.AMILY_HERM_QUEST] == 0) {
-						whyNotHerms();
-						return;
-					}
-					if (flags[kFLAGS.AMILY_HERM_QUEST] == 1) {
-						maybeHermsAintAllBadBITCH();
-						return;
-					}
-				}
-				//Genderless
-				else if (player.gender == 0) {
-					//[First Meeting]
-					if (flags[kFLAGS.AMILY_MET] == 0) {
-						flags[kFLAGS.AMILY_MET_AS] = player.gender;
-						//set 'met' to true
-						flags[kFLAGS.AMILY_MET]++;
-						outputText("You wind your way deep into the maze of dusty crumbling buildings and twisted saplings, looking for any sign of life – or, failing that, something that can help you in your quest.  Bending down to rummage through an old heap of rubbish, you complain aloud that this is hardly the sort of thing you expected to be doing as a champion. Suddenly, you hear a 'thwip' and something shoots past your face, embedding into the stone beside your head and trembling with the impact.\n\n", false);
-
-						outputText("\"<i>Don't make any sudden moves!</i>\" A voice calls out, high pitched and a little squeaky, but firm and commanding. You freeze to avoid giving your assailant a reason to shoot at you again. \"<i>Stand up and turn around, slowly,</i>\" it commands again. You do as you are told.\n\n", false);
-
-						//[Jojo previously encountered]
-						if (monk > 0) {
-							outputText("The creature that has cornered you is clearly of the same race as Jojo, though notably a female member of his species. Her fur is thick with dust, but you can still easily make out its auburn color. Her limbs and midriff are wiry, hardened as much by meals that are less than frequent as by constant exercise and physical exertion. Her buttocks are non-existent, and her breasts can't be any larger than an A-cup. She wears a tattered pair of pants and an equally ragged-looking shirt. A very large and wicked-looking dagger – more of a short sword really – is strapped to her hip, and she is menacing you with a blowpipe.\n\n", false);
-						}
-						//[Jojo not previously encountered]
-						else {
-							outputText("You have been cornered by a very strange being: a bipedal female humanoid with the unmistakable features of a giant mouse; paw-like feet, a muzzled head with long whiskers, large mouse ears, and a body covered in dust-caked auburn fur. It doesn't look like she has had a very easy life; her clothing consists of a dirty, tattered set of pants and shirt, while her limbs and midriff are wiry, hardened as much by meals that are less than frequent as by constant exercise and physical exertion. Her buttocks are non-existent, and her breasts can't be any larger than an A-cup. Still, she looks quite capable of defending herself; not only is she brandishing a blowpipe, clearly ready to spit another doubtlessly-poisoned dart at you, but she has a formidable-looking knife strapped to her hip.\n\n", false);
-						}
-						outputText("She looks at you for a few long moments, and then lowers her blowpipe, \"<i>I'm sorry about that, but I thought you were another demon. They destroyed this place years ago, but some of the damn scavengers still occasionally drift through. Not so much lately, of course. I've made something of an impression on them.</i>\" She grins malevolently, one hand caressing the blade of her knife in an almost sensual fashion. \"<i>My name is Amily, the last survivor of this village. All of my people are gone now; they're scattered, dead, enslaved, or worse. What about you? ", false);
-						if (player.humanScore() > 4) outputText("Are you ", false);
-						else outputText("Were you ", false);
-						outputText("one of those... humans, I've heard sometimes wander into this world?</i>\"\n\n", false);
-
-						outputText("You admit that, yes, you are a human, and then ask her why she remains here in this empty wasteland of a settlement.\n\n", false);
-
-						outputText("\"<i>I was born here, I grew up here, and I would have gotten married and settled down here if it hadn't been for those demons.</i>\" She spits the word 'demons' with contempt. \"<i>After it was all over, I had nowhere else to go. So I stayed here. I've still got nowhere else to go, to be honest. I haven't found any other settlements of my own people, and I'd sooner die than give myself over to the demons. But it seems that if I'm ever going to see more of my people living free, I'm going to have to take the leading role...</i>\"\n\n", false);
-
-						//(If breasts < A-Cup)
-						if (player.biggestTitSize() < 1) {
-							outputText("She stares at you intently, and you ask her what the matter is.\n\n", false);
-
-							outputText("\"<i>You see, that role I was talking about? I've had a long time to think about it, and there's no one else for it. If there are ever going to be more of my kind born into freedom, they're going to have to be born. Literally; I need to find a mate that is pure, one that can give me strong and pure children of my own kind,</i>\" she explains, one hand absently touching her flat belly. \"<i>The few males of my kind that I've managed to find are demon slaves – far too corrupt to make suitable mates, even if I could free them. I've heard, though, that humans are strangely weak breeders; your seed would be free of taint, and you would father more of my own kind. Unlike, say, an imp or a minotaur.</i>\"\n\n", false);
-
-							outputText("She tucks her blowpipe into her belt and takes several uncertain steps towards you, trying to appear winning – flirtatious even – despite her grimy appearance and clear inexperience with the matter. \"<i>Please, will you help me? You said something about being a champion – if you lay with me and help me bring more of my people into this world, free of the demons and untouched by their perverse taint, you will be striking another kind of blow against their corrupt stranglehold on Mareth.</i>\"\n\n", false);
-
-							outputText("Sheepishly, you look down at the ground and confess that as much as you might like to help, that's actually impossible.\n\n", false);
-
-							outputText("Amily looks hurt. \"<i>Why?</i>\" she demands desperately.\n\n", false);
-
-							outputText("Highly embarrassed but unable to think of a way to articulate it, you drop your pants and let her see the flat and featureless expanse of flesh that is your crotch.\n\n", false);
-
-							outputText("Amily's eyes bug out, her jaw falls slack and she stares at you, clearly gobsmacked. Then she spits a stream of incoherent, dumbfounded profanities. Finally, she shakes her head. \"<i>Well... that's a new one. I guess... it makes sense. Damn, just when you thought you'd seen it all. I suppose I should go now,</i>\" she tells you and turns to leave.\n\n", false);
-
-							outputText("She stops, however, just before rounding a wall. \"<i>There's this stuff you'll find in bottles called Incubus Draft. If you drink that, it'll make you a boy - but I'd find an alchemist first, so he can remove the corruption from it.</i>\"\n\n", false);
-
-							outputText("She continues walking away. After she has vanished, though, another musing drifts back to you. \"<i>There's also this stuff called Succubus Milk you can do the same thing with, if you want to be a girl.</i>\"\n\n", false);
-						}
-						//(If breasts > A-Cup)
-						else {
-							outputText("She shakes her head and smiles at you wistfully. \"<i>Listen to me, rambling. I'm sorry again for attacking you. But, take care out there; there's a lot of freaky monsters that will do the most unspeakable things to a woman if they can catch her.</i>\"\n\n", false);
-
-							outputText("Blushing, you explain to her that you aren't actually a woman. She looks very puzzled at this.\n\n", false);
-
-							outputText("\"<i>But you have boobs... and I don't see a crotch-bulge,</i>\" she says, sounding almost petulant. \"<i>I don't smell a vagina, either... Wait, are you telling me you don't have either pair of genitals?</i>\" she asks, clearly dumbfounded.\n\n", false);
-
-							outputText("Embarrassed, you admit that is so.\n\n", false);
-
-							outputText("Amily stares at you, clearly at a loss for words, and then shakes her head in disbelief. She tries to give you a smile. \"<i>Well... us girls gotta stick together, right? If you look for a bottle of Succubus Milk – Imps seem to carry it on occasion, though I don't know why – then you can drink it to get your vagina back. Also, I'd find an alchemist first, so he can remove the corruption from it.</i>\"\n\n", false);
-
-							outputText("Having evidently regained her confidence, she winks and then vanishes behind a tumbled-down wall, leaving you alone.", false);
-						}
-						//Set flag for 'last gender met as'
-						flags[kFLAGS.AMILY_PC_GENDER] = player.gender;
-						doNext(camp.returnToCampUseOneHour);
-						return;
-					}
-				}
-			}
-            
+		
+			
+			
             
             
             

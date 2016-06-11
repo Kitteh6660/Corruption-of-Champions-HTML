@@ -1,4 +1,4 @@
-Inventory = [];
+var Inventory = [];
 var gearStorage = [];
 
 var keyItemList = [];
@@ -7,6 +7,7 @@ const inventorySlotName = ["first", "second", "third", "fourth", "fifth", "sixth
 var currentItemSlot;
 var callNext;
 
+// Call the inventory menu
 Inventory.inventoryMenu = function() {
     hideMenus();
 	clearOutput();
@@ -43,6 +44,7 @@ Inventory.inventoryMenu = function() {
 	addButton(14, "Back", playerMenu);
 }
 
+// Call the unequip menu
 Inventory.unequipMenu = function() {
 	clearOutput();
 	outputText("Which would you like to unequip?<br><br>");
@@ -68,6 +70,7 @@ Inventory.unequipMenu = function() {
 	addButton(14, "Back", Inventory.inventoryMenu);
 }
 
+// Performs unequipping of the relevant item type
 Inventory.unequipWeapon = function() {
 	clearOutput();
 	var oldWeapon = lookupItem(player.weapon.id);
@@ -81,6 +84,7 @@ Inventory.unequipArmor = function() {
 	Inventory.takeItem(oldArmor, Inventory.unequipMenu);
 }
 
+// Puts item into inventory
 Inventory.takeItem = function(itype, nextAction, overrideAbandon, source) {
 	if (overrideAbandon == undefined) {
 		overrideAbandon = nextAction;
@@ -117,6 +121,7 @@ Inventory.takeItem = function(itype, nextAction, overrideAbandon, source) {
 	Inventory.takeItemFull(itype, true, source);
 }
 
+// Uses an item from the inventory
 Inventory.useItemInInventory = function(slotNum) {
     clearOutput();
     //if (player.itemSlots[slotNum].itype.type == ITEM_TYPE_CONSUMABLE) {
@@ -137,11 +142,13 @@ Inventory.useItemInInventory = function(slotNum) {
     Inventory.itemGoNext(); //Normally returns to the inventory menu. In combat it goes to the inventoryCombatHandler function
 }
 
+// Handles a bit of inventory cleanup from combat
 Inventory.inventoryCombatHandler = function() {
     outputText("<br><br>");
     combatRoundOver();
 }
 
+// Promps to destroys an item
 Inventory.deleteItemPrompt = function(item, slotNum) {
     clearOutput();
     outputText("Are you sure you want to destroy " + player.itemSlots[slotNum].quantity + "x " + item.shortName + "?  You won't be able to retrieve " + (player.itemSlots[slotNum].quantity == 1 ? "it": "them") + "!");
@@ -150,6 +157,7 @@ Inventory.deleteItemPrompt = function(item, slotNum) {
     addButton(1, "No", Inventory.inventoryMenu);
     //doYesNo(deleteItem, inventoryMenu);
 }
+// Deletes an item
 Inventory.deleteItem = function(item, slotNum) {
     clearOutput();
     outputText(player.itemSlots[slotNum].quantity + "x " + item.shortName + " " + (player.itemSlots[slotNum].quantity == 1 ? "has": "have") + " been destroyed.");
@@ -157,6 +165,7 @@ Inventory.deleteItem = function(item, slotNum) {
     doNext(Inventory.inventoryMenu);
 }
 
+// Use an item
 Inventory.useItem = function(item, fromSlot) {
     item.useText();
     /*if (item) {
@@ -204,6 +213,7 @@ Inventory.useItem = function(item, fromSlot) {
     //}
 }
 
+// Try to take an item when the slot is full
 Inventory.takeItemFull = function(itype, showUseNow, source) {
 	outputText("There is no room for " + itype.longName + " in your inventory.  You may replace the contents of a pouch with " + itype.longName + " or abandon it.");
 	menu();
@@ -219,6 +229,8 @@ Inventory.takeItemFull = function(itype, showUseNow, source) {
 	addButton(14, "Abandon", callOnAbandon); //Does not doNext - immediately executes the callOnAbandon function
 }
 
+
+// Returns an item to the inventory if necessary
 Inventory.returnItemToInventory = function(item, showNext) { //Used only by items that have a sub menu if the player cancels
     //Return item to inventory
     if (currentItemSlot == null) {
@@ -241,6 +253,7 @@ Inventory.returnItemToInventory = function(item, showNext) { //Used only by item
 	else callNext(); //When putting items back in your stash we should skip to the take from stash menu
 }
 
+// Using items before they go into the inventory, like after combat.
 Inventory.useItemNow = function(item, source) {
 	clearOutput();
 	if (item.canUse()) { //If an item cannot be used then canUse should provide a description of why the item cannot be used
@@ -251,6 +264,8 @@ Inventory.useItemNow = function(item, source) {
 	}
 }
 
+
+// Replacing one item with another
 Inventory.replaceItem = function(itype, slotNum) {
 	clearOutput();
 	if (player.itemSlots[slotNum].itype == itype) //If it is the same as what's in the slot...just throw away the new item
@@ -263,6 +278,7 @@ Inventory.replaceItem = function(itype, slotNum) {
 	Inventory.itemGoNext();
 }
 
+// Uncertain
 Inventory.itemGoNext = function() {
     if (callNext != null) {
         /*if (inCombat())
@@ -283,7 +299,7 @@ Inventory.newKeyItemAdd = function (name, var1, var2, var3, var4) {
                       value3: var3, 
                       value4: var4});
     var keySlot = keyItemList.length;
-    outputText("NEW KEYITEM FOR PLAYER is " + keyItemList[keySlot-1].keyName);
+    //outputText("<br><br> DEBUGGING CODE: NEW KEYITEM FOR PLAYER is " + keyItemList[keySlot-1].keyName);
 };
 
 // New function to replace bad code. This goes through the Key Items array and returns the index if there's a match.
@@ -301,7 +317,7 @@ Inventory.hasKeyItem = function(name) {
 };
 
 
-// This function returns a boolean. Used to decide whether to show the stash button or not.
+// Used to decide whether to show the stash button or not.
 Inventory.showStash = function(bool) {
     // Code in Anemone Barrel, Jewelry Box, Storage Chests, and Dresser when we get that far. full code from original is:
     // return player.hasKeyItem("Equipment Rack - Weapons") >= 0 || player.hasKeyItem("Equipment Rack - Armor") >= 0 || itemStorage.length > 0 || flags[kFLAGS.ANEMONE_KID] > 0 || player.hasKeyItem("Equipment Storage - Jewelry Box") >= 0 || flags[kFLAGS.CAMP_CABIN_FURNITURE_DRESSER] > 0;
@@ -315,7 +331,7 @@ Inventory.showStash = function(bool) {
    
 };
 
-// This function handles the Stash menu.
+// Stash menu.
 Inventory.stashMenu = function () {
     hideMenus();
 	clearOutput();
@@ -392,7 +408,63 @@ Inventory.stashMenu = function () {
 };
 
 
-// The following functions feed parameters to the main stashing function
+// These are used to check if things are in the stash already to make the removal buttons appear
+function armorRackDescription() {
+    if (itemAnyInStorage(gearStorage, 9, 18)) {
+        var itemList = [];
+        for (x = 9; x < 18; x++) {
+            if (gearStorage[x].quantity > 0) itemList[itemList.length] = gearStorage[x].itype.longName;
+			outputText("  It currently holds " + formatStringArray(itemList) + ".");
+			return true;
+			}
+        return false;
+    }
+};
+
+function weaponRackDescription() {
+    if (itemAnyInStorage(gearStorage, 0, 9)) {
+        var itemList = [];
+        for (x = 0; x < 9; x++) {
+            if (gearStorage[x].quantity > 0) itemList[itemList.length] = gearStorage[x].itype.longName;
+			outputText("  It currently holds " + formatStringArray(itemList) + ".");
+			return true;
+			}
+        return false;
+    }
+};
+
+function shieldRackDescription() {
+    if (itemAnyInStorage(gearStorage, 36, 45)) {
+        var itemList = [];
+        for (x = 36; x < 45; x++) {
+            if (gearStorage[x].quantity > 0) itemList[itemList.length] = gearStorage[x].itype.longName;
+			outputText("  It currently holds " + formatStringArray(itemList) + ".");
+			return true;
+			}
+        return false;
+    }
+};
+
+
+
+// These are used to pick an item from storage to put back into inventory
+function pickItemToTakeFromShieldRack() {
+    callNext = pickItemToTakeFromShieldRack;
+	pickItemToTakeFromStorage(gearStorage, 36, 45, "rack");
+};
+		
+function pickItemToTakeFromArmorRack() {
+    callNext = pickItemToTakeFromArmorRack;
+	pickItemToTakeFromStorage(gearStorage, 9, 18, "rack");
+};
+		
+function pickItemToTakeFromWeaponRack() {
+    callNext = pickItemToTakeFromWeaponRack;
+	pickItemToTakeFromStorage(gearStorage, 0, 9, "rack");
+};
+
+
+// The following functions pick an item to put into storage
 function pickItemToPlaceInWeaponRack() {
     pickItemToPlaceInStorage(placeInWeaponRack, weaponAcceptable, "weapon rack", true);
 };
@@ -425,7 +497,7 @@ function shieldAcceptable(itype) {
 //function undergarmentAcceptable(itype) { return itype is Undergarment; };
 
 
-// This function lets the player select an item to put into storage
+// This function puts the item into storage
 // CANNOT TEST UNTIL SOME MORE THINGS ARE PUT INTO THE GAME
 
 function pickItemToPlaceInStorage(placeInStorageFunction, typeAcceptableFunction, text, showEmptyWarning) {
@@ -516,7 +588,39 @@ function placeIn(storage, startSlot, endSlot, slotNum) {
 			outputText("There is no room for " + (orig == qty ? "" : "the remaining ") + qty + "x " + itype.shortName + ".  You leave " + (qty > 1 ? "them" : "it") + " in your inventory.\n");
 			player.itemSlots[slotNum].setItemAndQty(itype, qty);
 		};
-	
 
 
+
+// This function takes an item out of storage
+function pickItemToTakeFromStorage(Array, startSlot, endSlot, text) {
+    clearOutput(); 
+    hideUpDown();
+	if (!itemAnyInStorage(storage, startSlot, endSlot)) { //If no items are left then return to the camp menu. Can only happen if the player removes the last item.
+        playerMenu();
+		return;
+    }
+	outputText("What " + text + " slot do you wish to take an item from?");
+	var button = 0;
+    menu();
+	for (var x = startSlot; x < endSlot; x++, button++) {
+        if (storage[x].quantity > 0) addButton(button, (storage[x].itype.shortName + " x" + storage[x].quantity), pickFrom(storage, x));
+    }
+    addButton(14, "Back", stash);
+};
+
+function pickFrom(storage, slotNum) {
+    clearOutput();
+	var itype = storage[slotNum].itype;
+	storage[slotNum].quantity--;
+    inventory.takeItem(itype, callNext, callNext, storage[slotNum]);
+};
+
+
+function itemAnyInStorage(storage, startSlot, endSlot) {
+			for (var x = startSlot; x < endSlot; x++) {
+				if (storage[x] != undefined) 
+                    if (storage[x].quantity > 0) return true;
+			}
+			return false;
+}
     

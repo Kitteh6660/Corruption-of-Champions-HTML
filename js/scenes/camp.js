@@ -49,7 +49,13 @@ Camp.doCamp = function () {
         if (time.hours == 20) outputText("The sun has already set below the horizon. The sky glows orange. ");
         outputText("It's light outside, a good time to explore and forage for supplies with which to fortify your camp.<br><br>");
     }
-	//Display available options
+    
+    //DEBUGGING CODE FOR AMILY MEETINGS
+    //player.gender = 0;
+    //outputText("Player Gender is " + player.gender);
+
+    
+    //Display available options
 	menu();
 	addButton(0, "Explore", Areas.GenericExploration.exploreMenu, null, null, null, "Explore to find new regions and visit any discovered regions.");
     addButton(1, "Places", Places.placesMenu, null, null, null, "Visit any places you have discovered so far.");
