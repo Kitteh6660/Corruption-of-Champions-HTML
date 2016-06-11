@@ -770,7 +770,7 @@ RathazulScene.makeADeBimboDraft = function() {
     outputText("<br><br>\"<i>That <b>should</b> do,</i>\" he mutters to himself. Rathazul turns, carefully handing you the mixture. \"<i>This should counter the mental-inhibiting effects of the Bimbo Liqueur, but I have no idea to what extent those who imbibe it will retain of their time spent as a bimbo...</i>\"<br><br>");
     //Take items
     player.changeGems(-250);
-    player.destroyItems(Items.Consumables.SmartTea, 5);
+    player.destroyItems(Items.Consumables.ScholarsTea, 5);
     gameFlags[RATHAZUL_PURCHASE_COUNTER]++;
     Inventory.takeItem(Items.Consumables.Debimbo, RathazulScene.returnToRathazulMenu);
 }

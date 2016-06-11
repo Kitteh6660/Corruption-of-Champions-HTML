@@ -2,8 +2,8 @@ Version 0.1.2 (June 09, 2016)
 
 * Added Giacomo. Note that Cerulean Potion is not available yet and masturbation with toys are not implemented.
 * Added Lumi the Goblin Alchemist. Currently enhancing items are not available.
-* Added Farm, along with Whitney and Kelt. Marble will come later.
 * Added Marcus & Lucia to desert, complete with Succubi Delight. The potion can be purified.
+* Added groundwork for Farm, along with Whitney and Kelt. Marble will come later. Not currently accessible.
 * Added Town Ruins stub.
 * Several more items!
 * Fixed NaN lust from Sand Witch.
