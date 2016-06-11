@@ -84,6 +84,7 @@ const AMILY_AFFECTION                   = "Amily_Affection" // Amily's Affection
 const AMILY_OFFERED_DEFURRY             = "Amily_Offered_Defurry" // Refused Amily's offer because she's a mouse.
 const AMILY_FUCK_COUNTER                = "Amily_Fuck_Counter" // How many times you fucked Amily.
 const AMILY_NOT_FURRY                   = "Amily_Not_Furry" // If active, Amily has been defurred.
+const AMILY_WANG_LENGTH                 = "Amily_Wang_Length" // Amily is a herm. Measures her penis length.
 
 //------------
 // ENCOUNTERS

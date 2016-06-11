@@ -53,7 +53,8 @@ Camp.doCamp = function () {
     //DEBUGGING CODE FOR AMILY MEETINGS
     //player.gender = 0;
     //outputText("Player Gender is " + player.gender);
-
+    //gameFlags[AMILY_AFFECTION] = 50;
+    outputText("Amily Affection is " + gameFlags[AMILY_AFFECTION]);
     
     //Display available options
 	menu();
