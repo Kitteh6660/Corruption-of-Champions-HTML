@@ -1,6 +1,22 @@
 Amily = [];
 
-addToGameFlags(AMILY_MET, AMILY_MET_AS, AMILY_PC_GENDER, AMILY_OFFER_ACCEPTED);
+/*
+ * Amily created by aimozg on 02.01.14.
+ * Converted to JS by Matraia
+ */
+
+
+/*
+
+Changes to make:
+
+The initial male meeting offers a rejection option because she's a furry. See amilyNoFur(). Part of the text for that option reveals the ingredients necessary to defur Amily. However, players don't see these ingredients until much later in the game. Amily is often encountered early. How is the player going to know what the ingredients are?
+
+*/
+
+
+
+addToGameFlags(AMILY_MET, AMILY_MET_AS, AMILY_PC_GENDER, AMILY_OFFER_ACCEPTED, AMILY_AFFECTION, AMILY_OFFERED_DEFURRY);
 
 // Amily.start is the holder for encounters inside of the Town Ruins
 Amily.start = function () {
@@ -116,15 +132,12 @@ Amily.start = function () {
             outputText("She tucks her blowpipe into her belt and takes several uncertain steps towards you, trying to appear winning – flirtatious even – despite her grimy appearance and clear inexperience with the matter. \"<i>Please, will you help me? You said something about being a champion – If you lay with me and help me bring more of my people into this world, free of the demons and untouched by their perverse taint, you will be striking another kind of blow against their corrupt stranglehold on Mareth.</i>\"<br><br>");
 
 			outputText("What do you do?");
-			
-            /* Stopping here for the moment to check code
-            //Accept Eagerly / Accept Hesitantly / Refuse
-			simpleChoices("AcceptEagerly", acceptAmilysOfferEagerly, "Hesitantly", acceptAmilyOfferHesitantly, "NoFurries", amilyNoFur, "Refuse", refuseAmilysOffer, "", null);
-			//Set flag for 'last gender met as'
-			flags[kFLAGS.AMILY_PC_GENDER] = player.gender;
-			return; */
-            gameFlags[AMILY_PC_GENDER] = player.gender;
-            doNext(Camp.returnToCampUseOneHour);
+			gameFlags[AMILY_PC_GENDER] = player.gender;
+            //Accept Eagerly / Accept Hesitantly / Reject Harshly / Refuse Gently
+			addButton(0, "Eager", acceptAmilysOfferEagerly, null, null, null, "Accept Amily's Offer Eagerly.");
+            addButton(1, "Hesitant", acceptAmilysOfferHesitantly, null, null, null, "Accept Amily's Offer Hesitantly.");
+            addButton(2, "Refuse", refuseAmilysOffer, null, null, null, "Your mission is more important. You can't let her distract you!");
+            addButton(3, "Reject", amilyNoFur, null, null, null, "You can't imagine kissing, let alone breeding with, a mouse!");
 					}
             else if (player.gender == 1 && gameFlags[AMILY_OFFER_ACCEPTED] == 0) {
 			     outputText("Wandering into the ruined village, you set off in search of Amily.<br><br>");
@@ -362,18 +375,186 @@ Amily.start = function () {
 				}
 	
     //DEBUGGING
-    outputText("<br><br> DEBUGGING: If you see this and there's no other text above it, you went through Amily.start and didn't hit a meeting. If there is text, all is well. This is normal behavior for now until more meetings are programmed in. Click next to move back to camp and move forward an hour.")
-    doNext(Camp.returnToCampUseOneHour);
+    //outputText("<br><br> DEBUGGING: If you see this and there's no other text above it, you went through Amily.start and didn't hit a meeting. If there is text, all is well. This is normal behavior for now until more meetings are programmed in. Click next to move back to camp and move forward an hour.")
+    //doNext(Camp.returnToCampUseOneHour);
 
 };
-        
-        
-          
-               
+    
+// Male PC accepts Amily's offer eagerly. (Consider changing this response to Lusty. It's a bit beyond eager...)
+function acceptAmilysOfferEagerly() {
+    clearOutput();
+    menu();
+    //amilySprite();
+	outputText("You grin lecherously, unable to help it. It's rare when someone in this world wants to fuck and actually asks you, rather than just trying to beat you senseless and then rape you. You tell Amily that if she wants you to fuck her, you'll be happy to do so.<br><br>");
+
+    outputText("The mouse-woman looks appalled. \"<i>Must you be so vulgar?</i>\" she complains.<br><br>");
+
+    outputText("You tell her that this is precisely what she's asking you to do, and you'll be happy to do so if that is what she wants.<br><br>");
+
+    outputText("She still looks disgruntled. \"<i>Very well, come on. I suppose it was too much to hope that you would be roaming this world and yet still have some decorum when it comes to sex...</i>\" She begins leading the way and you follow. She doesn't have much of a butt to stare at, but you can already think of some interesting things to do with that tail of hers...<br><br>");
+
+    outputText("Your brash enthusiasm has made Amily uncomfortable, and your quick surender to baser impulses has made you slightly more lustful.");
+    //Offer accepted
+	gameFlags[AMILY_OFFER_ACCEPTED] = 1;
+	//-5 Amily Affection for your rudeness
+	gameFlags[AMILY_AFFECTION] -= 5;
+	//+5 Libido
+	player.modStats("lib", 5);
+    //[/ Go to [First Time Sex]]
+	//doNext(amilySexHappens);
+    doNext(Camp.doCamp);
+};
+
+
+// Male PC accepts Amily's offer hesitantly.
+function acceptAmilysOfferHesitantly() {
+    clearOutput();
+    menu();
+	//amilySprite();
+	outputText("The offer is shocking... and yet, strangely enticing. You cannot help but think that it's nice to meet somebody who, even if they are more sexually explicit than in your village, actually approaches the matter with some decorum. You are still surprised and even embarrassed by the invitation, but you can't help but think it might be worthwhile to accept. It's for a good cause, and she's clearly not entirely comfortable with it herself. Maybe you've been too long in this world of beast-people and monsters, but she actually is kind of cute.<br><br>");
+
+	outputText("Softly, you ask if she really does want you to mate with her, to father her offspring.<br><br>");
+
+	outputText("\"<i>Yes. You're the best hope I have... the only hope I have.</i>\" She replies, sadly.<br><br>");
+
+	outputText("You bow your head and tell her that if she really does need your help, you will help her – even if it does mean doing things with her that she doesn't want.<br><br>");
+
+	outputText("She blinks at you, clearly surprised. \"<i>I've never met a male who actually cared if a female wanted sex or not...</i>\" She then smiles gently. \"<i>It's nice to meet somebody who can still care about people as something other than fuck toys. Please, come with me.</i>\"<br><br>");
+
+	outputText("She eagerly leads you down a path, her tail swishing back and forth energetically. She seems very happy by your acceptance.<br><br>");
+
+	outputText("It seems you've made Amily happy by asking if this is what she wants.");
+			//Offer accepted
+	gameFlags[AMILY_OFFER_ACCEPTED] = 1;
+			//{+5 Affection}
+	gameFLags[AMILY_AFFECTION] += 5;
+	//[/ Go to [First Time Sex]]
+	//doNext(amilySexHappens);
+    doNext(Camp.doCamp);
+};
+
+
+// Refuse Amily's Offer. Impress her!
+function refuseAmilysOffer() {
+    clearOutput();
+    menu();
+	//amilySprite();
+	outputText("You shake your head in refusal.<br><br>");
+
+	outputText("Amily stares at you in disbelief. \"<i>No? What do you mean, no? I'm honestly offering to have sex with you here.</i>\"<br><br>");
+
+	outputText("You tell her that you can't simply have sex with some stranger who you have never met before, especially when that stranger admits it would just be a casual, unfeeling, emotionally hollow act. You dread the idea of simply whoring yourself out, even for an evidently noble cause as this - it's just not right. You came to this world to try and fight the hedonism and lechery that the demons represent, not to support it or, worse, give in to it yourself.<br><br>");
+
+	outputText("Amily is wide-eyed when you finish. \"<i>I have... I haven't heard anybody say things like that, think like that, in a long time.</i>\" She smiles, faintly, then fiercely shakes her head. \"<i>I really do need your help... but I can only respect your conviction. I do hope that we can come to terms later, though.</i>\"<br><br>");
+
+	outputText("She gives you a bow and then leaves, giving you the chance to turn around and leave this ruined village yourself.<br><br>");
+
+	outputText("You have impressed Amily considerably, and reigning in your sexual impulses has helped to calm your libido.<br><br>");
+	// +10 Affection. Behold the power of NoFap!
+	gameFlags[AMILY_AFFECTION] += 10;
+	// -5 Libido for avoiding obvious offer.
+	player.modStats("lib", -5);
+    doNext(Camp.returnToCampUseOneHour);
+};
+
+// Refuse Amily because she's a mouse and mice are gross.
+function amilyNoFur() {
+    clearOutput();
+    menu();
+    //amilySprite();
+	gameFlags[AMILY_OFFERED_DEFURRY] = 1;
+	outputText("You shake your head gently and explain that your position has not changed. Amily looks annoyed, but respects your decision.  You interrupt her next thought with a clarification; you don't want to have sex with her because of her appearance.  \"<i>...What do you mean?</i>\" she asks, one of her hands idly moving up and tugging one of her mousey ears.  As gently as you can, you explain that mice (and rats, for that matter) are considered pests in your home world, and you can't find yourself inclined to mate with a walking version of them.<br><br>");
+	
+    outputText("There's a long pause while Amily digests your implication.  \"<i>You want me to... change?</i>\" she asks quietly.  \"<i>Would that... make you want to mate with me?</i>\"  You can't make any promises, but it would definitely change your considerations, you explain.<br><br>");
+    
+    outputText("After another long silence, she sighs.  \"<i>I don't know.  What would my family say if I just... went and made myself a completely different person, all for the sake of a human?</i>\"  You slowly move to her and lay a hand on her shoulder, forcing her to look once more into your eyes.  It's not the fact that she won't be a mouse, you insist.  It's the fact that she's moving on for the sake of her race.  She manages a little smile at that, her expression brightening just a bit.  \"<i>I'll think about it,</i>\" she finally decides.  \"<i>If you can find some non-demonic reagents, perhaps we can give it a try.  If anything bad happens, though,</i>\" she warns, wagging a finger at you threateningly.  She backs off and stands awkwardly for a second.<br><br>");
+
+    outputText("\"<i>Well, uh... bye,</i>\" Amily concludes, whirling around and walking away.  You can't be sure, but it seems like she's exaggerating the sway of her hips a bit.  You don't think much of it, heading back toward camp and beginning to formulate a concoction to de-mouse your potential breeding partner.  Perhaps... a <b>golden seed</b> for a human face, a <b>black egg</b> to get rid of the fur, and some <b>purified succubus milk</b> to round things off.  You make a mental note to remember those ingredients, for they won't show up again and you'd feel positively silly if you somehow completely forgot them.<br><br>");
+    doNext(camp.returnToCampUseOneHour);
+};
 
 
 
 /* Holding comment for stuff from the original CoC code
+
+public function AmilyScene()
+		{
+			pregnancy = new PregnancyStore(kFLAGS.AMILY_PREGNANCY_TYPE, kFLAGS.AMILY_INCUBATION, kFLAGS.AMILY_BUTT_PREGNANCY_TYPE, kFLAGS.AMILY_OVIPOSITED_COUNTDOWN);
+			pregnancy.addPregnancyEventSet(PregnancyStore.PREGNANCY_PLAYER, 150, 120, 100, 96, 90, 72, 48);
+												//Event: 0 (= not pregnant),  1,   2,   3,  4,  5,  6,  7,  8 (< 48)
+			CoC.timeAwareClassAdd(this);
+		}
+
+		//Implementation of TimeAwareInterface
+		public function timeChange():Boolean
+		{
+			var needNext:Boolean = false;
+			pregnancy.pregnancyAdvance();
+			trace("\nAmily time change: Time is " + model.time.hours + ", type: " + pregnancy.type + ", incubation: " + pregnancy.incubation + ", event: " + pregnancy.event);
+			trace("\nAmily time change: butt type: " + pregnancy.buttType + ", butt incubation: " + pregnancy.buttIncubation + ", butt event: " + pregnancy.buttEvent);
+			if (flags[kFLAGS.AMILY_BLOCK_COUNTDOWN_BECAUSE_CORRUPTED_JOJO] > 0) flags[kFLAGS.AMILY_BLOCK_COUNTDOWN_BECAUSE_CORRUPTED_JOJO]--;
+			if (flags[kFLAGS.AMILY_INCEST_COUNTDOWN_TIMER] > 0 && flags[kFLAGS.AMILY_INCEST_COUNTDOWN_TIMER] < 30 * 24) flags[kFLAGS.AMILY_INCEST_COUNTDOWN_TIMER]++;
+			if (flags[kFLAGS.AMILY_FOLLOWER] == 1) {
+				if (pregnancy.isPregnant && pregnancy.incubation == 0) {
+					outputText("\n", false);
+					amilyPopsOutKidsInCamp();
+					pregnancy.knockUpForce(); //Clear Pregnancy
+					outputText("\n", false);
+					needNext = true;
+				}
+				if (pregnancy.isButtPregnant && pregnancy.buttIncubation == 0) {
+					amilyLaysEggsLikeABitch();
+					pregnancy.buttKnockUpForce(); //Clear Pregnancy
+					needNext = true;
+				}
+			}
+			if (model.time.hours == 6) {
+				//Pure amily flips her shit and moves out!
+				if (flags[kFLAGS.AMILY_FOLLOWER] == 1 && player.cor >= 66 + player.corruptionTolerance() && flags[kFLAGS.UNKNOWN_FLAG_NUMBER_00173] > 0) {
+					amilyScene.farewellNote();
+					needNext = true;
+				}
+				//Amily moves back in once uncorrupt.
+				if (flags[kFLAGS.AMILY_TREE_FLIPOUT] == 0 && flags[kFLAGS.UNKNOWN_FLAG_NUMBER_00173] > 0 && player.cor <= 25 + player.corruptionTolerance() && flags[kFLAGS.AMILY_FOLLOWER] == 0) {
+					amilyScene.amilyReturns();
+					needNext = true;
+				}
+			}
+			else if (model.time.hours > 23) {
+				if (flags[kFLAGS.AMILY_X_JOJO_COOLDOWN] > 0) flags[kFLAGS.AMILY_X_JOJO_COOLDOWN]--;
+			}
+			return needNext;
+		}
+	
+		public function timeChangeLarge():Boolean {
+			if (!kGAMECLASS.urtaQuest.urtaBusy() && flags[kFLAGS.AMILY_VISITING_URTA] == 2 && model.time.hours == 6) {
+				kGAMECLASS.followerInteractions.amilyUrtaMorningAfter();
+				return true;
+			}
+			if (flags[kFLAGS.AMILY_FOLLOWER] == 1 && model.time.hours == 6 && flags[kFLAGS.CAMP_WALL_PROGRESS] >= 100 && flags[kFLAGS.CAMP_WALL_SKULLS] < 100 && rand(3) == 0) {
+				flags[kFLAGS.CAMP_WALL_SKULLS]++;
+			}
+			return false;
+		}
+		//End of Interface Implementation
+
+		// NEW EVENTS:
+		// 3172 = Ask to defur Amily
+		// 3174 = Defur Amily at camp (both corrupt/noncorrupt)
+		override public function amilyFollower():Boolean {
+			if (flags[kFLAGS.AMILY_FOLLOWER] > 0) {
+				//Amily not a follower while visiting Urta
+				return !(flags[kFLAGS.AMILY_VISITING_URTA] == 1 || flags[kFLAGS.AMILY_VISITING_URTA] == 2);
+			}
+			else return false;
+		}
+		public function amilyCorrupt():Boolean {
+			return flags[kFLAGS.AMILY_FOLLOWER] == 2;
+		}
+
+
+
+
 
  			//Preggo birthing!
 			if (pregnancy.isPregnant && pregnancy.incubation == 0) {
