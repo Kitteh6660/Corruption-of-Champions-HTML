@@ -82,7 +82,7 @@ const AMILY_MET_AS                      = "Amily_Met_As" // Marks the player gen
 const AMILY_OFFER_ACCEPTED              = "Amily_Offer_Accepted" // You've taken up Amily's offer to breed her.
 const AMILY_AFFECTION                   = "Amily_Affection" // Amily's Affection level toward PC.
 const AMILY_OFFERED_DEFURRY             = "Amily_Offered_Defurry" // Refused Amily's offer because she's a mouse.
-
+const AMILY_FUCK_COUNTER                = "Amily_Fuck_Counter" // How many times you fucked Amily.
 
 //------------
 // ENCOUNTERS
