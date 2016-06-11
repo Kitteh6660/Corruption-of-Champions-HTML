@@ -78,8 +78,12 @@ const AMILY_VILLAGE_ACCESSIBLE			= "Amily_Village_Accessible"; // Can you access
 const AMILY_VILLAGE_EXPLORED             = "Amily_Village_Explored";  // How many times has the TownRuins been explored? Used in achievement.
 const AMILY_MET                         = "Amily_Met" // Has Amily been met yet?
 const AMILY_PC_GENDER                   = "Amily_PC_Gender" // Used for gender checks with Amily to switch between scenes.
-const AMILY_MET_AS                      = "Amily_Met_As" // Marks the player gender that met with Amily first
-const AMILY_OFFER_ACCEPTED              = "Amily_Offer_Accepted"
+const AMILY_MET_AS                      = "Amily_Met_As" // Marks the player gender that met with Amily.
+const AMILY_OFFER_ACCEPTED              = "Amily_Offer_Accepted" // You've taken up Amily's offer to breed her.
+const AMILY_AFFECTION                   = "Amily_Affection" // Amily's Affection level toward PC.
+const AMILY_OFFERED_DEFURRY             = "Amily_Offered_Defurry" // Refused Amily's offer because she's a mouse.
+const AMILY_FUCK_COUNTER                = "Amily_Fuck_Counter" // How many times you fucked Amily.
+const AMILY_NOT_FURRY                   = "Amily_Not_Furry" // If active, Amily has been defurred.
 
 //------------
 // ENCOUNTERS
