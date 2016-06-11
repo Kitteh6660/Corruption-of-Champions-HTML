@@ -14,3 +14,4 @@ Here are the list of DOs and DON'Ts. Legacy flags will be phased out in favour f
 * Track older NPCs using status effects. Instead, use the flags. The older NPCs will use the new flags.
 * Make too many content in one pull request. Try to focus on one specific content. You may add dependent content too.
 * Use copy and paste code that would make the code messier.
+* Use deprecated functions like choices() and simpleChoices(). Use addButton instead.
