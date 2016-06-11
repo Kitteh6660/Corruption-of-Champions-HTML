@@ -79,6 +79,7 @@ const AMILY_VILLAGE_EXPLORED             = "Amily_Village_Explored";  // How man
 const AMILY_MET                         = "Amily_Met" // Has Amily been met yet?
 const AMILY_PC_GENDER                   = "Amily_PC_Gender" // Used for gender checks with Amily to switch between scenes.
 const AMILY_MET_AS                      = "Amily_Met_As" // Marks the player gender that met with Amily first
+const AMILY_OFFER_ACCEPTED              = "Amily_Offer_Accepted"
 
 //------------
 // ENCOUNTERS

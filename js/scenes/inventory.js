@@ -299,7 +299,7 @@ Inventory.newKeyItemAdd = function (name, var1, var2, var3, var4) {
                       value3: var3, 
                       value4: var4});
     var keySlot = keyItemList.length;
-    outputText("NEW KEYITEM FOR PLAYER is " + keyItemList[keySlot-1].keyName);
+    //outputText("<br><br> DEBUGGING CODE: NEW KEYITEM FOR PLAYER is " + keyItemList[keySlot-1].keyName);
 };
 
 // New function to replace bad code. This goes through the Key Items array and returns the index if there's a match.
