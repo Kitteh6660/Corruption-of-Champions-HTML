@@ -760,7 +760,7 @@ function amilyNoFur() {
 *
 ********/
 
-// Basic sex scenes with Amily See determineAmilySexEvent()
+// Kicks off the male sex paths
 function amilySexHappens() {
     clearOutput();
 	//amilySprite();
@@ -778,33 +778,38 @@ function amilySexHappens() {
         gameFlags[AMILY_FUCK_COUNTER]++;
         amilySexFirstTime();		
     }
-    else {
-        amilyPreggoChance();
-        outputText("Here would be the sex scenes.");
-        doNext(Camp.doCamp);
-    }
+        
+    //Low Affection Sex Path:
+    if (gameFlags[AMILY_AFFECTION] < 15) {
+        outputText("Amily's efforts at leading you through the ruined village are brisk and efficient. You don't really think she's looking forward to doing this all that much. No, that might be overstating things. It's more like she's under the impression that, details aside, this encounter between the two of you will be pure business.<br><br>");
+
+        outputText("It's hard for you to say if you were led by a different route this time, but soon you are in what Amily has to offer for a private bedchamber, and she begins to reach for her clothes, obviously expecting you to do the same thing.<br><br>");
+        menu();
+        addButton(0, "Business", amilySexBusiness, null, null, null, "Let's get down to business. We're on a mission...");    
+        addButton(1, "Play First", amilySexPlaytimeFirst, null, null, null, "Must we rush? A little play would make it much more enjoyable...");
+	}
+	
     
+    //Moderate Affection Sex:
+    else if (gameFlags[AMILY_AFFECTION] < 40) {
+        //var pregEvent:int = pregnancy.event;
+        outputText("Amily leads you to her nest as quickly as ever, but things are a little different this time. You can tell Amily has what can only be described as a 'spring in her step'. She moves just a little bit quicker, she seems more enthusiastic about the prospect - her tail even waves slowly from side to side, a bit of body language you haven't seen from her before. And you're certain there's a bit of a seductive wiggle to her hips - which you definitely haven't seen from her before.");
+		
+        //(If Amily is Slightly Pregnant:
+        //if (pregEvent >= 1 && pregEvent <= 5) outputText("  However, she does sometimes touch the swell signifying the litter growing inside her, and when she does her attitude becomes uncertain and nervous.", false);
+		
+        outputText("<br><br>");
+
+        outputText("Once you are inside, Amily gently tries to push you onto the bedding where you will be mating. Once you are seated, she smiles at you with a teasing expression and begins to slowly strip herself off, clearly trying to make the act seem as erotic as possible.");
+
+        //if (pregEvent >= 6) outputText("  However, her confidence visibly slips when she has to fully bare the bulging belly that marks her pregnant state, but she musters the confidence and starts to show it off for you as well.", false);
+        addButton(0, "Step In", amilySexStepIn, null, null, null, "Why not let me do that for you?");    
+        addButton(1, "Watch Show", amilySexEnjoyShow, null, null, null, "She's getting better at this...");
+//				
+        }
+	
     /*
-    //Low Affection Sex:
-    if (flags[kFLAGS.AMILY_AFFECTION] < 15) {
-				outputText("Amily's efforts at leading you through the ruined village are brisk and efficient. You don't really think she's looking forward to doing this all that much. No, that might be overstating things. It's more like she's under the impression that, details aside, this encounter between the two of you will be pure business.\n\n", false);
-
-				outputText("It's hard for you to say if you were led by a different route this time, but soon you are in what Amily has to offer for a private bedchamber, and she begins to reach for her clothes, obviously expecting you to do the same thing.\n\n", false);
-				simpleChoices("Business", amilySexBusiness, "Playtime 1st", amilySexPlaytimeFirst, "", null, "", null, "", null);
-			}
-			//Moderate Affection Sex:
-			else if (flags[kFLAGS.AMILY_AFFECTION] < 40) {
-				var pregEvent:int = pregnancy.event;
-				outputText("Amily leads you to her nest as quickly as ever, but things are a little different this time. You can tell Amily has what can only be described as a 'spring in her step'. She moves just a little bit quicker, she seems more enthusiastic about the prospect - her tail even waves slowly from side to side, a bit of body language you haven't seen from her before. And you're certain there's a bit of a seductive wiggle to her hips - which you definitely haven't seen from her before.", false);
-				//(If Amily is Slightly Pregnant:
-				if (pregEvent >= 1 && pregEvent <= 5) outputText("  However, she does sometimes touch the swell signifying the litter growing inside her, and when she does her attitude becomes uncertain and nervous.", false);
-				outputText("\n\n", false);
-
-				outputText("Once you are inside, Amily gently tries to push you onto the bedding where you will be mating. Once you are seated, she smiles at you with a teasing expression and begins to slowly strip herself off, clearly trying to make the act seem as erotic as possible.", false);
-				if (pregEvent >= 6) outputText("  However, her confidence visibly slips when she has to fully bare the bulging belly that marks her pregnant state, but she musters the confidence and starts to show it off for you as well.", false);
-				simpleChoices("Step In", amilyStepTheFuckIn, "Watch Show", amilyEnjoyShow, "", null, "", null, "", null);
-			}
-			else {
+    else {
 				if (pregnancy.event >= 6) fuckAmilyPreg();
 				else amilyHighAffectionSecks();
 			}
@@ -994,9 +999,237 @@ function sexWithAmily() {
         doNext(amilySexHappens);
     }
 }
-    
+
+/******
+/ Low Affection Amily Sex Path
+******/
+
+// Low Affection Section 1 Choice 1
+function amilySexBusiness() {
+    clearOutput();
+    //amilySprite();
+	outputText("Allowing Amily to take care of her clothes, you hastily remove your own " + player.armorName + ". Once the two of you are naked in front of each other, Amily looks you up and down, and then sniffs - not in disdain, but honestly trying to get a good scent of you. You speculate that this is some kind of check to see that you haven't somehow managed to become corrupted since last you met.<br><br>");
+	amilySexPtII();
+}
+
+// Low Affection Section 1Choice 2
+function amilySexPlaytimeFirst() {
+    clearOutput();
+	//amilySprite();
+	outputText("As Amily begins reaching for her clothes, rather than start stripping off yourself, you close the distance between the two of you and take hold of her hands.<br><br>");
+
+    outputText("\"<i>W-What are you doing?</i>\" She asks, curious and a little wary.<br><br>");
+
+    outputText("You simply smile back at her, and then gently begin to undress her, stopping her from lifting a finger to take off her clothes as you playfully remove them for her. At least, as playfully as you can, given how simple her garb is. The mouse-girl is confused, and she blushes a bit, but you think she's enjoying the attention, and you take this as an opportunity to gently scratch the base of her tail and tickle the rim of her ears with your fingers, the latter of which makes her giggle despite herself. Once she is standing nude before you, you begin to take off your own clothes. However, to your surprise, it is her turn to stop you.<br><br>");
+
+    outputText("\"<i>Fair is fair.</i>\" She growls, but she's blushing faintly. Clumsy with unfamiliarity, she nonetheless does her best to remove your " + player.armorName + " in as erotic a fashion as she can manage, and you catch her nimble little fingers hesitantly stroking across the more interesting parts of your anatomy more than once. When you stand before her naked, she carefully looks you over and takes several deep breaths through her nose.<br><br>");
+
+    outputText("\"<i>Just making sure that you haven't... you know, picked up something you shouldn't.</i>\" She explains softly.<br><br>");
+    player.changeLust(5);
+    amilySexPtII();
+}
+
+// Low Affection Section 2
+function amilySexPtII() {
+    //amilySprite();
+
+	//worm infested reaction
+	/*
+    if (player.findStatusEffect(StatusEffects.Infested) >= 0) {
+	   outputText("\"<i>EWWWW!  You're infested!</i>\" she shrieks, \"<i>Get out!  Don't come back 'til you get rid of the worms!</i>\"\n\nYou high tail it out of there.  It looks like Amily doesn't want much to do with you until you're cured.", false);
+        doNext(camp.returnToCampUseOneHour);
+		flags[kFLAGS.AMILY_AFFECTION] -= 3;
+		flags[kFLAGS.AMILY_GROSSED_OUT_BY_WORMS] = 1;
+		return;
+	}
+    */
+    outputText("Now that both of you are naked, Amily takes a step back from you and begins to stroke herself - though her gestures are a little hesitant, and she clearly has never done this before, she is sincerely trying to be arousing. A finger strokes each dainty little nipple, circling around in opposite directions in order to make them perk as hard as they can. Her right hand slips away, leaving her left hand to alternate between each nipple as her nimble fingers begin to tease her most private of places. She may not be extraordinarily skilled at it, but she's definitely doing a good job of turning you on - particularly with the cute little gasp she makes when she pinches her clitoris a bit too hard.<br><br>");
+    menu();
+    addButton(0, "Sit & Watch", amilySexSitAndWatch, null, null, null, "Awww, she's putting on a show! Let's see what she does next...");    
+    addButton(1, "Caress Her", amilySexCaressHer, null, null, null, "Maybe I could show her how it's done?");
+		
+}
+
+// Low Affection Section 2 Choice 1
+function amilySexSitAndWatch() {
+    clearOutput();
+	//amilySprite();
+	var x = player.cockThatFits(61);
+    outputText("You stay right where you are, not wanting to spoil the show. By the time that she is visibly starting to drip girlcum and approaches you, clearly ready to move on to the main event, your " + player.cockDescript(x) + " is iron-hard.<br><br>");
+    // 50? Really? Seems excessive!
+    player.changeLust(50);
+    amilySexPartIII();
+}
+
+// Low Affection Section 2 Choice 2
+function amilySexCaressHer() {
+    clearOutput();
+	//amilySprite();
+	outputText("Watching Amily masturbate and tease herself in front of you is definitely erotic... but you want something more to this session than that. Licking your lips with a combination of arousal and nervousness, you tentatively reach out one hand and brush a feather-light touch against her fingers.  Her eyes, which she had previously been keeping closed, suddenly spring open, and you ready yourself to withdraw and apologize if she protests. But, for whatever reason, she does not protest and, emboldened, you continue to touch and caress her. You keep your touches gentle, light and restricted to non-intimate regions, but she seems to be enjoying this; she draws a little closer, and reaches out to brush your cheek, absentmindedly using the very hand she had been stroking her netherlips with before, and so the scent of her intimate regions drifts to your nostrils from where her fingers lay. Her eyes have rolled almost completely shut, the gaze she is giving you is a very languid one, but something about the set of her lips, only just starting to open, entices you to kiss them.<br><br>");
+    addButton(0, "Refrain", amilySexRefrainKiss, null, null, null, "Do I really want to take it that far? Maybe I shouldn't...");    
+    addButton(1, "Kiss Her", amilySexKiss, null, null, null, "Maybe I could show her how it's done?");
+    }
+
+// Low Affection Section 2 Choice 2.1
+function amilySexRefrainKiss() {
+    clearOutput();
+	//amilySprite();
+	outputText("You pull your mind back from that thought. That's taking things in directions you're not sure that either you or Amily are actually comfortable with.<br><br>");
+    // Affection hit!
+    gameFlags[AMILY_AFFECTION] -= 3;
+    amilySexPartIII();
+}
+
+// Low Affection Section 2 Choice 2.2
+function amilySexKiss() {
+    clearOutput();
+	//amilySprite();
+	outputText("Slowly, doing your best to convey that you will stop or back away if Amily is uncomfortable with this, you press your lips tenderly to Amily's.");
+    if (gameFlags[AMILY_NOT_FURRY] == 0) outputText("  It's quite an unusual experience; though her lips proper are as naked as your own, there is fur around them, soft and fine and just close enough to tickle the edges of your own lips, to say nothing of the unusual sensation of kissing someone with a muzzle.  Amily doesn't seem bothered at all. In fact, she kisses you back, and quite eagerly so, too.<br><br>");
+    else outputText("<br><br>");
+	player.changeLust(5);
+    gameFlags[AMILY_AFFECTION] += 1+rand(3);
+    amilySexPartIII();
+}
+
+// Low Affection Section 3 (final)
+function amilySexPartIII() {
+    var x = player.cockThatFits(61);
+	//amilySprite();
+	//outputText(images.showImage("amily-forest-plainfuck"), false);
+	outputText("The time couldn't be any more right for either of you, and you both sink onto the bedding that Amily has prepared. Lying side by side, Amily guides you with surprising efficiency into her entry, and then, once you are comfortably inside, she begins to thrust, her cunt gripping your " + player.cockDescript(x) + " like a vice.<br><br>");
+
+			/*(If player chooses "Share The Pleasure":)
+			{
+				outputText("Determined to make this good for Amily too, you resume stroking and caressing her, doing your best to meet her thrusts with your own, and planting the odd kiss on the nape of her neck", false);
+				//([horsecock]
+				if (flags[kFLAGS.AMILY_NOT_FURRY]==0)
+					outputText(" - not actually an unpleasant experience, despite the fur", false);
+				outputText(". She is surprised, and tenses warily at first, but then melts under your ministrations, squeaking softly in her appreciation of your efforts.", false);
+			}
+			*/
+			
+    outputText("But all good things must come to an end, and soon you both build to a mutual climax. Once you have regained your strength, you stop holding each other and begin to dress, ready to go your separate ways once more. At the door, though, Amily stops you.<br><br>");
+
+    outputText("\"<i>Thank you, that was... nice...,</i>\" the little mousegirl says with a blush. \"<i>Maybe... we can... do it again?</i>\"<br><br>");
+
+    outputText("She seems surprised that she actually enjoyed it (at least a little), but she's definitely willing to repeat the experience. You assure her that you'll come back, and then resume your travels.");
+    //Knock up, PC stats, etc.
+	gameFlags[AMILY_FUCK_COUNTER]++;
+    amilyPreggoChance();
+	//Slight affection gain?
+	gameFlags[AMILY_AFFECTION] += 1 + rand(2);
+    player.orgasm();
+	player.modStats("sen", -1);
+    doNext(Camp.returnToCampUseOneHour);
+}
+
+/**********
+* Medium Affection Amily Sex Path
+***********/
 
 
+function amilySexStepIn() {
+    clearOutput();
+	//amilySprite();
+	outputText("Eager, confused and feeling impatient, you rise from your seat to help Amily undress. She accepts your help, and does seem to enjoy your touches and help, but at the same time she seems disappointed... maybe even a little hurt? Almost as if she had been wanting you to watch her efforts?<br><br>");
+	amilySexMidPartII();
+		}
+
+function amilySexEnjoyShow() {
+    clearOutput();
+	//amilySprite();
+	outputText("Surprised, curious and aroused in equal measures, you decide to sit back and watch the show. Amily seems very happy to perform for you, and does her best to make it as intriguing as possible.");
+    //if (pregnancy.event >= 6) outputText("  Even though she was clearly a little nervous about her gravid state in the beginning, as she continues, she grows in confidence to the point it seems she has almost forgotten about it.", false);
+	outputText("<br><br>");
+    amilySexMidPartII();
+}
+
+function amilySexMidPartII() {
+    player.changeLust(5);
+    //amilySprite();
+	outputText("By the time Amily is completely naked, she is clearly excited about what is coming up; you even think she's wet already. She stares at you with a mischievous, turned-on smile, waiting to see what you will do now that it is your turn to strip.<br><br>");
+	outputText("Do you do a striptease of your own or just strip naked and get to business?");
+    addButton(0, "Striptease", amilySexYouStrip, null, null, null, "Two can play at this game. Let's see if she likes a striptease...");
+    addButton(1, "Business", amilySexGetTheFunStarted, null, null, null, "She doesn't need to tease you anymore to get you going! Let's get to the fun part...");
+	//		simpleChoices("Striptease", StripForAmilyYouSlut, "Business", getDownWithSexTiem, "", null, "", null, "", null);
+}
+
+
+function amilySexYouStrip() {
+    clearOutput();
+	//amilySprite();
+	var x = player.cockThatFits(61);
+    outputText("It is your turn to give her a mischievous smile back. Feeling turned on and excited, and remembering the elders in the village telling you that fair is only fair, you decide to give her a little show of her own. Standing up, you tilt your head back and thrust out your chest, trying to look enticing. As Amily watches, at first bemused and then pleased, you slowly strip off your " + player.armorName + ", working hard to make it as sensual and suggestive as possible. You show off your body for her, leisurely stroking your own limbs and down your midriff to finally reveal that which lies inside your pants; your " + player.cockDescript(x) + ". Amily is definitely appreciative of the show.<br><br>");
+	amilySexMidPartII();
+    //continueWithMoreMidLevelAmilySex();
+		}
+
+function amilySexGetTheFunStarted() {
+    clearOutput();
+	//amilySprite();
+	var x = player.cockThatFits(61);
+	outputText("Too horny to think of anything else than what lies ahead, you hastily remove your " + player.armorName + ".  Amily smiles at what she can see, enjoying the sight of your body and your " + player.cockDescript(x) + "<br><br>");
+    amilySexMidPartII();
+    //continueWithMoreMidLevelAmilySex();
+}
+
+function amilySexMidPartII() {
+    player.changeLust(5);
+    //amilySprite();
+	outputText("Once you are both naked, you embrace and begin with a deep kiss. Slowly you both sink down and start exploring each other's bodies. You feel Amily's hands caressing you while you lightly kiss her breasts, one of your hands slowly drifting down to her cute ass and lightly squeezing it. Looking into her eyes, you see a sparkle in them before she surprises you and somehow manages to turn you onto your back. Now she's sitting on your belly, with your already hard cock being fondled by her rather flexible tail. Grinning at you, she seems to plan on teasing you as long as possible before allowing you to enter her.<br><br>");
+    addButton(0, "Play Along", amilySexPlayAlong, null, null, null, "Tooltip to be added");
+    addButton(1, "Please Her", amilySexWorkToPlease, null, null, null, "Tooltip to be added");
+    //simpleChoices("Play Along", playAlongWithAmilyWhataDumbBitch, "Please Her", workToPleaseTheCunt, "", null, "", null, "", null);
+}
+		
+function amilySexPlayAlong() {
+    outputText("",true);
+	//amilySprite();
+	//outputText(images.showImage("amily-forest-reverse-cowgirl"), false);
+	outputText("You decide to let her take the dominant position, relax (as much as you can with a beautiful, hot and very wet little mouse-girl sitting on you and fondling you) and simply enjoy her attentions. Amily obviously knows what she is doing - though you have no idea HOW she knows - and manages to bring you nearly to the climax before drawing back a little and letting you calm down.  She repeats this several times until you're nearly going crazy.  Just when you think you can't stand it anymore, she removes her tail from your cock and instead uses it to lightly bind your hands. You could easily move your hands, but decide not to. Grinning at you, she hovers a moment over your cock before slowly sinking down. You somehow manage to avoid cumming as soon as you enter her, but it's really, really hard. Amily's tail draws your 'bound' hands onto her breasts, while hers start caressing yours as she begins slowly riding you. Soon, the speed increases, and it isn't long before you both orgasm.<br><br>");
+    player.orgasm();
+	player.modStats("sen", -1);
+    amilySexMidPartIII();
+}
+
+function amilySexWorkToPlease() {
+    clearOutput();
+	//amilySprite();
+	outputText("You decide to take a more active role and start caressing her, kneading her breasts and making sure she enjoys it just as much as you do. Soon, Amily can't hold herself back and sinks down on you, beginning to ride you for all she's worth. It doesn't take you two long to reach the climax.<br><br>");
+    player.orgasm();
+	player.modStats("sen", -1);
+    amilySexMidPartIII();
+}
+
+function amilySexMidPartIII() {
+    //amilySprite();
+	outputText("Quite spent from your lovemaking, Amily sinks down on your breast, smiles at you and slowly dozes off. You also drift off to sleep soon after. Some time later, you wake up to find her already putting on her clothes again.<br><br>");
+    //Affection gain here?
+	amilyPreggoChance();
+	gameFlags[AMILY_AFFECTION] += 3 + rand(4);
+    gameFlags[AMILY_FUCK_COUNTER]++;
+    addButton(0, "Say Goodbye", amilySexSayGoodbye, null, null, null, "Tooltip to be added");
+    addButton(1, "Stay Awhile", amilySexStayAwhile, null, null, null, "Tooltip to be added");
+
+}
+
+		
+function amilySexSayGoodbye() {
+    //amilySprite();
+	clearOutput();
+	outputText("You smile at her and give her a kiss before saying goodbye and returning to your camp.");
+    doNext(Camp.returnToCampUseOneHour);
+}
+
+function amilySexStayAwhile() {
+    //amilySprite();
+	clearOutput();
+	outputText("You decide you'd rather stay with her a little longer, so you get up, go to her and with a kiss and some caresses draw her down again. She doesn't really put up any resistance, so you both lie there kissing and caressing each other for some time before you finally say goodbye and return to your camp.");
+    //Bonus affection mayhapz?
+	gameFlags[AMILY_AFFECTION] += 3;
+    doNext(Camp.returnToCampUseOneHour);
+}
 
 
 /******
