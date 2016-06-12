@@ -65,10 +65,6 @@ var forced = false;
 ********/
 
 
-
-
-
-
 // Amily.start begins encounters in the Town Ruins
 Amily.start = function () {
     // BOOKKEEPING
@@ -760,6 +756,7 @@ function amilyNoFur() {
 *
 ********/
 
+
 // Kicks off the male sex paths
 function amilySexHappens() {
     clearOutput();
@@ -999,6 +996,7 @@ function sexWithAmily() {
         doNext(amilySexHappens);
     }
 }
+
 
 /******
 / Low Affection Amily Sex Path
@@ -1387,6 +1385,25 @@ function amilySexFirstTimeKiss () {
 
 var amilyPregnancy = new PregnancyStore(gameFlags[AMILY_PREGNANCY_TYPE], gameFlags[AMILY_INCUBATION], gameFlags[AMILY_BUTT_PREGNANCY_TYPE], gameFlags[AMILY_OVIPOSITED_COUNTDOWN]);
 
+function amilyPreggoChance() {
+    //Is amily a chaste follower?
+	if (gameFlags[AMILY_FOLLOWER] == 1) {
+        //If pregnancy not enabled, GTFO
+		if (gameFlags[AMILY_ALLOWS_FERTILITY] == 0) return;
+    }
+	//Cant repreg if already preg!
+	if (amilyPregnancy.isPregnant() == true) return;
+			
+	// Cant preg if at the farm
+	if (gameFlags[FOLLOWER_AT_FARM_AMILY] != 0) return;
+			
+    //25% + gradually increasing cumQ bonus
+	if (rand(4) == 0 || player.cumQ() > rand(1000)) {
+    amilyPregnancy.knockUpForce(PREGNANCY_PLAYER, INCUBATION_MOUSE - 182);
+    }
+    //      outputText("Amily got pregnant!");
+        
+}
 
 function amilyPreggoChance() {
     //Is amily a chaste follower?
