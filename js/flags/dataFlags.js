@@ -77,13 +77,32 @@ const MURBLE_FARM_TALK_LEVELS           = "Marble_Farm_Talk_Levels";
 const AMILY_VILLAGE_ACCESSIBLE			= "Amily_Village_Accessible"; // Can you access the Town Ruins?
 const AMILY_VILLAGE_EXPLORED             = "Amily_Village_Explored";  // How many times has the TownRuins been explored? Used in achievement.
 const AMILY_MET                         = "Amily_Met" // Has Amily been met yet?
-const AMILY_PC_GENDER                   = "Amily_PC_Gender" // Used for gender checks with Amily to switch between scenes.
-const AMILY_MET_AS                      = "Amily_Met_As" // Marks the player gender that met with Amily.
-const AMILY_OFFER_ACCEPTED              = "Amily_Offer_Accepted" // You've taken up Amily's offer to breed her.
-const AMILY_AFFECTION                   = "Amily_Affection" // Amily's Affection level toward PC.
-const AMILY_OFFERED_DEFURRY             = "Amily_Offered_Defurry" // Refused Amily's offer because she's a mouse.
-const AMILY_FUCK_COUNTER                = "Amily_Fuck_Counter" // How many times you fucked Amily.
-const AMILY_NOT_FURRY                   = "Amily_Not_Furry" // If active, Amily has been defurred.
+const AMILY_PC_GENDER                   = "Amily_PC_Gender"; // Used for gender checks with Amily to switch between scenes.
+const AMILY_MET_AS                      = "Amily_Met_As"; // Marks the player gender that met with Amily.
+const AMILY_OFFER_ACCEPTED              = "Amily_Offer_Accepted"; // You've taken up Amily's offer to breed her.
+const AMILY_AFFECTION                   = "Amily_Affection"; // Amily's Affection level toward PC.
+const AMILY_OFFERED_DEFURRY             = "Amily_Offered_Defurry"; // Refused Amily's offer because she's a mouse.
+const AMILY_FUCK_COUNTER                = "Amily_Fuck_Counter"; // How many times you fucked Amily.
+const AMILY_NOT_FURRY                   = "Amily_Not_Furry"; // If active, Amily has been defurred.
+const AMILY_WANG_LENGTH                 = "Amily_Wang_Length"; // Amily is a herm. Measures her penis length.
+const AMILY_PREGNANCY_TYPE              = "Amily_Pregnancy_Type"; // What is Amily pregnant with?
+const AMILY_INCUBATION                  = "Amily_Incubation";
+const AMILY_BUTT_PREGNANCY_TYPE         = "Amily_Butt_Pregnancy_Type";
+const AMILY_OVIPOSITED_COUNTDOWN        = "Amily_Oviposited_Countdown";
+const AMILY_GROSSED_OUT_BY_WORMS        = "Amily_Grossed_Out_By_Worms";
+const AMILY_FOLLOWER                    = "Amily_Follower";
+const AMILY_ALLOWS_FERTILITY            = "Amily_Allows_Fertility";
+const FOLLOWER_AT_FARM_AMILY            = "Follower_At_Farm_Amily";
+
+
+//=================
+// PREGNANCY FLAGS
+//
+// Note that these are actual constants, not called by gameFlags. 
+//=================
+
+const INCUBATION_MOUSE                  = 350; // Incubation time for mice types/Amily
+const PREGNANCY_PLAYER                  = "Pregnancy_Player"
 
 //------------
 // ENCOUNTERS
