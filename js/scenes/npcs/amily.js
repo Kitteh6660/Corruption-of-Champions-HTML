@@ -5,6 +5,8 @@ Amily = [];
  * Converted to JS by Matraia
  */
 
+addToGameFlags(AMILY_MET, AMILY_MET_AS, AMILY_PC_GENDER, AMILY_OFFER_ACCEPTED, AMILY_AFFECTION, AMILY_OFFERED_DEFURRY, AMILY_FUCK_COUNTER, AMILY_NOT_FURRY, AMILY_WANG_LENGTH, AMILY_PREGNANCY_TYPE, AMILY_INCUBATION, AMILY_BUTT_PREGNANCY_TYPE, AMILY_OVIPOSITED_COUNTDOWN, AMILY_GROSSED_OUT_BY_WORMS, AMILY_FOLLOWER, AMILY_ALLOWS_FERTILITY, FOLLOWER_AT_FARM_AMILY);
+
 
 /*
 
@@ -14,11 +16,60 @@ The initial male meeting offers a rejection option because she's a furry. See am
 
 */
 
+/*******
+*
+* Amily Definitions and initial variables
+*
+********/
+
+function Amily() {
+    this.a = "";
+	this.short = "Amily";
+	this.imageName = "amily";
+	this.long = "You are currently fighting Amily. The mouse-morph is dressed in rags and glares at you in rage, knife in hand. She keeps herself close to the ground, ensuring she can quickly close the distance between you two or run away.";
+	// this.plural = false;
+	this.createVagina(false, VAGINA_WETNESS_NORMAL, VAGINA_LOOSENESS_NORMAL);
+	this.createStatusEffect(StatusEffects.BonusVCapacity, 48, 0, 0, 0);
+	createBreastRow(Appearance.breastCupInverse("C"));
+	this.ass.analLooseness = ANAL_LOOSENESS_VIRGIN;
+	this.ass.analWetness = ANAL_WETNESS_DRY;
+	this.tallness = 4*12;
+	this.hipRating = HIP_RATING_AMPLE;
+	this.buttRating = BUTT_RATING_TIGHT;
+	this.skinTone = "tawny";
+	this.skinType = SKIN_TYPE_FUR;
+	//this.skinDesc = Appearance.Appearance.DEFAULT_SKIN_DESCS[SKIN_TYPE_FUR];
+	this.hairColor = "brown";
+	this.hairLength = 5;
+	initStrTouSpeInte(30, 30, 85, 60);
+	initLibSensCor(45, 45, 10);
+	this.weaponName = "knife";
+	this.weaponVerb="slash";
+	this.weaponAttack = 6;
+	this.armorName = "rags";
+	this.armorDef = 1;
+	this.bonusHP = 20;
+	this.lust = 20;
+	this.lustVuln = .85;
+	this.level = 4;
+	this.gems = 2 + rand(5);
+	this.drop = NO_DROP;
+	checkMonster();
+}
+
+var forced = false;
+/*******
+*
+* Amily standard scenes in Town Ruins
+*
+********/
 
 
-addToGameFlags(AMILY_MET, AMILY_MET_AS, AMILY_PC_GENDER, AMILY_OFFER_ACCEPTED, AMILY_AFFECTION, AMILY_OFFERED_DEFURRY, AMILY_FUCK_COUNTER, AMILY_NOT_FURRY, AMILY_WANG_LENGTH);
 
-// Amily.start is the holder for encounters inside of the Town Ruins
+
+
+
+// Amily.start begins encounters in the Town Ruins
 Amily.start = function () {
     // BOOKKEEPING
     menu();
@@ -26,11 +77,10 @@ Amily.start = function () {
     if (gameFlags[AMILY_MET] == 0) gameFlags[AMILY_PC_GENDER] = player.gender;
     
      // Reset worm block if worms have been eliminated from the player
-    /*
-    if (flags[kFLAGS.AMILY_GROSSED_OUT_BY_WORMS] == 1) {
-        if (player.findStatusEffect(StatusEffects.Infested) < 0) flags[kFLAGS.AMILY_GROSSED_OUT_BY_WORMS] = 0;
+    if (gameFlags[AMILY_GROSSED_OUT_BY_WORMS] == 1) {
+        if (player.findStatusEffect(StatusEffects.Infested) < 0) gameFlags[AMILY_GROSSED_OUT_BY_WORMS] = 0;
     }
-    */
+    
     
     // AMILY ENCOUNTER TURNED OFF
     // Check to see if we've taken Amily out of the picture. If so, put up the message from earlier. Commenting out until we can set these flags
@@ -502,6 +552,7 @@ Amily.start = function () {
 
 };
 
+// Standard meeting loop after first time
 function amilyStandardMeeting() {
    outputText("Curious on how Amily is holding up, you head back into the ruined village. This time you don't bother trying to hide your presence, hoping to attract Amily's attention quicker. After all, she did say that the place is basically empty of anyone except her, and you can otherwise handle a measly Imp or Goblin.<br><br>");
     // Commenting out pregnancy switch until pregnancy event is coded.
@@ -580,16 +631,23 @@ function amilyStandardMeeting() {
     
 	//Amily is not a herm but is ok with herm-daddying!
 	*/
-    //var sex = determineAmilySexEvent(); // This decides the type of sex you'll have with EMily
+    // var sex = determineAmilySexEvent(); // This decides the type of sex you'll have with EMily
 	//Update gender tracking flag for Amily
-    //gameFlags[AMILY_PC_GENDER] = player.gender;
-    //addButton(0, "Eager", acceptAmilysOfferEagerly, null, null, null, "Accept Amily's Offer Eagerly.");
-    //addButton(1, "Hesitant", acceptAmilysOfferHesitantly, null, null, null, "Accept Amily's Offer Hesitantly.");
-    //addButton(2, "Refuse", refuseAmilysOffer, null, null, null, "Your mission is more important. You can't let her distract you!");
+    gameFlags[AMILY_PC_GENDER] = player.gender;
+    if (forced || player.lust > 35) {
+        addButton(0, "Sex", determineAmilySexEvent, null, null, null, "You wanted me to knock you up. Let's do this.");    
+    }
+    addButton(4, "Leave", Camp.returnToCampUseOneHour);
+    
+    
+   
+    
+    //addButton(1, "Talk", amilyTalk, null, null, null, "Actually, I just came for conversation...");
+    //addButton(2, "Both", refuseAmilysOffer, null, null, null, "Your mission is more important. You can't let her distract you!");
     //addButton(3, "Reject", amilyNoFur, null, null, null, "You can't imagine kissing, let alone breeding with, a mouse!");
     //simpleChoices("Sex", sex, "Talk", talkToAmily, "Both", (sex == null ? null : talkThenSexWithAmily), "Efficiency", efficiency, "Leave", amp.returnToCampUseOneHour);
 	//doNext(Camp.doCamp);	
-    doNext(Camp.doCamp);
+    //doNext(Camp.doCamp);
 }
 
 
@@ -702,9 +760,7 @@ function amilyNoFur() {
 *
 ********/
 
-
-
-// Having Sex with the Mouse
+// Basic sex scenes with Amily See determineAmilySexEvent()
 function amilySexHappens() {
     clearOutput();
 	//amilySprite();
@@ -723,12 +779,14 @@ function amilySexHappens() {
         amilySexFirstTime();		
     }
     else {
-        outputText("<br><br>DEBUGGER: Tried to have sex with Amily, failed for some reason. Fix this");
+        amilyPreggoChance();
+        outputText("Here would be the sex scenes.");
         doNext(Camp.doCamp);
     }
+    
     /*
-			//Low Affection Sex:
-			if (flags[kFLAGS.AMILY_AFFECTION] < 15) {
+    //Low Affection Sex:
+    if (flags[kFLAGS.AMILY_AFFECTION] < 15) {
 				outputText("Amily's efforts at leading you through the ruined village are brisk and efficient. You don't really think she's looking forward to doing this all that much. No, that might be overstating things. It's more like she's under the impression that, details aside, this encounter between the two of you will be pure business.\n\n", false);
 
 				outputText("It's hard for you to say if you were led by a different route this time, but soon you are in what Amily has to offer for a private bedchamber, and she begins to reach for her clothes, obviously expecting you to do the same thing.\n\n", false);
@@ -753,6 +811,192 @@ function amilySexHappens() {
  */
     
 };
+
+// Switches sex scenes with Amily depending on gender, pregnancy, and force
+function determineAmilySexEvent() { // May need to force a false boolean to determine if sex is forced
+    // Set the sex variable to none
+    //var sex = null;
+    // Assume Amily isn't forcing you to fuck her.
+    //var forced = false;
+    // If sex isn't forced and the player isn't horny enough to fuck, jump out of loop
+    
+    // FEMALE SCENES
+    /*
+    //If Amily is lesbo lover!
+	if (flags[kFLAGS.AMILY_CONFESSED_LESBIAN] > 0 && player.gender == 2) {
+	//Futa amily!
+	   if (flags[kFLAGS.AMILY_WANG_LENGTH] > 0) {
+		//If not pregnant, always get fucked!
+		  if (!pregnancy.isPregnant) sex = hermilyOnFemalePC;
+		  //else 50/50
+			else {
+				if (rand(2) == 0) sex = girlyGirlMouseSex;
+				else sex = hermilyOnFemalePC;
+			}
+		}
+		//LESBO LUVIN!
+		else sex = girlyGirlMouseSex;
+    }
+    */
+    // HERM SCENES
+    /*
+	//If Amily is a herm lover!
+	if (player.gender == 3 && flags[kFLAGS.AMILY_HERM_QUEST] == 2) {
+	   //Amily is herm too!
+        if (flags[kFLAGS.AMILY_WANG_LENGTH] > 0) {
+			//If Amily is not pregnant
+			if (!pregnancy.isPregnant) {
+				//If PC is also not pregnant, 50/50 odds
+				if (!player.isPregnant()) {
+					//Herm Amily knocks up PC
+					if (rand(2) == 0) sex = hermilyOnFemalePC;
+					//PC uses dick on amily
+                        else {
+						  if (forced) sex = amilySexHappens;
+						  else sex = sexWithAmily;
+						}
+				}
+				//If PC is preg, knock up amily.
+				else {
+				    if (forced) sex = amilySexHappens;
+					else sex = sexWithAmily;
+                }
+
+            }
+			//Amily is preg
+			else {
+			 //Pc is not
+			 if (!player.isPregnant()) sex = hermilyOnFemalePC;
+			//PC is preg too!
+			else {
+			     //Herm Amily knocks up PC
+				if (rand(2) == 0) sex = hermilyOnFemalePC;
+				//PC uses dick on amily
+				    else {
+					   if (forced) sex = amilySexHappens;
+				        else sex = sexWithAmily;
+				    }
+				}
+            }
+        }
+		//Amily still girl!
+		else {
+		  //Not pregnant? KNOCK THAT SHIT UP
+		  if (!pregnancy.isPregnant) sex = sexWithAmily;
+		  //Pregnant?  Random tribbing!
+		  else {
+		  //Lesbogrind
+		      if (rand(2) == 0) sex = girlyGirlMouseSex;
+			  //Fuck!
+			 else {
+			     if (forced) sex = amilySexHappens;
+				    else sex = sexWithAmily;
+             }
+          }
+        }
+    }
+    */
+    
+    // MALE SCENES
+    
+    if (player.gender == 1) {
+	   if (forced == true) amilySexHappens(); 
+       else sexWithAmily();
+	}
+       
+};
+
+
+// Amily response to you proposing sex in later meetings
+function sexWithAmily() {
+    clearOutput();
+	//amilySprite();
+	outputText("You tell Amily that you came here because you wanted to have sex with her.<br><br>");
+    //doNext(amilySexHappens);
+    /*
+	switch (pregnancy.event) {
+        case 1: 
+		case 2: 
+		case 3: 
+		case 4: 
+		case 5: //Amily is slightly pregnant
+		//[Low Affection]
+            if (gameFlags[AMILY_AFFECTION] < 15) {
+				outputText("She stares at you, puzzled. \"<i>Why? I'm already pregnant,</i>\" she tells you. \"<i>...Forget it. You can have sex when I need to get pregnant again. Go find a goblin if you want to fuck some brainless baby-stuffed whore!</i>\"<br><br>");
+				outputText("Amily can still move quickly despite her pregnancy, and you are very promptly left all alone. Perhaps it would be better not to broach the subject that bluntly with her while she's in this state.<br><br>");
+                //Reduce affection. DERP
+				gameFlags[AMILY_AFFECTION] -= 3;
+				doNext(Camp.returnToCampUseOneHour);
+            }
+			//[Medium Affection]
+			else if (gameFlags[AMILY_AFFECTION] < 40) {
+                outputText("She is clearly surprised, putting a hand to her swelling midriff. But then she shrugs and says, \"<i>Well, I guess I do owe you that much for helping me.</i>\"<br><br>");
+				outputText("Though she does set off and indicate for you to follow, you realize that she's not too happy about your reason for being here.<br><br>");
+				//[/ Go to [Medium Affection Sex]]
+				doNext(amilySexHappens);
+            }
+			//[High Affection]
+			else {
+			     outputText("\"<i>You still want me, even though I'm already pregnant?</i>\" she asks – not angry or disappointed, but sounding rather pleased. \"<i>Well, how can I say no to you?</i>\" She smiles broadly and begins to walk away, doing her best to give you a sexy wiggle of her hips as an invitation for you to follow her.<br><br>");
+				//[/ Go to [High Affection Sex]]
+				doNext(amilySexHappens);
+            }
+			break; // Will we need this?
+        case 6: 
+        case 7: 
+		case 8: //Amily is heavily pregnant
+		      //[Low Affection]
+			 if (gameFlags[AMILY_AFFECTION] < 15) {
+				    outputText("Her disbelief is quite obvious. She stares at her belly, then at you, then at your crotch, then back at her belly again. She shakes her head, clearly looking disgusted. \"<i>What kind of sicko are you? Look at the state of me – I'm in no shape to have sex! Come back after I've given birth, if that's all I mean to you!</i>\"<br><br>");
+				    outputText("Annoyed, she turns and waddles off. You do not give chase; you can tell that you've offended her.<br><br>");
+					//Reduce affection
+					gameFlags[AMILY_AFFECTION] -= 3;
+				    doNext(Camp.returnToCampUseOneHour);
+             }
+			//[Medium Affection]
+			else if (gameFlags[AMILY_AFFECTION] < 40) {
+				outputText("She boggles as if she can't believe you. \"<i>You can't be that desperate you'd want somebody as fat and knocked up as I am!</i>\" she protests.<br><br>");
+				outputText("You insist to her that you're not joking – you really do think she's sexy enough to make love to.<br><br>");
+				outputText("\"<i>...Well, I guess I'm flattered, but... do you have the faintest idea how to make love to a woman who is pregnant? Especially one as far along as I am?</i>\"<br><br>");
+				outputText("You are forced to concede that, actually, you don't.<br><br>");
+				outputText("\"<i>It's not that I don't like you, " + player.short + ", it's just... well, I don't feel comfortable doing that,</i>\" she explains apologetically.<br><br>");
+				outputText("You apologize back for confronting her with something she's uncomfortable with, and leave for your own camp, lest you insult her seriously.");
+				gameFlags[AMILY_AFFECTION] -= 3;
+				doNext(Camp.returnToCampUseOneHour);
+            }
+			//[High Affection]
+			else {
+			     outputText("She looks a little puzzled by the request, but then smiles with sincere pleasure. \"<i>I'm game if you are, dear.</i>\" She winks and offers her hand to you. You take it, and let her lead you to her chosen nesting site.<br><br>");
+                //[/ Go to [High Affection - Heavily Pregnant Sex]]
+				doNext(amilySexHappens);
+            }
+			break; // do we need this?
+        default: //Amily is not pregnant
+        */
+		//[Low Affection]
+	if (gameFlags[AMILY_AFFECTION] < 15) {
+        outputText("\"<i>Of course you did. Well, come on, I guess I can oblige you. It's the only way I'm going to get pregnant.</i>\"<br><br>");
+        outputText("She sets off, clearly leading the way as you follow her.<br><br>");
+        //[/ Go to [Low Affection Sex]]
+		doNext(amilySexHappens);
+    }
+	//[Medium Affection]
+	else if (gameFlags[AMILY_AFFECTION] < 40) {
+        outputText("\"<i>Well, I guess you'll do. I mean, I still need to get pregnant,</i>\" she teases you, tail waving merrily. \"<i>Follow me.</i>\"<br><br>");
+        outputText("You have to push yourself to keep up with her, but she's clearly just playing with you by moving so quickly rather than seriously trying to escape you.<br><br>");
+		//[/ Go to [Medium Affection Sex]]
+		doNext(amilySexHappens);
+    }
+	//[High Affection]
+	else {
+        outputText("Amily doesn't bother to say anything; she just grins like the cat that ate the canary (well, the mouse that ate the cheesecake, anyway). She grabs hold of your hand and does her best to pull you as fast as she can towards her closest bolt-hole.<br><br>");
+        //[/ Go to [High Affection Sex]]
+        doNext(amilySexHappens);
+    }
+}
+    
+
+
 
 
 /******
@@ -902,13 +1146,40 @@ function amilySexFirstTimeKiss () {
 	
 }
 
+/**********
+*
+* Amily Pregnancy Checks
+*
+***********/
 
+var amilyPregnancy = new PregnancyStore(gameFlags[AMILY_PREGNANCY_TYPE], gameFlags[AMILY_INCUBATION], gameFlags[AMILY_BUTT_PREGNANCY_TYPE], gameFlags[AMILY_OVIPOSITED_COUNTDOWN]);
+
+
+function amilyPreggoChance() {
+    //Is amily a chaste follower?
+	if (gameFlags[AMILY_FOLLOWER] == 1) {
+        //If pregnancy not enabled, GTFO
+		if (gameFlags[AMILY_ALLOWS_FERTILITY] == 0) return;
+    }
+	//Cant repreg if already preg!
+	if (amilyPregnancy.isPregnant() == true) return;
+			
+	// Cant preg if at the farm
+	if (gameFlags[FOLLOWER_AT_FARM_AMILY] != 0) return;
+			
+    //25% + gradually increasing cumQ bonus
+	if (rand(4) == 0 || player.cumQ() > rand(1000)) {
+    amilyPregnancy.knockUpForce(PREGNANCY_PLAYER, INCUBATION_MOUSE - 182);
+    }
+    //      outputText("Amily got pregnant!");
+        
+}
 
 /* Holding comment for stuff from the original CoC code
 
 public function AmilyScene()
 		{
-			pregnancy = new PregnancyStore(kFLAGS.AMILY_PREGNANCY_TYPE, kFLAGS.AMILY_INCUBATION, kFLAGS.AMILY_BUTT_PREGNANCY_TYPE, kFLAGS.AMILY_OVIPOSITED_COUNTDOWN);
+			
 			pregnancy.addPregnancyEventSet(PregnancyStore.PREGNANCY_PLAYER, 150, 120, 100, 96, 90, 72, 48);
 												//Event: 0 (= not pregnant),  1,   2,   3,  4,  5,  6,  7,  8 (< 48)
 			CoC.timeAwareClassAdd(this);
@@ -1048,3 +1319,4 @@ public function AmilyScene()
 /*
 }
     */
+
