@@ -99,7 +99,7 @@ const AMILY_VILLAGE_ENCOUNTERS_DISABLED = "Amily_Village_Encounters_Disabled";
 //=================
 // PREGNANCY FLAGS
 //
-// Note that these are actual constants, not called by gameFlags. 
+// Note that these are actual constants, not called by gameFlags yet until the pregnancy system is figured out.
 //=================
 
 const INCUBATION_MOUSE                  = 350; // Incubation time for mice types/Amily

@@ -19,6 +19,12 @@ Changes to make:
 
 The initial male meeting offers a rejection option because she's a furry. See amilyNoFur(). Part of the text for that option reveals the ingredients necessary to defur Amily. However, players don't see these ingredients until much later in the game. Amily is often encountered early. How is the player going to know what the ingredients are?
 
+Possible solution. If player goes so far as to reach the Desperate Amily scenes and then rejects her for furriness, I can see her telling the player how to change her. Amily obviously wants the player by this point.
+
+Need to correct references to leaving the area for good since Shouldra is a part of the town ruins. That code was probably put in before she was put in.
+
+Probably need author permission, but the high-affection sex path could use some expanding. It can take quite a while to get to five litters and having nearly the same scene pop each time is annoying. The lower-affection paths have multiple choices.
+
 */
 
 /*******
@@ -230,11 +236,9 @@ Amily.start = function () {
             amilyRemeetingContinued();
             //doNext(Camp.returnToCampUseOneHour);
 }
-
         //Desperate Plea response (Affection 50 without any sex, requires PC to be male in previous encounter)
-        /*
-        if (flags[kFLAGS.AMILY_AFFECTION] >= 50 && flags[kFLAGS.AMILY_FUCK_COUNTER] == 0 && flags[kFLAGS.AMILY_PC_GENDER] == 1) {
-		  outputText("Wandering into the ruined village, you set off in search of Amily.\n\n", false);
+        if (gameFlags[AMILY_AFFECTION] >= 50 && gameFlags[AMILY_FUCK_COUNTER] == 0 && gameFlags[AMILY_PC_GENDER] == 1) {
+		  outputText("Wandering into the ruined village, you set off in search of Amily.<br><br>");
           /*NOPE! (This was commented out in original COC)
           [Player meets the requirements to stalk Amily]
           if (player.spe > 50 && player.inte > 40) {
@@ -244,17 +248,18 @@ Amily.start = function () {
 			simpleChoices("Announce",announceSelfOnDesperatePleaMeeting,"Scare Her",scareAmilyOnDesperatePleaMeeting,"",0,"",0,"",0);
             }
             */
-        /*
-                outputText("After wondering for a while how on earth you are going to track down Amily, you hear a whistle. Looking around, you see her      waving cheekily at you from around a corner; it's pretty obvious that you have a long way to go before you'll be able to beat her at this kind of game.\n\n", false);
-                outputText("\"<i>Ah... do you have the time to talk? There's something I want to get off my chest,</i>\" Amily nervously asks.\n\n", false);
-                outputText("Curious what she has to say, you agree.\n\n", false);
-        		outputText("Amily scuffs the ground with one of her finger-like toe claws, looking down at it as if it was the most interesting thing in the world – or as if she doesn't dare to look you in the eyes. \"<i>I... You know what I've been asking of you; from you, and you keep turning me down... but you kept talking to me, asking me about myself. You wanted to get to know me, but... why don't you want to know ALL of me? I... I want to give myself to you. You're the nicest, kindest man I've met – even before the demons destroyed my village. I want to be with you... but you don't seem to want to be with me.</i>\" She looks up to you at last, her eyes wet with tears. \"<i>Is there something wrong with me? Can't you like me in that way?</i>\" she pleads.\n\n", false);
-                //Accept her / Turn her down gently / Turn her down bluntly
-                var fur:Function = null;
-        		if (flags[kFLAGS.AMILY_NOT_FURRY] == 0) fur = amilyNoFur;
-        		simpleChoices("Accept Her", desperateAmilyPleaAcceptHer, "RejectFurry", fur, "RejectGently", desperateAmilyPleaTurnDown, "BluntReject", desperateAmilyPleaTurnDownBlunt, "", null);
-        		return;
-        		}*/
+            outputText("After wondering for a while how on earth you are going to track down Amily, you hear a whistle. Looking around, you see her waving cheekily at you from around a corner; it's pretty obvious that you have a long way to go before you'll be able to beat her at this kind of game.<br><br>");
+            outputText("\"<i>Ah... do you have the time to talk? There's something I want to get off my chest,</i>\" Amily nervously asks.<br><br>");
+            outputText("Curious what she has to say, you agree.<br><br>");
+            outputText("Amily scuffs the ground with one of her finger-like toe claws, looking down at it as if it was the most interesting thing in the world – or as if she doesn't dare to look you in the eyes. \"<i>I... You know what I've been asking of you; from you, and you keep turning me down... but you kept talking to me, asking me about myself. You wanted to get to know me, but... why don't you want to know ALL of me? I... I want to give myself to you. You're the nicest, kindest man I've met – even before the demons destroyed my village. I want to be with you... but you don't seem to want to be with me.</i>\" She looks up to you at last, her eyes wet with tears. \"<i>Is there something wrong with me? Can't you like me in that way?</i>\" she pleads.<br><br>");
+            //Accept her / Turn her down gently / Turn her down bluntly
+            addButton(0, "Accept Her", desperateAmilyPleaAcceptHer, null, null, null, "Tooltip to be added.");
+            if (gameFlags[AMILY_NOT_FURRY] == 0) {
+                addButton(1, "Reject Furry", amilyNoFur, null, null, null, "Tooltip to be added.");
+            }
+            addButton(2, "Reject Gently", desperateAmilyPleaTurnDown, null, null, null, "Tooltip to be added.");
+            addButton(3, "Blunt Reject", desperateAmilyPleaTurnDownBlunt, null, null, null, "Tooltip to be added");
+            }
         else {
             amilyStandardMeeting();
         }
@@ -696,7 +701,6 @@ function secondTimeAmilyRefuseAgain() {
 	doNext(Camp.returnToCampUseOneHour);
 }
 
-
 function repeatAmilyTalk() {
     clearOutput();
 	//amilySprite();
@@ -719,9 +723,6 @@ function tellAmilyToGetLost() {
     gameFlags[AMILY_VILLAGE_ENCOUNTERS_DISABLED] = 1;
 	doNext(Camp.returnToCampUseOneHour);
 }
-
-
-
 
 // IF OFFER IS ACCEPTED FIRST TIME
 
@@ -818,6 +819,63 @@ function amilyNoFur() {
     doNext(Camp.returnToCampUseOneHour);
 };
 
+//DESPERATE AMILY ENCOUNTERS
+
+
+function desperateAmilyPleaAcceptHer() {
+    clearOutput();
+	//amilySprite();
+	//set accepted flag
+	gameFlags[AMILY_OFFER_ACCEPTED] = 1;
+    outputText("With a gentle smile, you reach out and take hold of her hand. You tell her that you do like her too; you just wanted to know her as a person before you would take something as precious to her as her virginity. If she still wants you, then you want to go with her now.<br><br>");
+
+    outputText("Amily stares at you, stunned. After a moment, she embraces you fiercely and begins to drag you away.<br><br>");
+
+    doNext(amilySexHappens);
+}
+
+//Let Amily Down Gently, shuts off her encounters
+function desperateAmilyPleaTurnDown() {
+    clearOutput();
+	//amilySprite();
+	outputText("You softly tell her that you're sorry, but it just can't be helped. You have a quest to fulfill, and you don't even know if you'll be staying around instead of going home when it's over. That's even assuming you succeed, and don't end up dead in a ditch somewhere. You can't countenance taking a lover with something like that hanging over your head. Besides, you tell Amily that she should have more respect for her body than what this plan of hers entails, anyway.<br><br>");
+    outputText("Amily sniffs loudly, tears blatantly running down her cheeks. \"<i>If... if that's the way it has to be, then,</i>\" she sniffles, \"<i>I... I guess that there's nothing left for me here. I'll just have to leave... Maybe I can find somewhere that will at least give me shelter.</i>\"<br><br>");
+    //[Player has found Tel'Adre]
+    // UNCOMMENT AFTER TEL'ADRE FLAGS ARE SET
+    /*
+    if (player.statusEffectv1(StatusEffects.TelAdre) >= 1) {
+				outputText("You tell her that you've discovered a hidden city in the desert, free of corruption. Amily looks shocked, but clearly grateful as you assure her of its existence and provide instructions on how to get there.\n\n", false);
+			}
+			else {
+				outputText("Looking dejected, Amily slowly begins to walk away. However, just before she makes her final turn to disappear, she turns back to you. \"<i>I'll always remember you,</i>\" she promises sincerely – and then she is gone.\n\n", false);
+	}
+    */
+    outputText("Feeling the weight of the empty village pressing in on you, you quickly retreat yourself. There's no point coming back here.");
+			//turn off village.
+    gameFlags[AMILY_VILLAGE_ENCOUNTERS_DISABLED] = 1;
+	doNext(Camp.returnToCampUseOneHour);
+}
+
+//Be an ass and turn her down blunty
+function desperateAmilyPleaTurnDownBlunt() {
+    //amilySprite();
+    clearOutput();
+	outputText("Without mercy or hesitation, you tell her that there is indeed something wrong with her: You could never be attracted to a woman that looks like a pest and should be hiding in a granary.<br><br>");
+
+    outputText("\"<i>Why you-! I bare my soul to you, and this is how you repay me?!</i>\" Amily screams; rage, hurt and betrayal are all evident in her words.<br><br>");
+
+    outputText("You jeer at her that it's not your fault that she's so pathetic, falling for the first person to take pity on her and talk to her.<br><br>");
+
+    outputText("Amily responds by spitting a stream of the most jarringly foul language at you. In her rage, she hurls a blowpipe dart at you with her hands, which you easily swat aside. Cursing all the while, she races off in a fury.<br><br>");
+
+    outputText("You know she's never going to come back.");
+	//Player gains corruption}
+	player.modStats("cor", 1);
+    //{Amily can no longer be encountered}
+	gameFlags[AMILY_VILLAGE_ENCOUNTERS_DISABLED] = 1;
+    //{Ruined Village removed from Places list}
+	doNext(Camp.returnToCampUseOneHour);
+}
 
 /*******
  *
