@@ -95,6 +95,11 @@ const AMILY_ALLOWS_FERTILITY            = "Amily_Allows_Fertility";
 const FOLLOWER_AT_FARM_AMILY            = "Follower_At_Farm_Amily";
 const AMILY_CORRUPT_FLIPOUT             = "Amily_Corrupt_Flipout";
 const AMILY_VILLAGE_ENCOUNTERS_DISABLED = "Amily_Village_Encounters_Disabled";
+const AMILY_CONFESSED_LESBIAN           = "Amily_Confessed_Lesbian";
+const AMILY_TIMES_FUCKED_FEMPC          = "Amily_Times_Fucked_FemPC";
+//const AMILY_WANG_LENGTH                 = "Amily_Wang_Length";
+const AMILY_WANG_GIRTH                  = "Amily_Wang_Girth";
+const AMILY_HERM_TIMES_FUCKED_BY_FEMPC  = "Amily_Herm_Times_Fucked_By_FemPC";
 
 //=================
 // PREGNANCY FLAGS
@@ -103,7 +108,7 @@ const AMILY_VILLAGE_ENCOUNTERS_DISABLED = "Amily_Village_Encounters_Disabled";
 //=================
 
 const INCUBATION_MOUSE                  = 350; // Incubation time for mice types/Amily
-const PREGNANCY_PLAYER                  = "Pregnancy_Player"
+const PREGNANCY_PLAYER                  = "Pregnancy_Player";
 
 //------------
 // ENCOUNTERS
