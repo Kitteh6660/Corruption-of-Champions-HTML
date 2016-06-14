@@ -1,4 +1,4 @@
-Camp = [];
+var Camp = [];
 
 addToGameFlags(HAS_KEY_ITEM);
 
@@ -17,10 +17,10 @@ Camp.doCamp = function () {
     setMenuButton("buttonMain", "Main Menu", mainMenu);
 	if (player.XP >= player.level * 100 && player.level < levelCap) {
         showMenuButton("buttonLevel");
-        } 
-        else {
-		  hideMenuButton("buttonLevel");
     }
+    else {
+        hideMenuButton("buttonLevel");
+        }
 	playerMenu = Camp.doCamp;
 	//Display texts
 	clearOutput();
@@ -51,11 +51,11 @@ Camp.doCamp = function () {
     }
     
     //DEBUGGING CODE FOR AMILY MEETINGS
-    //player.gender = 0;
+    //player.gender = 2;
     //outputText("Player Gender is " + player.gender);
-    //gameFlags[AMILY_AFFECTION] = 50;
-    outputText("Amily Affection is " + gameFlags[AMILY_AFFECTION]);
-    player.changeLust(50);
+    //gameFlags[AMILY_AFFECTION] = 40;
+    //outputText("Amily Affection is " + gameFlags[AMILY_AFFECTION]);
+    //player.changeLust(50);
     //var testingPreg = new PregnancyStore(0,0,0,0);
     //outputText(testingPreg.isPregnant());
     

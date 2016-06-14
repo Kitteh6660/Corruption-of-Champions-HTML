@@ -13,7 +13,7 @@ var SFWMode = false;
 
 //Interface settings
 var use12Hours = false;
-var useMetrics = false
+var useMetrics = false;
 
 //Store data for fonts
 var buttonFont = "Papyrus";
