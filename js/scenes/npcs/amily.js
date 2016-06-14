@@ -10,7 +10,7 @@ var Amily = [];
  * Converted to JS by Matraia
  */
 
-addToGameFlags(AMILY_MET, AMILY_MET_AS, AMILY_PC_GENDER, AMILY_OFFER_ACCEPTED, AMILY_AFFECTION, AMILY_OFFERED_DEFURRY, AMILY_FUCK_COUNTER, AMILY_NOT_FURRY, AMILY_WANG_LENGTH, AMILY_PREGNANCY_TYPE, AMILY_INCUBATION, AMILY_BUTT_PREGNANCY_TYPE, AMILY_OVIPOSITED_COUNTDOWN, AMILY_GROSSED_OUT_BY_WORMS, AMILY_FOLLOWER, AMILY_ALLOWS_FERTILITY, FOLLOWER_AT_FARM_AMILY);
+addToGameFlags(AMILY_MET, AMILY_MET_AS, AMILY_PC_GENDER, AMILY_OFFER_ACCEPTED, AMILY_AFFECTION, AMILY_OFFERED_DEFURRY, AMILY_FUCK_COUNTER, AMILY_NOT_FURRY, AMILY_WANG_LENGTH, AMILY_PREGNANCY_TYPE, AMILY_INCUBATION, AMILY_BUTT_PREGNANCY_TYPE, AMILY_OVIPOSITED_COUNTDOWN, AMILY_GROSSED_OUT_BY_WORMS, AMILY_FOLLOWER, AMILY_ALLOWS_FERTILITY, FOLLOWER_AT_FARM_AMILY, AMILY_CORRUPT_FLIPOUT, AMILY_VILLAGE_ENCOUNTERS_DISABLED);
 
 
 /*
@@ -27,6 +27,7 @@ The initial male meeting offers a rejection option because she's a furry. See am
  *
  ********/
 
+//Complete
 function Amily() {
     this.a = "";
     this.short = "Amily";
@@ -95,14 +96,15 @@ Amily.start = function () {
 		return;
     }
     */
-    // Amily can't be encountered due to worms
-    /*
-    if (flags[kFLAGS.AMILY_GROSSED_OUT_BY_WORMS] == 1 || player.cor > 25 || flags[kFLAGS.AMILY_CORRUPT_FLIPOUT] > 0) {
-        outputText("You enter the ruined village cautiously. There are burnt-down houses, smashed-in doorways, ripped-off roofs... everything is covered with dust and grime. For hours you explore, but you cannot find any sign of another living being, or anything of value. The occasional footprint from an imp or a goblin turns up in the dirt, but you don't see any of the creatures themselves. It looks like time and passing demons have stripped the place bare since it was originally abandoned. Finally, you give up and leave. You feel much easier when you're outside of the village – you had the strangest sensation of being watched while you were in there.", false);
-		doNext(camp.returnToCampUseOneHour);
-		return;
+
+    // Amily can't be encountered due to worms, high corruption, or has flipped out due to the player's increasing corruption
+
+    if (gameFlags[AMILY_GROSSED_OUT_BY_WORMS] == 1 || player.cor > 25 || gameFlags[AMILY_CORRUPT_FLIPOUT] > 0) {
+        outputText("You enter the ruined village cautiously. There are burnt-down houses, smashed-in doorways, ripped-off roofs... everything is covered with dust and grime. For hours you explore, but you cannot find any sign of another living being, or anything of value. The occasional footprint from an imp or a goblin turns up in the dirt, but you don't see any of the creatures themselves. It looks like time and passing demons have stripped the place bare since it was originally abandoned. Finally, you give up and leave. You feel much easier when you're outside of the village – you had the strangest sensation of being watched while you were in there.");
+		doNext(Camp.returnToCampUseOneHour);
+		//return;
     }
-    */
+
 
     // ENCOUNTERING AMILY WHILE CORRUPT/CORRUPTION PATH
     // Fight between Amily and player if you are too corrupt. Requires that you've met Amily once
@@ -173,15 +175,15 @@ Amily.start = function () {
             outputText("You wind your way deep into the maze of dusty crumbling buildings and twisted saplings, looking for any sign of life – or, failing that, something that can help you in your quest.  Bending down to rummage through an old heap of rubbish, you complain aloud that this is hardly the sort of thing you expected to be doing as a champion. Suddenly, you hear a 'thwip' and something shoots past your face, embedding into the stone beside your head and trembling with the impact.<br><br>");
 
             outputText("\"<i>Don't make any sudden moves!</i>\" A voice calls out, high pitched and a little squeaky, but firm and commanding. You freeze to avoid giving your assailant a reason to shoot at you again. \"<i>Stand up and turn around, slowly,</i>\" it commands again. You do as you are told.<br><br>");
-            //Jojo previously encountered NEED TO LOOK AT JOJO CODE
-            /*
-            if (monk != 0) {
-                outputText("The creature that has cornered you is clearly of the same race as Jojo, though notably a female member of his species. Her fur is thick with dust, but you can still easily make out its auburn color. Her limbs and midriff are wiry, hardened as much by meals that are less than frequent as by constant exercise and physical exertion. Her buttocks are non-existent, and her breasts can't be any larger than an A-cup. She wears a tattered pair of pants and an equally ragged-looking shirt. A very large and wicked-looking dagger – more of a short sword really – is strapped to her hip, and she is menacing you with a blowpipe.\n\n", false);
-				}
+            //Jojo previously encountered
+
+            if (gameFlags[JOJO_MET] == 1) {
+                outputText("The creature that has cornered you is clearly of the same race as Jojo, though notably a female member of his species. Her fur is thick with dust, but you can still easily make out its auburn color. Her limbs and midriff are wiry, hardened as much by meals that are less than frequent as by constant exercise and physical exertion. Her buttocks are non-existent, and her breasts can't be any larger than an A-cup. She wears a tattered pair of pants and an equally ragged-looking shirt. A very large and wicked-looking dagger – more of a short sword really – is strapped to her hip, and she is menacing you with a blowpipe.<br><br>");
+            }
             //[Jojo not previously encountered]
-				else { */
-            outputText("You have been cornered by a very strange being: a bipedal female humanoid with the unmistakable features of a giant mouse; paw-like feet, a muzzled head with long whiskers, large mouse ears, and a body covered in dust-caked auburn fur. It doesn't look like she has had a very easy life; her clothing consists of a dirty, tattered set of pants and shirt, while her limbs and midriff are wiry, hardened as much by meals that are less than frequent as by constant exercise and physical exertion. Her buttocks are non-existent, and her breasts can't be any larger than an A-cup. Still, she looks quite capable of defending herself; not only is she brandishing a blowpipe, clearly ready to spit another doubtlessly-poisoned dart at you, but she has a formidable-looking knife strapped to her hip.<br><br>");
-            //						}
+             else {
+                outputText("You have been cornered by a very strange being: a bipedal female humanoid with the unmistakable features of a giant mouse; paw-like feet, a muzzled head with long whiskers, large mouse ears, and a body covered in dust-caked auburn fur. It doesn't look like she has had a very easy life; her clothing consists of a dirty, tattered set of pants and shirt, while her limbs and midriff are wiry, hardened as much by meals that are less than frequent as by constant exercise and physical exertion. Her buttocks are non-existent, and her breasts can't be any larger than an A-cup. Still, she looks quite capable of defending herself; not only is she brandishing a blowpipe, clearly ready to spit another doubtlessly-poisoned dart at you, but she has a formidable-looking knife strapped to her hip.<br><br>");
+                    }
             outputText("She looks at you for a few long moments, and then lowers her blowpipe, \"<i>I'm sorry about that, but I thought you were another demon. They destroyed this place years ago, but some of the damn scavengers still occasionally drift through. Not so much lately, of course. I've made something of an impression on them.</i>\" She grins malevolently, one hand caressing the blade of her knife in an almost sensual fashion. \"<i>My name is Amily, the last survivor of this village. All of my people are gone now; they're scattered, dead, enslaved, or worse. What about you? ");
 
             if (player.humanScore() > 4) {
@@ -196,34 +198,7 @@ Amily.start = function () {
 
             outputText("\"<i>I was born here, I grew up here, and I would have gotten married and settled down here if it hadn't been for those demons.</i>\" She spits the word 'demons' with contempt. \"<i>After it was all over, I had nowhere else to go. So I stayed here. I've still got nowhere else to go, to be honest. I haven't found any other settlements of my own people, and I'd sooner die than give myself over to the demons. But it seems that if I'm ever going to see more of my people living free, I'm going to have to take the leading role...</i>\"<br><br>");
 
-		outputText("What do you do?");
-		
-        gameFlags[AMILY_PC_GENDER] = player.gender;
-        //Accept Eagerly / Accept Hesitantly / Reject Harshly / Refuse Gently
-	   addButton(0, "Eager", acceptAmilysOfferEagerly, null, null, null, "Accept Amily's Offer Eagerly.");
-       addButton(1, "Hesitant", acceptAmilysOfferHesitantly, null, null, null, "Accept Amily's Offer Hesitantly.");
-       addButton(2, "Refuse", refuseAmilysOffer, null, null, null, "Your mission is more important. You can't let her distract you!");
-       addButton(3, "Reject", amilyNoFur, null, null, null, "You can't imagine kissing, let alone breeding with, a mouse!");
-        }
-        
-    else if (player.gender == 1 && gameFlags[AMILY_OFFER_ACCEPTED] == 0) {
-	   outputText("Wandering into the ruined village, you set off in search of Amily.<br><br>");
-						/*NOPE!
-						//[Player meets the requirements to stalk Amily]
-						if (player.spe > 50 && player.inte > 40) {
-							outputText("Using all of your knowledge, skill and cunning, you sneak and squirm through the ruins until you finally find yourself coming up right behind the dusty mouse girl. She's picking berries off of a small bush and hasn't noticed you yet.\n\n", false);
-							outputText("How do you approach her?", false);
-							//Announce yourself / Scare her
-							simpleChoices("Announce",remeetingAmilyAnnounceSelf,"Scare",remeetingAmilyScare,"",0,"",0,"",0);
-						}
-						//[Player does not meets the requirements to stalk Amily]*/
-					   //else { */
-        outputText("After wondering for a while how on earth you are going to track down Amily, you hear a whistle. Looking around, you see her waving cheekily at you from around a corner; it's pretty obvious that you have a long way to go before you'll be able to beat her at this kind of game.<br><br>");
-		//amilyRemeetingContinued();
-		//Set flag for 'last gender met as'
-		gameFlags[AMILY_PC_GENDER] = player.gender;
-        doNext(Camp.returnToCampUseOneHour);
-            outputText("She stares at you intently, and you ask her what the matter is.<br><br>", false);
+            outputText("She stares at you intently, and you ask her what the matter is.<br><br>");
 
             outputText("\"<i>You see, that role I was talking about? I've had a long time to think about it, and there's no one else for it. If there are ever going to be more of my kind born into freedom, they're going to have to be born. Literally; I need to find a mate that is pure, one that can give me strong and pure children of my own kind,</i>\" she explains, one hand absently touching her flat belly. \"<i>The few males of my kind that I've managed to find are demon slaves – far too corrupt to make suitable mates, even if I could free them. I've heard, though, that humans are strangely weak breeders; your seed would be free of taint, and you would father more of my own kind. Unlike, say, an imp or a minotaur.</i>\"<br><br>");
 
@@ -232,12 +207,13 @@ Amily.start = function () {
             outputText("What do you do?");
 
             gameFlags[AMILY_PC_GENDER] = player.gender;
-            //Accept Eagerly / Accept Hesitantly / Reject Harshly / Refuse Gently
+        //Accept Eagerly / Accept Hesitantly / Reject Harshly / Refuse Gently
             addButton(0, "Eager", acceptAmilysOfferEagerly, null, null, null, "Accept Amily's Offer Eagerly.");
             addButton(1, "Hesitant", acceptAmilysOfferHesitantly, null, null, null, "Accept Amily's Offer Hesitantly.");
             addButton(2, "Refuse", refuseAmilysOffer, null, null, null, "Your mission is more important. You can't let her distract you!");
             addButton(3, "Reject", amilyNoFur, null, null, null, "You can't imagine kissing, let alone breeding with, a mouse!");
-        } else if (player.gender == 1 && gameFlags[AMILY_OFFER_ACCEPTED] == 0) {
+        }
+        else if (player.gender == 1 && gameFlags[AMILY_OFFER_ACCEPTED] == 0) {
             outputText("Wandering into the ruined village, you set off in search of Amily.<br><br>");
             /*NOPE!
             //[Player meets the requirements to stalk Amily]
@@ -250,11 +226,10 @@ Amily.start = function () {
             //[Player does not meets the requirements to stalk Amily]*/
             //else { */
             outputText("After wondering for a while how on earth you are going to track down Amily, you hear a whistle. Looking around, you see her waving cheekily at you from around a corner; it's pretty obvious that you have a long way to go before you'll be able to beat her at this kind of game.<br><br>");
-            //amilyRemeetingContinued();
-            //Set flag for 'last gender met as'
             gameFlags[AMILY_PC_GENDER] = player.gender;
-            doNext(Camp.returnToCampUseOneHour);
-        }
+            amilyRemeetingContinued();
+            //doNext(Camp.returnToCampUseOneHour);
+}
 
         //Desperate Plea response (Affection 50 without any sex, requires PC to be male in previous encounter)
         /*
@@ -678,15 +653,77 @@ function amilyStandardMeeting() {
     //doNext(Camp.doCamp);
 }
 
-
-
 // Failsafe function to return player to camp.
 function amilyMeetingFailed() {
     outputText("You enter the ruined village cautiously. There are burnt-down houses, smashed-in doorways, ripped-off roofs... everything is covered with dust and grime. You explore for an hour, but you cannot find any sign of another living being, or anything of value. The occasional footprint from an imp or a goblin turns up in the dirt, but you don't see any of the creatures themselves. It looks like time and passing demons have stripped the place bare since it was originally abandoned. Finally, you give up and leave. You feel much easier when you're outside of the village – you had the strangest sensation of being watched while you were in there.");
     doNext(Camp.returnToCampUseOneHour);
 };
 
+//MEETINGS AFTER INITIAL REJECTION
 
+// Male PC rejected Amily's offer, meets her again
+function amilyRemeetingContinue() {
+    clearOutput();
+	//amilySprite();
+	outputText("\"<i>So, have you changed your mind? Have you come to help me out?</i>\" Amily asks curiously.<br><br>");
+	menu();
+    addButton(0, "Accept", secondTimeAmilyOfferedAccepted, null, null, null, "Tooltip to be added.");
+    addButton(1, "Refuse", secondTimeAmilyRefuseAgain, null, null, null, "Tooltip to be added.");
+    addButton(2, "Just Talk", repeatAmilyTalk, null, null, null, "Tooltip to be added.");
+    addButton(3, "Get Lost", tellAmilyToGetLost, null, null, null, "Tooltip to be added");
+    // There's a straight-up leave option here in the code, but it doesn't make much sense story-wise to leave without answering the question.
+}
+
+// Accept offer the second time, move to sex loops.
+function secondTimeAmilyOfferedAccepted() {
+    clearOutput();
+	//amilySprite();
+    outputText("You tell her that, yes – you'll give her the children she wants. She smiles pleasantly and tells you to follow her.<br><br>");
+			//Offer accepted
+    gameFlags[AMILY_OFFER_ACCEPTED] = 1;
+	doNext(amilySexHappens);
+}
+
+// Refuse offer politely a second time. No affection boost. No change to the encounters.
+function secondTimeAmilyRefuseAgain() {
+    clearOutput();
+	//amilySprite();
+	outputText("You shake your head gently and explain that your position has not changed. Amily looks annoyed, but respects your decision.<br><br>");
+
+    outputText("\"<i>All right; it is your choice. But my offer still stands, you know,</i>\" she tells you.<br><br>");
+
+    outputText("You let her know you'll remember that, and then turn and leave.");
+	doNext(Camp.returnToCampUseOneHour);
+}
+
+
+function repeatAmilyTalk() {
+    clearOutput();
+	//amilySprite();
+	outputText("You tell her that you only wanted to talk.<br><br>");
+	outputText("\"<i>Just to talk?</i>\" Amily asks, and then adds quietly, \"<i>Well... it has been a long time since I actually had somebody to talk to...</i>\" She looks distracted for a moment, but then she smiles. Clearly, Amily is pleased with the prospect. \"<i>So, is there anything in particular you want to talk about?</i>\"<br><br>");
+	// Uncomment this when you get to conversation code!
+    //doNext(talkWithCuntIMeanAmily);
+}
+
+// This text needs updating. Looks like it was originally going to shut out the whole ruins, but there could still be racks and/or Shouldra encounters the player would want to encounter. Leaving text as is for now.
+// Shuts off Amily encounters
+function tellAmilyToGetLost() {
+    //amilySprite();
+	outputText("You jeer at Amily that you have no interest in a hypocrite who claims to be pure but is really just like everything else in this tainted world; no higher purpose other than her next fuck.<br><br>");
+
+    outputText("Amily goes red with rage. \"<i>Why you arrogant, puffed-up, pigheaded...!</i>\" She's livid! \"<i>The demons'll have you – see if they don't! I don't need you – you're probably infertile anyway, you—</i>\" She trails off into a stream of the most perverse profanity you have ever heard, and then runs off into the ruins.<br><br>");
+
+    outputText("You spin on your heel and stalk off. You figure that she will go out of her way to avoid you in the future; there's no point coming back here.");
+			//{Amily can no longer be encountered}
+    gameFlags[AMILY_VILLAGE_ENCOUNTERS_DISABLED] = 1;
+	doNext(Camp.returnToCampUseOneHour);
+}
+
+
+
+
+// IF OFFER IS ACCEPTED FIRST TIME
 
 // Male PC accepts Amily's offer eagerly. (Consider changing this response to Lusty. It's a bit beyond eager...)
 function acceptAmilysOfferEagerly() {

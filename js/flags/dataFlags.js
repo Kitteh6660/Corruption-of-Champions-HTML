@@ -93,7 +93,8 @@ const AMILY_GROSSED_OUT_BY_WORMS        = "Amily_Grossed_Out_By_Worms";
 const AMILY_FOLLOWER                    = "Amily_Follower";
 const AMILY_ALLOWS_FERTILITY            = "Amily_Allows_Fertility";
 const FOLLOWER_AT_FARM_AMILY            = "Follower_At_Farm_Amily";
-
+const AMILY_CORRUPT_FLIPOUT             = "Amily_Corrupt_Flipout";
+const AMILY_VILLAGE_ENCOUNTERS_DISABLED = "Amily_Village_Encounters_Disabled";
 
 //=================
 // PREGNANCY FLAGS
