@@ -97,9 +97,9 @@ const AMILY_CORRUPT_FLIPOUT             = "Amily_Corrupt_Flipout";
 const AMILY_VILLAGE_ENCOUNTERS_DISABLED = "Amily_Village_Encounters_Disabled";
 const AMILY_CONFESSED_LESBIAN           = "Amily_Confessed_Lesbian";
 const AMILY_TIMES_FUCKED_FEMPC          = "Amily_Times_Fucked_FemPC";
-//const AMILY_WANG_LENGTH                 = "Amily_Wang_Length";
 const AMILY_WANG_GIRTH                  = "Amily_Wang_Girth";
 const AMILY_HERM_TIMES_FUCKED_BY_FEMPC  = "Amily_Herm_Times_Fucked_By_FemPC";
+const AMILY_HERM_QUEST                  = "Amily_Herm_Quest";
 
 //=================
 // PREGNANCY FLAGS
