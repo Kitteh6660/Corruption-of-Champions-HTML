@@ -11,14 +11,14 @@ var Amily = [];
  * Converted to JS by Matraia
  */
 
-addToGameFlags(AMILY_MET, AMILY_MET_AS, AMILY_PC_GENDER, AMILY_OFFER_ACCEPTED, AMILY_AFFECTION, AMILY_OFFERED_DEFURRY, AMILY_FUCK_COUNTER, AMILY_NOT_FURRY, AMILY_WANG_LENGTH, AMILY_PREGNANCY_TYPE, AMILY_INCUBATION, AMILY_BUTT_PREGNANCY_TYPE, AMILY_OVIPOSITED_COUNTDOWN, AMILY_GROSSED_OUT_BY_WORMS, AMILY_FOLLOWER, AMILY_ALLOWS_FERTILITY, FOLLOWER_AT_FARM_AMILY, AMILY_CORRUPT_FLIPOUT, AMILY_TIMES_FUCKED_FEMPC, AMILY_VILLAGE_ENCOUNTERS_DISABLED, AMILY_CONFESSED_LESBIAN, AMILY_WANG_LENGTH, AMILY_WANG_GIRTH, AMILY_HERM_TIMES_FUCKED_BY_FEMPC, AMILY_HERM_QUEST);
+addToGameFlags(AMILY_MET, AMILY_MET_AS, AMILY_PC_GENDER, AMILY_OFFER_ACCEPTED, AMILY_AFFECTION, AMILY_OFFERED_DEFURRY, AMILY_FUCK_COUNTER, AMILY_NOT_FURRY, AMILY_WANG_LENGTH, AMILY_PREGNANCY_TYPE, AMILY_INCUBATION, AMILY_BUTT_PREGNANCY_TYPE, AMILY_OVIPOSITED_COUNTDOWN, AMILY_GROSSED_OUT_BY_WORMS, AMILY_FOLLOWER, AMILY_ALLOWS_FERTILITY, FOLLOWER_AT_FARM_AMILY, AMILY_CORRUPT_FLIPOUT, AMILY_TIMES_FUCKED_FEMPC, AMILY_VILLAGE_ENCOUNTERS_DISABLED, AMILY_CONFESSED_LESBIAN, AMILY_WANG_LENGTH, AMILY_WANG_GIRTH, AMILY_HERM_TIMES_FUCKED_BY_FEMPC, AMILY_HERM_QUEST, PC_TIMES_BIRTHED_AMILYKIDS);
 
 
 /*
 
 Changes to make:
 
-The initial male meeting offers a rejection option because she's a furry. See amilyNoFur(). Part of the text for that option reveals the ingredients necessary to defur Amily. However, players don't see these ingredients until much later in the game. Amily is often encountered early. How is the player going to know what the ingredients are?
+The initial male meeting offers a rejection option because she's a furry. See amilyNoFur(). Part of the text for that option reveals the ingredients necessary to defur Amily. However, players don't see these ingredients until much later in the game. Amily is often encountered early. How is the player going to know what the ingredients are? This scene is possible several times throughout the code.
 
 Possible solution. If player goes so far as to reach the Desperate Amily scenes and then rejects her for furriness, I can see her telling the player how to change her. Amily obviously wants the player by this point.
 
@@ -26,11 +26,13 @@ Need to correct references to leaving the area for good since Shouldra is a part
 
 Probably need author permission, but the high-affection sex path could use some expanding. It can take quite a while to get to five litters and having nearly the same scene pop each time is annoying. The lower-affection paths have multiple choices.
 
-First time Amily Lesbian scene works well, but the code immediately has Amily jump to becoming a herm. This locks out subsequent lesbian scenes in the town ruins. Leaving code as is for now, but a simple affection check should do it. Also, lesbian sex with Amily doesn't increase her affection at all. This should be changed.
+First time Amily Lesbian scene works well, but the code immediately has Amily jump to becoming a herm. This locks out subsequent lesbian scenes in the town ruins. Leaving code as is for now, but a simple affection check should do it. Also, lesbian sex and herm sex with Amily doesn't increase her affection at all. I feel this should be changed.
 
 undefined error in amilyHermOnFemalePC(). Just have to click next to get past it, but it is something to investigate.
 
-Something is wrong in the first time scenes when you're a herm. The program is choking on (player.cocks[0].cockLength >= 14) for herms.
+Something is wrong in the first time scenes. The program is choking on (player.cocks[0].cockLength >= 14) when it didn't before.
+
+Check gender flag checking.
 
 */
 
@@ -88,7 +90,7 @@ var forced = false;
 Amily.start = function () {
     // BOOKKEEPING
     menu();
-    // set initial gender flag
+    // set initial gender flag, these may need to be changed throughout!
     if (gameFlags[AMILY_MET] == 0) {
         gameFlags[AMILY_PC_GENDER] = player.gender;
     }
@@ -104,7 +106,7 @@ Amily.start = function () {
     // Check to see if we've taken Amily out of the picture. If so, put up the message from earlier. Commenting out until we can set these flags
     /*
     if (flags[kFLAGS.AMILY_IS_BATMAN] > 0 || flags[kFLAGS.AMILY_VILLAGE_ENCOUNTERS_DISABLED] == 1  || flags[kFLAGS.AMILY_TREE_FLIPOUT] > 0) {
-        outputText("You enter the ruined village cautiously. There are burnt-down houses, smashed-in doorways, ripped-off roofs... everything is covered with dust and grime. You explore for an hour, but you cannot find any sign of another living being, or anything of value. The occasional footprint from an imp or a goblin turns up in the dirt, but you don't see any of the creatures themselves. It looks like time and passing demons have stripped the place bare since it was originally abandoned. Finally, you give up and leave. You feel much easier when you're outside of the village.", false);
+        outputText("You enter the ruined village cautiously. There are burnt-down houses, smashed-in doorways, ripped-off roofs... everything is covered with dust and grime. You explore for an hour, but you cannot find any sign of another living being, or anything of value. The occasional footprint from an imp or a goblin turns up in the dirt, but you don't see any of the creatures themselves. It looks like time and passing demons have stripped the place bare since it was originally abandoned. Finally, you give up and leave. You feel much easier when you're outside of the village.");
 		doNext(camp.returnToCampUseOneHour);
 		return;
     }
@@ -149,7 +151,7 @@ Amily.start = function () {
     /*
     else if (flags[kFLAGS.AMILY_FOLLOWER] == 2) {
         amilySprite();
-		outputText("You enter the ruined village, still laughing at your past nefarious deeds. Maybe it's just your imagination, but you feel like this entire place reeks of corruption now... You explore for an hour, then go back to your camp, knowing your tainted slave will be more than happy to satisfy your urges.", false);
+		outputText("You enter the ruined village, still laughing at your past nefarious deeds. Maybe it's just your imagination, but you feel like this entire place reeks of corruption now... You explore for an hour, then go back to your camp, knowing your tainted slave will be more than happy to satisfy your urges.");
 		doNext(camp.returnToCampUseOneHour);
 		return;
     }
@@ -221,8 +223,8 @@ Amily.start = function () {
             /*NOPE!
             //[Player meets the requirements to stalk Amily]
             if (player.spe > 50 && player.inte > 40) {
-            	outputText("Using all of your knowledge, skill and cunning, you sneak and squirm through the ruins until you finally find yourself coming up right behind the dusty mouse girl. She's picking berries off of a small bush and hasn't noticed you yet.\n\n", false);
-            	outputText("How do you approach her?", false);
+            	outputText("Using all of your knowledge, skill and cunning, you sneak and squirm through the ruins until you finally find yourself coming up right behind the dusty mouse girl. She's picking berries off of a small bush and hasn't noticed you yet.<br><br>");
+            	outputText("How do you approach her?");
             	//Announce yourself / Scare her
             	simpleChoices("Announce",remeetingAmilyAnnounceSelf,"Scare",remeetingAmilyScare,"",0,"",0,"",0);
             }
@@ -239,8 +241,8 @@ Amily.start = function () {
             /*NOPE! (This was commented out in original COC)
           [Player meets the requirements to stalk Amily]
           if (player.spe > 50 && player.inte > 40) {
-            outputText("Using all of your knowledge, skill and cunning, you sneak and squirm through the ruins until you finally find yourself coming up right behind the dusty mouse girl. She's picking berries off of a small bush and hasn't noticed you yet.\n\n", false);
-			outputText("How do you approach her?", false);
+            outputText("Using all of your knowledge, skill and cunning, you sneak and squirm through the ruins until you finally find yourself coming up right behind the dusty mouse girl. She's picking berries off of a small bush and hasn't noticed you yet.<br><br>");
+			outputText("How do you approach her?");
 			//Announce yourself / Scare her
 			simpleChoices("Announce",announceSelfOnDesperatePleaMeeting,"Scare Her",scareAmilyOnDesperatePleaMeeting,"",0,"",0,"",0);
             }
@@ -372,8 +374,6 @@ Amily.start = function () {
 
     }
 
-
-
     // Genderless meeting
     else if (player.gender == 0) {
         //[First Meeting]
@@ -390,8 +390,8 @@ Amily.start = function () {
                 outputText("You have been cornered by a very strange being: a bipedal female humanoid with the unmistakable features of a giant mouse; paw-like feet, a muzzled head with long whiskers, large mouse ears, and a body covered in dust-caked auburn fur. It doesn't look like she has had a very easy life; her clothing consists of a dirty, tattered set of pants and shirt, while her limbs and midriff are wiry, hardened as much by meals that are less than frequent as by constant exercise and physical exertion. Her buttocks are non-existent, and her breasts can't be any larger than an A-cup. Still, she looks quite capable of defending herself; not only is she brandishing a blowpipe, clearly ready to spit another doubtlessly-poisoned dart at you, but she has a formidable-looking knife strapped to her hip.<br><br>");
             }
             outputText("She looks at you for a few long moments, and then lowers her blowpipe, \"<i>I'm sorry about that, but I thought you were another demon. They destroyed this place years ago, but some of the damn scavengers still occasionally drift through. Not so much lately, of course. I've made something of an impression on them.</i>\" She grins malevolently, one hand caressing the blade of her knife in an almost sensual fashion. \"<i>My name is Amily, the last survivor of this village. All of my people are gone now; they're scattered, dead, enslaved, or worse. What about you? ");
-            if (player.humanScore() > 4) outputText("Are you ", false);
-            else outputText("Were you ", false);
+            if (player.humanScore() > 4) outputText("Are you ");
+            else outputText("Were you ");
             outputText("one of those... humans, I've heard sometimes wander into this world?</i>\"<br><br>");
 
             outputText("You admit that, yes, you are a human, and then ask her why she remains here in this empty wasteland of a settlement.<br><br>");
@@ -438,110 +438,9 @@ Amily.start = function () {
             doNext(Camp.returnToCampUseOneHour);
             //return;
         } else {
-            amilyMeetingFailed();
+            amilyStandardMeeting();
         }
-    }
-
-    // Remeeting Amily after first encounters and no specialty encounters for gender [Normal Remeeting]
-    // Amily does NOT like seeing the player change gender
-    /*
-        if (flags[kFLAGS.AMILY_PC_GENDER] != player.gender) {
-    	//Stripped this out since it was making her flip out weirdly at genderless folks
-    	//|| (player.gender == 0 && flags[kFLAGS.AMILY_AFFECTION] < 15)) {
-    	amilyNewGenderConfrontation();
-    	}
-        */
-
-    // This should only display after the first meeting. Need to check this!
-    /*
-        outputText("Curious on how Amily is holding up, you head back into the ruined village. This time you don't bother trying to hide your presence, hoping to attract Amily's attention quicker. After all, she did say that the place is basically empty of anyone except her, and you can otherwise handle a measly Imp or Goblin.<br><br>");
-
-       //      }
-        // Commenting out pregnancy switch until pregnancy event is coded.
-        /*
-        switch (pregnancy.event) {
-    				case 1:
-    				case 2:
-    				case 3:
-    				case 4:
-    				case 5: //Amily is slightly pregnant
-    						outputText("Amily materializes out of the ruins somewhat slower than usual. You can see that your efforts together have taken; an undeniable bulge pokes out of her midriff, pushing up her tattered shirt slightly and seriously straining her belt. She idly rubs it with one hand, as if confirming its presence to herself.\n\n", false);
-    						//[Low Affection]
-    						if (flags[kFLAGS.AMILY_AFFECTION] < 15 || player.gender == 0) outputText("\"<i>Well, I guess despite whatever other faults you may have, you can get the job done.</i>\" She says, not looking directly at you.\n\n", false);
-    						//[Medium Affection]
-    						else if (flags[kFLAGS.AMILY_AFFECTION] < 40) outputText("\"<i>Thank you. With your help, my people will soon live again.</i>\" She strokes her belly, grinning happily. \"<i>Is there something you want to talk about?</i>\"\n\n", false);
-    						//[High Affection]
-    						else outputText("\"<i>Thank you, thank you! I couldn't have done this without you!</i>\" She exclaims. \"<i>You've done a wonderful, noble thing, and I'm glad I found you to be their father. So, not that it isn't great to see you again, but why did you come to visit?</i>\"\n\n", false);
-    						break;
-    				case 6:
-    				case 7:
-    				case 8: //Amily is heavily pregnant
-    						outputText("It takes several minutes before Amily appears, but when you see her, you marvel at how she got to you as quickly as she did. Her stomach is hugely swollen; one of her hands actually cradles underneath its rounded expanse, as if trying to hold it up. She is pants-less, evidently no longer able to fit into them. Her shirt drapes loosely, barely managing to cover the upper half of her firm orb of a belly. The belt where she hangs her blowpipe and dagger has been tied around her upper chest like a sash – between her breasts and her bulge – so she can still carry her weapons effectively.\n\n", false);
-    						//[Low Affection]
-    						if (flags[kFLAGS.AMILY_AFFECTION] < 15 || player.gender == 0) outputText("She seems to be paying more attention to her gravid midriff than to you, and it's several long moments before she finally speaks. \"<i>These children will be born soon. I guess I owe you my thanks for being willing to father them.</i>\"\n\n", false);
-    						//[Medium Affection]
-    						else if (flags[kFLAGS.AMILY_AFFECTION] < 40) outputText("She groans softly. \"<i>This isn't an easy task, you know. But I still want to thank you. Maybe, when these ones are born, you'll be willing to help me make some more?</i>\" She asks, her tail gently waving behind her.\n\n", false);
-    						//[High Affection]
-    						else outputText("\"<i>I should have known you were coming; they always start kicking up a storm when you're here – did you know that?</i>\" She smiles beatifically. \"<i>They know their daddy already, they do. With your help, a new generation of my people will have a chance to grow up free from the taint of demons. Was there something on your mind?</i>\"\n\n", false);
-    						break;
-    				default: //Amily is not pregnant
-    					outputText("It doesn't take long for Amily to materialize out of the ruins. Her blowpipe and dagger are both thrust into her belt, and she's still wearing the same tattered clothes as before.\n\n", false);
-    				*/
-    /* // Does Amily treat you cooly? Check for low affection or genderless character...
-         if (gameFlags[AMILY_AFFECTION] < 15 || player.gender == 0) {
-             // Low affection meeting as a female and you were a female last time means she treats you somewhat nice...
-             if (flags[AMILY_MET_AS] == 2 && player.gender == 2) outputText("She crosses her arms and smiles at you. \"<i>So you came back huh?  Did you want to chat with little old me?</i>\" she asks.<br><br>");
-             // Otherwise she doesn't trust you.
-             else outputText("She crosses her arms and taps her fingers on her shoulder. \"<i>So, why are you here? What do you want?</i>\" she asks.<br><br>");
-            }
-        // Emily is starting you like you, regardless of gender... AMILY AFFECTION 15-39
-        else if (gameFlags[AMILY_AFFECTION] < 40) {
-            outputText("She smiles softly upon seeing you. \"<i>It's always good to see somebody else who hasn't given in to corruption. Did you have something on your mind?</i>\"<br><br>");
-            }
-        // Amily is starting to REALLY like you... AMILY AFFECTION 40+
-        else {
-            outputText("She grins at you with open delight. \"<i>Hey there, " + player.short + "! It's great to see you again... ");
-            // If player is male...
-            if (player.hasCock()) {
-    			outputText("Have you come to knock me up?");
-                if (gameFlags[AMILY_WANG_LENGTH] > 0 && player.pregnancyIncubation == 0) outputText(" Or have you come to get knocked up?");
-            }
-    		else if (player.hasVagina()) {
-                if (gameFlags[AMILY_WANG_LENGTH] > 0 && player.pregnancyIncubation == 0) outputText("Have you come back so I could stuff another bun in your oven?");
-                else outputText("Did you come back for a little 'quality time' with me?");
-            }
-            outputText("</i>\" she teases, but her body language ");
-            if (gameFlags[AMILY_WANG_LENGTH] > 0) {
-                outputText("and the erection tenting her pants ");
-                // Player gets hot for the mouse cock every time!
-                player.modStats("lus", 5);
-                }
-            outputText("suggests that it's no joking matter.<br><br>");
-        }
-    	// Special code to unlock making Amily a herm.
-        /*
-        if (player.hasItem(consumables.P_DRAFT) && flags[kFLAGS.AMILY_WANG_LENGTH] == 0 && flags[kFLAGS.AMILY_HERM_QUEST] == 2 && flags[kFLAGS.AMILY_AFFECTION] >= 40 && player.gender == 3) {
-    				efficiency = makeAmilyAHerm;
-    				outputText("You could probably bring up the efficiency of having two hermaphrodite mothers, particularly since you have this purified incubi draft handy.\n\n", false);
-    			}
-
-        //Sex / Talk / Talk then sex
-    	//var efficiency = null;
-
-    	//Amily is not a herm but is ok with herm-daddying!
-    	*/
-    //var sex = determineAmilySexEvent(); // This decides the type of sex you'll have with EMily
-    //Update gender tracking flag for Amily
-    //gameFlags[AMILY_PC_GENDER] = player.gender;
-    //addButton(0, "Eager", acceptAmilysOfferEagerly, null, null, null, "Accept Amily's Offer Eagerly.");
-    //addButton(1, "Hesitant", acceptAmilysOfferHesitantly, null, null, null, "Accept Amily's Offer Hesitantly.");
-    //addButton(2, "Refuse", refuseAmilysOffer, null, null, null, "Your mission is more important. You can't let her distract you!");
-    //addButton(3, "Reject", amilyNoFur, null, null, null, "You can't imagine kissing, let alone breeding with, a mouse!");
-    //simpleChoices("Sex", sex, "Talk", talkToAmily, "Both", (sex == null ? null : talkThenSexWithAmily), "Efficiency", efficiency, "Leave", amp.returnToCampUseOneHour);
-    //doNext(Camp.doCamp);
-
-
-
+}
     //Reach this, show default explore message and return to camp.
     else {
         amilyMeetingFailed();
@@ -551,6 +450,7 @@ Amily.start = function () {
 
 // Standard meeting loop after first time
 function amilyStandardMeeting() {
+    // Amily does NOT like seeing the player change gender
     outputText("Curious on how Amily is holding up, you head back into the ruined village. This time you don't bother trying to hide your presence, hoping to attract Amily's attention quicker. After all, she did say that the place is basically empty of anyone except her, and you can otherwise handle a measly Imp or Goblin.<br><br>");
     // Commenting out pregnancy switch until pregnancy event is coded.
     /*
@@ -560,27 +460,27 @@ function amilyStandardMeeting() {
 				case 3:
 				case 4:
 				case 5: //Amily is slightly pregnant
-						outputText("Amily materializes out of the ruins somewhat slower than usual. You can see that your efforts together have taken; an undeniable bulge pokes out of her midriff, pushing up her tattered shirt slightly and seriously straining her belt. She idly rubs it with one hand, as if confirming its presence to herself.\n\n", false);
+						outputText("Amily materializes out of the ruins somewhat slower than usual. You can see that your efforts together have taken; an undeniable bulge pokes out of her midriff, pushing up her tattered shirt slightly and seriously straining her belt. She idly rubs it with one hand, as if confirming its presence to herself.<br><br>");
 						//[Low Affection]
-						if (flags[kFLAGS.AMILY_AFFECTION] < 15 || player.gender == 0) outputText("\"<i>Well, I guess despite whatever other faults you may have, you can get the job done.</i>\" She says, not looking directly at you.\n\n", false);
+						if (flags[kFLAGS.AMILY_AFFECTION] < 15 || player.gender == 0) outputText("\"<i>Well, I guess despite whatever other faults you may have, you can get the job done.</i>\" She says, not looking directly at you.<br><br>");
 						//[Medium Affection]
-						else if (flags[kFLAGS.AMILY_AFFECTION] < 40) outputText("\"<i>Thank you. With your help, my people will soon live again.</i>\" She strokes her belly, grinning happily. \"<i>Is there something you want to talk about?</i>\"\n\n", false);
+						else if (flags[kFLAGS.AMILY_AFFECTION] < 40) outputText("\"<i>Thank you. With your help, my people will soon live again.</i>\" She strokes her belly, grinning happily. \"<i>Is there something you want to talk about?</i>\"<br><br>");
 						//[High Affection]
-						else outputText("\"<i>Thank you, thank you! I couldn't have done this without you!</i>\" She exclaims. \"<i>You've done a wonderful, noble thing, and I'm glad I found you to be their father. So, not that it isn't great to see you again, but why did you come to visit?</i>\"\n\n", false);
+						else outputText("\"<i>Thank you, thank you! I couldn't have done this without you!</i>\" She exclaims. \"<i>You've done a wonderful, noble thing, and I'm glad I found you to be their father. So, not that it isn't great to see you again, but why did you come to visit?</i>\"<br><br>");
 						break;
 				case 6:
 				case 7:
 				case 8: //Amily is heavily pregnant
-						outputText("It takes several minutes before Amily appears, but when you see her, you marvel at how she got to you as quickly as she did. Her stomach is hugely swollen; one of her hands actually cradles underneath its rounded expanse, as if trying to hold it up. She is pants-less, evidently no longer able to fit into them. Her shirt drapes loosely, barely managing to cover the upper half of her firm orb of a belly. The belt where she hangs her blowpipe and dagger has been tied around her upper chest like a sash – between her breasts and her bulge – so she can still carry her weapons effectively.\n\n", false);
+						outputText("It takes several minutes before Amily appears, but when you see her, you marvel at how she got to you as quickly as she did. Her stomach is hugely swollen; one of her hands actually cradles underneath its rounded expanse, as if trying to hold it up. She is pants-less, evidently no longer able to fit into them. Her shirt drapes loosely, barely managing to cover the upper half of her firm orb of a belly. The belt where she hangs her blowpipe and dagger has been tied around her upper chest like a sash – between her breasts and her bulge – so she can still carry her weapons effectively.<br><br>");
 						//[Low Affection]
-						if (flags[kFLAGS.AMILY_AFFECTION] < 15 || player.gender == 0) outputText("She seems to be paying more attention to her gravid midriff than to you, and it's several long moments before she finally speaks. \"<i>These children will be born soon. I guess I owe you my thanks for being willing to father them.</i>\"\n\n", false);
+						if (flags[kFLAGS.AMILY_AFFECTION] < 15 || player.gender == 0) outputText("She seems to be paying more attention to her gravid midriff than to you, and it's several long moments before she finally speaks. \"<i>These children will be born soon. I guess I owe you my thanks for being willing to father them.</i>\"<br><br>");
 						//[Medium Affection]
-						else if (flags[kFLAGS.AMILY_AFFECTION] < 40) outputText("She groans softly. \"<i>This isn't an easy task, you know. But I still want to thank you. Maybe, when these ones are born, you'll be willing to help me make some more?</i>\" She asks, her tail gently waving behind her.\n\n", false);
+						else if (flags[kFLAGS.AMILY_AFFECTION] < 40) outputText("She groans softly. \"<i>This isn't an easy task, you know. But I still want to thank you. Maybe, when these ones are born, you'll be willing to help me make some more?</i>\" She asks, her tail gently waving behind her.<br><br>");
 						//[High Affection]
-						else outputText("\"<i>I should have known you were coming; they always start kicking up a storm when you're here – did you know that?</i>\" She smiles beatifically. \"<i>They know their daddy already, they do. With your help, a new generation of my people will have a chance to grow up free from the taint of demons. Was there something on your mind?</i>\"\n\n", false);
+						else outputText("\"<i>I should have known you were coming; they always start kicking up a storm when you're here – did you know that?</i>\" She smiles beatifically. \"<i>They know their daddy already, they do. With your help, a new generation of my people will have a chance to grow up free from the taint of demons. Was there something on your mind?</i>\"<br><br>");
 						break;
 				default: //Amily is not pregnant
-					outputText("It doesn't take long for Amily to materialize out of the ruins. Her blowpipe and dagger are both thrust into her belt, and she's still wearing the same tattered clothes as before.\n\n", false);
+					outputText("It doesn't take long for Amily to materialize out of the ruins. Her blowpipe and dagger are both thrust into her belt, and she's still wearing the same tattered clothes as before.<br><br>");
 				*/
     // Does Amily treat you cooly? Check for low affection or genderless character...
     if (gameFlags[AMILY_AFFECTION] < 15 || player.gender == 0) {
@@ -613,12 +513,18 @@ function amilyStandardMeeting() {
         }
         outputText("suggests that it's no joking matter.<br><br>");
     }
+    if (gameFlags[AMILY_PC_GENDER] != player.gender) {
+    	//Stripped this out since it was making her flip out weirdly at genderless folks
+    	//|| (player.gender == 0 && flags[kFLAGS.AMILY_AFFECTION] < 15)) {
+    	amilyNewGenderConfrontation();
+        return;
+    }
 
     // Special code to unlock making Amily a herm.
     /*
     if (player.hasItem(consumables.P_DRAFT) && flags[kFLAGS.AMILY_WANG_LENGTH] == 0 && flags[kFLAGS.AMILY_HERM_QUEST] == 2 && flags[kFLAGS.AMILY_AFFECTION] >= 40 && player.gender == 3) {
 				efficiency = makeAmilyAHerm;
-				outputText("You could probably bring up the efficiency of having two hermaphrodite mothers, particularly since you have this purified incubi draft handy.\n\n", false);
+				outputText("You could probably bring up the efficiency of having two hermaphrodite mothers, particularly since you have this purified incubi draft handy.<br><br>");
 			}
     
     //Sex / Talk / Talk then sex
@@ -647,6 +553,8 @@ function amilyStandardMeeting() {
 
 // Failsafe function to return player to camp.
 function amilyMeetingFailed() {
+    outputText("You shouldn't have reached this failsafe message. Printing default message and allowing return to camp.<br><br>");
+
     outputText("You enter the ruined village cautiously. There are burnt-down houses, smashed-in doorways, ripped-off roofs... everything is covered with dust and grime. You explore for an hour, but you cannot find any sign of another living being, or anything of value. The occasional footprint from an imp or a goblin turns up in the dirt, but you don't see any of the creatures themselves. It looks like time and passing demons have stripped the place bare since it was originally abandoned. Finally, you give up and leave. You feel much easier when you're outside of the village – you had the strangest sensation of being watched while you were in there.");
     doNext(Camp.returnToCampUseOneHour);
 };
@@ -808,7 +716,6 @@ function amilyNoFur() {
 
 //MALE DESPERATE AMILY ENCOUNTERS
 
-
 function desperateAmilyPleaAcceptHer() {
     clearOutput();
     //amilySprite();
@@ -831,10 +738,10 @@ function desperateAmilyPleaTurnDown() {
     // UNCOMMENT AFTER TEL'ADRE FLAGS ARE SET
     /*
     if (player.statusEffectv1(StatusEffects.TelAdre) >= 1) {
-				outputText("You tell her that you've discovered a hidden city in the desert, free of corruption. Amily looks shocked, but clearly grateful as you assure her of its existence and provide instructions on how to get there.\n\n", false);
+				outputText("You tell her that you've discovered a hidden city in the desert, free of corruption. Amily looks shocked, but clearly grateful as you assure her of its existence and provide instructions on how to get there.<br><br>");
 			}
 			else {
-				outputText("Looking dejected, Amily slowly begins to walk away. However, just before she makes her final turn to disappear, she turns back to you. \"<i>I'll always remember you,</i>\" she promises sincerely – and then she is gone.\n\n", false);
+				outputText("Looking dejected, Amily slowly begins to walk away. However, just before she makes her final turn to disappear, she turns back to you. \"<i>I'll always remember you,</i>\" she promises sincerely – and then she is gone.<br><br>");
 	}
     */
     outputText("Feeling the weight of the empty village pressing in on you, you quickly retreat yourself. There's no point coming back here.");
@@ -865,7 +772,6 @@ function desperateAmilyPleaTurnDownBlunt() {
 }
 
 //FEMALE AMILY ENCOUNTERS
-
 
 //Lesbian Love Confession:
 //(Replaces the Meet & Talk scene for a female PC who has gotten Amily's Affection to Moderate)
@@ -900,9 +806,9 @@ function amilyLesbianLetHerGo() {
     clearOutput();
     /*(If player is already locked into a relationship):
     if (player.hasStatusEffect(StatusEffects.CampMarble) >= 0 || urtaLove()) {
-    outputText("You put a hand on her shoulder, bringing her to a stop. She looks so hopeful at you that it's almost painful, but you tell her that, while you do care for her and you like her as a friend, you're already in a relationship with somebody.\n\n", false);
+    outputText("You put a hand on her shoulder, bringing her to a stop. She looks so hopeful at you that it's almost painful, but you tell her that, while you do care for her and you like her as a friend, you're already in a relationship with somebody.<br><br>");
 
-    outputText("\"<i>Are you? ...I see. Well, I'm happy that you, at least, found somebody. I... You're still welcome to come by and talk, but I'll respect your wishes.</i>\" Amily tells you. Evidently still quite embarrassed, she apologises and then melts away into the ruins again.", false);
+    outputText("\"<i>Are you? ...I see. Well, I'm happy that you, at least, found somebody. I... You're still welcome to come by and talk, but I'll respect your wishes.</i>\" Amily tells you. Evidently still quite embarrassed, she apologises and then melts away into the ruins again.");
     //(Amily is now locked out of a relationship with the player)
     }*/
     outputText("You watch her go, feeling a little guilty, but you just don't swing that way. You can only hope she'll be all right.<br><br>");
@@ -981,6 +887,295 @@ function amilyRejectHerm() {
     doNext(Camp.returnToCampUseOneHour);
 }
 
+// CHANGED GENDER RESPONSES
+
+function amilyNewGenderConfrontation() {
+    //amilySprite();
+	clearOutput();
+	var sex = null;
+    //Remember old gender.
+	var oldGender = gameFlags[AMILY_PC_GENDER];
+    //Re-init old gender so we don't get caught in a loop!
+	gameFlags[AMILY_PC_GENDER] = player.gender;
+    //Called from mid-way through remeeting's intro!
+	outputText("Suddenly, Amily stops and looks puzzled, her nose twitching. \"<i>Have you changed...? Yes, you have! You've been messing with some of those weird potions and things that show up here and there - you've altered your gender, haven't you?</i>\"<br><br>");
+
+	outputText("You nod your head and admit you have.<br><br>");
+	//Started as male...
+    if (oldGender == 1) {
+	   //...Now Female
+        if (player.gender == 2) {
+		  //Low Affection:
+            if (gameFlags[AMILY_AFFECTION] < 15) {
+				outputText("\"<i>Oh, great. Now what am I going to do with you? Why on earth would you stuff this up?</i>\" Amily complains. She shakes her head. \"<i>Come back later - I'm too frustrated to talk to you now.</i>\" She storms away and you decide it would be best to take her advice.<br><br>");
+						//(Player must now begin the Female Quest from the beginning.)
+				}
+            //Medium Affection:
+            else if (gameFlags[AMILY_AFFECTION] < 40) {
+				outputText("\"<i>I... I... why would you do that?</i>\" Amily asks, looking hurt. \"<i>I... no, This wasn't an effort by you to hurt me, I'm sorry, I was being selfish.</i>\" She apologizes. \"<i>But... I don't know what we can do any more. I... I need time to think.</i>\" She turns and walks away, and you decide to give her what she asks for.");
+				//(When next the PC encounters Amily, they will receive the "confession of love" scene.)
+				}
+            //High Affection:
+			else {
+			     outputText("Amily looks quite upset, and then her expression changes to one of resolve. \"<i>I won't pretend to know how this happened, or to understand why you would do this voluntarily, if that was the case, but you mean too much to me to let you go over something like this.</i>\" She seizes hold of your hand, fiercely, and starts determinedly pulling you along. \"<i>Come with me!</i>\" She orders.");
+						//(Amily Yuri sex scene plays.)
+				doNext(girlyGirlMouseSex);
+				return;
+            }
+        }
+		//...Now Herm
+        else if (player.gender == 3) {
+		  //Low Affection:
+		  if (gameFlags[AMILY_AFFECTION] < 15) {
+              outputText("\"<i>...Are you a herm, now?</i>\" She asks, sounding appalled. When you confirm it, she grimaces in disgust. \"<i>Stay away from me! You're not coming near my bed again until you're all man again!</i>\" She orders, and then storms off.<br><br>");
+			     //(Player must now begin the Herm Quest from the beginning.)
+          }
+		  //Medium Affection:
+		  else if (gameFlags[AMILY_AFFECTION] < 40) {
+              outputText("She looks intimidated. \"<i>I... I'm sorry, but I don't think I can share my bed with you, not any more. Please, find a way to become male again, then come back to me?</i>\" She pleads, then slips away.<br><br>");
+			 //(Amily's affection score remains unchanged, but the player must make the "What's Wrong With Herms" scene.)
+          }
+		  //High Affection:
+		  else {
+		      outputText("\"<i>I...</i>\" She swallows hard. \"<i>This is a great shock, I must confess, but... But I care too much to lose you. I don't care if you've got a pussy of your own, now. I still want to be with you.</i>\" She smiles at you, feebly. \"<i>So, as I was saying, what do you want to talk about?</i>\"<br><br>");
+			     //(The player is considered as having completed the herm-specific part of Amily's quest.)
+				gameFlags[AMILY_HERM_QUEST] = 2;
+          }
+        }
+				//...Now Genderless ( I think this needs to be separated out completely to its own space.)
+        else {
+		//Low Affection:
+		if (gameFlags[AMILY_AFFECTION] < 15) {
+            outputText("She looks at you in disdain. \"<i>How can you be so stupid as to completely remove all gender from yourself? Get out of my sight and don't come back until you're one gender or the other again!</i>\" She then proceeds to storm off.<br><br>");
+						//(Amily will repeat this scene on each remeeting until the player becomes a gender other than Genderless.)
+            }
+		else if (gameFlags[AMILY_AFFECTION] < 40) {
+            outputText("She shakes her head sadly. \"<i>I guess this kind of puts a kink in our relationship, doesn't it? Still, I'll always be willing to talk with you.</i>\"<br><br>");
+			//(The player can only Talk with Amily on each remeeting until they have become a gender other than Genderless.)
+            }
+		//High Affection:
+		else {
+            outputText("She looks upset and concerned - but for your sake, not hers. \"<i>I can't imagine what catastrophe robbed you like this. Please, find a way to change yourself back? Man, woman, even herm, I can't bear to see you like this... but I'll give you all the support I can.</i>\"<br><br>");
+			//(The player can only Talk with Amily on each remeeting until they have become a gender other than Genderless.)
+            }
+		}
+    }
+			//[Female...
+    else if (oldGender == 2) {
+	   // to Male]
+        if (player.gender == 1) {
+            //Low Affection:
+			if (gameFlags[AMILY_AFFECTION] < 15) {
+			 outputText("Amily looks deeply surprised. \"<i>You... you turned yourself from a woman into a man? ...For me?</i>\" She scuffs her foot at the ground in embarrassment. \"<i>I... I don't know what to say. But... will you hear me out, now that you have changed?</i>\"<br><br>");
+			//(Begin Male variant of Amily's quest.)
+			//FEN: Increase affection!
+			 gameFlags[AMILY_AFFECTION] += 15;
+			//FEN: If PC has had any kids with her, set as good to go!
+			 if (gameFlags[PC_TIMES_BIRTHED_AMILYKIDS] > 0) gameFlags[AMILY_OFFER_ACCEPTED] = 1;
+            }
+			//Medium Affection:
+			else if (gameFlags[AMILY_AFFECTION] < 40) {
+			outputText("She looks surprised, unsure of what to say. \"<i>I... thank you. I do feel we've grown closer, but this will make things much easier...</i>\"");
+			//(Begin Male variant of Amily's quest.)
+			//FEN: Increase affection!
+			gameFlags[AMILY_AFFECTION] += 5;
+			//FEN: If PC has had any kids with her, set as good to go!
+			if (gameFlags[PC_TIMES_BIRTHED_AMILYKIDS] > 0) gameFlags[AMILY_OFFER_ACCEPTED] = 1;
+            }
+			//High Affection:
+			else {
+			outputText("She looks pleased, but then adopts an exaggerated expression of irritation. \"<i>You go to all the hard work of seducing me as a woman, and now you turn into a man? Why do you put me through these things?</i>\" She heaves a similarly exaggerated sigh, then smiles again. \"<i>Ah, well, now we can start things over, can't we? Let's see what the new you is like in bed.</i>\" She makes a 'come hither' expression, then playfully starts running off into the ruins, making sure you follow her.<br><br>");
+			//mark as agreed to preg-quest!
+			gameFlags[AMILY_OFFER_ACCEPTED] = 1;
+			//(Play High Affection Male sex scene.)
+			doNext(amilySexHappens);
+			return;
+			}
+	   }
+				//[Female to Herm]
+	   else if (player.gender == 3) {
+           //Amily has no dick.
+			if (gameFlags[AMILY_WANG_LENGTH] == 0) {
+						//Low Affection:
+				if (gameFlags[AMILY_AFFECTION] < 15) {
+					outputText("She looks at you for a long time, then shakes her head in disbelief. \"<i>What woman in her right mind would grow a dick? Ah, well, get rid of the pussy, and then you and I may have something to talk about. But, for now, we'll just talk.</i>\"");
+							//(Begin herm variant of Amily's quest.)
+				}
+						//Medium Affection:
+				else if (gameFlags[AMILY_AFFECTION] < 40) {
+				    outputText("\"<i>I... don't take this the wrong way, " + player.short + ", but... I'm not so sure we can be together any more while you have that. Be one thing or the other, not both.</i>\" Amily states. \"<i>But we can still talk, this time.</i>\"");
+							//(Next encounter with Amily is the "Maybe Herms Aren't So Bad" scenes.)
+				}
+						//High Affection:
+				else {
+				    outputText("She looks you up and down, swallows forcefully, then looks determined. \"<i>I... I never dreamed I would say this to a hermaphrodite, but... but I know you, and I love you. If you still want to be with me, I'll stay with you.</i>\" She gives you wry grin. \"<i>Besides, I guess this means that now you and I can have children, anyway.</i>\"");
+					//(Player counts as having finished the herm variant of Amily's quest.)
+					gameFlags[AMILY_HERM_QUEST] = 2;
+				}
+            }
+			//Amily grew a dick for you.
+			else {
+			 outputText("Amily looks you up and down, blushes and says, \"<i>Did you get a little jealous of me and decide to have some fun for yourself?  I-I didn't want it to be this way, but I guess we can both repopulate my race now.  How wonderful.</i>\"");
+			 gameFlags[AMILY_HERM_QUEST] = 2;
+
+			}
+       }
+				//[Any to Genderless]
+		else {
+					//Low Affection:
+            if (gameFlags[AMILY_AFFECTION] < 15) {
+			 outputText("She looks at you in disdain. \"<i>How can you be so stupid as to completely remove all gender from yourself? Get out of my sight and don't come back until you're one gender or the other again!</i>\" She then proceeds to storm off.<br><br>");
+						//(Amily will repeat this scene on each remeeting until the player becomes a gender other than Genderless.)
+			}
+			else if (gameFlags[AMILY_AFFECTION] < 40) {
+			 outputText("She shakes her head sadly. \"<i>I guess this kind of puts a kink in our relationship, doesn't it? Still, I'll always be willing to talk with you.</i>\"<br><br>");
+						//(The player can only Talk with Amily on each remeeting until they have become a gender other than Genderless.)
+			}
+					//High Affection:
+			else {
+			 outputText("She looks upset and concerned - but for your sake, not hers. \"<i>I can't imagine what catastrophe robbed you like this. Please, find a way to change yourself back? Man, woman, even herm, I can't bear to see you like this... but I'll give you all the support I can.</i>\"<br><br>");
+						//(The player can only Talk with Amily on each remeeting until they have become a gender other than Genderless.)
+			}
+        }
+    }
+	//Herm toooooooo
+	else if (oldGender == 3) {
+	   //[Herm to Male]
+		if (player.gender == 1) {
+		  //Low Affection:
+		  if (gameFlags[AMILY_AFFECTION] < 15) {
+		  outputText("She looks you over and smiles. \"<i>Well, now that's more like it. You and I, we need to talk...</i>\"");
+		  //(Begin the male variant of Amily's quest, +5 affection.)
+		  gameFlags[AMILY_AFFECTION] += 5;
+		  //if engaged in herm-quest autoenable male quest!
+		  if (gameFlags[AMILY_HERM_QUEST] == 2) gameFlags[AMILY_OFFER_ACCEPTED] = 1;
+		}
+		//Medium Affection:
+		else if (gameFlags[AMILY_AFFECTION] < 40) {
+		  outputText("\"<i>And here I was starting to get used to you like that... but I'm happy you made such a change for me.</i>\" She tells you, smiling.<br><br>");
+		  gameFlags[AMILY_AFFECTION] += 2;
+		  //mark as agreed to preg-quest!
+		  gameFlags[AMILY_OFFER_ACCEPTED] = 1;
+		  //(Use the Remeeting scene options.)
+		  if (player.lust >= 33) sexWithAmily();
+			else {
+
+                // ADD BUTTONS
+                //if (sex != null) simpleChoices("Sex", sex, "Talk", talkToAmily, "Both", talkThenSexWithAmily, "", null, "", null);
+				//		else simpleChoices("", null, "Talk", talkToAmily, "", null, "", null, "", null);
+			    doNext(Camp.doCamp);
+            }
+
+        }
+		//High Affection:
+		else {
+            outputText("\"<i>I was comfortable with who you were, you didn't have to change on my account...</i>\" Amily says, clearly looking guilty. When you assure her that you did this voluntarily, she brightens up. \"<i>Well, I am happy to have you all man - so, what were you wanting to speak about?</i>\"");
+			//(Use the Remeeting scene options.)
+			gameFlags[AMILY_AFFECTION] += 2;
+			//mark as agreed to preg-quest!
+			gameFlags[AMILY_OFFER_ACCEPTED] = 1;
+			//(Use the Remeeting scene options.)
+			if (player.lust >= 33) sexWithAmily();
+            else {
+                 // ADD BUTTONS
+                //if (sex != null) simpleChoices("Sex", sex, "Talk", talkToAmily, "Both", talkThenSexWithAmily, "", null, "", null);
+				//		else simpleChoices("", null, "Talk", talkToAmily, "", null, "", null, "", null);
+			    doNext(Camp.doCamp);
+                }
+			 }
+        }
+        //[Herm to Female]
+		else if (player.gender == 2) {
+		//Low Affection:
+		if (gameFlags[AMILY_AFFECTION] < 15) {
+		  outputText("\"<i>Well, I guess it's nice to see another woman around... though I could have used you as all male. So, do you want to talk?</i>\" Amily asks.<br><br>");
+		  //(Amily gains a small amount of Affection, begin the Female variant of Amily's quest.)
+		  gameFlags[AMILY_AFFECTION] += 2;
+		  //UNCOMMENT THIS WHEN CONVERSATION GETS ADDED!
+            //doNext(talkToAmily);
+						//return;
+        }
+		//Medium Affection:
+		else if (gameFlags[AMILY_AFFECTION] < 40) {
+		  outputText("\"<i>You didn't need to change yourself for my sake... but, I do like having somebody who can really understand what life in this world is like.</i>\" Amily notes.");
+		//(Amily's affection remains unchanged, but the quest switches to the female variant.)
+		}
+		//High Affection:
+		else {
+		  outputText("Amily looks kind of disappointed. \"<i>I will always love you no matter who you are, but... I was kind of used to that nice cock of yours, love.</i>\" She shakes her head. \"<i>Ah, well, if it's you, then sex is sex to me.</i>\" She smiles.");
+		  //Set love confession to: GO!
+		  gameFlags[AMILY_CONFESSED_LESBIAN] = 2;
+		  }
+        }
+		//[Any to Genderless]
+		else {
+		//Low Affection:
+		if (gameFlags[AMILY_AFFECTION] < 15) {
+		  outputText("She looks at you in disdain. \"<i>How can you be so stupid as to completely remove all gender from yourself? Get out of my sight and don't come back until you're one gender or the other again!</i>\" She then proceeds to storm off.<br><br>");
+		//(Amily will repeat this scene on each remeeting until the player becomes a gender other than Genderless.)
+		}
+		else if (gameFlags[AMILY_AFFECTION] < 40) {
+		  outputText("She shakes her head sadly. \"<i>I guess this kind of puts a kink in our relationship, doesn't it? Still, I'll always be willing to talk with you.</i>\"<br><br>");
+						//(The player can only Talk with Amily on each remeeting until they have become a gender other than Genderless.)
+		}
+		//High Affection:
+		else {
+		  outputText("She looks upset and concerned - but for your sake, not hers. \"<i>I can't imagine what catastrophe robbed you like this. Please, find a way to change yourself back? Man, woman, even herm, I can't bear to see you like this... but I'll give you all the support I can.</i>\"<br><br>");
+		  //(The player can only Talk with Amily on each remeeting until they have become a gender other than Genderless.)
+            }
+        }
+    }
+			//Genderless tooo
+        else {
+		//[Low Affection]
+		  if (gameFlags[AMILY_AFFECTION] < 15) {
+              outputText("Amily looks at you with disdain, but you can't help but notice just a small tinge of relief at seeing you have a ");
+                if (player.hasCock()) {
+						outputText(player.cockDescript(0), false);
+						if (player.hasVagina()) outputText(" and ");
+					}
+				if (player.hasVagina()) outputText(player.vaginaDescript());
+					outputText(". \"<i>Maybe you're not that stupid after all,</i>\" mutters the mouse before she flounces off.");
+					//{player normal encounter options}
+          }
+		  //[Medium Affection]
+            else if (gameFlags[AMILY_AFFECTION] < 40) {
+					outputText("She notices you have a ");
+					if (player.hasCock()) {
+						outputText(player.cockDescript(0), false);
+						if (player.hasVagina()) outputText(" and ");
+					}
+					if (player.hasVagina()) outputText(player.vaginaDescript(), false);
+				        outputText(", and she smiles at you. \"<i>I guess this means we can continue with our task?</i>\" You nod in affirmation.  The mouse-girl nods, but turns to leave.  It seems she needs a little time to adjust to this new development.<br><br>");
+					//{normal encounter options}
+            }
+				//[High Affection]
+            else {
+                outputText("When Amily gazes upon your regained genitals, she instantly hugs you and gives you a deep kiss; ");
+				if (player.hasCock()) outputText("bringing your " + player.cockDescript(0) + " to erection");
+				if (player.hasVagina() && player.hasCock()) outputText(" and ");
+				if (player.hasVagina()) outputText("earning a clench from your " + player.vaginaDescript(0));
+                outputText(".  \"<i>I'm so glad you've recovered a gender!</i>\"\n\nAmily turns and stalks off with a spring in her step.  Clearly she's happy, but she still needs some time to get used to it.");
+					//{normal encounter options}
+				player.changeLust(25+(player.sens/10));
+            }
+			doNext(camp.returnToCampUseOneHour);
+        }
+}
+
+/********
+*
+* Conversation starts
+*
+*********/
+
+function talkToAmily() {
+    output("Reached Talking");
+    doNext(Camp.doCamp);
+}
+
+
+
 
 /*******
  *
@@ -1026,13 +1221,13 @@ function amilySexHappens() {
         outputText("Amily leads you to her nest as quickly as ever, but things are a little different this time. You can tell Amily has what can only be described as a 'spring in her step'. She moves just a little bit quicker, she seems more enthusiastic about the prospect - her tail even waves slowly from side to side, a bit of body language you haven't seen from her before. And you're certain there's a bit of a seductive wiggle to her hips - which you definitely haven't seen from her before.");
 
         //(If Amily is Slightly Pregnant:
-        //if (pregEvent >= 1 && pregEvent <= 5) outputText("  However, she does sometimes touch the swell signifying the litter growing inside her, and when she does her attitude becomes uncertain and nervous.", false);
+        //if (pregEvent >= 1 && pregEvent <= 5) outputText("  However, she does sometimes touch the swell signifying the litter growing inside her, and when she does her attitude becomes uncertain and nervous.");
 
         outputText("<br><br>");
 
         outputText("Once you are inside, Amily gently tries to push you onto the bedding where you will be mating. Once you are seated, she smiles at you with a teasing expression and begins to slowly strip herself off, clearly trying to make the act seem as erotic as possible.");
 
-        //if (pregEvent >= 6) outputText("  However, her confidence visibly slips when she has to fully bare the bulging belly that marks her pregnant state, but she musters the confidence and starts to show it off for you as well.", false);
+        //if (pregEvent >= 6) outputText("  However, her confidence visibly slips when she has to fully bare the bulging belly that marks her pregnant state, but she musters the confidence and starts to show it off for you as well.");
         addButton(0, "Step In", amilySexStepIn, null, null, null, "Why not let me do that for you?");
         addButton(1, "Watch Show", amilySexEnjoyShow, null, null, null, "She's getting better at this...");
         //
@@ -1056,9 +1251,9 @@ function determineAmilySexEvent() { // May need to force a false boolean to dete
     // FEMALE SCENES
     /*
     //If Amily is lesbo lover!
-	if (flags[kFLAGS.AMILY_CONFESSED_LESBIAN] > 0 && player.gender == 2) {
+	if (gameFlags[AMILY_CONFESSED_LESBIAN] > 0 && player.gender == 2) {
 	//Futa amily!
-	   if (flags[kFLAGS.AMILY_WANG_LENGTH] > 0) {
+	   if (gameFlags[AMILY_WANG_LENGTH] > 0) {
 		//If not pregnant, always get fucked!
 		  if (!pregnancy.isPregnant) sex = hermilyOnFemalePC;
 		  //else 50/50
@@ -1074,9 +1269,9 @@ function determineAmilySexEvent() { // May need to force a false boolean to dete
     // HERM SCENES
     /*
 	//If Amily is a herm lover!
-	if (player.gender == 3 && flags[kFLAGS.AMILY_HERM_QUEST] == 2) {
+	if (player.gender == 3 && gameFlags[AMILY_HERM_QUEST] == 2) {
 	   //Amily is herm too!
-        if (flags[kFLAGS.AMILY_WANG_LENGTH] > 0) {
+        if (gameFlags[AMILY_WANG_LENGTH] > 0) {
 			//If Amily is not pregnant
 			if (!pregnancy.isPregnant) {
 				//If PC is also not pregnant, 50/50 odds
@@ -1265,10 +1460,10 @@ function amilySexPtII() {
     //worm infested reaction
     /*
     if (player.findStatusEffect(StatusEffects.Infested) >= 0) {
-	   outputText("\"<i>EWWWW!  You're infested!</i>\" she shrieks, \"<i>Get out!  Don't come back 'til you get rid of the worms!</i>\"\n\nYou high tail it out of there.  It looks like Amily doesn't want much to do with you until you're cured.", false);
+	   outputText("\"<i>EWWWW!  You're infested!</i>\" she shrieks, \"<i>Get out!  Don't come back 'til you get rid of the worms!</i>\"\n\nYou high tail it out of there.  It looks like Amily doesn't want much to do with you until you're cured.");
         doNext(camp.returnToCampUseOneHour);
-		flags[kFLAGS.AMILY_AFFECTION] -= 3;
-		flags[kFLAGS.AMILY_GROSSED_OUT_BY_WORMS] = 1;
+		gameFlags[AMILY_AFFECTION] -= 3;
+		gameFlags[AMILY_GROSSED_OUT_BY_WORMS] = 1;
 		return;
 	}
     */
@@ -1330,11 +1525,11 @@ function amilySexPartIII() {
 
     /*(If player chooses "Share The Pleasure":)
     {
-    	outputText("Determined to make this good for Amily too, you resume stroking and caressing her, doing your best to meet her thrusts with your own, and planting the odd kiss on the nape of her neck", false);
+    	outputText("Determined to make this good for Amily too, you resume stroking and caressing her, doing your best to meet her thrusts with your own, and planting the odd kiss on the nape of her neck");
     	//([horsecock]
-    	if (flags[kFLAGS.AMILY_NOT_FURRY]==0)
-    		outputText(" - not actually an unpleasant experience, despite the fur", false);
-    	outputText(". She is surprised, and tenses warily at first, but then melts under your ministrations, squeaking softly in her appreciation of your efforts.", false);
+    	if (gameFlags[AMILY_NOT_FURRY]==0)
+    		outputText(" - not actually an unpleasant experience, despite the fur");
+    	outputText(". She is surprised, and tenses warily at first, but then melts under your ministrations, squeaking softly in her appreciation of your efforts.");
     }
     */
 
@@ -1369,7 +1564,7 @@ function amilySexEnjoyShow() {
     clearOutput();
     //amilySprite();
     outputText("Surprised, curious and aroused in equal measures, you decide to sit back and watch the show. Amily seems very happy to perform for you, and does her best to make it as intriguing as possible.");
-    //if (pregnancy.event >= 6) outputText("  Even though she was clearly a little nervous about her gravid state in the beginning, as she continues, she grows in confidence to the point it seems she has almost forgotten about it.", false);
+    //if (pregnancy.event >= 6) outputText("  Even though she was clearly a little nervous about her gravid state in the beginning, as she continues, she grows in confidence to the point it seems she has almost forgotten about it.");
     outputText("<br><br>");
     amilySexMidPartII();
 }
@@ -1528,46 +1723,46 @@ function amilyHighAffectionSex() {
 
     outputText("</i>\" Amily says while rubbing her stomach. You smile at her and nod, promising you'll come back, before setting off for your own camp.");
     /*OLD
-    outputText("Amily really didn't waste any time getting to her hidden bedroom, sprinting as fast as she could with you in tow.", false);
-    if (flags[kFLAGS.AMILY_INCUBATION] > 0) outputText("  Even in a slightly pregnant state she goes surprisingly fast, though she's also rather cautious of her small bump.", false);
-    outputText("\n\n", false);
+    outputText("Amily really didn't waste any time getting to her hidden bedroom, sprinting as fast as she could with you in tow.");
+    if (gameFlags[AMILY_INCUBATION] > 0) outputText("  Even in a slightly pregnant state she goes surprisingly fast, though she's also rather cautious of her small bump.");
+    outputText("<br><br>");
 
-    outputText("Once inside, the two of you get to work undoing each others clothes, tossing the garments across the room with little care for them. Amily bites her lower lip as she examines your naked form again, before practically jumping you. She wraps her small hands around your stiff " + player.cockDescript(0) + " in an almost painful fashion, rubbing and teasing it, and presses her mouth against yours, her tongue exploring every inch of your mouth that it can reach, and you quickly respond by doing the same favor for Amily.", false);
-    if (flags[kFLAGS.AMILY_INCUBATION] > 0) outputText("  Really it seems the only thing in-between you two now is Amily's small stomach bulge.", false);
-    outputText("\n\n", false);
+    outputText("Once inside, the two of you get to work undoing each others clothes, tossing the garments across the room with little care for them. Amily bites her lower lip as she examines your naked form again, before practically jumping you. She wraps her small hands around your stiff " + player.cockDescript(0) + " in an almost painful fashion, rubbing and teasing it, and presses her mouth against yours, her tongue exploring every inch of your mouth that it can reach, and you quickly respond by doing the same favor for Amily.");
+    if (gameFlags[AMILY_INCUBATION] > 0) outputText("  Really it seems the only thing in-between you two now is Amily's small stomach bulge.");
+    outputText("<br><br>");
 
-    outputText("Not releasing her grip on your raging erection, or breaking the passionate kiss for even a single second, she moves back toward the bed and takes you with her. You're quite surprised that the quiet mousegirl has come out of her shell and is being so forward. Is this the effect you have on her?\n\n", false);
+    outputText("Not releasing her grip on your raging erection, or breaking the passionate kiss for even a single second, she moves back toward the bed and takes you with her. You're quite surprised that the quiet mousegirl has come out of her shell and is being so forward. Is this the effect you have on her?<br><br>");
 
-    outputText("Finally putting some distance between the two of you, Amily flops back onto the bed and places her hands behind her head, presenting her beautiful body to you. Finding the sight irresistible, you move your head between her legs and start licking at her moist vag, pushing your tongue or your fingers in every once in a while, and sucking on her sensitive clit to stimulate her further. In response, Amily moans loudly and spreads her legs further apart, an invitation to continue. You happily oblige your lover, burying two fingers into her wet cunt while you move to other parts of her body.", false);
-    if (flags[kFLAGS.AMILY_INCUBATION] > 0) outputText("  As you move your head across her beautiful form, you stop at her growing baby bump and give it a small kiss.", false);
-    outputText("  Your head hovers at her breasts ", false);
-    if (flags[kFLAGS.AMILY_INCUBATION] > 0) outputText("which seem to have grown from the pregnancy ", false);
-    outputText("and get to work licking and suckling her nipples, and rubbing the sensitive mounds.", false);
-    if (flags[kFLAGS.AMILY_INCUBATION] > 0) outputText("  When you get a dribble of milk in your mouth it surprises you, but you certainly don't stop \"<i>Hah... You're going to have to teach the children how that's done,</i>\" Amily says in between fevered breaths.", false);
-    outputText("\n\n", false);
+    outputText("Finally putting some distance between the two of you, Amily flops back onto the bed and places her hands behind her head, presenting her beautiful body to you. Finding the sight irresistible, you move your head between her legs and start licking at her moist vag, pushing your tongue or your fingers in every once in a while, and sucking on her sensitive clit to stimulate her further. In response, Amily moans loudly and spreads her legs further apart, an invitation to continue. You happily oblige your lover, burying two fingers into her wet cunt while you move to other parts of her body.");
+    if (flags[kFLAGS.AMILY_INCUBATION] > 0) outputText("  As you move your head across her beautiful form, you stop at her growing baby bump and give it a small kiss.");
+    outputText("  Your head hovers at her breasts ");
+    if (flags[kFLAGS.AMILY_INCUBATION] > 0) outputText("which seem to have grown from the pregnancy ");
+    outputText("and get to work licking and suckling her nipples, and rubbing the sensitive mounds.");
+    if (flags[kFLAGS.AMILY_INCUBATION] > 0) outputText("  When you get a dribble of milk in your mouth it surprises you, but you certainly don't stop \"<i>Hah... You're going to have to teach the children how that's done,</i>\" Amily says in between fevered breaths.");
+    outputText("<br><br>");
 
-    outputText("By the time you start teasing her neck and collarbone, Amily's hands are clinging onto your back and she's impatiently grinding against your raging erection. \"<i>Please don't tease me anymore...</i>\" Amily whispers into your ear, making you almost feel a little bad for teasing your love in such a way.\n\n", false);
+    outputText("By the time you start teasing her neck and collarbone, Amily's hands are clinging onto your back and she's impatiently grinding against your raging erection. \"<i>Please don't tease me anymore...</i>\" Amily whispers into your ear, making you almost feel a little bad for teasing your love in such a way.<br><br>");
 
-    outputText("As an apology you quickly push your " + player.cockDescript(0) + " past her dampened nether-lips, and set to work thrusting in and out of your mousegirl lover.", false);
-    if (flags[kFLAGS.AMILY_INCUBATION] > 0) outputText("  You are of course mindful of her baby bump, not going too fast and making sure you're in a position that's comfortable for the two of you.  You don't want to harm your future offspring with the lovely mouse maiden.", false);
-    outputText("  It's not too long before you're going at a regular pace, stuffing Amily's fuckhole with your familiar manhood.\n\n", false);
+    outputText("As an apology you quickly push your " + player.cockDescript(0) + " past her dampened nether-lips, and set to work thrusting in and out of your mousegirl lover.");
+    if (flags[kFLAGS.AMILY_INCUBATION] > 0) outputText("  You are of course mindful of her baby bump, not going too fast and making sure you're in a position that's comfortable for the two of you.  You don't want to harm your future offspring with the lovely mouse maiden.");
+    outputText("  It's not too long before you're going at a regular pace, stuffing Amily's fuckhole with your familiar manhood.<br><br>");
 
-    outputText("Amily moans from the pleasure and raises her hips up to meet your thrusts, desperate for more of your loving, whispering a few dirty things to you between shallow breaths \"<i>", false);
+    outputText("Amily moans from the pleasure and raises her hips up to meet your thrusts, desperate for more of your loving, whispering a few dirty things to you between shallow breaths \"<i>");
     //not preggo
-    if (flags[kFLAGS.AMILY_INCUBATION] == 0) outputText("Fill me up with everything you have...I want to be a mother for your children, just as much as I want to be a mother of my own people...", false);
-    else outputText("No need to hold back, pump as much cum into me as you can...", false);
-    outputText("</i>\" she whispers in a sultry tone, and her words are enough to send you over the edge. You grunt loudly, feeling as if your cock is about to explode from the exertion, blasting Amily so full of your cum that it starts to ooze out. Amily gives a cute little cry, and her vaginal walls clamp down on your sensitive member with enough force to make you wince, as girlcum sprays out onto your thighs.\n\n", false);
+    if (flags[kFLAGS.AMILY_INCUBATION] == 0) outputText("Fill me up with everything you have...I want to be a mother for your children, just as much as I want to be a mother of my own people...");
+    else outputText("No need to hold back, pump as much cum into me as you can...");
+    outputText("</i>\" she whispers in a sultry tone, and her words are enough to send you over the edge. You grunt loudly, feeling as if your cock is about to explode from the exertion, blasting Amily so full of your cum that it starts to ooze out. Amily gives a cute little cry, and her vaginal walls clamp down on your sensitive member with enough force to make you wince, as girlcum sprays out onto your thighs.<br><br>");
 
     //no preggo
-    if (flags[kFLAGS.AMILY_INCUBATION] == 0) outputText("\"<i>If that didn't knock me up...I don't care as much as you'd think. It was magnificent either way,", false);
-    else outputText("\"<i>Hmm...My kids are pretty lucky that their father is such a virile specimen,", false);
-    outputText("</i>\" Amily says as she catches her breath, reaching up to ruffle your hair. You give her a bashful smile, glad to see you've made her so happy.\n\n", false);
+    if (flags[kFLAGS.AMILY_INCUBATION] == 0) outputText("\"<i>If that didn't knock me up...I don't care as much as you'd think. It was magnificent either way,");
+    else outputText("\"<i>Hmm...My kids are pretty lucky that their father is such a virile specimen,");
+    outputText("</i>\" Amily says as she catches her breath, reaching up to ruffle your hair. You give her a bashful smile, glad to see you've made her so happy.<br><br>");
 
-    outputText("The two of you lie together for some time, and it's with great regret that you tell her that you need to check in on your own camp. Amily seems dissapointed, not wanting you to leave, but understands why you need to go. \"<i>", false);
+    outputText("The two of you lie together for some time, and it's with great regret that you tell her that you need to check in on your own camp. Amily seems dissapointed, not wanting you to leave, but understands why you need to go. \"<i>");
     //no pregg
-    if (flags[kFLAGS.AMILY_INCUBATION] == 0) outputText("Okay...Well, I'm sure you'll be back. I will need your help again if this doesn't set,", false);
-    else outputText("Okay dear... but you'd better come back some time. You don't want your children to have abandonment issues, do you?", false);
-    outputText("</i>\" Amily says, rubbing her stomach. You smile at her and nod, promising you'll come back, before setting off for your own camp.", false);
+    if (flags[kFLAGS.AMILY_INCUBATION] == 0) outputText("Okay...Well, I'm sure you'll be back. I will need your help again if this doesn't set,");
+    else outputText("Okay dear... but you'd better come back some time. You don't want your children to have abandonment issues, do you?");
+    outputText("</i>\" Amily says, rubbing her stomach. You smile at her and nod, promising you'll come back, before setting off for your own camp.");
     */
     //boost affection
 
@@ -1608,7 +1803,7 @@ function girlyGirlMouseSex() {
     if (gameFlags[AMILY_TIMES_FUCKED_FEMPC] == 0) outputText("\"<i>...I didn't know it could feel so good with another woman.... But I was never attracted to women before.</i>\" Amily murmurs to herself.<br><br>");
     else outputText("\"<i>...Does it make me a lesbian, that I love this so much? Or am I just so lonely for company that even another woman is good?</i>\" Amily asks. Then she musters the energy to shake her head. \"<i>It doesn't matter. I love you.</i>\"<br><br>");
 
-    outputText("Your own strength returning to you, you sit up and smile at your mousey lover before giving her a deep kiss, tasting your juices and letting her get a taste of her own. Then you redress yourself and return to your camp.", false);
+    outputText("Your own strength returning to you, you sit up and smile at your mousey lover before giving her a deep kiss, tasting your juices and letting her get a taste of her own. Then you redress yourself and return to your camp.");
     player.orgasm();
     gameFlags[AMILY_TIMES_FUCKED_FEMPC]++;
     doNext(Camp.returnToCampUseOneHour);
@@ -1646,7 +1841,7 @@ function acceptHermAmily() {
     clearOutput();
     outputText("Her increasingly nervous, high-pitched tone is cut off when you press a finger to her lips, smiling affectionately at her. You tell her that you understand what she is saying and why she did this, and you're happy to be with her in that way. Putting on a saucy grin, you stage-whisper into her ear about giving her new appendage a trial-run, and she blushes bright red.<br><br>");
 
-    outputText("She still starts leading you away, though.", false);
+    outputText("She still starts leading you away, though.");
     doNext(amilyHermOnFemalePC);
 }
 
@@ -1687,7 +1882,7 @@ function amilyHermOnFemalePC() {
 
     //(If first time: CHECK ODD IF THEN IN TEXT
     if (gameFlags[AMILY_HERM_TIMES_FUCKED_BY_FEMPC] == 0) outputText("\"<i>Er... are you really sure about this? I mean...</i>\" Amily murmurs uncertainly, until, irritated, you suddenly wrap your " + player.legs() + " around her waist and pull her the last few inches needed to slam her dick into your needy pussy. She " + ((gameFlags[AMILY_NOT_FURRY] == 0) ? "squeaks" : "gasps") + " in shock and tries to pull out, but you still have your grip on her and pull her back, a process that repeats several times until the rhythm of it sinks in and Amily starts to thrust back and forth on her own.<br><br>");
-    else outputText("Amily grips your " + player.hipDescript() + ", gathering her courage, and then plunges her penis into your depths. Cautiously at first, she begins to thrust herself back and forth, growing faster and harder as her resolve builds.", false);
+    else outputText("Amily grips your " + player.hipDescript() + ", gathering her courage, and then plunges her penis into your depths. Cautiously at first, she begins to thrust herself back and forth, growing faster and harder as her resolve builds.");
 
     // UNCOMMENT WHEN cuntChange function is complete in Creature.js
     //player.cuntChange((gameFlags[AMILY_WANG_LENGTH] * gameFlags[AMILY_WANG_GIRTH]), true, true, false);
@@ -1946,10 +2141,10 @@ public function AmilyScene()
 			if (flags[kFLAGS.AMILY_INCEST_COUNTDOWN_TIMER] > 0 && flags[kFLAGS.AMILY_INCEST_COUNTDOWN_TIMER] < 30 * 24) flags[kFLAGS.AMILY_INCEST_COUNTDOWN_TIMER]++;
 			if (flags[kFLAGS.AMILY_FOLLOWER] == 1) {
 				if (pregnancy.isPregnant && pregnancy.incubation == 0) {
-					outputText("\n", false);
+					outputText("\n");
 					amilyPopsOutKidsInCamp();
 					pregnancy.knockUpForce(); //Clear Pregnancy
-					outputText("\n", false);
+					outputText("\n");
 					needNext = true;
 				}
 				if (pregnancy.isButtPregnant && pregnancy.buttIncubation == 0) {
@@ -2036,20 +2231,20 @@ public function AmilyScene()
             //[Surprise Remeeting]
 			/*(random chance of happening instead of [Normal Remeeting] if player meets 'requirements' for stalking Amily)
 			if (player.spe > 50 && player.inte > 40 && rand(4) == 0) {
-				outputText("Deciding to find Amily first instead of waiting for her to find you, you set off into the ruins. Using all of your knowledge, skill and cunning to figure out where she is likely to be, you make your way there without giving yourself away.\n\n", false);
+				outputText("Deciding to find Amily first instead of waiting for her to find you, you set off into the ruins. Using all of your knowledge, skill and cunning to figure out where she is likely to be, you make your way there without giving yourself away.<br><br>");
 				//[Amily is not pregnant]
 				if (flags[kFLAGS.AMILY_INCUBATION] == 0) {
-					outputText("Finally, you find her squatting down in front of a small bush. She's industriously picking it clean of berries, gulping down almost as many as she puts into a small sack at her side.\n\n", false);
+					outputText("Finally, you find her squatting down in front of a small bush. She's industriously picking it clean of berries, gulping down almost as many as she puts into a small sack at her side.<br><br>");
 				}
 				//[Amily is slightly pregnant]
 				else if (flags[kFLAGS.AMILY_INCUBATION] >= 90) {
-					outputText("Finally, you find her rummaging through the contents of a home that has been torn open. She appears to be looking for as many old strips of cloth as she can find.\n\n", false);
+					outputText("Finally, you find her rummaging through the contents of a home that has been torn open. She appears to be looking for as many old strips of cloth as she can find.<br><br>");
 				}
 				//[Amily is heavily pregnant]
 				else {
-					outputText("Finally, you find her emerging from a turn-off, pulling up her pants and muttering to herself about her bladder.\n\n", false);
+					outputText("Finally, you find her emerging from a turn-off, pulling up her pants and muttering to herself about her bladder.<br><br>");
 				}
-				outputText("How do you approach her?", false);
+				outputText("How do you approach her?");
 				//Announce yourself / Scare her
 				simpleChoices("Announce",sneakyUberAmilyRemeetingsAnnounce,"Scare Her",scareAmilyRemeetingsProBaws,"",0,"",0,"",0);
 				return;
@@ -2063,7 +2258,7 @@ public function AmilyScene()
 			
 
 			/*FAILSAFE - ALL GENDERS HAVE HAD THERE GO AN NOTHING HAPPENED!
-			outputText("You enter the ruined village cautiously. There are burnt-down houses, smashed-in doorways, ripped-off roofs... everything is covered with dust and grime. You explore for an hour, but you cannot find any sign of another living being, or anything of value. The occasional footprint from an imp or a goblin turns up in the dirt, but you don't see any of the creatures themselves. It looks like time and passing demons have stripped the place bare since it was originally abandoned. Finally, you give up and leave. You feel much easier when you're outside of the village – you had the strangest sensation of being watched while you were in there.", false);
+			outputText("You enter the ruined village cautiously. There are burnt-down houses, smashed-in doorways, ripped-off roofs... everything is covered with dust and grime. You explore for an hour, but you cannot find any sign of another living being, or anything of value. The occasional footprint from an imp or a goblin turns up in the dirt, but you don't see any of the creatures themselves. It looks like time and passing demons have stripped the place bare since it was originally abandoned. Finally, you give up and leave. You feel much easier when you're outside of the village – you had the strangest sensation of being watched while you were in there.");
 			doNext(13);
 			return;*/
 /*

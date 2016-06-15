@@ -51,9 +51,9 @@ Camp.doCamp = function () {
     }
     
     //DEBUGGING CODE FOR AMILY MEETINGS
-    player.gender = 3;
+    //player.gender = 1;
     //outputText("Player Gender is " + player.gender);
-    gameFlags[AMILY_AFFECTION] = 40;
+    //gameFlags[AMILY_AFFECTION] = 40;
     //outputText("Amily Affection is " + gameFlags[AMILY_AFFECTION]);
     //player.changeLust(50);
     //var testingPreg = new PregnancyStore(0,0,0,0);
