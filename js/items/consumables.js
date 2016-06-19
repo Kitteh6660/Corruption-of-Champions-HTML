@@ -103,8 +103,8 @@ Items.Consumables.LustDraft.description = "This vial of bright pink fluid bubble
 Items.Consumables.LustDraft.consumeEffect = ConsumableEffects.lustDraft;
 Items.Consumables.LustDraft.value = 20;
 
-Items.Consumables.OviElixir = new Item("OviElix", "Ovi Elixir", "a salve marked as 'Reducto'", ITEM_TYPE_CONSUMABLE);
-Items.Consumables.OviElixir.description = "This container full of paste can be used to shrink a body part down by a significant amount.";
+Items.Consumables.OviElixir = new Item("OviElix", "Ovi Elixir", "a salve marked as 'Ovulation Exlixir'", ITEM_TYPE_CONSUMABLE);
+Items.Consumables.OviElixir.description = "This hexagonal container with an egg-shaped label can help you or others lay eggs.";
 Items.Consumables.OviElixir.consumeEffect = ConsumableEffects.oviElixir;
 Items.Consumables.OviElixir.value = 30;
 

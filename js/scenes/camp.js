@@ -1,6 +1,6 @@
 var Camp = [];
 
-addToGameFlags(HAS_KEY_ITEM);
+addToGameFlags(HAS_KEY_ITEM, CAMP_WALL_PROGRESS);
 
 var stashbool = false;
 
@@ -51,14 +51,15 @@ Camp.doCamp = function () {
     }
     
     //DEBUGGING CODE FOR AMILY MEETINGS
-    //player.gender = 2;
+    //player.gender = 1;
     //outputText("Player Gender is " + player.gender);
     //gameFlags[AMILY_AFFECTION] = 40;
     //outputText("Amily Affection is " + gameFlags[AMILY_AFFECTION]);
     //player.changeLust(50);
     //var testingPreg = new PregnancyStore(0,0,0,0);
     //outputText(testingPreg.isPregnant());
-    
+    //player.modStats("cor", 50);
+
     //Display available options
 	menu();
 	addButton(0, "Explore", Areas.GenericExploration.exploreMenu, null, null, null, "Explore to find new regions and visit any discovered regions.");
