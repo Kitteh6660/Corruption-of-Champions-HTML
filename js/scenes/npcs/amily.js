@@ -34,6 +34,12 @@ Something is wrong in the first time scenes. The program is choking on (player.c
 
 Check gender flag checking.
 
+Rewrite the pepper part of the conversation tree.
+
+Change conversation tree options to match only the ones the player has had an encounter with. Use the codex flags to determine what the player has seen.
+
+Giant Bee conversation: Amily says she's been willing to host giant bee eggs on occasion, but will pointedly remind the player she was a virgin when they met. And the player makes no comment about HOW this is possible? Unless anal pregnancy is a thing in Ingnam, this seems like a strange reaction.
+
 */
 
 /*******
@@ -218,6 +224,7 @@ Amily.start = function () {
             addButton(1, "Hesitant", acceptAmilysOfferHesitantly, null, null, null, "Accept Amily's Offer Hesitantly.");
             addButton(2, "Refuse", refuseAmilysOffer, null, null, null, "Your mission is more important. You can't let her distract you!");
             addButton(3, "Reject", amilyNoFur, null, null, null, "You can't imagine kissing, let alone breeding with, a mouse!");
+            return;
         } else if (player.gender == 1 && gameFlags[AMILY_OFFER_ACCEPTED] == 0) {
             outputText("Wandering into the ruined village, you set off in search of Amily.<br><br>");
             /*NOPE!
@@ -233,6 +240,7 @@ Amily.start = function () {
             outputText("After wondering for a while how on earth you are going to track down Amily, you hear a whistle. Looking around, you see her waving cheekily at you from around a corner; it's pretty obvious that you have a long way to go before you'll be able to beat her at this kind of game.<br><br>");
             gameFlags[AMILY_PC_GENDER] = player.gender;
             amilyRemeetingContinued();
+            return;
             //doNext(Camp.returnToCampUseOneHour);
         }
         //Desperate Plea response (Affection 50 without any sex, requires PC to be male in previous encounter)
@@ -535,20 +543,21 @@ function amilyStandardMeeting() {
     // var sex = determineAmilySexEvent(); // This decides the type of sex you'll have with EMily
     //Update gender tracking flag for Amily
     gameFlags[AMILY_PC_GENDER] = player.gender;
+    menu();
     if (forced || player.lust > 35) {
         addButton(0, "Sex", determineAmilySexEvent, null, null, null, "You wanted me to knock you up. Let's do this.");
     }
+    addButton(1, "Talk", talkToAmily, null, null, null, "Actually, I just came for conversation...");
     addButton(4, "Leave", Camp.returnToCampUseOneHour);
 
 
 
 
-    //addButton(1, "Talk", amilyTalk, null, null, null, "Actually, I just came for conversation...");
+
     //addButton(2, "Both", refuseAmilysOffer, null, null, null, "Your mission is more important. You can't let her distract you!");
     //addButton(3, "Reject", amilyNoFur, null, null, null, "You can't imagine kissing, let alone breeding with, a mouse!");
     //simpleChoices("Sex", sex, "Talk", talkToAmily, "Both", (sex == null ? null : talkThenSexWithAmily), "Efficiency", efficiency, "Leave", amp.returnToCampUseOneHour);
-    //doNext(Camp.doCamp);
-    //doNext(Camp.doCamp);
+
 }
 
 // Failsafe function to return player to camp.
@@ -572,6 +581,7 @@ function amilyRemeetingContinued() {
     addButton(2, "Just Talk", repeatAmilyTalk, null, null, null, "Tooltip to be added.");
     addButton(3, "Get Lost", tellAmilyToGetLost, null, null, null, "Tooltip to be added");
     // There's a straight-up leave option here in the code, but it doesn't make much sense story-wise to leave without answering the question.
+    return;
 }
 
 // Accept offer the second time, move to sex loops.
@@ -601,8 +611,7 @@ function repeatAmilyTalk() {
     //amilySprite();
     outputText("You tell her that you only wanted to talk.<br><br>");
     outputText("\"<i>Just to talk?</i>\" Amily asks, and then adds quietly, \"<i>Well... it has been a long time since I actually had somebody to talk to...</i>\" She looks distracted for a moment, but then she smiles. Clearly, Amily is pleased with the prospect. \"<i>So, is there anything in particular you want to talk about?</i>\"<br><br>");
-    // Uncomment this when you get to conversation code!
-    //doNext(talkWithCuntIMeanAmily);
+    doNext(amilyConversationStart);
 }
 
 // This text needs updating. Looks like it was originally going to shut out the whole ruins, but there could still be racks and/or Shouldra encounters the player would want to encounter. Leaving text as is for now.
@@ -1169,12 +1178,501 @@ function amilyNewGenderConfrontation() {
 *
 *********/
 
+// Opening conversation scene
 function talkToAmily() {
-    output("Reached Talking");
-    doNext(Camp.doCamp);
+    clearOutput();
+	//amilySprite();
+	if (gameFlags[AMILY_MET_AS] == 2 && player.gender == 2) outputText("You tell Amily that you came here because you wanted to talk with her.<br><br>");
+			else outputText("You tell Amily that you came here because you wanted to talk with her, and you have no desire to approach her sexually on this encounter.<br><br>");
+
+    //[Low Affection]
+	if (gameFlags[AMILY_AFFECTION] < 15) {
+	   /*
+        switch (pregnancy.event) {
+					case 1:
+					case 2:
+					case 3:
+					case 4:
+					case 5: //Amily is slightly pregnant
+							outputText("\"<i>I could use someone to talk to, I suppose,</i>\" she says plainly, but you can clearly see that she's very happy that's what you want to do.\n\n", false);
+							break;
+					case 6:
+					case 7:
+					case 8: //Amily is heavily pregnant
+							outputText("\"<i>Oh, NOW you want to get to know me,</i>\" she complains, but her tone is gentle – amused even, and she clearly isn't as unhappy as her words may imply. Heavily, she sits herself down unceremoniously. \"<i>But... there are things weighing on my mind. I really could use somebody to talk to.</i>\"\n\n", false);
+							break;
+					default: //Amily is not pregnant */
+							if (gameFlags[AMILY_MET_AS] == 2 && player.gender == 2) outputText("\"<i>A chat would be lovely,</i>\" she says, clearly enjoying herself.  \"<i>I... I hardly ever get a chance to find someone to chat with.  Sometimes it seems like everyone in Mareth just wants to breed non-stop...</i>\" she murmers to herself.  \"<i>Well, what shall we talk about?</i>\" she asks, seemingly quite happy with your presence.<br><br>");
+							else outputText("\"<i>You want to talk? No sex?</i>\" she asks, clearly having a hard time believing it. \"<i>I... I haven't had the chance to talk to anyone in years. It's been so long...</i>\" she murmurs to herself, and you think you see the start of a tear glinting in her eye. \"<i>Well, what do you want to talk about?</i>\" she asks, seemingly quite happy that's what you're here for.<br><br>");
+				//}
+			}
+			//[Medium Affection]
+			else if (gameFlags[AMILY_AFFECTION] < 40) {
+				outputText("\"<i>Of course, " + player.short + ", I always enjoy our talks.  What shall we discuss this time?</i>\" she asks happily.<br><br>");
+			}
+			//[High Affection]
+			else {
+				outputText("She smiles playfully at you. \"<i>And here I was thinking we knew each other already.  But if you want, I'm always happy to talk.</i>\"<br><br>");
+			}
+			//[/ Go to random [Conversation]]
+			doNext(amilyConversationStart);
+		}
+
+// GIANT CONVERSATION TREE START!
+// May need to set a sexAfter boolean when this scene is called. Try an experiment to see if you can declare it false in the declaration?
+function amilyConversationStart(sexAfter) {
+    clearOutput();
+	//amilySprite();
+    // Get a random conversation out of the 15 options
+    var convo = rand(15);
+	// Bump past convo #12 if she's already at camp because it doesn't make much sense by this point.
+	//if (convo == 12 && amilyFollower()) convo++;
+	//Girls dont get to listen to amily talk about being knocked up.
+	//Herms either unless she's okay'ed them for dad-hood.
+	if (player.gender == 2 || (player.gender == 3 && gameFlags[AMILY_HERM_QUEST] < 2)) convo = rand(12);
+    //Boost affection!
+	gameFlags[AMILY_AFFECTION] += 2 + rand(3);
+	//Lower Corruption a tiny bit
+    player.modStats("cor", -.34);
+    //Conversation: Items
+	if (convo == 0) {
+	   outputText("The two of you swap tales about your respective adventures, and from there the topic drifts to the various potions and elixirs discovered in this world.<br><br>");
+
+        outputText("\"<i>You know...  I don't have the equipment needed to practice alchemy, but I do know a few things about it.</i>\" Amily says.  \"<i>If you can bring me a potion or a reagent, I may be able to remember some of the things my father taught me.</i>\"<br><br>");
+
+        //(If player has no main item:)
+		if (player.itemSlot1.quantity == 0) {
+            outputText("Promising you'll keep that in mind, you take your leave of Amily.<br><br>");
+			if (sexAfter) doNext(determineAmilySexEvent());
+					else doNext(Camp.returnToCampUseOneHour);
+					return;
+        }
+		//(If player has an item:)
+		  else {
+		      outputText("You remember that you have something in your pockets that might be of interest, and show it to Amily.<br><br>");
+          }
+        // Item checks only work in the first slot.
+        // Player has Equinum in first slot
+		if (player.itemSlot1.itype == consumables.EQUINUM) {
+            outputText("\"<i>That's a distillation of horse essence, I think.</i>\" Amily says.  \"<i>I guess it would probably make you stronger and tougher... but horses aren't smart, and it might be too strong for a human to handle without changing them,</i>\" she warns you.<br><br>");
+        }
+		//Canine Pepper & Variants:
+        // THIS PART MAKES NO SENSE! Either combine them all with a big OR clause or write descriptions for each!
+		  else if (player.itemSlot1.itype == consumables.CANINEP) {
+		      outputText("\"<i>Looks kind of like a dog's dick, doesn't it?  Especially this one with the big knot-like bulge or this one with the ball-like bulbs.  I suppose it would make you more dog-like... but I'm pretty sure you should avoid these jet-black ones.  I can't remember why...</i>\" she trails off, wracking her brain.<br><br>");
+          }
+		  //Large Pepper
+            else if (player.itemSlot1.itype == consumables.LARGEPP) {
+				outputText("\"<i>Looks kind of like a dog's dick, doesn't it?  Especially this one with the big knot-like bulge or this one with the ball-like bulbs.  I suppose it would make you more dog-like... but I'm pretty sure you should avoid these jet-black ones.  I can't remember why...</i>\" she trails off, wracking her brain.<br><br>");
+			}
+				//Double Pepper
+            else if (player.itemSlot1.itype == consumables.DBLPEPP) {
+			     outputText("\"<i>Looks kind of like a dog's dick, doesn't it?  Especially this one with the big knot-like bulge or this one with the ball-like bulbs.  I suppose it would make you more dog-like... but I'm pretty sure you should avoid these jet-black ones.  I can't remember why...</i>\" she trails off, wracking her brain.<br><br>");
+            }
+			//Black Pepper
+				else if (player.itemSlot1.itype == consumables.BLACKPP) {
+					outputText("\"<i>Looks kind of like a dog's dick, doesn't it?  Especially this one with the big knot-like bulge or this one with the ball-like bulbs.  I suppose it would make you more dog-like... but I'm pretty sure you should avoid these jet-black ones.  I can't remember why...</i>\" she trails off, wracking her brain.<br><br>");
+				}
+				//Canine Pepper & Variants:
+				else if (player.itemSlot1.itype == consumables.KNOTTYP) {
+					outputText("\"<i>Looks kind of like a dog's dick, doesn't it?  Especially this one with the big knot-like bulge or this one with the ball-like bulbs.  I suppose it would make you more dog-like... but I'm pretty sure you should avoid these jet-black ones.  I can't remember why...</i>\" she trails off, wracking her brain.<br><br>");
+				}
+				//Canine Pepper & Variants:
+				else if (player.itemSlot1.itype == consumables.BULBYPP) {
+					outputText("\"<i>Looks kind of like a dog's dick, doesn't it?  Especially this one with the big knot-like bulge or this one with the ball-like bulbs.  I suppose it would make you more dog-like... but I'm pretty sure you should avoid these jet-black ones.  I can't remember why...</i>\" she trails off, wracking her brain.<br><br>");
+				}
+                // Now we're out of the stupid...
+				//Succubus Milk/Incubus Draft:
+				else if (player.itemSlot1.itype == consumables.INCUBID || player.itemSlot1.itype == consumables.SUCMILK) {
+					outputText("She recoils with a hiss.  \"<i>That's demon fluid, it is - like drinking liquid corruption! Avoid that stuff if you can; it'll turn you into a demon, and supercharge your sex-drive.  I've heard it can even mess with your gender if you drink too much of the opposite stuff.</i>\"<br><br>");
+				}
+				//Succubi's Delight:
+				else if (player.itemSlot1.itype == consumables.SDELITE) {
+					outputText("\"<i>Full of taint, no question of that.  Succubi give it to males who haven't become demons yet; makes them better able to produce cum, and pushes them towards demonhood.</i>\"<br><br>");
+				}
+				//Wet Cloth:
+				else if (player.itemSlot1.itype == consumables.WETCLTH) {
+					outputText("\"<i>I... have no idea what that is.</i>\" she says, looking confused.  \"<i>I guess it's... slimey?  Concentrate of goo?  I think it's got something to do with whatever's been polluting the lake, so I wouldn't rub it into your skin.</i>\"<br><br>");
+				}
+				//Bee Honey:
+				else if (player.itemSlot1.itype == consumables.BEEHONY) {
+					outputText("\"<i>Honey from a giant bee?</i>\" she asks eagerly, perking up.  \"<i>Oh, that stuff's delicious! I hear it's full of special essences secreted by the giant bees, though, so it could have transformative effects.</i>\"<br><br>");
+				}
+				//Pure Honey:
+				else if (player.itemSlot1.itype == consumables.PURHONY) {
+					outputText("\"<i>You managed to get your hands on ultra-pure giant bee honey?</i>\" she asks, sounding impressed.  \"<i>I hear that stuff's so pure it can actually help purge the eater of demonic taint - but it's probably otherwise the same as regular bee honey.</i>\"<br><br>");
+				}
+				//Whisker Fruit:
+				if (player.itemSlot1.itype == consumables.W_FRUIT) {
+					outputText("\"<i>That's a whisker fruit,</i>\" Amily says, \"<i>It might give you cat ears and even tail! It would make you cute-looking!</i>\"<br><br>");
+				}
+				//Pigtail or Boar Truffle:
+				if (player.itemSlot1.itype == consumables.PIGTRUF || player.itemSlot1.itype == consumables.BOARTRU) {
+					outputText("\"<i>That's a pigtail truffle,</i>\" Amily says, \"<i>It might give you pig ears and even tail! It would make you plump and cute-looking!</i>\"<br><br>");
+				}
+				//Green Glob:
+				else if (player.itemSlot1.itype == useables.GREENGL) {
+					outputText("\"<i>A blob of slime from a green gel?  Hmm...</i>\" she looks thoughtful.  \"<i>I think I remember my dad once telling me you could make a really strong armor out of a special distillation of green oozes.  I can't say for sure, and I wouldn't have the equipment even if I did remember.</i>\"<br><br>");
+				}
+				//Bee Chitin:
+				else if (player.itemSlot1.itype == useables.B_CHITN) {
+					outputText("\"<i>If you had a sufficient mass of this stuff, you could make a suit of armor out of it.  It needs special alchemical reagents, though, otherwise it'll just get all brittle and smashed up.</i>\"<br><br>");
+				}
+				//Spider Silk:
+				else if (player.itemSlot1.itype == useables.T_SSILK) {
+					outputText("\"<i>Some spider silk? I think I remember someone who could take these and make them into armor or even comfortable robes.</i>\"<br><br>");
+				}
+				//Dragon Scale:
+				else if (player.itemSlot1.itype == useables.D_SCALE) {
+					outputText("\"<i>Dragonscale? I never knew dragons existed");
+					//if (camp.followerKiha() || camp.followerEmber()) outputText(" until");
+					//if (camp.followerKiha()) outputText(" Kiha");
+					//if (camp.followerKiha() && camp.followerEmber()) outputText(" and");
+					//if (camp.followerEmber()) outputText(" Ember");
+					//if (camp.followerKiha() || camp.followerEmber()) outputText(" came to your camp");
+					outputText(". They could be made into flexible yet protective armor.</i>\"<br><br>");
+				}
+				//Imp Skull:
+				else if (player.itemSlot1.itype == useables.IMPSKLL) {
+					outputText("\"<i>The skull of an imp? I hunt imps and sometimes, I would cut their head off and take their skulls as trophy. " + (gameFlags[CAMP_WALL_PROGRESS] >= 100 ? "I'll hang some the skulls on the wall around your camp. You did a good job with the wall though." : "") + "</i>\"<br><br>");
+				}
+				else {
+					outputText("She looks at it and shrugs, not really familiar with it.<br><br>");
+				}
+				outputText("Thanking her for her help, you return the item to your pocket");
+				if (sexAfter) outputText(".<br><br>");
+				else outputText(" and take your leave of the mouse-girl.<br><br>");
+			}
+    //Conversation: Minotaurs
+	else if (convo == 1) {
+	outputText("The two of you swap tales about your respective adventures, and from there the topic drifts to the strange bull-men that you have seen haunting the mountains.<br><br>");
+
+	outputText("\"<i>You were lucky to get away with your skin intact.</i>\" Amily tells you emphatically.  \"<i>Minotaurs are dangerous brutes - they're one of the biggest, strongest and toughest beasts around.  I don't dare go near the mountains, not with those beasts roaming around.  Sometimes they carry around huge axes, but usually they make do with just their huge, knuckley fists.</i>\"<br><br>");
+
+	outputText("You ask her why it is that minotaurs are so dangerous; they don't seem to look like demons.<br><br>");
+
+	outputText("\"<i>They may as well be demons, now. Oh, they may not look corrupted, but all they care about is finding something to rut with - man, woman, both, neither, they don't care.  So long as it's got a hole, they'll fuck it...  I think maybe I heard somewhere that they can only reproduce by raping other creatures with a vagina now, but I don't remember where.</i>\"  She looks perturbed, but why you can't say for certain.<br><br>");
+
+	outputText("You ask her then if she has any advice on how to deal with them.<br><br>");
+
+	outputText("Amily laughs.  \"<i>Not really; me, I run if ever I see them.  I'm not a stand-up fighter to begin with, but against those brutes?  And it's not just their strength, either...  I think they've got some kind of addictive chemical in their cum.  The stink of their presence alone can make you feel turned on.  There was this one that managed to corner me; it pulled out its huge horse-cock and started masturbating.</i>\"  She shudders in disgust.  \"<i>I narrowly missed getting sprayed, but the smell... it was intoxicating.</i>\"  She admits, clearly embarrassed.  \"<i>My legs nearly buckled from arousal - it was so tempting to just give in and let him fuck me.</i>\"<br><br>");
+
+	outputText("You ask her what she did.<br><br>");
+
+	outputText("\"<i>I fought it off and ran,</i>\" she insists, looking a little insulted, ");
+        //(If player hasn't had sex with Amily:
+		if (gameFlags[AMILY_FUCK_COUNTER] == 0) outputText("\"<i>I am still a virgin, after all.</i>\"<br><br>");
+		//(If player has had sex with Amily:
+            else outputText("\"<i>I was a virgin when we met, in case you forgot.</i>\"<br><br>");
+
+    outputText("\"<i>The big brute was stupid enough to follow me; once I got to the trees, where he couldn't get around so easily, I put a poisoned dart in each of his eyes.  When he stopped thrashing around, I walked up and slit his throat.</i>\"<br><br>");
+
+    outputText("She looks quite proud of herself for that.  Feeling a bit disturbed by her ruthlessness, you thank her for the warning");
+        if (sexAfter) outputText(".<br><br>");
+		  else outputText(" and excuse yourself.<br><br>");
+    }
+			//Conversation: Sand Witches
+    else if (convo == 2) {
+	outputText("The two of you swap tales about your respective adventures, and from there the topic drifts to the mysterious female magic-users you've seen in the Desert.<br><br>");
+
+	outputText("\"<i>Sand Witches, eh? Funny, it seems the only pseudo-humans left in this area that aren't demons are magic-users... even though it was their usage of magic that turned the first demons into demons,</i>\" Amily notes.  \"<i>Or so I heard, anyway,</i>\" she adds.<br><br>");
+
+	outputText("You ask her if she knows what the Sand Witches are trying to do out there in the desert.<br><br>");
+
+	outputText("\"<i>Not a clue.  I think... I think that they might be some kind of druidic sect or something. Restoring life to the desert, trying to make it into grassland or something like that,</i>\" Amily suggests.<br><br>");
+
+	outputText("You ask her why she comes to that conclusion.<br><br>");
+
+	outputText("\"<i>Have you seen them under those robes?  They're all women, they all have two pairs of breasts, and those breasts are always bloated huge with milk.  My guess is that they've gone mad like those Fetish Cultists; they're not proper demons, but they're still sex-warped.  Maybe they use milk to try and nourish seedlings or something,</i>\" the mouse-woman shrugs.<br><br>");
+
+	outputText("You ask her how on earth she would know that all Sand Witches have four milk-filled breasts.  She blushes deeply and fidgets, clearly embarrassed.  Finally, she speaks up.<br><br>");
+
+	outputText("\"<i>I... kind of got lost in the desert once.  A Sand Witch approached me and asks me if I'd let her cast a spell on me.  When I refused, she attacked, trying to beat me down so she could cast it on me anyway.</i>\"<br><br>");
+
+	outputText("You interrupt to ask her what the spell would have done.<br><br>");
+
+	outputText("\"<i>How should I know? Make me into some kind of milk-producing slave?</i>\" Amily retorts fiercely, tail lashing in agitation.  \"<i>I didn't give her a chance to use it.  Three sleeping potion darts in her face, quicker than she could blink.  I was annoyed, so I pulled off her robes to bind her limbs - I figured that'd slow her down long enough when she woke up that I'd be far away.  Her breasts were full of milk - so full I could see it leaking out of each nipple.</i>\"  She blushes intently, clearly embarrassed.  \"<i>I... I hadn't had anything to eat or drink for ages, I was starving and thirsty and so I...</i>\"<br><br>");
+
+	outputText("You assure her that she doesn't need to spell it out.  She looks grateful, then continues.<br><br>");
+
+	outputText("\"<i>So, I had just drunk my fill, feeling fuller then I had in weeks, and then, you won't believe it, another Sand Witch shows up - from the things she was saying, I must have accidentally interrupted some kind of lesbian tryst they had planned.  I grab my stuff and bolt for safety - not quick enough to keep her from casting some spell that makes this stone orb fly up my... my...</i>\"  She blushes again.  \"<i>It was like having some kind of vibrating sex toy jammed up there. I don't know how I managed to run away with it, but when I got too far, it dissolved into sand and just fell out.  I don't think they can take much punishment, but they've clearly got some nasty tricks.</i>\"<br><br>");
+
+	outputText("Thanking her for the advice, you promise you'll be more careful if you see them in the future");
+	   if (sexAfter) outputText(".<br><br>");
+        else outputText(" and take your leave.<br><br>");
+    }
+			//Conversation: Giant Bees
+            // Amily says she's been willing to host giant bee eggs on occasion, but will pointedly remind the player she was a virgin when they met. And the player makes no comment about HOW this is possible? Unless anal pregnancy is a thing in Ingnam, this seems like a strange reaction.
+    else if (convo == 3) {
+        outputText("The two of you swap tales about your respective adventures, and from there the topic drifts to the strange bee-like women you've seen in the forest.<br><br>");
+
+		outputText("\"<i>Giant Bees?  They're a strange race,</i>\" Amily says.  \"<i>They're not really corrupt, but at the same time, they act kind of like demons.</i>\"<br><br>");
+
+		outputText("You ask her to explain how that works.<br><br>");
+
+		outputText("\"<i>Well... the Giant Bees you've probably seen?  The official name for them is the fertile caste, but folks tend to just call them handmaidens,</i>\" Amily explains.<br><br>");
+
+		outputText("At your confused look, she continues.<br><br>");
+
+		outputText("\"<i>Giant Bees hatch from each egg as hundreds of regular-looking little bees.  And fertiles are involved in that - for some reason, the eggs need to incubate inside a living being to hatch in the first place.</i>\"<br><br>");
+
+		outputText("Your expression probably tells the story, because Amily giggles slightly before adding.  \"<i>It's not dangerous or anything like that!  The queen and the handmaidens both have this cock-like appendage on their abdomens; the queen uses this to lay her eggs into the handmaidens, filling up their abdomens, while the handmaiden then lays a mixture of eggs and honey into a person's gut via their anus.  The eggs kind of... well, they sit there, and then, when they're ready to hatch, they just... come out.</i>\"<br><br>");
+
+		outputText("She shrugs, clearly not able to explain it any better than that.  You ask how you can avoid such a fate.<br><br>");
+
+		outputText("\"<i>Well, they mainly use this hypnotic thrumming from their wings; but if you've got a strong, sharp mind you can shake it off.  They aren't the kind to get violent; they will ask you to accept their eggs, if you resist their hypnosis, but they won't try to beat you into submission so they can lay their eggs.  I wouldn't recommend fighting them; they're quick and pretty tough, thanks to that armor, and they've got this nasty venom that saps your strength and arouses you at the same time.</i>\"<br><br>");
+
+		outputText("You thank her for her advice, and then, curious, ask how she knows so much about these creatures.<br><br>");
+
+		outputText("Amily looks flustered.  \"<i>Well, they, they have been willing to trade honey in the past if you confront them peacefully and... alright, I'll admit it, when times have been really lean, I've been willing to host some giant bee eggs in exchange for honey.</i>\"<br><br>");
+
+		outputText("You smile and thank her for sharing, noting that she didn't need to tell you such personal information", false);
+		  if (sexAfter) outputText(".<br><br>");
+		      else outputText(", and politely excuse yourself.<br><br>");
+			}
+	//Conversation: Fetish Cultists & Zealouts
+    else if (convo == 4) {
+        outputText("The two of you swap tales about your respective adventures, and from there the topic drifts to the bizarrely-dressed people you've caught glimpses of around the lake.<br><br>");
+
+        outputText("Amily thinks fiercely, then shakes her head, looking apologetic.  \"<i>I'm sorry, I don't know anything about them.  They're new to this area, I can tell you that much.  It looks like they have some weird magic that lets them change their clothes at random.  I stay away from them; there's something about them that reminds me of demons, but they're... scarier, somehow.</i>\"<br><br>");
+
+		outputText("Telling her that it's all right if she doesn't know that much, you get up");
+		  if (sexAfter) outputText(" and sigh.<br><br>");
+		      else outputText(" and leave.<br><br>");
+			}
+    //Conversation: Imps
+    else if (convo == 5) {
+        outputText("The two of you swap tales about your respective adventures, and from there the topic drifts to the small demons you've seen in your travels.<br><br>");
+
+		outputText("\"<i>Imps!</i>\" Amily spits, looking fierce.  \"<i>Disgusting demon vermin, that's what they are! All over the place, looking to rape anything they can get their hands on.  They're puny little creatures, and they're easy to cut down, but they use black magic to try and make you so horny they can rape you.  I kill them wherever I find them, but there's always more and more of them.</i>\"<br><br>");
+
+		outputText("Her tail is lashing furiously from side to side, and, clearly worked up, she tensely excuses herself ");
+            if (sexAfter) outputText("to regain her composure before your sexplay.<br><br>");
+				else {
+					outputText("and leaves.");
+					if (gameFlags[AMILY_FOLLOWER] == 0) outputText("  As you set off back to camp,");
+					   else outputText("  As you sit back down in camp,");
+					outputText(" you have little doubt that she's gone to find and kill an imp.<br><br>");
+				}
+    }
+			//Conversation: Shark Girls
+    else if (convo == 6) {
+	   outputText("The two of you swap tales about your respective adventures, and from there the topic drifts to the humanoid female sharks you've seen while rowing your boat.<br><br>");
+
+	   outputText("\"<i>Shark Girls? Near as I can tell, they used to be a village of humans who lived right here on the lake... then the lake got polluted, and turned them all into... well, what they are now.</i>\"<br><br>");
+
+	//if (!izmaFollower()) outputText("She looks pensive.  \"<i>Odd... I don't think they have any males left, but on very rare occasions I've seen these weird tiger-striped Shark Girls... and they always had huge cocks and balls as well.  But, whether female or herm, they seem to only care about fighting and fucking... and from the way I've seen them going at it, I don't think they see any difference between the two any more.</i>\"<br><br>");
+
+	   outputText("You ask her if she has any advice on fighting them.<br><br>");
+
+	   outputText("\"<i>I'm afraid not.  They don't come to the shore too often, never mind too far out of the lake. They're probably resistant to pain and have a really wicked bite, though,</i>\" she tells you.<br><br>");
+
+        if (!sexAfter) outputText("Thanking her for her time, you take your leave of her.<br><br>");
+	       else outputText("You thank her for her time as the conversation winds down.<br><br>");
+    }
+    //Conversation: Goblins
+	else if (convo == 7) {
+	   outputText("The two of you swap tales about your respective adventures, and from there the topic drifts to the strange green women you've seen in the forest and the mountains.<br><br>");
+
+		outputText("\"<i>Ah, Goblins.</i>\" Amily says, shaking her head sadly.  \"<i>Yet another race corrupted by the demons.  Used to be that all they wanted was to experiment with potions and build machines.  Now all they do is fuck... Weird thing is, they seem to actively want to get pregnant.  I've heard that giving birth is like the biggest, most prolonged orgasm to them.</i>\"<br><br>");
+
+		outputText("You ask if they're aggressive.<br><br>");
+
+		outputText("\"<i>Not particularly... but, if you're female, they may get territorial and attack without warning, and if you've got a penis, they'll want to have sex with you, even if that means beating you into submission.  They're... honestly kind of puny.  If you can dodge the lust potions and poisons they throw, they basically can't do anything to you.</i>\"<br><br>");
+
+		  if (!sexAfter) {
+              if (gameFlags[AMILY_FOLLOWER] == 0) outputText("Thanking her for her time, and the warning, you head back to your own camp.<br><br>");
+				    else outputText("Thanking her for her time, and the warning, you sit back down in your camp.<br><br>");
+          }
+				else outputText("You thank her for her time as the conversation winds down.<br><br>");
+    }
+			//Conversation: What was life in her village like?
+	else if (convo == 8) {
+	   outputText("You think for a moment, wondering what to ask her. Then you shrug your shoulders and tell her that you'd like to know a little more about her, that you want to get to know her better.<br><br>");
+
+		outputText("Amily looks surprised... but pleased.  \"<i>I... You're really interested in hearing about me?  Well... okay.  What do you want to know?</i>\"<br><br>");
+
+		outputText("You rack your brains for a few moments, then ask her to tell you what life was like in her village, before everything.<br><br>");
+
+		outputText("\"<i>Well, what was life like in your village, huh?</i>\" she responds immediately.  \"<i>If I gotta share something private like that, then the least you can do is reciprocate.</i>\"<br><br>");
+
+		outputText("Her tone is light and playful, you think she may only be teasing, but you decide that it is fair.  And so you start to talk, telling her about your village; you describe the people, your friends, the places you liked to go.  She sits and stares at you, clearly not expecting you to share that kind of information, but she looks quite appreciative, and she listens intently.  Finally, when you finish, she gives a soft, sad smile, shakes her head, and then starts to speak.<br><br>");
+
+		outputText("\"<i>Life in the village, huh? It was so many years ago... and yet, I can remember it almost like it was yesterday.  The demons had already been around for a few years by the time I remember - I think I was born maybe shortly after they first appeared, I haven't celebrated my Day of First Breath in so long I don't really know how old I am.  We had walls to protect the village, and guards, but we never really believed that we would ever have to fight.  We were a peaceful, quiet little village; we had nothing of real monetary worth, we thought we would be safe, that the demons would just ignore us.  We fished in the lake, went swimming and sailed boats to amuse ourselves, we gathered fruits and nuts and berries and mushrooms from the forest, we hunted birds and small game for meat.</i>\"<br><br>");
+
+		outputText("She sighs softly.  \"<i>We were fools... but we were so happy, can we be blamed for being fools?  Life wasn't perfect, the hunters often had to hunt imps, but they never invaded our streets, and so we thought we were safe.  We quarreled and made up, we laughed and loved and lived...  It was such a wonderful time.</i>\"<br><br>");
+
+		outputText("You see a small tear form in her eye and trickle down her cheek.  Unable to say why, you reach out and wipe it away with your finger.  She looks at you, startled");
+            if (!sexAfter) outputText(", and, embarrassed and unable to explain why you did that, you politely take your leave.");
+				else outputText(", before giving you a warm smile.<br><br>");
+        }
+			//Conversation: Who was she before it was all lost?
+    else if (convo == 9) {
+	outputText("You think for a moment, wondering what to ask her.  Then you shrug your shoulders and tell her that you'd like to know a little more about her, that you want to get to know her better.<br><br>");
+
+	outputText("Amily looks surprised... but pleased.  \"<i>I...  You're really interested in hearing about me?  Well... okay.  What do you want to know?</i>\"<br><br>");
+
+	outputText("You rack your brains for a few moments, then ask her to tell about herself, about who she was, before everything.<br><br>");
+
+	outputText("\"<i>Well, what were you like before you came to this world, huh?</i>\" she responds immediately.  \"<i>If I gotta share something private like that, then the least you can do is reciprocate.</i>\"<br><br>");
+
+	outputText("Her tone is light and playful, you think she may only be teasing, but you decide that it is fair.  And so you talk to her, you tell her about your own family, your own childhood.  She listens intently, laughing with you at the funny things you remember, and nodding with sombre empathy at the sad things.  Finally, when you finish, she gives a soft, sad smile, shakes her head, and then starts to speak.<br><br>");
+
+	outputText("\"<i>Who was I?  Well... I was nobody, really. Just an average little girl, a face in the crowd.  Daddy was an alchemist; he made a lot of his money in those days working to purify items that were tainted in some fashion, but his primary goal was trying to come up with a concoction that could actually help purify someone who had been tainted already.  He thought that there might be something worth investigating in Pure Giant Bee Honey, but he never did succeed.</i>\"<br><br>");
+
+	outputText("You ask if she didn't get on with her father.<br><br>");
+
+	outputText("\"<i>What?</i>\" she asks, clearly surprised.  \"<i>No, he loved me, and I loved him, but he didn't have a lot of free time.  I tried to take an interest in learning alchemy, it was a way to get closer to him, but it never really interested me that much.</i>\"  She smiles, amused.  \"<i>I was really more of a mommy's girl than a daddy's girl, I guess.</i>\"<br><br>");
+
+	outputText("You ask her to tell you about her mother.<br><br>");
+
+	outputText("\"<i>She was a hunter - one of the best in the village.  Quick enough to run a deer to ground, quiet enough that it wouldn't know she was there until her knife was at its throat, skilled enough with a blowpipe to pin a fly to a tree from fifty paces without killing it,</i>\" Amily boasts.  \"<i>I admired her - I adored her, I wanted to be just like her.  I was always bugging her to teach me, and she worked hard to help me get good.  Everyone always said I was going to be just like her.</i>\"  She smiles... and then she looks sad.  \"<i>If it wasn't for those skills, I mightn't have survived when the demons came.</i>\"<br><br>");
+
+	outputText("Gently, you reach out and take her hand, trying to offer her some comfort, and then ask what happened to her parents.<br><br>");
+
+	outputText("\"<i>I... I don't know.</i>\" She sniffs.  \"<i>The last I saw of them, daddy was throwing some exploding potions at a tentacle beast, and mom was yelling at me to run, to run as fast as I could and hide myself in the wilderness while she took on a pack of imps.  I haven't seen them since.</i>\"  Her voice cracks, and she buries her head in her hands.<br><br>");
+
+	outputText("\"<i>I'll be alright,</i>\" she sobs.  \"<i>But... please... leave me alone now? Please?</i>\"<br><br>");
+
+	outputText("Wanting to respect her privacy, you place a hand on her shoulder and give her a squeeze, attempting to convey that you will always be ready to talk if she needs it.");
+        if (!sexAfter) outputText("  Then you leave her, giving her the chance to mourn her lost family.<br><br>");
+    }
+			//Conversation: How did it fall?
+    else if (convo == 10) {
+	   outputText("You think for a moment, wondering what to ask her.  Then you shrug your shoulders and tell her that you'd like to know a little more about her, that you want to get to know her better.<br><br>");
+
+		outputText("Amily looks surprised... but pleased.  \"<i>I... You're really interested in hearing about me?  Well... okay.  What do you want to know?</i>\"<br><br>");
+
+		outputText("Hesitantly, you ask her what happened to cause her village to fall.  Why is she the only survivor?<br><br>");
+
+		outputText("Amily looks shocked, and then sad.  \"<i>I knew you would ask this, eventually,</i>\" she murmurs.  Her gaze unfocuses itself, memories she evidently would rather not recall coming flooding back.  \"<i>It was the evening of the annual autumn festival.  We were all in the town square, celebrating the end of another year and our success in stockpiling food to see us through the winter.  That was when they came... a horde of them, spilling over the walls, smashing through the gates. We had no sentries up... we had no forewarning.  We didn't know they were there until the screaming started.</i>\"<br><br>");
+
+		outputText("You realize she's starting to shiver.<br><br>");
+
+		outputText("\"<i>There were so many of them... so horrible.  Imps by the dozens, the hundreds, succubi, incubi, creatures I can't even name.  Twisted forms, all blurring into each other...</i>\"<br><br>");
+
+		outputText("You place a hand on her shoulder, trying to draw her back into the real world.  She stops shaking and continues, calmer.<br><br>");
+
+		outputText("\"<i>We had no weapons - we hadn't been well armed even before, and who took spears and daggers to a festival?  It was pandemonium - we scattered in all directions like brainless animals.  The demons just had to pick us off. Some tried to fight, but they were quickly overwhelmed - beaten down by superior force.  Some of us must have gone mad from the corruption boiling off of them, because they just gave up and let the demons have them.  I... I saw this one boy, he couldn't have been more then a year or two older than me.  I could only watch as he just opened his arms and looked up blissfully at this monster with a human woman's face, cat ears, six pairs of big, milk-seeping breasts and a horse's cock as long as she was tall.  She grabbed him, and forcefed him that huge dick - rammed down his throat and he just swallowed it and swallowed it, looking delighted as she pushed him to the limit.</i>\"<br><br>");
+
+		outputText("\"<i>You can't imagine what it was like.  Things flapping through the darkness, twisted shapes springing out of the gloom, the stink of blood, urine, milk and cum, screaming, laughing, roaring, howling... I don't know how the fire started, it could have been any of a dozen reasons.  All I knew, when it was over, and I dared creep back into the ruins of what had been my home...  I was the only one left.</i>\"<br><br>");
+
+		outputText("Tears are pouring down her face.  Unable to think of anything else to do, you wrap your arms around her, holding her as she leans against you and weeps silently.  Finally, you feel her tears stop, and she gently pushes you away.<br><br>");
+
+		outputText("\"<i>Thank you.  It's been so long... but it still hurts, remembering.</i>\"<br><br>");
+
+        outputText("You tell her that you're sorry for bringing up such painful memories", false);
+
+            if (sexAfter) outputText(".");
+                else outputText(", then excuse yourself once you are certain she is okay.<br><br>");
+			}
+        //Conversation: How did she survive?
+    else if (convo == 11) {
+
+        outputText("You think for a moment, wondering what to ask her.  Then you shrug your shoulders and tell her that you'd like to know a little more about her, that you want to get to know her better.<br><br>");
+
+		outputText("Amily looks surprised... but pleased.  \"<i>I... You're really interested in hearing about me?  Well... okay.  What do you want to know?</i>\"<br><br>");
+
+		outputText("You ask her, hesitantly, how she managed to survive the destruction of her village, and how she's stayed alive ever since.<br><br>");
+
+		outputText("She looks not upset, like you feared, but confused.  \"<i>I haven't explained that already?</i>\" She asks.  \"<i>I ran.  I ran as fast as I could for my house - I ran for my hunting knife and my blowpipes.  And then, my parents ordered me to run into the wilderness and hide.  I didn't want to go, but I obeyed.  I just ran and ran all through the night, stopping only when I was exhausted - and even then, I crawled into a hollow at the roots of a tree to hide.  I slept until hunger woke me, foraged for something to eat, and then I crept back to my village.  I found it ruined, and I've lived here ever since.</i>\"<br><br>");
+
+		outputText("\"<i>As for day to day survival...</i>\"  She shrugs.  \"<i>I do what my mother taught me.  I hunt.  I forage.  I managed to find and store a lot of left-behind food after I was sure the village was no longer being occupied, but that was eaten or went off years ago. I managed to scavenge a few bits of alchemical equipment from my parents' home, and from the other village alchemists - not enough to do anything complicated, but enough to build a water purifier in a hidden cove, so I could distill the lake water and make it drinkable.  I also have water traps set up to catch rainwater and morning condensation. I may not be a real alchemist, but I do know what plants, animals and fungi are poisonous and I can whittle new darts for my blowpipe to use them with.  I have snares set up and I check them regularly.</i>\"<br><br>");
+
+		outputText("She grins at you, mischievously.  \"<i>Any more questions?</i>\"<br><br>");
+
+		outputText("You shake your head \"<i>no</i>", false);
+		  if (!sexAfter) {
+            if (gameFlags[AMILY_FOLLOWER] == 0) outputText("\", politely excuse yourself, and head back to your own camp. It sounds like she's doing better at keeping a steady supply of food and water going than you are.  But if that's the case... why does she look so thin?<br><br>");
+
+              else outputText("\", politely excuse yourself, and sit back down in camp.  It sounds like she's doing better at keeping a steady supply of food and water going than you are.  But if that's the case... why does she look so thin?<br><br>");
+          }
+        else outputText(".\"");
+			}
+			//Conversation: What does she plan to do when she gives birth?
+    else if (convo == 12) {
+        outputText("You think for a moment, wondering what to ask her. Then you shrug your shoulders and tell her that you'd like to know a little more about her, that you want to get to know her better.<br><br>");
+
+		outputText("Amily looks surprised... but pleased. \"<i>I... You're really interested in hearing about me? Well... okay. What do you want to know?</i>\"<br><br>");
+
+		outputText("You point out that she's told you why she wants you to father children with her, but she hasn't told you what she will do once she gives birth.<br><br>");
+
+		outputText("\"<i>You actually care what happens to them afterwards?</i>\" She asks, seemingly having a hard time believing that.<br><br>");
+
+		outputText("You insist that, yes, you do want to know.<br><br>");
+
+		outputText("\"<i>Alright... Many of the races that are corrupt are able to breed very quickly; their pregnancies don't take too long, and their offspring grow to full size in a span that can take from minutes to hours,</i>\" she begins explaining, \"<i>My own race is quite fertile; if we don't take a certain herbal medicine, we can have up to two dozen children in a single pregnancy.  My plan is to take advantage of both those facts... Now that I have a pure human like you to father them for me.</i>\"<br><br>");
+
+		outputText("You ask how that is supposed to work, given that she is very obviously not corrupt.<br><br>");
+
+		outputText("\"<i>You may have seen Goblins while you were exploring?  Well, they're corrupted creatures, but their corruption stems from chemicals in their blood.  I managed to... persuade... a Goblin to get me some samples of a distillation of that specific chemical.  Once I am certain I am pregnant, I can take a vial to cause my pregnancy to advance really quickly, and for the children to grow to full maturity in one or two weeks, like a Goblin does.</i>\"<br><br>");
+
+		outputText("Feeling a little enlightened, you then ask her just why she needs to have so many children, and so fast.  You remember that she wants her race to be reborn outside of demonic slavery, but what will she do when she judges she has enough.<br><br>");
+
+		outputText("\"<i>Well, I don't exactly have a specific number of kids I want to deliver,</i>\" she explains.  \"<i>The Goblin only gave me five vials of that chemical; five pregnancies are all I'll get.  Once I use them, and they're all grown big and strong, we can leave this area and find ourselves somewhere else to found a new village.  In a place where the demons can't get us, we can work on expanding our numbers, bringing my people back to life as something other than just fucktoys.</i>\"<br><br>");
+
+		outputText("You thank her for the explanation.<br><br>");
+			}
+    else if (convo == 13) {
+	   //[Amily Talks About Kitsune]
+        outputText( "The two of you swap tales about your respective adventures, and from there the topic drifts to the odd many-tailed fox women you've seen deep in the woods.<br><br>");
+
+        outputText("\"<i>Kitsune,</i>\" she says matter-of-factly, nodding gently.  \"<i>There's a race that's hard to categorize, if there ever was one.</i>\"<br><br>");
+
+		outputText("You ask her what she means by this.<br><br>");
+
+        outputText("\"<i>Well, they don't seem to be demons, exactly, but they do share a few things in common with them.  In spite of that, they somehow seem to have an amazing resistance to corruption.  From the tales I've heard, they existed in their current form already for a long time before the demons arrived,</i>\" she explains. Seeing your perplexed expression, she continues.  \"<i>They have extremely potent magic, and they draw their power from living things to sustain it.  They can get it in lots of ways, but it seems like their favorite way is through sexual contact.  They form a sort of...  link, with their partner, I suppose, and absorb small amounts of their life energy.</i>\"<br><br>");
+
+        outputText("You nod, noting that you can see how that is similar to some of the demons you've come across.<br><br>");
+
+        outputText("\"<i>Physically, they're not the strongest, but they don't have to be – once they've got you caught in one of their illusions, you're pretty much under their power. Despite that, they don't seem to be particularly evil... at least, for the most part.</i>\"<br><br>");
+
+        outputText("You give her a slightly quizzical look and then press her on the details.<br><br>");
+
+        outputText("\"<i>Well... I've never seen one face-to-face, but I've heard some other travelers tell stories about meeting corrupted kitsune.  Nasty pieces of work, if any of it's true.  Most kitsune are fairly innocuous, if a little irritating.  Sometimes they can actually be pretty friendly, if you play along right.  They seem to get off on making mischief, but it's more or less harmless – the worst that ever happens is you wind up getting lost in the woods or find some kind of treasure that turns out to be a box of rocks when you bring it home.  The corrupted ones though... they cross a line.  Their tricks are downright vindictive... and once they finish tormenting you, they'll suck the life right out of you without a moment's hesitation.</i>\"<br><br>");
+
+        outputText("You ask how anyone knows this much about them, if even meeting one is so dangerous.  Amily scratches her head a bit and blushes, clearly a little embarrassed to not have a definitive answer for this one.  \"<i>W-well... it's mostly just conjecture.  Like I said, I'm only repeating what I've heard.</i>\"<br><br>");
+
+        outputText("She pauses for a moment, and then speaks up with another interesting fact in an attempt to save face.  \"<i>They do seem to have a strange fascination with tentacle beasts, for some reason.</i>\"<br><br>");
+
+        outputText("From the blush on her face, you get the feeling that she may be speaking from experience.  You don't press her on the matter though, ");
+
+        outputText("just nodding politely as you process the information.");
+    }
+    //Conversation: How will she care for her children?
+	else {
+        outputText("You think for a moment, wondering what to ask her.  Then you shrug your shoulders and tell her that you'd like to know a little more about her, that you want to get to know her better.<br><br>");
+
+        outputText("Amily looks surprised... but pleased.  \"<i>I...  You're really interested in hearing about me?  Well... okay.  What do you want to know?</i>\"<br><br>");
+
+        if (gameFlags[AMILY_FOLLOWER] == 0)
+        {
+            outputText("You pause for a few moments, trying to think of a way to phrase this delicately, then ask her how she plans on caring for her children.<br><br>");
+
+			outputText("She looks puzzled and not quite sure if she wants to be amused or offended.  \"<i>I do have lots of food stockpiled - that's why I'm looking thinner than usual, in fact; I've been carefully saving up and preserving as much food as I can.  Or did you think I was that bad a hunter and forager?  I wouldn't have lasted all these years if I was,</i>\" she states.  \"<i>Besides, I have a special potion I bartered from some goblins... within a week or two, any children I have will be grown enough to hunt and forage for themselves.  Don't worry, I can handle looking after them.</i>\"<br><br>");
+        } else {
+            outputText("You pause for a few moments, trying to think of a way to phrase this delicately, then ask her how she thinks your children are doing.<br><br>");
+
+            outputText("A hint of worry creeps into her expression, matching your own; but she remains resolute. “<i>The first of our kids grew up so fast, and they seem to be doing OK out there without their parents to dote on them. The eldest are doing a great job caring for the young ones.</i>” she answers.<br><br>");
+        }
+
+        outputText("Feeling somewhat more reassured, but not entirely so, you get ready to leave.<br><br>");
+
+        outputText("\"<i>Hey, hold on a second,</i>\" Amily tells you.  \"<i>You were worried, weren't you? Worried about me...? About the children?</i>\"<br><br>");
+
+        outputText("You nod and admit you were worried, yes.<br><br>");
+
+        outputText("\"<i>That's... that's sweet of you,</i>\" Amily says, clearly shocked.  \"<i>I didn't think you would actually care...</i>\" she trails off, looking thoughtful.");
+            if (!sexAfter) {
+			     if (gameFlags[AMILY_FOLLOWER] == 0) outputText("  Then, as if realising you are still here, she waves at you to go, getting up and leaving herself.  Wondering what that was about, you return to camp.<br><br>");
+				else outputText("  Then, as if realising you are still here, she waves at you to go, getting up and leaving herself.  Wondering what that was about, you sit down in camp.<br><br>");
+            }
+        }
+        if (sexAfter) {
+            doNext(determineAmilySexEvent()); // HERE IS WHERE THE FORCED PARAMETER WAS USED
+        }
+        else doNext(Camp.returnToCampUseOneHour);
 }
-
-
 
 
 /*******

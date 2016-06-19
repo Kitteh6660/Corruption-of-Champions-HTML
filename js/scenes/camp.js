@@ -1,6 +1,6 @@
 var Camp = [];
 
-addToGameFlags(HAS_KEY_ITEM);
+addToGameFlags(HAS_KEY_ITEM, CAMP_WALL_PROGRESS);
 
 var stashbool = false;
 

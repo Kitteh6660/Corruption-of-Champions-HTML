@@ -44,6 +44,12 @@ const CODEX_ENTRY_SUCCUBUS              = "Codex_Entry_Succubus";
 const CODEX_ENTRY_ZEBRAS                = "Codex_Entry_Zebras";
 
 //------------
+// CAMP FLAGS
+//------------
+
+const CAMP_WALL_PROGRESS                = "Camp_Wall_Progress";
+
+//------------
 // FOLLOWERS
 //------------
 //Rathazul
