@@ -58,8 +58,7 @@ Camp.doCamp = function () {
     //player.changeLust(50);
     //var testingPreg = new PregnancyStore(0,0,0,0);
     //outputText(testingPreg.isPregnant());
-    
-    player.modStats("cor", 50);
+    //player.modStats("cor", 50);
 
     //Display available options
 	menu();

@@ -562,7 +562,7 @@ function amilyMeetingFailed() {
 //MALE MEETINGS AFTER INITIAL REJECTION
 
 // Male PC rejected Amily's offer, meets her again
-function amilyRemeetingContinue() {
+function amilyRemeetingContinued() {
     clearOutput();
     //amilySprite();
     outputText("\"<i>So, have you changed your mind? Have you come to help me out?</i>\" Amily asks curiously.<br><br>");
