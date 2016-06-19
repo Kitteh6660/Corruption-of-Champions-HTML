@@ -11,7 +11,7 @@ var Amily = [];
  * Converted to JS by Matraia
  */
 
-addToGameFlags(AMILY_MET, AMILY_MET_AS, AMILY_PC_GENDER, AMILY_OFFER_ACCEPTED, AMILY_AFFECTION, AMILY_OFFERED_DEFURRY, AMILY_FUCK_COUNTER, AMILY_NOT_FURRY, AMILY_WANG_LENGTH, AMILY_PREGNANCY_TYPE, AMILY_INCUBATION, AMILY_BUTT_PREGNANCY_TYPE, AMILY_OVIPOSITED_COUNTDOWN, AMILY_GROSSED_OUT_BY_WORMS, AMILY_FOLLOWER, AMILY_ALLOWS_FERTILITY, FOLLOWER_AT_FARM_AMILY, AMILY_CORRUPT_FLIPOUT, AMILY_TIMES_FUCKED_FEMPC, AMILY_VILLAGE_ENCOUNTERS_DISABLED, AMILY_CONFESSED_LESBIAN, AMILY_WANG_LENGTH, AMILY_WANG_GIRTH, AMILY_HERM_TIMES_FUCKED_BY_FEMPC, AMILY_HERM_QUEST, PC_TIMES_BIRTHED_AMILYKIDS);
+addToGameFlags(AMILY_MET, AMILY_MET_AS, AMILY_PC_GENDER, AMILY_OFFER_ACCEPTED, AMILY_AFFECTION, AMILY_OFFERED_DEFURRY, AMILY_FUCK_COUNTER, AMILY_NOT_FURRY, AMILY_WANG_LENGTH, AMILY_PREGNANCY_TYPE, AMILY_INCUBATION, AMILY_BUTT_PREGNANCY_TYPE, AMILY_OVIPOSITED_COUNTDOWN, AMILY_GROSSED_OUT_BY_WORMS, AMILY_FOLLOWER, AMILY_ALLOWS_FERTILITY, FOLLOWER_AT_FARM_AMILY, AMILY_CORRUPT_FLIPOUT, AMILY_TIMES_FUCKED_FEMPC, AMILY_VILLAGE_ENCOUNTERS_DISABLED, AMILY_CONFESSED_LESBIAN, AMILY_WANG_LENGTH, AMILY_WANG_GIRTH, AMILY_HERM_TIMES_FUCKED_BY_FEMPC, AMILY_HERM_QUEST, PC_TIMES_BIRTHED_AMILYKIDS, AMILY_CORRUPT_FLIPOUT);
 
 
 /*
@@ -117,18 +117,18 @@ Amily.start = function () {
     if (gameFlags[AMILY_GROSSED_OUT_BY_WORMS] == 1 || player.cor > 25 || gameFlags[AMILY_CORRUPT_FLIPOUT] > 0) {
         outputText("You enter the ruined village cautiously. There are burnt-down houses, smashed-in doorways, ripped-off roofs... everything is covered with dust and grime. For hours you explore, but you cannot find any sign of another living being, or anything of value. The occasional footprint from an imp or a goblin turns up in the dirt, but you don't see any of the creatures themselves. It looks like time and passing demons have stripped the place bare since it was originally abandoned. Finally, you give up and leave. You feel much easier when you're outside of the village – you had the strangest sensation of being watched while you were in there.");
         doNext(Camp.returnToCampUseOneHour);
-        //return;
+        return;
     }
 
 
     // ENCOUNTERING AMILY WHILE CORRUPT/CORRUPTION PATH
     // Fight between Amily and player if you are too corrupt. Requires that you've met Amily once
-    /*
-    if (flags[kFLAGS.AMILY_CORRUPT_FLIPOUT] == 0 && flags[kFLAGS.AMILY_MET] > 0 && (player.cor > 25 + player.corruptionTolerance() || player.cor > 75)) {
+
+    if (gameFlags[AMILY_CORRUPT_FLIPOUT] == 0 && gameFlags[AMILY_MET] > 0 && (player.cor > 25 + player.corruptionTolerance() || player.cor > 75)) {
         meetAmilyAsACorruptAsshat();
-		return;
+        return;
     }
-    */
+
     // Amily corruption path
     /*
     if (flags[kFLAGS.AMILY_CORRUPT_FLIPOUT] > 0 && player.cor > 25) {
@@ -2117,6 +2117,73 @@ function amilyPreggoChance() {
 
 }
 
+
+/*************
+*
+* CORRUPTION PATH
+*
+**************/
+
+//Requires PC have done first meeting and be corrupt
+function meetAmilyAsACorruptAsshat() {
+    //amilySprite();
+    clearOutput();
+
+	outputText("Curious about how Amily is holding up, you head back into the ruined village. This time, you don't bother making any secret of your presence, hoping to attract Amily's attention quicker. After all, she did say that the place is basically empty of anyone except her, and you can handle a measly Imp or Goblin.<br><br>");
+/*
+			switch (pregnancy.event) {
+				case 1:
+				case 2:
+				case 3:
+				case 4:
+				case 5: //Amily is slightly pregnant
+						outputText("Amily materializes out of the ruins, somewhat slower than usual. You can see that your efforts together have taken; an undeniable bulge pokes out of her midriff, pushing up her tattered shirt slightly and seriously straining her belt. She idly strokes it with one hand, as if confirming its presence to herself.\n\n", false);
+						break;
+				case 6:
+				case 7:
+				case 8: //Amily is heavily pregnant
+						outputText("It takes several minutes before Amily appears - but when you can see her, you marvel that she got to you as quickly as she did. Her stomach is hugely swollen, and one of her hands actually cradles underneath its rounded expanse as if trying to hold it up. She is pantsless, evidently no longer able to fit into them with this firm orb of a belly, and her shirt drapes loosely, barely managing to cover its upper half. Her belt, where she hangs her blowpipe and dagger, has been tied around her upper chest, between her breasts and her bulge, so she can still carry them effectively.\n\n", false);
+						break;
+				default: //Amily is not pregnant
+					outputText("It doesn't take long for Amily to materialize out of the ruins. Her blowpipe and dagger are both thrust into her belt, and she's still wearing the same tattered clothes as before.\n\n", false);
+			}
+*/
+
+    outputText("\"<i>Hey there, " + player.short + ", how... are you?</i>\" She trails off with a troubled expression. \"<i>You seem different...</i>\" She murmurs, studying you intently, and then she obviously comes to a sudden realization. \"<i>Have you had contact with demons!? You... This feeling... You're corrupted!</i>\" You take a step towards her, causing her to leap back. \"<i>N-No! Stay away!</i>\" She yells, hand darting towards her blowpipe. She spits a dart right at you!<br><br>");
+
+/*
+			//(if PC doesn't have the perk Evasion or Feline Flexibility)
+			if (player.findPerk(PerkLib.Evade) < 0 && player.findPerk(PerkLib.Flexibility) < 0) {
+				outputText("Amily's sudden reaction catches you off guard and the dart hits you; almost immediately you feel your body going stiff. Amily doesn't even wait to see if she hit you or not before running away, yelling back at you.\n\n", false);
+
+				outputText("\"<i>Don't come near me again!  You're tainted, ruined!</i>\" Her voice is panicked, as she disappears into the ruins.\n\n", false);
+
+				outputText("It takes almost two hours before you are able to move again, and your joints are still stiff and painful as you hobble back to camp, cursing that mouse. Maybe you should teach her not to mess with you.\n\n", false);
+
+				//-(if PC's int >= 40)
+				if (player.inte >= 40) outputText("You begin to formulate a plan, but to put this plan into motion you'll require a Lust Draft and some Goblin Ale. That damn rat is going to rue the day she denied you.\n\n", false);
+				//-(else)
+				else outputText("You think about some of the more interesting potions you found while exploring; perhaps you could use some of them...", false);
+			}
+			//(else)
+			else { */
+    outputText("Despite Amily's fast reactions, they're no match for your trained reflexes; you bend just enough for the dart to barely graze you. Amily doesn't even wait to see if she hit you or not before running away, yelling back at you.<br><br>");
+
+    outputText("\"<i>Don't come near me again!  You're tainted, ruined!</i>\" Her voice is panicked, as she disappears into the ruins.<br><br>");
+
+    outputText("That stupid cunt; how dare she attack you after asking you to help her! So what if you are aren't so pure anymore; you're still very much capable of helping her! Maybe you should teach her not to mess with you...?<br><br>");
+
+    //-(if PC's int >= 40)
+	if (player.inte >= 40) outputText("You begin to formulate a plan, but to put this plan into motion you'll require a Lust Draft and some Goblin Ale. That damn rat is going to rue the day she denied you.<br><br>");
+				//-(else)
+    else outputText("You think about some of the more interesting potions you found while exploring; perhaps you could use some of them...");
+			//}
+    player.changeLust(25);
+    gameFlags[AMILY_CORRUPT_FLIPOUT] = 1;
+    doNext(Camp.returnToCampUseOneHour);
+			//FLAG THAT THIS SHIT WENT DOWN
+
+		}
 
 
 

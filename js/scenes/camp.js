@@ -59,6 +59,8 @@ Camp.doCamp = function () {
     //var testingPreg = new PregnancyStore(0,0,0,0);
     //outputText(testingPreg.isPregnant());
     
+    player.modStats("cor", 50);
+
     //Display available options
 	menu();
 	addButton(0, "Explore", Areas.GenericExploration.exploreMenu, null, null, null, "Explore to find new regions and visit any discovered regions.");
