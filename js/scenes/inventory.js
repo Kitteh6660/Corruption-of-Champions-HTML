@@ -148,7 +148,7 @@ Inventory.inventoryCombatHandler = function() {
     combatRoundOver();
 }
 
-// Promps to destroys an item
+// Prompts to destroys an item
 Inventory.deleteItemPrompt = function(item, slotNum) {
     clearOutput();
     outputText("Are you sure you want to destroy " + player.itemSlots[slotNum].quantity + "x " + item.shortName + "?  You won't be able to retrieve " + (player.itemSlots[slotNum].quantity == 1 ? "it": "them") + "!");

@@ -51,7 +51,7 @@ Camp.doCamp = function () {
     }
     
     //DEBUGGING CODE FOR AMILY MEETINGS
-    //player.gender = 1;
+    //player.gender = 3;
     //outputText("Player Gender is " + player.gender);
     //gameFlags[AMILY_AFFECTION] = 40;
     //outputText("Amily Affection is " + gameFlags[AMILY_AFFECTION]);
@@ -59,6 +59,9 @@ Camp.doCamp = function () {
     //var testingPreg = new PregnancyStore(0,0,0,0);
     //outputText(testingPreg.isPregnant());
     //player.modStats("cor", 50);
+    //Inventory.takeItem(Items.Consumables.IncubiDraftPurified);
+    // gameFlags[AMILY_HERM_QUEST] = 2;
+    //gameFlags[AMILY_AFFECTION] = 50;
 
     //Display available options
 	menu();
