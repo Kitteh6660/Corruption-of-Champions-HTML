@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8a292ce1-df00-4848-8a40-d7241dab169d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/camp.js" afterPath="$PROJECT_DIR$/js/scenes/camp.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/inventory.js" afterPath="$PROJECT_DIR$/js/scenes/inventory.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/flags/dataFlags.js" afterPath="$PROJECT_DIR$/js/flags/dataFlags.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/npcs/amily.js" afterPath="$PROJECT_DIR$/js/scenes/npcs/amily.js" />
     </list>
     <ignored path="Corruption-of-Champions-HTML.iws" />
@@ -32,67 +30,71 @@
       <file leaf-file-name="amily.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/scenes/npcs/amily.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="2470" column="0" selection-start-line="2470" selection-start-column="0" selection-end-line="2470" selection-end-column="0" />
+            <state relative-caret-position="279">
+              <caret line="147" column="0" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
-                <element signature="e#7337#8069#0" expanded="false" />
-                <element signature="e#8373#8433#0" expanded="false" />
-                <element signature="e#20820#26479#0" expanded="false" />
-                <element signature="e#26535#31980#0" expanded="false" />
-                <element signature="e#32041#40721#0" expanded="false" />
-                <element signature="e#40798#40835#0" expanded="false" />
-                <element signature="e#41406#44723#0" expanded="false" />
-                <element signature="e#44873#45407#0" expanded="false" />
-                <element signature="e#45539#45733#0" expanded="false" />
+                <element signature="e#8739#9471#0" expanded="false" />
+                <element signature="e#9775#9835#0" expanded="false" />
+                <element signature="e#22222#27881#0" expanded="false" />
+                <element signature="e#27937#33382#0" expanded="false" />
+                <element signature="e#33443#42123#0" expanded="false" />
+                <element signature="e#42200#42237#0" expanded="false" />
+                <element signature="n#!!block;n#amilyStandardMeeting#0" expanded="false" />
+                <element signature="e#42859#46176#0" expanded="false" />
+                <element signature="e#46326#46860#0" expanded="false" />
+                <element signature="n#!!block;n#amilyMeetingFailed#0" expanded="false" />
+                <element signature="n#!!block;n#amilyRemeetingContinued#0" expanded="false" />
+                <element signature="n#!!block;n#secondTimeAmilyOfferedAccepted#0" expanded="false" />
+                <element signature="n#!!block;n#secondTimeAmilyRefuseAgain#0" expanded="false" />
+                <element signature="n#!!block;n#repeatAmilyTalk#0" expanded="false" />
+                <element signature="n#!!block;n#tellAmilyToGetLost#0" expanded="false" />
+                <element signature="n#!!block;n#acceptAmilysOfferEagerly#0" expanded="false" />
+                <element signature="n#!!block;n#acceptAmilysOfferHesitantly#0" expanded="false" />
+                <element signature="n#!!block;n#refuseAmilysOffer#0" expanded="false" />
+                <element signature="n#!!block;n#amilyNoFur#0" expanded="false" />
+                <element signature="n#!!block;n#desperateAmilyPleaAcceptHer#0" expanded="false" />
+                <element signature="n#!!block;n#desperateAmilyPleaTurnDown#0" expanded="false" />
+                <element signature="n#!!block;n#desperateAmilyPleaTurnDownBlunt#0" expanded="false" />
+                <element signature="n#!!block;n#amilyLesbian#0" expanded="false" />
+                <element signature="n#!!block;n#amilyLesbianLetHerGo#0" expanded="false" />
+                <element signature="n#!!block;n#makeAmilyAHerm#0" expanded="false" />
                 <element signature="n#!!block;n#whyNotHerms#0" expanded="false" />
                 <element signature="n#!!block;n#hermRenegotiate#0" expanded="false" />
-                <element signature="e#77212#78757#0" expanded="false" />
-                <element signature="e#78811#80187#0" expanded="false" />
-                <element signature="e#81636#86661#0" expanded="false" />
-                <element signature="e#86706#91385#0" expanded="false" />
+                <element signature="n#!!block;n#amilyAgreeHerm#0" expanded="false" />
+                <element signature="n#!!block;n#amilyRejectHerm#0" expanded="false" />
+                <element signature="n#!!block;n#amilyNewGenderConfrontation#0" expanded="false" />
+                <element signature="e#83766#88791#0" expanded="false" />
+                <element signature="e#88836#93515#0" expanded="false" />
+                <element signature="n#!!block;n#talkToAmily#0" expanded="false" />
+                <element signature="n#!!block;n#amilyConversationStart#0" expanded="false" />
+                <element signature="n#!!block;n#talkThenSexWithAmily#0" expanded="false" />
+                <element signature="n#!!block;n#talkToAmilyWithSexAfter#0" expanded="false" />
+                <element signature="n#!!block;n#amilySexHappens#0" expanded="false" />
+                <element signature="e#154341#154407#0" expanded="false" />
+                <element signature="e#154656#155092#0" expanded="false" />
+                <element signature="e#155116#156564#0" expanded="false" />
+                <element signature="e#156639#156722#0" expanded="false" />
+                <element signature="n#!!block;n#amilySexBusiness#0" expanded="false" />
+                <element signature="n#!!block;n#amilySexPlaytimeFirst#0" expanded="false" />
+                <element signature="n#!!block;n#amilySexPtII#0" expanded="false" />
+                <element signature="n#!!block;n#amilySexSitAndWatch#0" expanded="false" />
+                <element signature="n#!!block;n#amilySexCaressHer#0" expanded="false" />
+                <element signature="n#!!block;n#amilySexRefrainKiss#0" expanded="false" />
+                <element signature="n#!!block;n#amilySexKiss#0" expanded="false" />
+                <element signature="n#!!block;n#amilySexPartIII#0" expanded="false" />
+                <element signature="n#!!block;n#girlyGirlMouseSex#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="camp.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/scenes/camp.js">
+      <file leaf-file-name="dataFlags.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/flags/dataFlags.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="53" column="6" selection-start-line="53" selection-start-column="6" selection-end-line="53" selection-end-column="6" />
+            <state relative-caret-position="240">
+              <caret line="110" column="0" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="player.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/player.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="1258" column="53" selection-start-line="1258" selection-start-column="49" selection-end-line="1258" selection-end-column="53" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="inventory.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/scenes/inventory.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="133" column="44" selection-start-line="133" selection-start-column="38" selection-end-line="133" selection-end-column="44" />
-              <folding>
-                <element signature="e#289#2118#0" expanded="false" />
-                <element signature="e#2180#3489#0" expanded="false" />
-                <element signature="e#3578#3731#0" expanded="false" />
-                <element signature="e#3768#3917#0" expanded="false" />
-                <element signature="e#6239#6293#0" expanded="false" />
-                <element signature="e#6379#6783#0" expanded="false" />
-                <element signature="e#7201#9085#0" expanded="false" />
-                <element signature="e#9193#9952#0" expanded="false" />
-                <element signature="e#10065#10128#0" expanded="false" />
-                <element signature="e#10193#10314#0" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -165,11 +167,11 @@
         <option value="$PROJECT_DIR$/js/scenes/areas/desert.js" />
         <option value="$PROJECT_DIR$/js/scenes/areas/desert/sandWitch.js" />
         <option value="$PROJECT_DIR$/js/globalVariables.js" />
-        <option value="$PROJECT_DIR$/js/flags/dataFlags.js" />
         <option value="$PROJECT_DIR$/js/scenes/npcs/rathazul.js" />
         <option value="$PROJECT_DIR$/js/scenes/inventory.js" />
-        <option value="$PROJECT_DIR$/js/scenes/npcs/amily.js" />
         <option value="$PROJECT_DIR$/js/scenes/camp.js" />
+        <option value="$PROJECT_DIR$/js/flags/dataFlags.js" />
+        <option value="$PROJECT_DIR$/js/scenes/npcs/amily.js" />
       </list>
     </option>
   </component>
@@ -181,7 +183,7 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="27" />
-    <option name="width" value="1366" />
+    <option name="width" value="683" />
     <option name="height" value="741" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -239,74 +241,7 @@
     <panes>
       <pane id="Scratches" />
       <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Corruption-of-Champions-HTML" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Corruption-of-Champions-HTML" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Corruption-of-Champions-HTML" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Corruption-of-Champions-HTML" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Corruption-of-Champions-HTML" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Corruption-of-Champions-HTML" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Corruption-of-Champions-HTML" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scenes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Corruption-of-Champions-HTML" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Corruption-of-Champions-HTML" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="engine" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
+        <subPane />
       </pane>
       <pane id="Scope" />
     </panes>
@@ -410,7 +345,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1450251391331</updated>
-      <workItem from="1466368026733" duration="6903000" />
+      <workItem from="1466368026733" duration="13883000" />
     </task>
     <task id="LOCAL-00001" summary="Release of 0.1 alpha with many more core content!&#10;&#10;Now with explorable zones, followers, etc!">
       <created>1455694082885</created>
@@ -437,7 +372,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6903000" />
+    <option name="totallyTimeSpent" value="13883000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -449,10 +384,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="27" width="1366" height="741" extended-state="0" />
+    <frame x="0" y="27" width="683" height="741" extended-state="4" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24158126" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24158126" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32861635" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32854864" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32861635" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -490,33 +425,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/js/scenes/npcs/amily.js</url>
-          <line>505</line>
-          <properties />
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="17" />
+      <option name="time" value="20" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/js/scenes/areas/forest/tentacleBeast.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/scenes/areas/forest/beeGirl.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="135" column="4" selection-start-line="135" selection-start-column="4" selection-end-line="135" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/scenes/intro.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -746,13 +659,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/flags/dataFlags.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/globalVariables.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -875,27 +781,80 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/assets/sprites/jojo.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/sprites/beegirl.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/flags/dataFlags.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="110" column="0" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/scenes/npcs/amily.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="2470" column="0" selection-start-line="2470" selection-start-column="0" selection-end-line="2470" selection-end-column="0" />
+        <state relative-caret-position="279">
+          <caret line="147" column="0" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#7337#8069#0" expanded="false" />
-            <element signature="e#8373#8433#0" expanded="false" />
-            <element signature="e#20820#26479#0" expanded="false" />
-            <element signature="e#26535#31980#0" expanded="false" />
-            <element signature="e#32041#40721#0" expanded="false" />
-            <element signature="e#40798#40835#0" expanded="false" />
-            <element signature="e#41406#44723#0" expanded="false" />
-            <element signature="e#44873#45407#0" expanded="false" />
-            <element signature="e#45539#45733#0" expanded="false" />
+            <element signature="e#8739#9471#0" expanded="false" />
+            <element signature="e#9775#9835#0" expanded="false" />
+            <element signature="e#22222#27881#0" expanded="false" />
+            <element signature="e#27937#33382#0" expanded="false" />
+            <element signature="e#33443#42123#0" expanded="false" />
+            <element signature="e#42200#42237#0" expanded="false" />
+            <element signature="n#!!block;n#amilyStandardMeeting#0" expanded="false" />
+            <element signature="e#42859#46176#0" expanded="false" />
+            <element signature="e#46326#46860#0" expanded="false" />
+            <element signature="n#!!block;n#amilyMeetingFailed#0" expanded="false" />
+            <element signature="n#!!block;n#amilyRemeetingContinued#0" expanded="false" />
+            <element signature="n#!!block;n#secondTimeAmilyOfferedAccepted#0" expanded="false" />
+            <element signature="n#!!block;n#secondTimeAmilyRefuseAgain#0" expanded="false" />
+            <element signature="n#!!block;n#repeatAmilyTalk#0" expanded="false" />
+            <element signature="n#!!block;n#tellAmilyToGetLost#0" expanded="false" />
+            <element signature="n#!!block;n#acceptAmilysOfferEagerly#0" expanded="false" />
+            <element signature="n#!!block;n#acceptAmilysOfferHesitantly#0" expanded="false" />
+            <element signature="n#!!block;n#refuseAmilysOffer#0" expanded="false" />
+            <element signature="n#!!block;n#amilyNoFur#0" expanded="false" />
+            <element signature="n#!!block;n#desperateAmilyPleaAcceptHer#0" expanded="false" />
+            <element signature="n#!!block;n#desperateAmilyPleaTurnDown#0" expanded="false" />
+            <element signature="n#!!block;n#desperateAmilyPleaTurnDownBlunt#0" expanded="false" />
+            <element signature="n#!!block;n#amilyLesbian#0" expanded="false" />
+            <element signature="n#!!block;n#amilyLesbianLetHerGo#0" expanded="false" />
+            <element signature="n#!!block;n#makeAmilyAHerm#0" expanded="false" />
             <element signature="n#!!block;n#whyNotHerms#0" expanded="false" />
             <element signature="n#!!block;n#hermRenegotiate#0" expanded="false" />
-            <element signature="e#77212#78757#0" expanded="false" />
-            <element signature="e#78811#80187#0" expanded="false" />
-            <element signature="e#81636#86661#0" expanded="false" />
-            <element signature="e#86706#91385#0" expanded="false" />
+            <element signature="n#!!block;n#amilyAgreeHerm#0" expanded="false" />
+            <element signature="n#!!block;n#amilyRejectHerm#0" expanded="false" />
+            <element signature="n#!!block;n#amilyNewGenderConfrontation#0" expanded="false" />
+            <element signature="e#83766#88791#0" expanded="false" />
+            <element signature="e#88836#93515#0" expanded="false" />
+            <element signature="n#!!block;n#talkToAmily#0" expanded="false" />
+            <element signature="n#!!block;n#amilyConversationStart#0" expanded="false" />
+            <element signature="n#!!block;n#talkThenSexWithAmily#0" expanded="false" />
+            <element signature="n#!!block;n#talkToAmilyWithSexAfter#0" expanded="false" />
+            <element signature="n#!!block;n#amilySexHappens#0" expanded="false" />
+            <element signature="e#154341#154407#0" expanded="false" />
+            <element signature="e#154656#155092#0" expanded="false" />
+            <element signature="e#155116#156564#0" expanded="false" />
+            <element signature="e#156639#156722#0" expanded="false" />
+            <element signature="n#!!block;n#amilySexBusiness#0" expanded="false" />
+            <element signature="n#!!block;n#amilySexPlaytimeFirst#0" expanded="false" />
+            <element signature="n#!!block;n#amilySexPtII#0" expanded="false" />
+            <element signature="n#!!block;n#amilySexSitAndWatch#0" expanded="false" />
+            <element signature="n#!!block;n#amilySexCaressHer#0" expanded="false" />
+            <element signature="n#!!block;n#amilySexRefrainKiss#0" expanded="false" />
+            <element signature="n#!!block;n#amilySexKiss#0" expanded="false" />
+            <element signature="n#!!block;n#amilySexPartIII#0" expanded="false" />
+            <element signature="n#!!block;n#girlyGirlMouseSex#0" expanded="false" />
           </folding>
         </state>
       </provider>

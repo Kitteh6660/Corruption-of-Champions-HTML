@@ -11,12 +11,16 @@
  * Converted to JS by Matraia
  */
 
-addToGameFlags(AMILY_MET, AMILY_MET_AS, AMILY_PC_GENDER, AMILY_OFFER_ACCEPTED, AMILY_AFFECTION, AMILY_OFFERED_DEFURRY, AMILY_FUCK_COUNTER, AMILY_NOT_FURRY, AMILY_WANG_LENGTH, AMILY_PREGNANCY_TYPE, AMILY_INCUBATION, AMILY_BUTT_PREGNANCY_TYPE, AMILY_OVIPOSITED_COUNTDOWN, AMILY_GROSSED_OUT_BY_WORMS, AMILY_FOLLOWER, AMILY_ALLOWS_FERTILITY, FOLLOWER_AT_FARM_AMILY, AMILY_CORRUPT_FLIPOUT, AMILY_TIMES_FUCKED_FEMPC, AMILY_VILLAGE_ENCOUNTERS_DISABLED, AMILY_CONFESSED_LESBIAN, AMILY_WANG_LENGTH, AMILY_WANG_GIRTH, AMILY_HERM_TIMES_FUCKED_BY_FEMPC, AMILY_HERM_QUEST, PC_TIMES_BIRTHED_AMILYKIDS, AMILY_CORRUPT_FLIPOUT);
+addToGameFlags(AMILY_MET, AMILY_MET_AS, AMILY_PC_GENDER, AMILY_OFFER_ACCEPTED, AMILY_AFFECTION, AMILY_OFFERED_DEFURRY, AMILY_FUCK_COUNTER, AMILY_NOT_FURRY, AMILY_WANG_LENGTH, AMILY_PREGNANCY_TYPE, AMILY_INCUBATION, AMILY_BUTT_PREGNANCY_TYPE, AMILY_OVIPOSITED_COUNTDOWN, AMILY_GROSSED_OUT_BY_WORMS, AMILY_FOLLOWER, AMILY_ALLOWS_FERTILITY, FOLLOWER_AT_FARM_AMILY, AMILY_CORRUPT_FLIPOUT, AMILY_TIMES_FUCKED_FEMPC, AMILY_VILLAGE_ENCOUNTERS_DISABLED, AMILY_CONFESSED_LESBIAN, AMILY_WANG_LENGTH, AMILY_WANG_GIRTH, AMILY_HERM_TIMES_FUCKED_BY_FEMPC, AMILY_HERM_QUEST, PC_TIMES_BIRTHED_AMILYKIDS, AMILY_CORRUPT_FLIPOUT, AMILY_VISITING_URTA);
 
 
 /*
 
 Changes to make:
+
+Insert the Amily sprite. See Rathazul code for how to do that.
+
+Pregnancy Event code needs to be completed so those code blocks can be uncommented and checked.
 
 The initial male meeting offers a rejection option because she's a furry. See amilyNoFur(). Part of the text for that option reveals the ingredients necessary to defur Amily. However, players don't see these ingredients until much later in the game. Amily is often encountered early. How is the player going to know what the ingredients are? This scene is possible several times throughout the code.
 
@@ -44,6 +48,14 @@ Giant Bee conversation: Amily says she's been willing to host giant bee eggs on 
 
 Figure out how to remove the purified incubus draft from the player's inventory when making Amily a herm.
 
+Fix all tooltip entries (low priority)
+
+Fix entries in main Amily function for descriptions.
+
+Fix player.Short variable
+
+Go through completed Amily list and find out everything that's been commented out. Fix or remove.
+
 */
 
 /*******
@@ -51,12 +63,11 @@ Figure out how to remove the purified incubus draft from the player's inventory 
  * Amily Definitions and initial variables
  *
  ********/
-
-//Complete
+//NEEDS PLAYER/CREARE VARS
 function Amily() {
     this.a = "";
     this.short = "Amily";
-    this.imageName = "amily";
+    //this.imageName = "amily";
     this.long = "You are currently fighting Amily. The mouse-morph is dressed in rags and glares at you in rage, knife in hand. She keeps herself close to the ground, ensuring she can quickly close the distance between you two or run away.";
     // this.plural = false;
     this.createVagina(false, VAGINA_WETNESS_NORMAL, VAGINA_LOOSENESS_NORMAL);
@@ -74,11 +85,11 @@ function Amily() {
     this.hairLength = 5;
     initStrTouSpeInte(30, 30, 85, 60);
     initLibSensCor(45, 45, 10);
-    this.weaponName = "knife";
-    this.weaponVerb = "slash";
-    this.weaponAttack = 6;
+    //this.weaponName = "knife";
+    //this.weaponVerb = "slash";
+    //this.weaponAttack = 6;
     this.armorName = "rags";
-    this.armorDef = 1;
+    //this.armorDef = 1;
     this.bonusHP = 20;
     this.lust = 20;
     this.lustVuln = 0.85;
@@ -88,6 +99,19 @@ function Amily() {
     checkMonster();
 }
 
+// Used for later checks when Amily is a follower. Necessary?
+function amilyFollower():Boolean {
+    if (gameFlags[AMILY_FOLLOWER] > 0) {
+        //Amily not a follower while visiting Urta
+        return !(gameFlags[AMILY_VISITING_URTA] == 1 || gameFlags[AMILY_VISITING_URTA] == 2);
+    }
+    else return false;
+};
+
+// A check function to see if Amily is corrupt or not. Necessary?
+function amilyCorrupt():Boolean {
+    return gameFlags[AMILY_FOLLOWER] == 2;
+};
 
 /*******
  *
@@ -96,7 +120,7 @@ function Amily() {
  ********/
 
 
-// Amily.start begins encounters in the Town Ruins
+// Amily.start begins encounters in the Town Ruins - MAIN WORK LOOP. CLEAN OTHER LOOPS BEFORE RETURNING HERE
 Amily.start = function () {
     // BOOKKEEPING
     menu();
@@ -122,6 +146,12 @@ Amily.start = function () {
     }
     */
 
+    if (gameFlags[AMILY_FOLLOWER] == 2) {
+        //amilySprite();
+        outputText("You enter the ruined village, still laughing at your past nefarious deeds. Maybe it's just your imagination, but you feel like this entire place reeks of corruption now... You explore for an hour, then go back to your camp, knowing your tainted slave will be more than happy to satisfy your urges.");
+        doNext(Camp.returnToCampUseOneHour);
+        return;
+    }
     // Amily can't be encountered due to worms, high corruption, or has flipped out due to the player's increasing corruption
 
     if (gameFlags[AMILY_GROSSED_OUT_BY_WORMS] == 1 || player.cor > 25 || gameFlags[AMILY_CORRUPT_FLIPOUT] > 0) {
@@ -460,7 +490,7 @@ Amily.start = function () {
 
 };
 
-// Standard meeting loop after first time
+// Standard meeting loop after first time - NEED SPRITE IMAGE AND PREGNANCY EVENTS TO FINISH
 function amilyStandardMeeting() {
     clearOutput();
     // Amily does NOT like seeing the player change gender
@@ -527,17 +557,13 @@ function amilyStandardMeeting() {
         outputText("suggests that it's no joking matter.<br><br>");
     }
     if (gameFlags[AMILY_PC_GENDER] != player.gender) {
-        //Stripped this out since it was making her flip out weirdly at genderless folks
-        //|| (player.gender == 0 && flags[kFLAGS.AMILY_AFFECTION] < 15)) {
         amilyNewGenderConfrontation();
         return;
     }
     menu();
-    // Special code to unlock making Amily a herm.
-
     gameFlags[AMILY_PC_GENDER] = player.gender;
 
-    // The old method had a flag to force the player to have sex with Amily if a talk-then-sex scene happened regardless of player lust. This forces talk and sex to happen only if lust is high enough.
+    // The old method had a flag to force the player to have sex with Amily if a talk-then-sex scene happened regardless of player lust. Changed to force talk and sex to happen only if lust is high enough. Much simpler code.
     if (player.lust > 35) {
         addButton(0, "Sex", determineAmilySexEvent, null, null, null, "You wanted me to knock you up. Let's do this.");
         addButton(2, "Both", talkThenSexWithAmily, null, null, null, "Let's spend the day together. A little talking. A little cuddling...");
@@ -552,7 +578,7 @@ function amilyStandardMeeting() {
 
 }
 
-// Failsafe function to return player to camp.
+// Failsafe function to return player to camp. - COMPLETE
 function amilyMeetingFailed() {
     outputText("You shouldn't have reached this failsafe message. Printing default message and allowing return to camp.<br><br>");
 
@@ -562,7 +588,7 @@ function amilyMeetingFailed() {
 
 //MALE MEETINGS AFTER INITIAL REJECTION
 
-// Male PC rejected Amily's offer, meets her again
+// Male PC rejected Amily's offer, meets her again - NEED SPRITE IMAGE TO FINISH
 function amilyRemeetingContinued() {
     clearOutput();
     //amilySprite();
@@ -576,7 +602,7 @@ function amilyRemeetingContinued() {
     return;
 }
 
-// Accept offer the second time, move to sex loops.
+// Accept offer the second time, move to sex loops. - NEED SPRITE IMAGE TO FINISH
 function secondTimeAmilyOfferedAccepted() {
     clearOutput();
     //amilySprite();
@@ -586,7 +612,7 @@ function secondTimeAmilyOfferedAccepted() {
     doNext(amilySexHappens);
 }
 
-// Refuse offer politely a second time. No affection boost. No change to the encounters.
+// Refuse offer politely a second time. No affection boost. No change to the encounters. - NEED SPRITE IMAGE TO FINISH
 function secondTimeAmilyRefuseAgain() {
     clearOutput();
     //amilySprite();
@@ -598,6 +624,7 @@ function secondTimeAmilyRefuseAgain() {
     doNext(Camp.returnToCampUseOneHour);
 }
 
+// Talking to Amily again after offer refusal - NEED SPRITE IMAGE TO FINISH
 function repeatAmilyTalk() {
     clearOutput();
     //amilySprite();
@@ -607,7 +634,7 @@ function repeatAmilyTalk() {
 }
 
 // This text needs updating. Looks like it was originally going to shut out the whole ruins, but there could still be racks and/or Shouldra encounters the player would want to encounter. Leaving text as is for now.
-// Shuts off Amily encounters
+// Shuts off Amily encounters - NEED SPRITE IMAGE TO FINISH
 function tellAmilyToGetLost() {
     //amilySprite();
     outputText("You jeer at Amily that you have no interest in a hypocrite who claims to be pure but is really just like everything else in this tainted world; no higher purpose other than her next fuck.<br><br>");
@@ -622,7 +649,7 @@ function tellAmilyToGetLost() {
 
 // IF MALE OFFER IS ACCEPTED FIRST TIME
 
-// Male PC accepts Amily's offer eagerly. (Consider changing this response to Lusty. It's a bit beyond eager...)
+// Male PC accepts Amily's offer eagerly. (Consider changing this response to Lusty. It's a bit beyond eager...) - NEED SPRITE IMAGE TO FINISH
 function acceptAmilysOfferEagerly() {
     clearOutput();
     menu();
@@ -648,7 +675,7 @@ function acceptAmilysOfferEagerly() {
 };
 
 
-// Male PC accepts Amily's offer hesitantly.
+// Male PC accepts Amily's offer hesitantly. - NEED SPRITE IMAGE TO FINISH
 function acceptAmilysOfferHesitantly() {
     clearOutput();
     menu();
@@ -676,7 +703,7 @@ function acceptAmilysOfferHesitantly() {
 };
 
 
-// Refuse Amily's Offer. Impress her!
+// Refuse Amily's Offer. Impress her! - NEED SPRITE IMAGE TO FINISH
 function refuseAmilysOffer() {
     clearOutput();
     menu();
@@ -699,7 +726,7 @@ function refuseAmilysOffer() {
     doNext(Camp.returnToCampUseOneHour);
 };
 
-// Refuse Amily because she's a mouse and mice are gross.
+// Refuse Amily because she's a mouse and mice are gross. - NEED SPRITE IMAGE TO FINISH
 function amilyNoFur() {
     clearOutput();
     menu();
@@ -717,6 +744,7 @@ function amilyNoFur() {
 
 //MALE DESPERATE AMILY ENCOUNTERS
 
+//Accept Amily Desperate Plea - NEED SPRITE IMAGE TO FINISH
 function desperateAmilyPleaAcceptHer() {
     clearOutput();
     //amilySprite();
@@ -729,7 +757,7 @@ function desperateAmilyPleaAcceptHer() {
     doNext(amilySexHappens);
 }
 
-//Let Amily Down Gently, shuts off her encounters
+//Let Amily Down Gently, shuts off her encounters - NEED SPRITE AND TEL'ADRE to finish
 function desperateAmilyPleaTurnDown() {
     clearOutput();
     //amilySprite();
@@ -751,7 +779,7 @@ function desperateAmilyPleaTurnDown() {
     doNext(Camp.returnToCampUseOneHour);
 }
 
-//Be an ass and turn her down blunty
+//Be an ass and turn her down bluntly- NEED SPRITE IMAGE TO FINISH
 function desperateAmilyPleaTurnDownBlunt() {
     //amilySprite();
     clearOutput();
@@ -774,8 +802,8 @@ function desperateAmilyPleaTurnDownBlunt() {
 
 //FEMALE AMILY ENCOUNTERS
 
-//Lesbian Love Confession:
-//(Replaces the Meet & Talk scene for a female PC who has gotten Amily's Affection to Moderate)
+//Lesbian Love Confession:- NEED SPRITE IMAGE TO FINISH
+
 function amilyLesbian() {
     //amilySprite();
     clearOutput();
@@ -802,6 +830,7 @@ function amilyLesbianStopHer() {
 }
 
 // Deny the Mousie Lesbian Mouse Lovin. Old comment in here about you having other relationships and shutting off her encounter.
+// - NEED SPRITE IMAGE TO FINISH, ALSO NEEDS URTA AND MARBLE TO FINISH
 function amilyLesbianLetHerGo() {
     //amilySprite();
     clearOutput();
@@ -820,6 +849,7 @@ function amilyLesbianLetHerGo() {
 
 // HERM PLAYER ENCOUNTERS
 
+// Make Amily a Herm for dual pregnancy action. - NEED SPRITE IMAGE AND PREGNANCY EVENTS AND ITEM CONSUMPTION TO FINISH
 function makeAmilyAHerm() {
     //amilySprite();
     clearOutput();
@@ -852,6 +882,7 @@ function makeAmilyAHerm() {
     doNext(amilyHermOnFemalePC);
 }
 
+// Question dislike of herms. - NEED SPRITE IMAGE TO FINISH
 function whyNotHerms() {
     //amilySprite();
     clearOutput();
@@ -882,7 +913,7 @@ function whyNotHerms() {
     doNext(Camp.returnToCampUseOneHour);
 }
 
-//"Maybe Herms Aren't So Bad":
+//"Maybe Herms Aren't So Bad": - NEED SPRITE IMAGE TO FINISH
 function hermRenegotiate() {
     //amilySprite();
     clearOutput();
@@ -899,6 +930,7 @@ function hermRenegotiate() {
 
 }
 
+// Agree to Amily's hermneess. - - NEED SPRITE IMAGE TO FINISH
 function amilyAgreeHerm() {
     //amilySprite();
     clearOutput();
@@ -908,6 +940,7 @@ function amilyAgreeHerm() {
     doNext(amilySexHappens);
 }
 
+// Reject Amily's Hermness - - NEED SPRITE IMAGE TO FINISH
 function amilyRejectHerm() {
     //amilySprite();
     clearOutput();
@@ -922,6 +955,7 @@ function amilyRejectHerm() {
 
 // CHANGED GENDER RESPONSES
 
+// NEEDS LOTS OF TESTING. NEED TO BUILD GENDER CHANGE DEBUGGING TOOL AT CAMP.
 function amilyNewGenderConfrontation() {
     //amilySprite();
 	clearOutput();
@@ -1203,7 +1237,7 @@ function amilyNewGenderConfrontation() {
 *
 *********/
 
-// Opening conversation scene
+// Opening conversation scene - NEED SPRITE IMAGE TO FINISH, NEED PREGNANCY EVENTS TO FINISH
 function talkToAmily() {
     clearOutput();
 	//amilySprite();
@@ -1243,15 +1277,14 @@ function talkToAmily() {
 			doNext(amilyConversationStart(false));
 		}
 
-// GIANT CONVERSATION TREE START!
-// May need to set a sexAfter boolean when this scene is called. Try an experiment to see if you can declare it false in the declaration?
+// GIANT CONVERSATION TREE START! - - NEED SPRITE IMAGE TO FINISH
 function amilyConversationStart(sexAfter) {
     clearOutput();
 	//amilySprite();
     // Get a random conversation out of the 15 options
     var convo = rand(15);
 	// Bump past convo #12 if she's already at camp because it doesn't make much sense by this point.
-	//if (convo == 12 && amilyFollower()) convo++;
+	if (convo == 12 && amilyFollower()) convo++;
 	//Girls dont get to listen to amily talk about being knocked up.
 	//Herms either unless she's okay'ed them for dad-hood.
 	if (player.gender == 2 || (player.gender == 3 && gameFlags[AMILY_HERM_QUEST] < 2)) convo = rand(12);
@@ -1699,7 +1732,7 @@ function amilyConversationStart(sexAfter) {
         else doNext(Camp.returnToCampUseOneHour);
 }
 
-
+//Talk and then Sex - NEED SPRITE IMAGE AND PREGNANCY EVENTS TO FINISH
 function talkThenSexWithAmily() {
     clearOutput();
 	//amilySprite();
@@ -1783,6 +1816,7 @@ function talkThenSexWithAmily() {
 			//}
 }
 
+// Switcher for Talk Then Sex - COMPLETE
 function talkToAmilyWithSexAfter() {
     amilyConversationStart(true);
 }
@@ -1796,7 +1830,7 @@ function talkToAmilyWithSexAfter() {
 
 //MALE
 
-// Kicks off the male sex paths
+// Kicks off the male sex paths - NEEDS SPRITE IMAGE AND PLAYER COCK TESTING AND PREGNANCY EVENTS TO FINISH
 function amilySexHappens() {
     clearOutput();
     //amilySprite();
@@ -1851,7 +1885,7 @@ function amilySexHappens() {
 
 };
 
-// Switches sex scenes with Amily depending on gender, pregnancy, and force
+// Switches sex scenes with Amily depending on gender, pregnancy, and other things - NEEDS LOTS OF WORK TO FINALIZE
 function determineAmilySexEvent() { // May need to force a false boolean to determine if sex is forced
     // Set the sex variable to none
     //var sex = null;
@@ -1936,7 +1970,7 @@ function determineAmilySexEvent() { // May need to force a false boolean to dete
     }
     */
 
-    // MALE SCENES
+    // MALE SCENES - CHECK THESE TWO SCENES
 
     if (player.gender == 1) {
         if (forced == true) amilySexHappens();
@@ -1946,12 +1980,12 @@ function determineAmilySexEvent() { // May need to force a false boolean to dete
 };
 
 
-// Amily response to you proposing sex in later meetings
+// Amily response to you proposing sex in later meetings - NEEDS SPRITE AND PREGNANCY EVENTS TO FINISH
 function sexWithAmily() {
     clearOutput();
     //amilySprite();
     outputText("You tell Amily that you came here because you wanted to have sex with her.<br><br>");
-    //doNext(amilySexHappens);
+
     /*
 	switch (pregnancy.event) {
         case 1: 
@@ -2039,7 +2073,7 @@ function sexWithAmily() {
 / Male Low Affection Amily Sex Path
 ******/
 
-// Low Affection Section 1 Choice 1
+// Low Affection Section 1 Choice 1 - NEED SPRITE TO FINISH
 function amilySexBusiness() {
     clearOutput();
     //amilySprite();
@@ -2047,7 +2081,7 @@ function amilySexBusiness() {
     amilySexPtII();
 }
 
-// Low Affection Section 1Choice 2
+// Low Affection Section 1Choice 2 - NEED SPRITE TO FINISH
 function amilySexPlaytimeFirst() {
     clearOutput();
     //amilySprite();
@@ -2064,7 +2098,7 @@ function amilySexPlaytimeFirst() {
     amilySexPtII();
 }
 
-// Low Affection Section 2
+// Low Affection Section 2 - NEED SPRITE AND WORM FUNCTIONS TO FINISH
 function amilySexPtII() {
     //amilySprite();
 
@@ -2085,7 +2119,7 @@ function amilySexPtII() {
 
 }
 
-// Low Affection Section 2 Choice 1
+// Low Affection Section 2 Choice 1 - NEED SPRITE
 function amilySexSitAndWatch() {
     clearOutput();
     //amilySprite();
@@ -2096,7 +2130,7 @@ function amilySexSitAndWatch() {
     amilySexPartIII();
 }
 
-// Low Affection Section 2 Choice 2
+// Low Affection Section 2 Choice 2 - NEED SPRITE
 function amilySexCaressHer() {
     clearOutput();
     //amilySprite();
@@ -2105,7 +2139,7 @@ function amilySexCaressHer() {
     addButton(1, "Kiss Her", amilySexKiss, null, null, null, "Maybe I could show her how it's done?");
 }
 
-// Low Affection Section 2 Choice 2.1
+// Low Affection Section 2 Choice 2.1 - NEED SPRITE
 function amilySexRefrainKiss() {
     clearOutput();
     //amilySprite();
@@ -2115,7 +2149,7 @@ function amilySexRefrainKiss() {
     amilySexPartIII();
 }
 
-// Low Affection Section 2 Choice 2.2
+// Low Affection Section 2 Choice 2.2 - NEED SPRITE
 function amilySexKiss() {
     clearOutput();
     //amilySprite();
@@ -2127,7 +2161,7 @@ function amilySexKiss() {
     amilySexPartIII();
 }
 
-// Low Affection Section 3 (final)
+// Low Affection Section 3 (final) - NEED SPRITE AND PLAYER COCK TO FINISH
 function amilySexPartIII() {
     var x = player.cockThatFits(61);
     //amilySprite();
@@ -2163,7 +2197,7 @@ function amilySexPartIII() {
  * Male Medium Affection Amily Sex Path
  ***********/
 
-
+// NEED SPRITE
 function amilySexStepIn() {
     clearOutput();
     //amilySprite();
@@ -2171,6 +2205,7 @@ function amilySexStepIn() {
     amilySexMidPartII();
 }
 
+// NEED SPRITE AND PREGNANCY EVENTS
 function amilySexEnjoyShow() {
     clearOutput();
     //amilySprite();
@@ -2180,6 +2215,7 @@ function amilySexEnjoyShow() {
     amilySexMidPartII();
 }
 
+// NEED SPRITE
 function amilySexMidPartII() {
     player.changeLust(5);
     //amilySprite();
@@ -2187,9 +2223,9 @@ function amilySexMidPartII() {
     outputText("Do you do a striptease of your own or just strip naked and get to business?");
     addButton(0, "Striptease", amilySexYouStrip, null, null, null, "Two can play at this game. Let's see if she likes a striptease...");
     addButton(1, "Business", amilySexGetTheFunStarted, null, null, null, "She doesn't need to tease you anymore to get you going! Let's get to the fun part...");
-    //		simpleChoices("Striptease", StripForAmilyYouSlut, "Business", getDownWithSexTiem, "", null, "", null, "", null);
 }
 
+// NEED SPRITE
 function amilySexYouStrip() {
     clearOutput();
     //amilySprite();
@@ -2199,6 +2235,7 @@ function amilySexYouStrip() {
     //continueWithMoreMidLevelAmilySex();
 }
 
+// NEED SPRITE, PLAYER VARIABLE CHECK, PLAYER COCK
 function amilySexGetTheFunStarted() {
     clearOutput();
     //amilySprite();
@@ -2208,15 +2245,17 @@ function amilySexGetTheFunStarted() {
     //continueWithMoreMidLevelAmilySex();
 }
 
+// NEED SPRITE
 function amilySexMidPartIII() {
     player.changeLust(5);
     //amilySprite();
     outputText("Once you are both naked, you embrace and begin with a deep kiss. Slowly you both sink down and start exploring each other's bodies. You feel Amily's hands caressing you while you lightly kiss her breasts, one of your hands slowly drifting down to her cute ass and lightly squeezing it. Looking into her eyes, you see a sparkle in them before she surprises you and somehow manages to turn you onto your back. Now she's sitting on your belly, with your already hard cock being fondled by her rather flexible tail. Grinning at you, she seems to plan on teasing you as long as possible before allowing you to enter her.<br><br>");
     addButton(0, "Play Along", amilySexPlayAlong, null, null, null, "Tooltip to be added");
     addButton(1, "Please Her", amilySexWorkToPlease, null, null, null, "Tooltip to be added");
-    //simpleChoices("Play Along", playAlongWithAmilyWhataDumbBitch, "Please Her", workToPleaseTheCunt, "", null, "", null, "", null);
+
 }
 
+// NEED SPRITE
 function amilySexPlayAlong() {
     outputText("", true);
     //amilySprite();
@@ -2227,6 +2266,7 @@ function amilySexPlayAlong() {
     amilySexMidPartIV();
 }
 
+// NEED SPRITE
 function amilySexWorkToPlease() {
     clearOutput();
     //amilySprite();
@@ -2236,6 +2276,7 @@ function amilySexWorkToPlease() {
     amilySexMidPartIV();
 }
 
+// NEED SPRITE, POSSIBLE AFFECTION GAIN
 function amilySexMidPartIV() {
     //amilySprite();
     outputText("Quite spent from your lovemaking, Amily sinks down on your breast, smiles at you and slowly dozes off. You also drift off to sleep soon after. Some time later, you wake up to find her already putting on her clothes again.<br><br>");
@@ -2248,6 +2289,7 @@ function amilySexMidPartIV() {
 
 }
 
+// NEED SPRITE
 function amilySexSayGoodbye() {
     //amilySprite();
     clearOutput();
@@ -2255,6 +2297,7 @@ function amilySexSayGoodbye() {
     doNext(Camp.returnToCampUseOneHour);
 }
 
+// NEED SPRITE
 function amilySexStayAwhile() {
     //amilySprite();
     clearOutput();
@@ -2268,7 +2311,7 @@ function amilySexStayAwhile() {
  * Male High Affection Amily Sex Path
  **********/
 
-//[High Affection - Non-Pregnant/Slightly Pregnant]
+//[High Affection - Non-Pregnant/Slightly Pregnant] -- NEED SPRITE, PREGNANCY, PLAYER COCK
 function amilyHighAffectionSex() {
 
     //amilySprite();
@@ -2388,7 +2431,7 @@ function amilyHighAffectionSex() {
 
 //FEMALE SEX
 
-// First time and subsequent times. Some problems with this scene. See notes.
+// First time and subsequent times. Some problems with this scene. See notes. - NEED SPRITE
 function girlyGirlMouseSex() {
     //amilySprite();
     clearOutput();
@@ -2425,7 +2468,7 @@ function girlyGirlMouseSex() {
 // Amily turns Herm for you scenes.
 
 
-
+// NEED SPRITE
 function amilyPostConfessionGirlRemeeting() {
     //amilySprite();
     clearOutput();
@@ -2446,7 +2489,7 @@ function amilyPostConfessionGirlRemeeting() {
 }
 
 
-// Accept Herm Amily's offer
+// Accept Herm Amily's offer - NEED SPRITE
 function acceptHermAmily() {
     //amilySprite();
     clearOutput();
@@ -2457,7 +2500,7 @@ function acceptHermAmily() {
 }
 
 
-// Reject Amily Herm offer. Closes encounter off
+// Reject Amily Herm offer. Closes encounter off - NEED SPRITE
 function denyHermAmily() {
     //amilySprite();
     clearOutput();
@@ -2469,6 +2512,7 @@ function denyHermAmily() {
     doNext(Camp.returnToCampUseOneHour);
 }
 
+// NEED SPRITE, cuntChange FUNCTION, PLAYER DESC STUFF, PREGNANCY
 function amilyHermOnFemalePC() {
     //amilySprite();
     clearOutput();
@@ -2543,8 +2587,7 @@ function amilyHermOnFemalePC() {
 
 
 
-//Function formerly known as stickItInMouseTwatForTheFirstTimeNOTWORTHALLBULLSHIT()
-//Having sex with Amily for the first time
+//Having sex with Amily for the first time - NEED SPRITE, PLAYER VARS
 function amilySexFirstTime() {
     clearOutput();
     //amilySprite();
@@ -2555,7 +2598,7 @@ function amilySexFirstTime() {
     outputText("  Finally, you are led into one particular ruined house, and from there, to a bedroom. It's not exactly an impressive sight; a few bits of smashed furniture, and a large mound of vaguely clean rags and tattered cushions is the closest thing to a bed. The floor is covered in a thick layer of dirt - more than just dust, it's like dirt was deliberately brought in from outside.<br><br>");
     outputText("Amily sees you examining the room and looks sheepish. \"<i>I have to stay hidden, I can't afford to make it too obvious that anyone lives here. That dirt actually helps warn me if anyone else has found this bolthole.</i>\" She idly takes her tail in one hand and starts stroking the tip. \"<i>So... here we are?</i>\" She says, hesitantly. It's clear that for all her insistence on this being what she needed to do, she's evidently a virgin, and has no real idea of how to proceed from here. What do you do?<br><br>");
 
-    //simpleChoices("Take Charge", FirstTimeAmilyTakeCharge, "Wait 4 Her", beSomeKindofNervousDoucheAndWaitForAmily, "Kiss Her", kissAmilyInDaMoufFirstTimeIsSomehowBetterThatWay, "", null, "", null);
+
     addButton(0, "Take Charge", amilySexFirstTimeTakeCharge, null, null, null, "Let me show her how it's done...");
     addButton(1, "Hesitate", amilySexFirstTimeHesitate, null, null, null, "Maybe she'll make the first move?");
     addButton(2, "Kiss Her", amilySexFirstTimeKiss, null, null, null, "Romance is key. Maybe you shouldn't let her forget?");
@@ -2563,8 +2606,8 @@ function amilySexFirstTime() {
 
 }
 
-// Was FirstTimeAmilyTakeCharge
-// "Take charge" (i.e be a total douche) during first sexual encounter with Amily
+
+// "Take charge" (i.e be a total douche) during first sexual encounter with Amily - NEED SPRITE, COCK VARS
 function amilySexFirstTimeTakeCharge() {
     clearOutput();
     //outputText(images.showImage("amily-forest-takecharge"), false);
@@ -2614,13 +2657,13 @@ function amilySexFirstTimeTakeCharge() {
     player.orgasm();
     // Lower affection because you were an ass!
     gameFlags[AMILY_AFFECTION] -= 5;
-    // Add this later
-    //amilyPreggoChance(); 
+
+    amilyPreggoChance();
     doNext(Camp.returnToCampUseOneHour);
 };
 
-//Was beSomeKindofNervousDoucheAndWaitForAmily
-// Wait for Amily to make the first move during first sexual encounter.
+
+// Wait for Amily to make the first move during first sexual encounter. - NEED SPRITE, PLAYER COCK VARS
 function amilySexFirstTimeHesitate() {
     clearOutput();
     //outputText(images.showImage("amily-forest-plainfuck"), false);
@@ -2637,15 +2680,14 @@ function amilySexFirstTimeHesitate() {
     outputText("Seeing as how she clearly has no further need for you, you quietly excuse yourself, get dressed and leave.");
     // Lower affection slightly because you were timid
     gameFlags[AMILY_AFFECTION] -= 2;
-    // Code later
-    //amilyPreggoChance();
+
+    amilyPreggoChance();
     player.orgasm();
     doNext(Camp.returnToCampUseOneHour);
 
 }
 
-// Was kissAmilyInDaMoufFirstTimeIsSomehowBetterThatWay
-// Kiss Amily first before going further during first sexual encounter
+// Kiss Amily first before going further during first sexual encounter -- NEED SPRITE
 function amilySexFirstTimeKiss() {
     clearOutput();
     //amilySprite();
@@ -2674,8 +2716,8 @@ function amilySexFirstTimeKiss() {
     // Amily liked her first time!
     gameFlags[AMILY_AFFECTION] += 3;
     player.orgasm();
-    // Pregnancy check. Uncomment after adding
-    //amilyPreggoChance();
+
+    amilyPreggoChance();
     doNext(Camp.returnToCampUseOneHour);
 
 }
@@ -2686,8 +2728,11 @@ function amilySexFirstTimeKiss() {
  *
  ***********/
 
+// Pregnancy array for Amily
 var amilyPregnancy = new PregnancyStore(gameFlags[AMILY_PREGNANCY_TYPE], gameFlags[AMILY_INCUBATION], gameFlags[AMILY_BUTT_PREGNANCY_TYPE], gameFlags[AMILY_OVIPOSITED_COUNTDOWN]);
 
+
+// DONE, surprisingly. But there are other pregnancy functions that are needed.
 function amilyPreggoChance() {
     //Is amily a chaste follower?
     if (gameFlags[AMILY_FOLLOWER] == 1) {
@@ -2715,7 +2760,7 @@ function amilyPreggoChance() {
 *
 **************/
 
-//Requires PC have done first meeting and be corrupt
+//Requires PC have done first meeting and be corrupt - NEED SPRITE, PREGNANCY EVENTS
 function meetAmilyAsACorruptAsshat() {
     //amilySprite();
     clearOutput();
@@ -2841,19 +2886,6 @@ public function AmilyScene()
 		}
 		//End of Interface Implementation
 
-		// NEW EVENTS:
-		// 3172 = Ask to defur Amily
-		// 3174 = Defur Amily at camp (both corrupt/noncorrupt)
-		override public function amilyFollower():Boolean {
-			if (flags[kFLAGS.AMILY_FOLLOWER] > 0) {
-				//Amily not a follower while visiting Urta
-				return !(flags[kFLAGS.AMILY_VISITING_URTA] == 1 || flags[kFLAGS.AMILY_VISITING_URTA] == 2);
-			}
-			else return false;
-		}
-		public function amilyCorrupt():Boolean {
-			return flags[kFLAGS.AMILY_FOLLOWER] == 2;
-		}
 
 
 
