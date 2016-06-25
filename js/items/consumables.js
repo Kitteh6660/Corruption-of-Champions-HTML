@@ -98,10 +98,16 @@ Items.Consumables.FishFillet = new Item("FishFil", "F. Fillet", "a fish fillet",
 Items.Consumables.FishFillet.description = "A perfectly cooked piece of fish. You're not sure what type of fish is, since you're fairly certain \"delicious\" is not a valid species.";
 Items.Consumables.FishFillet.consumeEffect = ConsumableEffects.fishFillet;
 
-Items.Consumables.LustDraft = new Item("L.Draft", "LustDraft", "a vial of roiling bubble-gum pink fluid", ITEM_TYPE_CONSUMABLE);
+Items.Consumables.LustDraft = new Item("L.Draft", "Lust Draft", "a vial of roiling bubble-gum pink fluid", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.LustDraft.description = "This vial of bright pink fluid bubbles constantly inside the glass, as if eager to escape. It smells very sweet, and has \"Lust\" inscribed on the side of the vial.";
 Items.Consumables.LustDraft.consumeEffect = ConsumableEffects.lustDraft;
 Items.Consumables.LustDraft.value = 20;
+
+Items.Consumables.FuckDraft = new Item("F.Draft", "Fuck Draft", "a vial of roiling red fluid labeled \"Fuck Draft\".", ITEM_TYPE_CONSUMABLE);
+Items.Consumables.FuckDraft.description = "This vial of red fluid bubbles constantly inside the glass, as if eager to escape.  It smells very strongly, though its odor is difficult to identify.  The word \"Fuck\" is inscribed on the side of the vial.";
+//Items.Consumables.LustDraft.consumeEffect = ConsumableEffects.fuckDraft;
+Items.Consumables.FuckDraft.value = 20;
+
 
 Items.Consumables.OviElixir = new Item("OviElix", "Ovi Elixir", "a salve marked as 'Ovulation Exlixir'", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.OviElixir.description = "This hexagonal container with an egg-shaped label can help you or others lay eggs.";

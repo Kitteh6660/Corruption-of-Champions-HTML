@@ -51,14 +51,30 @@ Camp.doCamp = function () {
     }
     
     //DEBUGGING CODE FOR AMILY MEETINGS
-    //player.gender = 1;
-    //outputText("Player Gender is " + player.gender);
+    //player.gender = 3;
+    //outputText("Amily Pregnancy Counter is " + AmilyScene.amilyPregnancy.pregnancyIncubationFlag);
+    //if (timeAware.length == 0) {
+    //    outputText("<br>NOTHING in timeAware.")
+    //}
+    //if (timeAware.length > 0) {
+    //    outputText("<br>Something is in timeAware");
+    //    for (i=0; i < timeAware.length; i++) {
+    //timeAware[i].advanceTime();
+    //    }
+    //}
+
+    //timeAware.push(amilyPregnancy);
+    //outputText("<br>Time Aware Functions are " + );
     //gameFlags[AMILY_AFFECTION] = 40;
     //outputText("Amily Affection is " + gameFlags[AMILY_AFFECTION]);
     //player.changeLust(50);
-    //var testingPreg = new PregnancyStore(0,0,0,0);
-    //outputText(testingPreg.isPregnant());
+    //var testingPreg = new PregnancyStore.Pregnancy(0,0,0,0);
+    //outputText("Whee" + testingPreg.isPregnant());
     //player.modStats("cor", 50);
+    //Inventory.takeItem(Items.Consumables.IncubiDraftPurified);
+    // gameFlags[AMILY_HERM_QUEST] = 2;
+    //gameFlags[AMILY_AFFECTION] = 50;
+
 
     //Display available options
 	menu();
