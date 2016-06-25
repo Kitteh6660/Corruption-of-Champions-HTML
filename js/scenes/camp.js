@@ -52,8 +52,14 @@ Camp.doCamp = function () {
     
     //DEBUGGING CODE FOR AMILY MEETINGS
     //player.gender = 3;
-    //outputText("Amily Pregnancy Duration is " + AmilyScene.amilyPregnancy.pregnancyIncubationFlag);
-    //outputText("<br><br>Amily Pregnancy Event number is " + AmilyScene.amilyPregnancy.pregnancyEventCounter);
+    outputText("Game thinks that Amily Pregnancy is " + AmilyScene.amilyPregnancy.isPregnant());
+    outputText("<br><br>Amily Pregnancy timer is at " + AmilyScene.amilyPregnancy.pregnancyIncubationFlag);
+    if (AmilyScene.amilyPregnancy.isPregnant() == true && AmilyScene.amilyPregnancy.pregnancyIncubationFlag == 0) {
+    outputText("<br><br>You should be giving birth now!");
+}
+else {
+    outputText("<br><br>Mouse hasn't popped yet...")
+}
     //if (timeAware.length == 0) {
     //    outputText("<br>NOTHING in timeAware.")
     //}

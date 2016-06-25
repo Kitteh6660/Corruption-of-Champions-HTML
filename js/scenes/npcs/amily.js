@@ -5,16 +5,14 @@ var AmilyScene = [];
  * Converted to JS by Matraia
  */
 
-addToGameFlags(AMILY_MET, AMILY_MET_AS, AMILY_PC_GENDER, AMILY_OFFER_ACCEPTED, AMILY_AFFECTION, AMILY_OFFERED_DEFURRY, AMILY_FUCK_COUNTER, AMILY_NOT_FURRY, AMILY_WANG_LENGTH, AMILY_PREGNANCY_TYPE, AMILY_INCUBATION, AMILY_BUTT_PREGNANCY_TYPE, AMILY_OVIPOSITED_COUNTDOWN, AMILY_GROSSED_OUT_BY_WORMS, AMILY_FOLLOWER, AMILY_ALLOWS_FERTILITY, FOLLOWER_AT_FARM_AMILY, AMILY_CORRUPT_FLIPOUT, AMILY_TIMES_FUCKED_FEMPC, AMILY_VILLAGE_ENCOUNTERS_DISABLED, AMILY_CONFESSED_LESBIAN, AMILY_WANG_LENGTH, AMILY_WANG_GIRTH, AMILY_HERM_TIMES_FUCKED_BY_FEMPC, AMILY_HERM_QUEST, PC_TIMES_BIRTHED_AMILYKIDS, AMILY_CORRUPT_FLIPOUT, AMILY_VISITING_URTA, AMILY_DRANK_POTENT_MIXTURE);
+addToGameFlags(AMILY_MET, AMILY_MET_AS, AMILY_PC_GENDER, AMILY_OFFER_ACCEPTED, AMILY_AFFECTION, AMILY_OFFERED_DEFURRY, AMILY_FUCK_COUNTER, AMILY_NOT_FURRY, AMILY_WANG_LENGTH, AMILY_PREGNANCY_TYPE, AMILY_INCUBATION, AMILY_BUTT_PREGNANCY_TYPE, AMILY_OVIPOSITED_COUNTDOWN, AMILY_GROSSED_OUT_BY_WORMS, AMILY_FOLLOWER, AMILY_ALLOWS_FERTILITY, FOLLOWER_AT_FARM_AMILY, AMILY_CORRUPT_FLIPOUT, AMILY_TIMES_FUCKED_FEMPC, AMILY_VILLAGE_ENCOUNTERS_DISABLED, AMILY_CONFESSED_LESBIAN, AMILY_WANG_LENGTH, AMILY_WANG_GIRTH, AMILY_HERM_TIMES_FUCKED_BY_FEMPC, AMILY_HERM_QUEST, PC_TIMES_BIRTHED_AMILYKIDS, AMILY_CORRUPT_FLIPOUT, AMILY_VISITING_URTA, AMILY_DRANK_POTENT_MIXTURE, AMILY_BIRTH_TOTAL);
 
 
 /*
 
  Changes to make:
 
- Insert the Amily sprite. See Rathazul code for how to do that.
-
- Pregnancy Event code needs to be completed so those code blocks can be uncommented and checked.
+ Enable the Amily Defurred sprite once the defurring process is implemented
 
  The initial male meeting offers a rejection option because she's a furry. See amilyNoFur(). Part of the text for that option reveals the ingredients necessary to defur Amily. However, players don't see these ingredients until much later in the game. Amily is often encountered early. How is the player going to know what the ingredients are? This scene is possible several times throughout the code.
 
@@ -197,18 +195,44 @@ AmilyScene.start = function () {
      */
 
 
-    //If Amily is ready to give birth, do this
-    /*
-     if (pregnancy.isPregnant && pregnancy.incubation == 0) {
-     displaySprite("amily");
-     fuckingMouseBitchPopsShitOut();
-     pregnancy.knockUpForce(); //Clear Pregnancy
-     return;
-     }
-     */
 
     // We will need to put a switch here between amily and amily-defurred. Will do after Amily defurring code is implemented. Probably another one too for when she's in camp. That's how the Rathazul code is set up.
     displaySprite("amily");
+
+
+    //If Amily is ready to give birth, do this
+
+     if (AmilyScene.amilyPregnancy.isPregnant() == true && AmilyScene.amilyPregnancy.pregnancyIncubationFlag == 0) {
+     AmilyScene.amilyGivesBirth(); //fuckingMouseBitchPopsShitOut();
+     AmilyScene.amilyPregnancy.knockUpForce(0,0); //Clear Pregnancy
+     return;
+     }
+/*
+    // Transformation Scene
+     if (amilyCanHaveTFNow())
+     {
+     amilyDefurrify();
+     return;
+     }
+
+     //meeting scenes for when PC is the same gender as when they last met Amily
+     if (flags[kFLAGS.AMILY_PC_GENDER] == player.gender) {
+     //"bad" or "good" ends.
+     if (flags[kFLAGS.AMILY_BIRTH_TOTAL] + flags[kFLAGS.PC_TIMES_BIRTHED_AMILYKIDS] >= 5 && flags[kFLAGS.AMILY_VILLAGE_ENCOUNTERS_DISABLED] == 0)
+     {
+     if (flags[kFLAGS.AMILY_AFFECTION] < 40) thisIsAReallyShittyBadEnd();
+     else thisFunctionProbablySucksTooOhYeahAmilyFunction();
+
+     return;
+     }
+
+     */
+
+
+
+
+
+
 
     // Male Meeting - Complete until Pregnancy is fixed
     if (player.gender == 1) {
@@ -2757,11 +2781,9 @@ AmilyScene.amilyStandardMeeting = function() {
 
         };
 
-        /**********
-         *
-         * Amily Pregnancy Checks
-         *
-         ***********/
+    //---------
+    // Amily Pregnancy code and birthing scenes
+    //---------
 
 // Pregnancy array for Amily
         AmilyScene.amilyPregnancy = new PregnancyStore.Pregnancy(gameFlags[AMILY_PREGNANCY_TYPE], gameFlags[AMILY_INCUBATION], gameFlags[AMILY_BUTT_PREGNANCY_TYPE], gameFlags[AMILY_OVIPOSITED_COUNTDOWN]);
@@ -2794,6 +2816,104 @@ AmilyScene.amilyStandardMeeting = function() {
 
 
         };
+    
+    AmilyScene.amilyGivesBirth = function() {
+        outputText("You head into the ruined village, wondering how Amily is doing. You can't be sure, but you think that it will soon be time for her to give birth. Right as that thought sinks in, you hear a squeaking wail of pain in the distance. You hurriedly take off to find the source, and you soon find her; Amily, squatting naked in the shelter of a building. She squeals softly with exertion as her swollen abdomen visibly ripples, and fluids drip from her swollen pink vagina. She is definitely in labor.<br><br>");
+
+    outputText("What will you do?");
+    //Increase baby count here rather than in 3 places.
+    gameFlags[AMILY_BIRTH_TOTAL]++;
+    menu();
+        addButton(0,"Leave", AmilyScene.amilyLaborLeave, null, null, null, "Tooltip to be added.");
+        addButton(1,"Watch", AmilyScene.amilyLaborWatch, null, null, null, "Tooltip to be added.");
+        addButton(2,"Help", AmilyScene.amilyLaborHelp, null, null, null, "Tooltip to be added.");
+    }
+
+    AmilyScene.amilyLaborLeave = function() {
+        clearOutput();
+        outputText("You make a hasty retreat. You aren't sure why; maybe it was fear, maybe it was memories of the way the midwives always chased the men away when one of the women back in the village went into labor. Reassuring yourself that she will be fine, you head back to camp.<br><br>");
+
+    outputText("The next morning, you find a note scratched onto a slab of bark beside your sleeping roll, reading, \"<i>The babies and I are both fine. No thanks to you!</i>\"<br><br>");
+    //{Affection goes down}
+    gameFlags[AMILY_AFFECTION] -= 10;
+    doNext(Camp.returnToCampUseOneHour);
+}
+
+
+    //[Watch]
+AmilyScene.amilyLaborWatch = function () {
+        clearOutput();
+
+    outputText("You don't want to just run away and leave her, but at the same time you think it would be best to respect her privacy. You stand a respectful distance away, watching as she strains. Her pink nether lips part and a small");
+
+    if (gameFlags[AMILY_NOT_FURRY] == 0) outputText(", mousy figure – pink, hairless and ", false);
+    else outputText(" figure –", false);
+    outputText(" maybe six inches tall – slips out, falling to the ground with a squeak. Fortunately, Amily has prepared a pile of rags and soft leaves to cushion its landing. It rolls around a bit, and then scrambles with surprising speed; which is good, as it is joined by company very quickly. A second infant falls onto the padding beside it, and then a third... a fourth...<br><br>");
+
+    outputText("You watch as baby after baby slips free of its mother's womb and into the wider world. ");
+
+    if (gameFlags[AMILY_NOT_FURRY] == 0) outputText(" Though hairless like regular infant mice,");
+    else outputText(" Though remarkably similar to a regular infant - minus the ears and tail, of course -");
+    outputText(" they can already crawl around at high speed; even totter unsteadily on two legs. The first of them begin to instinctively make its way up its mother's body to latch onto one of her nipples and suckle. You lose count somewhere after a dozen, but Amily finally gives an exhausted sigh of relief as the afterbirth slips free of her body. Each infant has nursed from her by this point. They now seem more confident about standing on two legs,");
+
+    if (gameFlags[AMILY_NOT_FURRY] == 0) outputText(" and fur has already begun to cover their formerly-naked bodies.");
+    else outputText(" maturing dramatically as you watch.");
+    outputText("  Their color patterns vary considerably; white, black and brown are most common, and you even see one or two with your hair color. Amily flops back onto her rump and then topples over onto her back, clearly too tired to stand up. Her offspring crowd around, cuddling up to her, and she gives them a tired but happy smile.<br><br>");
+
+    outputText("Making sure that there doesn't seem to be any danger, you quietly let yourself out. It seems that she's too concerned about the children to notice you leave.");
+    doNext(Camp.returnToCampUseOneHour);
+}
+
+ AmilyScene.amilyLaborHelp = function () {
+    clearOutput();
+    outputText("You move forward instinctively. Amily is in labor – she needs help. The fact that you are the father only makes it more natural for you to want to help her.<br><br>");
+    outputText("\"<i>Hghnn... " + player.short + "? What are you doing?</i>\" Amily asks, before groaning again as another contraction hits her. You reassure her that you're here to help as you kneel beside her, and reach out to touch her swollen middle, placing one hand on either side of its globular mass. Unsure of what else to do, you start to gently massage it, trying to relax and soothe the muscles after every time they clench and lower the pain when she goes through another contraction. She starts to thank you, then clenches her teeth,");
+
+    //([horsecock]
+    if (gameFlags[AMILY_NOT_FURRY] == 0)
+        outputText("turns her little muzzle skywards and hisses in pain");
+    else
+        outputText("hissing in pain"); // This sound a bit wrong for what should look like a human...
+
+    outputText(" as the strongest contraction yet hits – she's crowning! Immediately your hands dive down to hover under her vagina as a small, pink, naked and wriggling thing slips between their parted lips. The little body is surprisingly light in your hands, but it squeaks loudly as it draws its first breath – correction, HER first breath. It's a ");
+    var amilyKid = "girl";
+    if ((player.gender == 3 || gameFlags[AMILY_WANG_LENGTH] > 0) && rand(2) == 0) amilyKid = "herm";
+    if (player.gender == 3 && gameFlags[AMILY_WANG_LENGTH] > 0) amilyKid = "herm";
+    outputText(amilyKid + ".<br><br>");
+
+    outputText("Awestruck, you tell Amily that she's beautiful and you really mean it. Even though she's a different species, she's your daughter and she's gorgeous to you.<br><br>");
+    outputText("\"<i>That's nice... but there's a lot more where she came from, so...</i>\" Amily trails off as another contraction hits, and you see a second baby beginning to peek out between her nether lips. At your panicked expression, she manages a grim laugh. \"<i>Just... put her to my breast. She can handle things from there,</i>\" she instructs you.<br><br>");
+    outputText("Uncertain, you do as you are told; your daughter latches onto her mother's ");
+
+    //([horsecock]
+    if (gameFlags[AMILY_NOT_FURRY] == 0)
+        outputText("fur");
+    else
+        outputText("bosom");
+
+    outputText(", rooting eagerly for her nipple as your hands dart down to catch her first sibling. It almost becomes a rhythm; catch a baby, place her or him at Amily's breast to nurse, catch the next baby... Well over a dozen babies are born – you think it might be as many as two dozen – before Amily finally stops, the afterbirth gushing out to signal the end of her labors. Gently, you catch her and lower her onto a soft piece of ground to rest. Around you, your many children play; though born only a short time ago, they can now stand strong and proud on their two legs.");
+
+    //([horsecock]
+    if (gameFlags[AMILY_NOT_FURRY] == 0)
+        outputText("Their fur has come in too, something triggered by the first drink of their mother's milk.");
+    else
+        outputText("Their hair is also starting to grow in an accelerated rate.");
+
+    outputText("  Your firstborn daughter is already asserting herself as the leader of the pack, and you can't help but notice that her ");
+
+    //([horsecock]
+    if (gameFlags[AMILY_NOT_FURRY] == 0)
+        outputText("fur");
+    else
+        outputText("hair");
+
+    outputText(" is the same color as your hair.<br><br>");
+    outputText("Amily is tired, but she smiles at you happily. \"<i>I... thank you. For being here. For me – and them,</i>\" she says. You assure her that it was no problem. You sit there with her, letting your inquisitive offspring examine you and tussle with you while their mother regains her strength.<br><br>");
+    outputText("As the rambunctious little mouselets burn up their energy and curl up beside Amily to sleep, you gently excuse yourself and return to camp.");
+    //{Affection goes up}
+    gameFlags[AMILY_AFFECTION] += 5;
+    doNext(Camp.returnToCampUseOneHour);
+}
 
 
         /*************
@@ -2977,9 +3097,6 @@ AmilyScene.amilyStandardMeeting = function() {
 
 /* Holding comment for stuff from the original CoC code
 
- public function AmilyScene()
- {
-
 
  CoC.timeAwareClassAdd(this);
  }
@@ -3042,25 +3159,6 @@ AmilyScene.amilyStandardMeeting = function() {
 
 
 
- //Preggo birthing!
-
-
- if (amilyCanHaveTFNow())
- {
- amilyDefurrify();
- return;
- }
- //meeting scenes for when PC is the same gender as when they last met Amily
- if (flags[kFLAGS.AMILY_PC_GENDER] == player.gender) {
- //"bad" or "good" ends.
- if (flags[kFLAGS.AMILY_BIRTH_TOTAL] + flags[kFLAGS.PC_TIMES_BIRTHED_AMILYKIDS] >= 5 && flags[kFLAGS.AMILY_VILLAGE_ENCOUNTERS_DISABLED] == 0)
- {
- if (flags[kFLAGS.AMILY_AFFECTION] < 40) thisIsAReallyShittyBadEnd();
- else thisFunctionProbablySucksTooOhYeahAmilyFunction();
-
- return;
- }
-
 
 
 
@@ -3070,7 +3168,7 @@ AmilyScene.amilyStandardMeeting = function() {
  // Surprise remeeting would go into amily.Start, but it's commented out. Will talk with other coders about it.
 
  //[Surprise Remeeting]
- /*(random chance of happening instead of [Normal Remeeting] if player meets 'requirements' for stalking Amily)
+ (random chance of happening instead of [Normal Remeeting] if player meets 'requirements' for stalking Amily)
  if (player.spe > 50 && player.inte > 40 && rand(4) == 0) {
  outputText("Deciding to find Amily first instead of waiting for her to find you, you set off into the ruins. Using all of your knowledge, skill and cunning to figure out where she is likely to be, you make your way there without giving yourself away.<br><br>");
  //[Amily is not pregnant]
@@ -3089,19 +3187,6 @@ AmilyScene.amilyStandardMeeting = function() {
  //Announce yourself / Scare her
  simpleChoices("Announce",sneakyUberAmilyRemeetingsAnnounce,"Scare Her",scareAmilyRemeetingsProBaws,"",0,"",0,"",0);
  return;
- }*/
-/*
-
-
-
-
-
-
-
- /*FAILSAFE - ALL GENDERS HAVE HAD THERE GO AN NOTHING HAPPENED!
- outputText("You enter the ruined village cautiously. There are burnt-down houses, smashed-in doorways, ripped-off roofs... everything is covered with dust and grime. You explore for an hour, but you cannot find any sign of another living being, or anything of value. The occasional footprint from an imp or a goblin turns up in the dirt, but you don't see any of the creatures themselves. It looks like time and passing demons have stripped the place bare since it was originally abandoned. Finally, you give up and leave. You feel much easier when you're outside of the village – you had the strangest sensation of being watched while you were in there.");
- doNext(13);
- return;*/
-/*
  }
+
  */

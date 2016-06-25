@@ -109,6 +109,7 @@ const AMILY_HERM_QUEST                  = "Amily_Herm_Quest";
 const PC_TIMES_BIRTHED_AMILYKIDS        = "PC_Times_Birthed_Amilykids";
 const AMILY_VISITING_URTA               = "Amily_Visiting_Urta";
 const AMILY_DRANK_POTENT_MIXTURE        = "Amily_Drank_Potent_Mixture";
+const AMILY_BIRTH_TOTAL                 = "Amily_Birth_Total";
 
 //=================
 // PREGNANCY FLAGS
