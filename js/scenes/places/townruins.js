@@ -105,7 +105,7 @@ TownRuins.exploreVillageRuin = function () {
     }
     // Chance to counter Amily
     else if(rand(2) == 0) {
-        Amily.start();
+        AmilyScene.start();
     }
     // Otherwise, find nothing and go back to camp
     else {

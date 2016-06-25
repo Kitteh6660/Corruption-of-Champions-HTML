@@ -5,8 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8a292ce1-df00-4848-8a40-d7241dab169d" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/sprites/amily.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/sprites/amily_defurr.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/engine/time.js" afterPath="$PROJECT_DIR$/js/engine/time.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/flags/dataFlags.js" afterPath="$PROJECT_DIR$/js/flags/dataFlags.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/items/consumables.js" afterPath="$PROJECT_DIR$/js/items/consumables.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/pregnancy.js" afterPath="$PROJECT_DIR$/js/pregnancy.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/camp.js" afterPath="$PROJECT_DIR$/js/scenes/camp.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/npcs/amily.js" afterPath="$PROJECT_DIR$/js/scenes/npcs/amily.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/places/townruins.js" afterPath="$PROJECT_DIR$/js/scenes/places/townruins.js" />
     </list>
     <ignored path="Corruption-of-Champions-HTML.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,74 +35,48 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="amily.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/js/scenes/npcs/amily.js">
+      <file leaf-file-name="camp.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/js/scenes/camp.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="279">
-              <caret line="147" column="0" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-                <element signature="e#8739#9471#0" expanded="false" />
-                <element signature="e#9775#9835#0" expanded="false" />
-                <element signature="e#22222#27881#0" expanded="false" />
-                <element signature="e#27937#33382#0" expanded="false" />
-                <element signature="e#33443#42123#0" expanded="false" />
-                <element signature="e#42200#42237#0" expanded="false" />
-                <element signature="n#!!block;n#amilyStandardMeeting#0" expanded="false" />
-                <element signature="e#42859#46176#0" expanded="false" />
-                <element signature="e#46326#46860#0" expanded="false" />
-                <element signature="n#!!block;n#amilyMeetingFailed#0" expanded="false" />
-                <element signature="n#!!block;n#amilyRemeetingContinued#0" expanded="false" />
-                <element signature="n#!!block;n#secondTimeAmilyOfferedAccepted#0" expanded="false" />
-                <element signature="n#!!block;n#secondTimeAmilyRefuseAgain#0" expanded="false" />
-                <element signature="n#!!block;n#repeatAmilyTalk#0" expanded="false" />
-                <element signature="n#!!block;n#tellAmilyToGetLost#0" expanded="false" />
-                <element signature="n#!!block;n#acceptAmilysOfferEagerly#0" expanded="false" />
-                <element signature="n#!!block;n#acceptAmilysOfferHesitantly#0" expanded="false" />
-                <element signature="n#!!block;n#refuseAmilysOffer#0" expanded="false" />
-                <element signature="n#!!block;n#amilyNoFur#0" expanded="false" />
-                <element signature="n#!!block;n#desperateAmilyPleaAcceptHer#0" expanded="false" />
-                <element signature="n#!!block;n#desperateAmilyPleaTurnDown#0" expanded="false" />
-                <element signature="n#!!block;n#desperateAmilyPleaTurnDownBlunt#0" expanded="false" />
-                <element signature="n#!!block;n#amilyLesbian#0" expanded="false" />
-                <element signature="n#!!block;n#amilyLesbianLetHerGo#0" expanded="false" />
-                <element signature="n#!!block;n#makeAmilyAHerm#0" expanded="false" />
-                <element signature="n#!!block;n#whyNotHerms#0" expanded="false" />
-                <element signature="n#!!block;n#hermRenegotiate#0" expanded="false" />
-                <element signature="n#!!block;n#amilyAgreeHerm#0" expanded="false" />
-                <element signature="n#!!block;n#amilyRejectHerm#0" expanded="false" />
-                <element signature="n#!!block;n#amilyNewGenderConfrontation#0" expanded="false" />
-                <element signature="e#83766#88791#0" expanded="false" />
-                <element signature="e#88836#93515#0" expanded="false" />
-                <element signature="n#!!block;n#talkToAmily#0" expanded="false" />
-                <element signature="n#!!block;n#amilyConversationStart#0" expanded="false" />
-                <element signature="n#!!block;n#talkThenSexWithAmily#0" expanded="false" />
-                <element signature="n#!!block;n#talkToAmilyWithSexAfter#0" expanded="false" />
-                <element signature="n#!!block;n#amilySexHappens#0" expanded="false" />
-                <element signature="e#154341#154407#0" expanded="false" />
-                <element signature="e#154656#155092#0" expanded="false" />
-                <element signature="e#155116#156564#0" expanded="false" />
-                <element signature="e#156639#156722#0" expanded="false" />
-                <element signature="n#!!block;n#amilySexBusiness#0" expanded="false" />
-                <element signature="n#!!block;n#amilySexPlaytimeFirst#0" expanded="false" />
-                <element signature="n#!!block;n#amilySexPtII#0" expanded="false" />
-                <element signature="n#!!block;n#amilySexSitAndWatch#0" expanded="false" />
-                <element signature="n#!!block;n#amilySexCaressHer#0" expanded="false" />
-                <element signature="n#!!block;n#amilySexRefrainKiss#0" expanded="false" />
-                <element signature="n#!!block;n#amilySexKiss#0" expanded="false" />
-                <element signature="n#!!block;n#amilySexPartIII#0" expanded="false" />
-                <element signature="n#!!block;n#girlyGirlMouseSex#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="195">
+              <caret line="54" column="6" selection-start-line="54" selection-start-column="6" selection-end-line="54" selection-end-column="6" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dataFlags.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/flags/dataFlags.js">
+      <file leaf-file-name="pregnancy.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/pregnancy.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="110" column="0" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
+            <state relative-caret-position="165">
+              <caret line="130" column="6" selection-start-line="130" selection-start-column="6" selection-end-line="130" selection-end-column="6" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="time.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/engine/time.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="525">
+              <caret line="36" column="37" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="amily.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/scenes/npcs/amily.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="149">
+              <caret line="2747" column="0" selection-start-line="2747" selection-start-column="0" selection-end-line="2747" selection-end-column="0" />
+              <folding>
+                <element signature="e#147435#153065#0" expanded="false" />
+                <element signature="e#157069#157135#0" expanded="false" />
+                <element signature="e#157196#157242#0" expanded="false" />
+                <element signature="e#157382#157837#0" expanded="false" />
+                <element signature="e#157861#159250#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -121,8 +103,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/js/engine/saves.js" />
-        <option value="$PROJECT_DIR$/js/scenes/areas/forest/beeGirl.js" />
         <option value="$PROJECT_DIR$/js/scenes/combatTeases.js" />
         <option value="$PROJECT_DIR$/js/engine/gui.js" />
         <option value="$PROJECT_DIR$/js/scenes/monsters/imp.js" />
@@ -158,19 +138,21 @@
         <option value="$PROJECT_DIR$/js/playerInfo.js" />
         <option value="$PROJECT_DIR$/js/scenes/npcs/marble.js" />
         <option value="$PROJECT_DIR$/js/scenes/places/farm.js" />
-        <option value="$PROJECT_DIR$/js/items/consumables.js" />
         <option value="$PROJECT_DIR$/js/items/consumableEffects.js" />
         <option value="$PROJECT_DIR$/js/items/transformationEffects.js" />
         <option value="$PROJECT_DIR$/coc.html" />
-        <option value="$PROJECT_DIR$/js/engine/time.js" />
         <option value="$PROJECT_DIR$/js/scenes/areas/desert/marcusLucia.js" />
         <option value="$PROJECT_DIR$/js/scenes/areas/desert.js" />
         <option value="$PROJECT_DIR$/js/scenes/areas/desert/sandWitch.js" />
         <option value="$PROJECT_DIR$/js/globalVariables.js" />
         <option value="$PROJECT_DIR$/js/scenes/npcs/rathazul.js" />
         <option value="$PROJECT_DIR$/js/scenes/inventory.js" />
-        <option value="$PROJECT_DIR$/js/scenes/camp.js" />
+        <option value="$PROJECT_DIR$/js/items/consumables.js" />
         <option value="$PROJECT_DIR$/js/flags/dataFlags.js" />
+        <option value="$PROJECT_DIR$/js/scenes/places/townruins.js" />
+        <option value="$PROJECT_DIR$/js/engine/time.js" />
+        <option value="$PROJECT_DIR$/js/scenes/camp.js" />
+        <option value="$PROJECT_DIR$/js/pregnancy.js" />
         <option value="$PROJECT_DIR$/js/scenes/npcs/amily.js" />
       </list>
     </option>
@@ -183,7 +165,7 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="27" />
-    <option name="width" value="683" />
+    <option name="width" value="1366" />
     <option name="height" value="741" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -239,11 +221,11 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane />
       </pane>
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -256,18 +238,21 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Sylvain\Documents\Corruption_of_Champions\Corruption-of-Champions-HTML\assets\sprites" />
-      <recent name="C:\Users\Sylvain\Documents\Corruption_of_Champions\Corruption-of-Champions-HTML\assets\interface" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Sylvain\Documents\Corruption_of_Champions\Corruption-of-Champions-HTML\assets\sprites" />
       <recent name="G:\Sylvain\Data Files\Documents\Corruption_of_Champions\Corruption-of-Champions-HTML\js\scenes" />
       <recent name="G:\Sylvain\Data Files\Documents\Corruption_of_Champions\Corruption-of-Champions-HTML\js" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Sylvain\Documents\Corruption_of_Champions\Corruption-of-Champions-HTML\assets\sprites" />
+      <recent name="C:\Users\Sylvain\Documents\Corruption_of_Champions\Corruption-of-Champions-HTML\assets\interface" />
+    </key>
   </component>
   <component name="RunManager" selected="JavaScript Debug.coc.html">
     <configuration default="false" name="coc.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Corruption-of-Champions-HTML/coc.html">
+      <method />
+    </configuration>
+    <configuration default="false" name="amily.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="project" path-to-js-file="amily.js" working-dir="$PROJECT_DIR$/js/scenes/npcs">
       <method />
     </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
@@ -323,12 +308,14 @@
       <recursive>false</recursive>
       <method />
     </configuration>
-    <list size="1">
+    <list size="2">
       <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.coc.html" />
+      <item index="1" class="java.lang.String" itemvalue="Node.js.amily.js" />
     </list>
     <recent_temporary>
-      <list size="1">
+      <list size="2">
         <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.coc.html" />
+        <item index="1" class="java.lang.String" itemvalue="Node.js.amily.js" />
       </list>
     </recent_temporary>
   </component>
@@ -345,7 +332,14 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1450251391331</updated>
-      <workItem from="1466368026733" duration="13883000" />
+      <workItem from="1466368026733" duration="19665000" />
+      <workItem from="1466397398434" duration="4004000" />
+      <workItem from="1466401977623" duration="845000" />
+      <workItem from="1466515301832" duration="694000" />
+      <workItem from="1466604841425" duration="9779000" />
+      <workItem from="1466623378417" duration="1698000" />
+      <workItem from="1466708239359" duration="1746000" />
+      <workItem from="1466816770719" duration="5706000" />
     </task>
     <task id="LOCAL-00001" summary="Release of 0.1 alpha with many more core content!&#10;&#10;Now with explorable zones, followers, etc!">
       <created>1455694082885</created>
@@ -372,7 +366,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13883000" />
+    <option name="totallyTimeSpent" value="44137000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -384,7 +378,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="27" width="683" height="741" extended-state="4" />
+    <frame x="0" y="27" width="1366" height="741" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24158126" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -397,7 +391,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39872408" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39872408" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32861635" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -425,53 +419,19 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="20" />
+      <breakpoints-dialog>
+        <breakpoints-dialog />
+      </breakpoints-dialog>
+      <default-breakpoints>
+        <breakpoint log-message="true" type="javascript-exception">
+          <properties />
+        </breakpoint>
+      </default-breakpoints>
+      <option name="time" value="26" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/js/scenes/intro.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coc.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="7" column="5" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/statusEffectClass.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="18" column="1" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/keyItemLib.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="13" column="35" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/keyItemClass.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="14" column="20" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/scenes/npcs/jojo.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/statusEffectLib.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -568,13 +528,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/engine/gui.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="103" column="0" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/engine/input.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -645,20 +598,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/items/consumableEffects.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="79" column="13" selection-start-line="79" selection-start-column="13" selection-end-line="79" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/engine/time.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="19" column="1" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/globalVariables.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -670,23 +609,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1395">
           <caret line="93" column="30" selection-start-line="93" selection-start-column="22" selection-end-line="93" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/scenes/npcs/rathazul.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1680">
-          <caret line="706" column="66" selection-start-line="706" selection-start-column="66" selection-end-line="706" selection-end-column="66" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coc.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
-          <caret line="149" column="65" selection-start-line="149" selection-start-column="65" selection-end-line="149" selection-end-column="65" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -694,7 +616,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="266">
           <caret line="29" column="18" selection-start-line="29" selection-start-column="18" selection-end-line="29" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -718,15 +639,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="591" column="16" selection-start-line="591" selection-start-column="9" selection-end-line="591" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/scenes/monsters/goblin.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1950">
-          <caret line="150" column="113" selection-start-line="150" selection-start-column="109" selection-end-line="150" selection-end-column="113" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -734,15 +646,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-410">
           <caret line="37" column="18" selection-start-line="37" selection-start-column="18" selection-end-line="37" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/items/consumables.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="69" column="37" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -750,7 +653,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="1258" column="53" selection-start-line="1258" selection-start-column="49" selection-end-line="1258" selection-end-column="53" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -758,26 +660,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="133" column="44" selection-start-line="133" selection-start-column="38" selection-end-line="133" selection-end-column="44" />
-          <folding>
-            <element signature="e#289#2118#0" expanded="false" />
-            <element signature="e#2180#3489#0" expanded="false" />
-            <element signature="e#3578#3731#0" expanded="false" />
-            <element signature="e#3768#3917#0" expanded="false" />
-            <element signature="e#6239#6293#0" expanded="false" />
-            <element signature="e#6379#6783#0" expanded="false" />
-            <element signature="e#7201#9085#0" expanded="false" />
-            <element signature="e#9193#9952#0" expanded="false" />
-            <element signature="e#10065#10128#0" expanded="false" />
-            <element signature="e#10193#10314#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/scenes/camp.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="53" column="6" selection-start-line="53" selection-start-column="6" selection-end-line="53" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -791,71 +673,130 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/js/items/consumableEffects.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="690">
+          <caret line="57" column="1" selection-start-line="57" selection-start-column="1" selection-end-line="57" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/items/consumables.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1995">
+          <caret line="107" column="2" selection-start-line="107" selection-start-column="2" selection-end-line="107" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coc.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="541">
+          <caret line="149" column="65" selection-start-line="149" selection-start-column="65" selection-end-line="149" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/engine/utils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="565">
+          <caret line="107" column="13" selection-start-line="107" selection-start-column="13" selection-end-line="107" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/scenes/npcs/rathazul.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1080">
+          <caret line="55" column="17" selection-start-line="55" selection-start-column="4" selection-end-line="55" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/scenes/monsters/imp.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-405">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/scenes/monsters/goblin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-75">
+          <caret line="44" column="16" selection-start-line="44" selection-start-column="16" selection-end-line="44" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/engine/gui.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="730">
+          <caret line="103" column="0" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/flags/dataFlags.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="110" column="0" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
+        <state relative-caret-position="300">
+          <caret line="119" column="91" selection-start-line="119" selection-start-column="91" selection-end-line="119" selection-end-column="91" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1665">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/scenes/npcs/jojo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/scenes/places/townruins.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="107" column="27" selection-start-line="107" selection-start-column="27" selection-end-line="107" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/scenes/npcs/amily.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="147" column="0" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
+        <state relative-caret-position="149">
+          <caret line="2747" column="0" selection-start-line="2747" selection-start-column="0" selection-end-line="2747" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#8739#9471#0" expanded="false" />
-            <element signature="e#9775#9835#0" expanded="false" />
-            <element signature="e#22222#27881#0" expanded="false" />
-            <element signature="e#27937#33382#0" expanded="false" />
-            <element signature="e#33443#42123#0" expanded="false" />
-            <element signature="e#42200#42237#0" expanded="false" />
-            <element signature="n#!!block;n#amilyStandardMeeting#0" expanded="false" />
-            <element signature="e#42859#46176#0" expanded="false" />
-            <element signature="e#46326#46860#0" expanded="false" />
-            <element signature="n#!!block;n#amilyMeetingFailed#0" expanded="false" />
-            <element signature="n#!!block;n#amilyRemeetingContinued#0" expanded="false" />
-            <element signature="n#!!block;n#secondTimeAmilyOfferedAccepted#0" expanded="false" />
-            <element signature="n#!!block;n#secondTimeAmilyRefuseAgain#0" expanded="false" />
-            <element signature="n#!!block;n#repeatAmilyTalk#0" expanded="false" />
-            <element signature="n#!!block;n#tellAmilyToGetLost#0" expanded="false" />
-            <element signature="n#!!block;n#acceptAmilysOfferEagerly#0" expanded="false" />
-            <element signature="n#!!block;n#acceptAmilysOfferHesitantly#0" expanded="false" />
-            <element signature="n#!!block;n#refuseAmilysOffer#0" expanded="false" />
-            <element signature="n#!!block;n#amilyNoFur#0" expanded="false" />
-            <element signature="n#!!block;n#desperateAmilyPleaAcceptHer#0" expanded="false" />
-            <element signature="n#!!block;n#desperateAmilyPleaTurnDown#0" expanded="false" />
-            <element signature="n#!!block;n#desperateAmilyPleaTurnDownBlunt#0" expanded="false" />
-            <element signature="n#!!block;n#amilyLesbian#0" expanded="false" />
-            <element signature="n#!!block;n#amilyLesbianLetHerGo#0" expanded="false" />
-            <element signature="n#!!block;n#makeAmilyAHerm#0" expanded="false" />
-            <element signature="n#!!block;n#whyNotHerms#0" expanded="false" />
-            <element signature="n#!!block;n#hermRenegotiate#0" expanded="false" />
-            <element signature="n#!!block;n#amilyAgreeHerm#0" expanded="false" />
-            <element signature="n#!!block;n#amilyRejectHerm#0" expanded="false" />
-            <element signature="n#!!block;n#amilyNewGenderConfrontation#0" expanded="false" />
-            <element signature="e#83766#88791#0" expanded="false" />
-            <element signature="e#88836#93515#0" expanded="false" />
-            <element signature="n#!!block;n#talkToAmily#0" expanded="false" />
-            <element signature="n#!!block;n#amilyConversationStart#0" expanded="false" />
-            <element signature="n#!!block;n#talkThenSexWithAmily#0" expanded="false" />
-            <element signature="n#!!block;n#talkToAmilyWithSexAfter#0" expanded="false" />
-            <element signature="n#!!block;n#amilySexHappens#0" expanded="false" />
-            <element signature="e#154341#154407#0" expanded="false" />
-            <element signature="e#154656#155092#0" expanded="false" />
-            <element signature="e#155116#156564#0" expanded="false" />
-            <element signature="e#156639#156722#0" expanded="false" />
-            <element signature="n#!!block;n#amilySexBusiness#0" expanded="false" />
-            <element signature="n#!!block;n#amilySexPlaytimeFirst#0" expanded="false" />
-            <element signature="n#!!block;n#amilySexPtII#0" expanded="false" />
-            <element signature="n#!!block;n#amilySexSitAndWatch#0" expanded="false" />
-            <element signature="n#!!block;n#amilySexCaressHer#0" expanded="false" />
-            <element signature="n#!!block;n#amilySexRefrainKiss#0" expanded="false" />
-            <element signature="n#!!block;n#amilySexKiss#0" expanded="false" />
-            <element signature="n#!!block;n#amilySexPartIII#0" expanded="false" />
-            <element signature="n#!!block;n#girlyGirlMouseSex#0" expanded="false" />
+            <element signature="e#147435#153065#0" expanded="false" />
+            <element signature="e#157069#157135#0" expanded="false" />
+            <element signature="e#157196#157242#0" expanded="false" />
+            <element signature="e#157382#157837#0" expanded="false" />
+            <element signature="e#157861#159250#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/engine/time.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="36" column="37" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/pregnancy.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="130" column="6" selection-start-line="130" selection-start-column="6" selection-end-line="130" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/scenes/camp.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="54" column="6" selection-start-line="54" selection-start-column="6" selection-end-line="54" selection-end-column="6" />
+          <folding />
         </state>
       </provider>
     </entry>

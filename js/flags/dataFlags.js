@@ -108,7 +108,7 @@ const AMILY_HERM_TIMES_FUCKED_BY_FEMPC  = "Amily_Herm_Times_Fucked_By_FemPC";
 const AMILY_HERM_QUEST                  = "Amily_Herm_Quest";
 const PC_TIMES_BIRTHED_AMILYKIDS        = "PC_Times_Birthed_Amilykids";
 const AMILY_VISITING_URTA               = "Amily_Visiting_Urta";
-
+const AMILY_DRANK_POTENT_MIXTURE        = "Amily_Drank_Potent_Mixture";
 
 //=================
 // PREGNANCY FLAGS
@@ -117,7 +117,7 @@ const AMILY_VISITING_URTA               = "Amily_Visiting_Urta";
 //=================
 
 const INCUBATION_MOUSE                  = 350; // Incubation time for mice types/Amily
-const PREGNANCY_PLAYER                  = "Pregnancy_Player";
+const PREGNANCY_PLAYER                  = "Player"; // Marks the player impregnated someone
 
 //------------
 // ENCOUNTERS
