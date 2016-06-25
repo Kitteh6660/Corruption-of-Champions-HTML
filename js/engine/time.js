@@ -20,20 +20,24 @@ Time.increment = function() {
 
 
 Time.advanceMinutes = function(minutes) {
-	for (i = 0; i < minutes; i++) {
-		Time.increment();
+	if (timeAware.length > 0) { // If there's a function in timeAware
+		for (i = 0; i < timeAware.length; i++) {
+			timeAware[i].advanceTime(minutes);
+
+		}
+		for (i = 0; i < minutes; i++) {
+			Time.increment();
+		}
 	}
 }
 
-Time.advanceHours = function(hours) {
-    //Pregnancy timers run on hours. Feed the number of hours through a for loop and force advancement code
-	if (timeAware.length > 0) { // If there's a function in timeAware
-		for (i=0; i < timeAware.length; i++) {
-			for (j=0; j < hours; j++) {
-				timeAware[i].advanceTime();
-			}
+	Time.advanceHours = function (hours) {
+		//Feed the number of hours through a for loop and force advancement code
+		if (timeAware.length > 0) { // If there's a function in timeAware
+			for (i = 1; i < timeAware.length; i++) {
+				timeAware[i].advanceTime(hours * 60);
+				}
 		}
+		Time.advanceMinutes(hours * 60);
+		// Then advance the display clock
 	}
-	// Then advance the display clock
-	Time.advanceMinutes(hours * 60);
-}

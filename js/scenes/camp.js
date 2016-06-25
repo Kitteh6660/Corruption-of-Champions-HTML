@@ -52,7 +52,8 @@ Camp.doCamp = function () {
     
     //DEBUGGING CODE FOR AMILY MEETINGS
     //player.gender = 3;
-    //outputText("Amily Pregnancy Counter is " + AmilyScene.amilyPregnancy.pregnancyIncubationFlag);
+    //outputText("Amily Pregnancy Duration is " + AmilyScene.amilyPregnancy.pregnancyIncubationFlag);
+    //outputText("<br><br>Amily Pregnancy Event number is " + AmilyScene.amilyPregnancy.pregnancyEventCounter);
     //if (timeAware.length == 0) {
     //    outputText("<br>NOTHING in timeAware.")
     //}
@@ -78,7 +79,8 @@ Camp.doCamp = function () {
 
     //Display available options
 	menu();
-	addButton(0, "Explore", Areas.GenericExploration.exploreMenu, null, null, null, "Explore to find new regions and visit any discovered regions.");
+
+  	addButton(0, "Explore", Areas.GenericExploration.exploreMenu, null, null, null, "Explore to find new regions and visit any discovered regions.");
     addButton(1, "Places", Places.placesMenu, null, null, null, "Visit any places you have discovered so far.");
     //addButton(5, "Camp Actions", Camp.campActionsMenu, null, null, null, "Interact with the camp surroundings.");
     if (Camp.followersCount() > 0) addButton(2, "Followers", Camp.campFollowersMenu, null, null, null, "Check up on any followers or companions who are joining you in or around your camp. You'll probably just end up sleeping with them.");

@@ -120,14 +120,12 @@ AmilyScene.amilyCorrupt = function() {
     }
     else return false;
 };
-/*******
- *
- * Amily standard scenes in Town Ruins
- *
- ********/
+//-------------
+// Amily standard scenes in Town Ruins
+//------------- 
 
 
-// Amily.start begins encounters in the Town Ruins - MAIN WORK LOOP. CLEAN OTHER LOOPS BEFORE RETURNING HERE
+// AmilyScene.start begins encounters in the Town Ruins - MAIN WORK LOOP. CLEAN OTHER LOOPS BEFORE RETURNING HERE
 AmilyScene.start = function () {
     // BOOKKEEPING
     menu();
@@ -160,7 +158,7 @@ AmilyScene.start = function () {
         doNext(Camp.returnToCampUseOneHour);
         return;
     }
-    // Amily can't be encountered due to worms, high corruption, or has flipped out due to the player's increasing corruption
+    // Amily can't be encountered due to worms, high initial corruption, or has flipped out due to the player's increasing corruption
 
     if (gameFlags[AMILY_GROSSED_OUT_BY_WORMS] == 1 || player.cor > 25 || gameFlags[AMILY_CORRUPT_FLIPOUT] > 0) {
         outputText("You enter the ruined village cautiously. There are burnt-down houses, smashed-in doorways, ripped-off roofs... everything is covered with dust and grime. For hours you explore, but you cannot find any sign of another living being, or anything of value. The occasional footprint from an imp or a goblin turns up in the dirt, but you don't see any of the creatures themselves. It looks like time and passing demons have stripped the place bare since it was originally abandoned. Finally, you give up and leave. You feel much easier when you're outside of the village – you had the strangest sensation of being watched while you were in there.");
@@ -210,7 +208,7 @@ AmilyScene.start = function () {
      }
      */
 
-    // We may just need to put a switch here between amily and amily-defurred for town ruins encounters. Probably another one too for when she's in camp. That's how the Rathazul code is set up.
+    // We will need to put a switch here between amily and amily-defurred. Will do after Amily defurring code is implemented. Probably another one too for when she's in camp. That's how the Rathazul code is set up.
     displaySprite("amily");
 
     // Male Meeting - Complete until Pregnancy is fixed
@@ -275,7 +273,7 @@ AmilyScene.start = function () {
             gameFlags[AMILY_PC_GENDER] = player.gender;
             AmilyScene.amilyRemeetingContinued();
             return;
-            //doNext(Camp.returnToCampUseOneHour);
+            
         }
         //Desperate Plea response (Affection 50 without any sex, requires PC to be male in previous encounter)
         if (gameFlags[AMILY_AFFECTION] >= 50 && gameFlags[AMILY_FUCK_COUNTER] == 0 && gameFlags[AMILY_PC_GENDER] == 1) {
@@ -2751,7 +2749,7 @@ AmilyScene.amilyPreggoChance = function() {
 
     //25% + gradually increasing cumQ bonus
     //if (rand(4) == 0 || player.cumQ() > rand(1000)) {
-        AmilyScene.amilyPregnancy.pregnancyEventArray = [PREGNANCY_PLAYER, 150, 120, 100, 96, 90, 72, 48];
+        AmilyScene.amilyPregnancy.eventFill([150, 120, 100, 96, 90, 72, 48]);
         AmilyScene.amilyPregnancy.knockUpForce(PREGNANCY_PLAYER, INCUBATION_MOUSE - 182);
         timeAware.push(AmilyScene.amilyPregnancy);
 

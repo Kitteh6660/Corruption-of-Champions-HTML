@@ -107,7 +107,7 @@ PregnancyStore.Pregnancy = function(pregType = 0, pregInc = 0, buttPregType = 0,
 	this.pregnancyEventArray = []; // Holds pregnancy event countdown numbers
 	this.buttPregnancyEventArray = []; // Hold butt pregnancy event countdown numbers
 	this.incrementer = 0; // Used to time the pregnancies.
-   
+	this.pregnancyEventCounter = 0; // Used for pregnancy event switch blocks. 0 should make it fall through to the default.
  };
 
 // Method for determining whether or not there is a pregnancy
@@ -116,6 +116,11 @@ PregnancyStore.Pregnancy.prototype.isPregnant = function() {
     else return false;
 };
 
+// Method for filling pregnancyEventArrays. Original code specifies by hours. This will convert into minutes automatically
+PregnancyStore.Pregnancy.prototype.eventFill = function(hourArray) {
+	// Convert all elements in hourArray into minutes using fancy Haskell-like JS
+	this.pregnancyEventArray = hourArray.map(function(item) { return item * 60; });
+}
 
 PregnancyStore.Pregnancy.prototype.knockUpForce = function (newPregType, newPregIncubation) {
     if (newPregType == 0 || newPregIncubation == 0) {
@@ -123,25 +128,40 @@ PregnancyStore.Pregnancy.prototype.knockUpForce = function (newPregType, newPreg
         return;
     }
     this.pregnancyTypeFlag = newPregType;
-    this.pregnancyIncubationFlag = newPregIncubation;
+    this.pregnancyIncubationFlag = newPregIncubation * 60; // Converts hours into minutes
 	// Debugging text
-    //outputText("<br><br>You knocked someone up!");
-    //outputText("<br>Pregnancy flag is " + this.pregnancyTypeFlag);
-    //outputText("<br>Incubation flag is" + this.pregnancyIncubationFlag);
-	//outputText("<br>Pregnancy array is" + this.pregnancyEventArray);
+    outputText("<br><br>You knocked someone up!");
+    outputText("<br>Pregnancy flag is " + this.pregnancyTypeFlag);
+    outputText("<br>Incubation flag is" + this.pregnancyIncubationFlag);
+	outputText("<br>Pregnancy array is" + this.pregnancyEventArray);
     //if (newPregType != 0) newPregType = (kGAMECLASS.flags[_pregnancyTypeFlag] & PREG_NOTICE_MASK) + newPregType;
 	//If a pregnancy 'continues' an existing pregnancy then do not change the value for last noticed stage
 	//kGAMECLASS.flags[_pregnancyTypeFlag] = newPregType;
 	//kGAMECLASS.flags[_pregnancyIncubationFlag] = (newPregType == 0 ? 0 : newPregIncubation); 
     //Won't allow incubation time without pregnancy type
 	//	return;
-    }
+    };
 
 // Time advacement function. Currently only works with normal pregnancy.
-PregnancyStore.Pregnancy.prototype.advanceTime = function() {
+PregnancyStore.Pregnancy.prototype.advanceTime = function(timeInc) {
 	if (this.pregnancyIncubationFlag >= 1) {
-		this.pregnancyIncubationFlag--;
+		// Decrement the incubation flag
+		//outputText("Decrementing Incubation Flag");
+		for (i=0; i < timeInc; i++) {
+			this.pregnancyIncubationFlag--; // Reduce overall timer
+			if (this.pregnancyIncubationFlag < 0) { this.pregnancyIncubationFlag = 0;}
 		}
+		// Checking for new Event Array
+		//outputText("Checking Event Array");
+		for (j=0; j < this.pregnancyEventArray.length; j++) {
+			if (this.pregnancyIncubationFlag < this.pregnancyEventArray[j]) {
+				//outputText("Setting new flag to " + (j + 1));
+				this.pregnancyEventCounter = j + 1;
+			}
+		}
+		//return;
+	}
+	return;
 };
 
 /*
@@ -186,14 +206,7 @@ PregnancyStore.Pregnancy.prototype.advanceTime = function() {
 		   the player noticed. The eventTriggered() function only triggers once per event per pregnancy. */
 
 /*
-public function addPregnancyEventSet(pregType:int, ... pregStage):void
-		{
-			var pregVector:Vector.<int> = new Vector.<int>(pregStage.length + 2);
-			pregVector[0] = pregType; //First element is the pregnancy type
-			for (var i:int = 0; i < pregStage.length; i++) pregVector[i + 1] = pregStage[i];
-			pregVector[pregVector.length - 1] = -1; //Make last element -1 to ensure there is always a match
-			_pregnancyEventValue.push(pregVector);
-		}
+
 
 		//Same as addPregnancyEventSet, but for butts
 		public function addButtPregnancyEventSet(buttPregType:int, ... buttPregStage):void
