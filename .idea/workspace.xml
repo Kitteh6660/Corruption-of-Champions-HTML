@@ -6,9 +6,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8a292ce1-df00-4848-8a40-d7241dab169d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/engine/time.js" afterPath="$PROJECT_DIR$/js/engine/time.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/pregnancy.js" afterPath="$PROJECT_DIR$/js/pregnancy.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/camp.js" afterPath="$PROJECT_DIR$/js/scenes/camp.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/npcs/amily.js" afterPath="$PROJECT_DIR$/js/scenes/npcs/amily.js" />
     </list>
     <ignored path="Corruption-of-Champions-HTML.iws" />
@@ -30,7 +27,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="camp.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="camp.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/scenes/camp.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="104">
@@ -63,7 +60,7 @@
       <file leaf-file-name="pregnancy.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/pregnancy.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
+            <state relative-caret-position="-1605">
               <caret line="157" column="18" selection-start-line="157" selection-start-column="18" selection-end-line="157" selection-end-column="18" />
               <folding />
             </state>
@@ -80,21 +77,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="amily.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="amily.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/scenes/npcs/amily.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="2769" column="20" selection-start-line="2769" selection-start-column="19" selection-end-line="2769" selection-end-column="20" />
+            <state relative-caret-position="106">
+              <caret line="539" column="60" selection-start-line="539" selection-start-column="32" selection-end-line="539" selection-end-column="60" />
               <folding>
-                <element signature="e#5261#5475#0" expanded="false" />
-                <element signature="e#5581#5676#0" expanded="false" />
-                <element signature="e#9341#9588#0" expanded="false" />
-                <element signature="e#9593#9968#0" expanded="false" />
-                <element signature="e#147438#153068#0" expanded="false" />
-                <element signature="e#157072#157138#0" expanded="false" />
-                <element signature="e#157199#157245#0" expanded="false" />
-                <element signature="e#157385#157840#0" expanded="false" />
-                <element signature="e#157864#159253#0" expanded="false" />
+                <element signature="n#!!block;n#Amily#0" expanded="false" />
+                <element signature="e#5264#5478#0" expanded="false" />
+                <element signature="e#5584#5679#0" expanded="false" />
+                <element signature="e#5901#41550#0" expanded="false" />
+                <element signature="e#9345#9592#0" expanded="false" />
+                <element signature="e#9597#9972#0" expanded="false" />
+                <element signature="e#151708#158042#0" expanded="false" />
+                <element signature="e#151867#151895#0" expanded="false" />
+                <element signature="e#162381#162447#0" expanded="false" />
+                <element signature="e#162520#162566#0" expanded="false" />
+                <element signature="e#162722#163236#0" expanded="false" />
+                <element signature="e#163268#164877#0" expanded="false" />
+                <element signature="e#190060#202948#0" expanded="false" />
+                <element signature="e#240452#242071#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -169,10 +171,10 @@
         <option value="$PROJECT_DIR$/js/items/consumables.js" />
         <option value="$PROJECT_DIR$/js/flags/dataFlags.js" />
         <option value="$PROJECT_DIR$/js/scenes/places/townruins.js" />
-        <option value="$PROJECT_DIR$/js/scenes/npcs/amily.js" />
         <option value="$PROJECT_DIR$/js/engine/time.js" />
         <option value="$PROJECT_DIR$/js/pregnancy.js" />
         <option value="$PROJECT_DIR$/js/scenes/camp.js" />
+        <option value="$PROJECT_DIR$/js/scenes/npcs/amily.js" />
       </list>
     </option>
   </component>
@@ -241,14 +243,7 @@
     </navigator>
     <panes>
       <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Corruption-of-Champions-HTML" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
+        <subPane />
       </pane>
       <pane id="Scope" />
       <pane id="Scratches" />
@@ -365,7 +360,7 @@
       <workItem from="1466604841425" duration="9779000" />
       <workItem from="1466623378417" duration="1698000" />
       <workItem from="1466708239359" duration="1746000" />
-      <workItem from="1466816770719" duration="15376000" />
+      <workItem from="1466816770719" duration="19292000" />
     </task>
     <task id="LOCAL-00001" summary="Release of 0.1 alpha with many more core content!&#10;&#10;Now with explorable zones, followers, etc!">
       <created>1455694082885</created>
@@ -392,7 +387,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53807000" />
+    <option name="totallyTimeSpent" value="57723000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -407,17 +402,17 @@
     <frame x="0" y="27" width="1366" height="741" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24158126" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24158126" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32861635" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32854864" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32861635" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3891547" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3891547" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25039873" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25039873" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32861635" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -453,7 +448,7 @@
           <properties />
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="28" />
+      <option name="time" value="30" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -790,10 +785,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/pregnancy.js">
+    <entry file="file://$PROJECT_DIR$/js/scenes/camp.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="157" column="18" selection-start-line="157" selection-start-column="18" selection-end-line="157" selection-end-column="18" />
+        <state relative-caret-position="104">
+          <caret line="55" column="6" selection-start-line="55" selection-start-column="6" selection-end-line="55" selection-end-column="6" />
           <folding />
         </state>
       </provider>
@@ -806,29 +801,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/scenes/npcs/amily.js">
+    <entry file="file://$PROJECT_DIR$/js/pregnancy.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="2769" column="20" selection-start-line="2769" selection-start-column="19" selection-end-line="2769" selection-end-column="20" />
-          <folding>
-            <element signature="e#5261#5475#0" expanded="false" />
-            <element signature="e#5581#5676#0" expanded="false" />
-            <element signature="e#9341#9588#0" expanded="false" />
-            <element signature="e#9593#9968#0" expanded="false" />
-            <element signature="e#147438#153068#0" expanded="false" />
-            <element signature="e#157072#157138#0" expanded="false" />
-            <element signature="e#157199#157245#0" expanded="false" />
-            <element signature="e#157385#157840#0" expanded="false" />
-            <element signature="e#157864#159253#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="-1605">
+          <caret line="157" column="18" selection-start-line="157" selection-start-column="18" selection-end-line="157" selection-end-column="18" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/scenes/camp.js">
+    <entry file="file://$PROJECT_DIR$/js/scenes/npcs/amily.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="55" column="6" selection-start-line="55" selection-start-column="6" selection-end-line="55" selection-end-column="6" />
-          <folding />
+        <state relative-caret-position="106">
+          <caret line="539" column="60" selection-start-line="539" selection-start-column="32" selection-end-line="539" selection-end-column="60" />
+          <folding>
+            <element signature="n#!!block;n#Amily#0" expanded="false" />
+            <element signature="e#5264#5478#0" expanded="false" />
+            <element signature="e#5584#5679#0" expanded="false" />
+            <element signature="e#5901#41550#0" expanded="false" />
+            <element signature="e#9345#9592#0" expanded="false" />
+            <element signature="e#9597#9972#0" expanded="false" />
+            <element signature="e#151708#158042#0" expanded="false" />
+            <element signature="e#151867#151895#0" expanded="false" />
+            <element signature="e#162381#162447#0" expanded="false" />
+            <element signature="e#162520#162566#0" expanded="false" />
+            <element signature="e#162722#163236#0" expanded="false" />
+            <element signature="e#163268#164877#0" expanded="false" />
+            <element signature="e#190060#202948#0" expanded="false" />
+            <element signature="e#240452#242071#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
