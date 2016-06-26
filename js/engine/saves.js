@@ -15,7 +15,7 @@ function dataScreen() {
 	addButton(14, "Back", playerMenu);
 }
 
-//Save/Load Menu
+//Save Menu
 Data.saveScreen = function() {
 	clearOutput();
 	outputText("Please make sure to use a modern browser capable of local storage to be able to save.<br><br>");
@@ -27,6 +27,7 @@ Data.saveScreen = function() {
 	addButton(14, "Back", dataScreen);
 }
 
+//Load Menu
 Data.loadScreen = function() {
 	clearOutput();
 	menu();
@@ -39,6 +40,7 @@ Data.loadScreen = function() {
 	addButton(14, "Back", dataScreen);
 }
 
+//Delete Save Menu
 Data.deleteScreen = function() {
 	clearOutput();
     outputText("Once you delete a save file, it's gone forever. So please be sure if you REALLY want to do it.<br><br>");
@@ -52,7 +54,7 @@ Data.deleteScreen = function() {
 	addButton(14, "Back", dataScreen);
 }
 
-//SAVE GAME!
+//Starts save process and shows whether it succeeded or not.
 Data.saveGame = function(slot) {
 	clearOutput();
 	if (Data.saveGameObject(slot)) {
@@ -63,6 +65,8 @@ Data.saveGame = function(slot) {
 	}
 	doNext(playerMenu);
 }
+
+// Starts the actual save process
 Data.saveGameObject = function(slot) {
 	//Let's try to save! Beginning with initial variables.
 	var success = false;
@@ -106,6 +110,7 @@ Data.saveGameObject = function(slot) {
             saveData.player.breastRows[i].nippleLength = player.breastRows[i].nippleLength;*/
         }
 
+        // Equipped weapons and armor
         saveData.player.weapon = player.weapon;
         saveData.player.armor = player.armor;
 
@@ -119,6 +124,7 @@ Data.saveGameObject = function(slot) {
                 saveData.player.itemSlots[i].id = "Nothing";
             saveData.player.itemSlots[i].quantity = player.itemSlots[i].quantity;
         }
+
         //Perks
         saveData.player.perks = [];
         if (player.perks.length > 0) {
@@ -131,6 +137,7 @@ Data.saveGameObject = function(slot) {
                 saveData.player.perks[i].value4 = player.perks[i].value4;
             }
         }
+
         //Status Effects
         saveData.player.statusEffects = [];
         if (player.statusEffects.length > 0) {
@@ -143,18 +150,20 @@ Data.saveGameObject = function(slot) {
                 saveData.player.statusEffects[i].value4 = player.statusEffects[i].value4;
             }
         }
+
         //Key Items
         saveData.player.keyItems = [];
         if (player.keyItems.length > 0) {
             for (i = 0; i < player.keyItems.length; i++) {
                 saveData.player.keyItems.push(new KeyItem());
-                saveData.player.keyItems[i].id = player.keyItems[i].ktype.id;
+                saveData.player.keyItems[i].id = player.keyItems[i].ktype;
                 saveData.player.keyItems[i].value1 = player.keyItems[i].value1;
                 saveData.player.keyItems[i].value2 = player.keyItems[i].value2;
                 saveData.player.keyItems[i].value3 = player.keyItems[i].value3;
                 saveData.player.keyItems[i].value4 = player.keyItems[i].value4;
             }
         }
+
         //Spells
         saveData.player.spells = {};
         saveData.player.spells.chargeWeapon = player.spells.chargeWeapon;
@@ -182,21 +191,27 @@ Data.saveGameObject = function(slot) {
         for (i in gameFlags) {
             saveData.gameFlags[i] = gameFlags[i];
         }
+
         //Assign Save Version
         saveData.saveVersion = saveVersion;
         localStorage[slot] = JSON.stringify(saveData);
+
         //Set to successful and return
         success = true;
     }
+
     catch(error) {
         //Set to failed
         outputText(error + "<br><br>");
         console.error(error);
         success = false;
     }
-	return success;
+
+    return success;
+
 }
-//LOAD GAME!
+
+//Attempt to load a game and show if it fails or not.
 Data.loadGame = function(slot) {
 	clearOutput();
 	if (Data.loadGameObject(slot)) {
@@ -208,6 +223,8 @@ Data.loadGame = function(slot) {
 		doNext(Data.loadScreen);
 	}
 }
+
+// Loads a game
 Data.loadGameObject = function(slot) {
 	//Let's try to load!
 	var success = false;
@@ -233,22 +250,28 @@ Data.loadGameObject = function(slot) {
         for (i = 0; i < saveData.player.itemSlots.length; i++) {
             player.itemSlots[i].setItemAndQty(lookupItem(saveData.player.itemSlots[i].id), saveData.player.itemSlots[i].quantity);
         }
+
         //Perks
         player.perks = [];
         for (i = 0; i < saveData.player.perks.length; i++) {
             if (lookupPerk(saveData.player.perks[i].id) == undefined) continue;
             player.createPerk(lookupPerk(saveData.player.perks[i].id), saveData.player.perks[i].value1, saveData.player.perks[i].value2, saveData.player.perks[i].value3, saveData.player.perks[i].value4);
         }
+
         //Status Effects
         player.statusEffects = [];
         for (i = 0; i < saveData.player.statusEffects.length; i++) {
             player.createStatusEffect(lookupStatusEffects(saveData.player.statusEffects[i].id), saveData.player.statusEffects[i].value1, saveData.player.statusEffects[i].value2, saveData.player.statusEffects[i].value3, saveData.player.statusEffects[i].value4);
         }
+
         //Key Items
         player.keyItems = [];
         for (i = 0; i < saveData.player.keyItems.length; i++) {
-            player.createKeyItem(lookupKeyItem(saveData.player.keyItems[i].id), saveData.player.keyItems[i].value1, saveData.player.keyItems[i].value2, saveData.player.keyItems[i].value3, saveData.player.keyItems[i].value4);
+            player.createKeyItem(saveData.player.keyItems[i].id
+                , saveData.player.keyItems[i].value1, saveData.player.keyItems[i].value2, saveData.player.keyItems[i].value3, saveData.player.keyItems[i].value4);
+            //player.createKeyItem(lookupKeyItem(saveData.player.keyItems[i].id), saveData.player.keyItems[i].value1, saveData.player.keyItems[i].value2, saveData.player.keyItems[i].value3, saveData.player.keyItems[i].value4);
         }
+
         //Spells
         if (saveData.player.spells != undefined) {
             player.spells = [];
@@ -259,6 +282,7 @@ Data.loadGameObject = function(slot) {
             player.spells.heal = saveData.player.spells.heal;
             player.spells.might = saveData.player.spells.might;
         }
+
         //Exploration
         if (saveData.exploration != undefined) {
             exploration = [];
@@ -268,7 +292,8 @@ Data.loadGameObject = function(slot) {
             exploration.exploredDesert = saveData.exploration.exploredDesert;
             exploration.exploredMountain = saveData.exploration.exploredMountain;
         }
-		//Other data
+
+        //Other data
 		playerMenu = Camp.doCamp;
 		if (saveData.time != undefined) {
 			time.days = saveData.time.days;
@@ -284,7 +309,8 @@ Data.loadGameObject = function(slot) {
             }
         }
         Data.fixSave();
-		//Set to successful and return
+
+        //Set to successful and return
 		success = true;
 	}
 	catch(error) {
@@ -295,6 +321,7 @@ Data.loadGameObject = function(slot) {
 	}
 	return success;
 }
+
 Data.loadSaveDisplay = function(slot) {
 	if (localStorage[slot] == undefined) {
 		return "EMPTY<br>";
@@ -313,6 +340,7 @@ Data.loadSaveDisplay = function(slot) {
         holding += "H";
 	return holding;
 }
+
 Data.fixSave = function() {
     var i;
     //Fix body parts
@@ -332,6 +360,7 @@ Data.fixSave = function() {
         unfuckBreastRow(player.breastRows[i]);
     }
 }
+
 //DELETE SAVE
 Data.deletePrompt = function(slot) {
 	clearOutput();

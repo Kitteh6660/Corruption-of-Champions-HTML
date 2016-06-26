@@ -99,7 +99,7 @@ var sexForced = false; // Used to get around a nasty bug.
 
 
 // Used for later checks when Amily is a follower.
-AmilyScene.amilyFollower = function() {
+AmilyScene.amilyFollower = new function() {
     if (gameFlags[AMILY_FOLLOWER] > 0) {
         //Amily not a follower while visiting Urta
         if (gameFlags[AMILY_VISITING_URTA] != 0) {
@@ -110,7 +110,7 @@ AmilyScene.amilyFollower = function() {
 };
 
 // A check function to see if Amily is corrupt or not.
-AmilyScene.amilyCorrupt = function() {
+AmilyScene.amilyCorrupt = new function() {
     if (gameFlags[AMILY_FOLLOWER] == 2) {
         return true;
     }
@@ -209,11 +209,14 @@ AmilyScene.start = function () {
         return;
     }
 
+    // SOMETHING IS FUCKED HERE
+    /*
     // Transformation Scene
-    if (AmilyScene.amilyCanHaveTFNow()) {
+    if (AmilyScene.amilyCanHaveTFNow() == true) {
         AmilyScene.amilyDefurrify();
         return;
     }
+    */
 
     //Ending Scenes for Amily in the Town Ruins on the Pure Path
     if (gameFlags[AMILY_PC_GENDER] == player.gender) {
@@ -3087,7 +3090,8 @@ AmilyScene.start = function () {
 //[Stalking Amily (Corrupt)]
 //This event takes about 3 hours.
 //Only happens if the PC has the Potent Mixture and is >= 25 Corruption.
-AmilyScene.amilyCorrupt1 = function() {
+
+AmilyScene.amilyCorrupt1 = new function() {
     clearOutput();
     outputText("You step into the ruined village and set out to look for Amily.<br><br>");
 
@@ -3138,7 +3142,7 @@ else {
 
 
 //[Stalking Amily 2 (Corrupt)]
-AmilyScene.amilyCorrupt2 = function() {
+AmilyScene.amilyCorrupt2 = new function() {
     clearOutput();
 //(if PC is genderless)
     if (player.gender == 0) {
@@ -3274,16 +3278,12 @@ AmilyScene.amilyCorruptionComplete = new function() {
 // Amily Human Transformation
 //--------
 
-    AmilyScene.amilyCanHaveTFNow = function () {
-        //<b>golden seed</b> for a human face
-        // <b>black egg</b> to get rid of the fur
-        // some purified <b>succubus milk</b> to round things off
-        return gameFlags[AMILY_NOT_FURRY] == 0  // Amily isn't already defurried
-            && gameFlags[AMILY_OFFERED_DEFURRY] == 1  // Amily has been offered to be dehaired
-            && player.hasItem(Items.Consumables.GoldenSeed)     // And we have all the shit we need
-            && (player.hasItem(Items.Consumables.LBlackEgg) || player.hasItem(Items.Consumables.BlackEgg))
-            && (player.hasItem(Items.Consumables.SuccubiMilkPurified) || (AmilyScene.amilyCorrupt() && player.hasItem(Items.Consumables.SuccubiMilk)));
-    };
+    AmilyScene.amilyCanHaveTFNow = function() {
+        if (gameFlags[AMILY_NOT_FURRY] == 0 && gameFlags[AMILY_OFFERED_DEFURRY] == 1 && player.hasItem(Items.Consumables.GoldenSeed) && (player.hasItem(Items.Consumables.LBlackEgg) || player.hasItem(Items.Consumables.BlackEgg)) && (player.hasItem(Items.Consumables.SuccubiMilkPurified) || (AmilyScene.amilyCorrupt() == true && player.hasItem(Items.Consumables.SuccubiMilk))) == true) {
+            return true;
+        }
+        else return false;
+ };
 
 // NEEDS ITEM CONSUMPTION CODE!
 // Arrive with all the stuff you need to make Amily not look completely rediculous.

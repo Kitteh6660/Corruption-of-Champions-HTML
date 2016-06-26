@@ -733,9 +733,14 @@ Creature.prototype.changeStatusValue = function(stype, valueIdx, newNum) {
     if (valueIdx == 4)
         this.statusEffects[stype].value4 = newNum;
 }
-//Key Items
+
+//-------
+// Key Items
+//-------
+
+//Create a new Key Item
 Creature.prototype.createKeyItem = function(keyName, value1, value2, value3, value4) {
-    var newKeyItem = new KeyItem();
+    var newKeyItem = new KeyItem(keyName);
     //used to denote that the array has already had its new spot pushed on.
     var arrayed = false;
     //used to store where the array goes
@@ -744,23 +749,23 @@ Creature.prototype.createKeyItem = function(keyName, value1, value2, value3, val
     //Start the array if its the first bit
     if (this.keyItems.length == 0)
     {
-        outputText("New Key Item Started Array! " + keyName);
+        //outputText("<br>New Key Item Started Array! " + newKeyItem.ktype.id);
         this.keyItems.push(newKeyItem);
         arrayed = true;
         keySlot = 0;
     }
     //If it belongs at the end, push it on
-    if (this.keyItems[keyItems.length - 1].keyName < keyName && !arrayed)
+    if (this.keyItems[this.keyItems.length - 1].ktype.id < newKeyItem.ktype.id && !arrayed)
     {
-        outputText("New Key Item Belongs at the end!! " + keyName);
+        //outputText("<br>New Key Item Belongs at the end!! " + newKeyItem.ktype.id);
         this.keyItems.push(newKeyItem);
         arrayed = true;
-        keySlot = keyItems.length - 1;
+        keySlot = this.keyItems.length - 1;
     }
     //If it belongs in the beginning, splice it in
-    if (this.keyItems[0].keyName > keyName && !arrayed)
+    if (this.keyItems[0].ktype.id > newKeyItem.ktype.id && !arrayed)
     {
-        outputText("New Key Item Belongs at the beginning! " + keyName);
+        //outputText("<br>New Key Item Belongs at the beginning! " + newKeyItem.ktype.id);
         this.keyItems.splice(0, 0, newKeyItem);
         arrayed = true;
         keySlot = 0;
@@ -768,19 +773,19 @@ Creature.prototype.createKeyItem = function(keyName, value1, value2, value3, val
     //Find the spot it needs to go in and splice it in.
     if (!arrayed)
     {
-        outputText("New Key Item using alphabetizer! " + keyName);
+        //outputText("<br>New Key Item using alphabetizer! " + newKeyItem.ktype.id);
         counter = this.keyItems.length;
         while (counter > 0 && !arrayed)
         {
             counter--;
             //If the current slot is later than new key
-            if (this.keyItems[counter].keyName > keyName)
+            if (this.keyItems[counter].ktype.id > newKeyItem.ktype.id)
             {
                 //If the earlier slot is earlier than new key && a real spot
                 if (counter - 1 >= 0)
                 {
                     //If the earlier slot is earlier slot in!
-                    if (this.keyItems[counter - 1].keyName <= keyName)
+                    if (this.keyItems[counter - 1].ktype.id <= newKeyItem.ktype.id)
                     {
                         arrayed = true;
                         this.keyItems.splice(counter, 0, newKeyItem);
@@ -791,7 +796,7 @@ Creature.prototype.createKeyItem = function(keyName, value1, value2, value3, val
                 else
                 {
                     //If the next slot is later we are go
-                    if (this.keyItems[counter].keyName <= keyName)
+                    if (this.keyItems[counter].ktype.id <= newKeyItem.ktype.id)
                     {
                         arrayed = true;
                         this.keyItems.splice(counter, 0, newKeyItem);
@@ -804,7 +809,7 @@ Creature.prototype.createKeyItem = function(keyName, value1, value2, value3, val
     //Fallback
     if (!arrayed)
     {
-        outputText("New Key Item Belongs at the end!! " + keyName);
+        //outputText("New Key Item Belongs at the end!! " + newKeyItem.ktype.id);
         this.keyItems.push(newKeyItem);
         keySlot = this.keyItems.length - 1;
     }
@@ -814,13 +819,17 @@ Creature.prototype.createKeyItem = function(keyName, value1, value2, value3, val
     this.keyItems[keySlot].value2 = value2;
     this.keyItems[keySlot].value3 = value3;
     this.keyItems[keySlot].value4 = value4;
-    outputText("NEW KEYITEM FOR PLAYER in slot " + keySlot + ": " + keyItems[keySlot].keyName);
+    //outputText("NEW KEYITEM FOR PLAYER in slot " + keySlot + ": " + this.keyItems[keySlot].ktype.id);
 }
+
+//Remove a Key Item
 Creature.prototype.removeKeyItem = function(ktype) {
     var counter = this.hasKeyItem(ktype);
     if (counter < 0) return;
     this.statusEffects.splice(counter, 1);
 }
+
+//Check if a Key Item exists
 Creature.prototype.hasKeyItem = function(ktype) {
     if (ktype == undefined)
         return -1;
@@ -831,6 +840,8 @@ Creature.prototype.hasKeyItem = function(ktype) {
     }
     return -1;
 }
+
+//Utility functions for key item array
 Creature.prototype.keyValue = function(ktype, value) {
     var counter = this.hasKeyItem(ktype);
     if (counter < 0) {
@@ -874,6 +885,7 @@ Creature.prototype.setKeyValue = function(ptype, valueIdx, newNum) {
     if (valueIdx == 4)
         this.keyItems[i].value4 = newNum;
 }
+
 //------------
 // SEXUAL UTIL
 //------------
