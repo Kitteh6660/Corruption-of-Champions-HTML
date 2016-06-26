@@ -60,6 +60,11 @@ Items.Consumables.WhiskerFruit = new Item("W.Fruit", "W.Fruit", "a piece of whis
 Items.Consumables.WhiskerFruit.description = "This small, peach-sized fruit has tiny whisker-like protrusions growing from the sides.";
 Items.Consumables.WhiskerFruit.consumeEffect = ConsumableEffects.felineTFs;
 
+// Needed for Amily transformation code. Flesh out when we reach the areas of the game when you can actually get them.
+Items.Consumables.GoldenSeed = new Item("G.Seed", "Golden Seed", "a golden seed", ITEM_TYPE_CONSUMABLE);
+
+
+
 //------------
 // DEMONIC
 //------------
@@ -76,6 +81,8 @@ Items.Consumables.SuccubiMilk = new Item("SucMilk", "SucMilk", "a bottle of Succ
 Items.Consumables.SuccubiMilk.description = "This milk-bottle is filled to the brim with a creamy white milk of dubious origin. A pink label proudly labels it as \"<i>Succubi Milk</i>\". In small text at the bottom of the label it reads: \"<i>To bring out the succubus in YOU!</i>\"";
 Items.Consumables.SuccubiMilk.consumeEffect = createCallBackFunction(ConsumableEffects.demonTFs, 1, false);
 
+
+// There are two definitions for SuccubiMilkPurified. Which one is the correct one?
 Items.Consumables.SuccubiMilkPurified = new Item("P.S.Mlk", "P.S.Milk", "an untainted bottle of Succubi milk", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.SuccubiMilkPurified.description = "This milk-bottle is filled to the brim with a creamy white milk of dubious origin. A pink label proudly labels it as \"<i>Succubi Milk</i>\". In small text at the bottom of the label it reads: \"<i>To bring out the succubus in YOU!</i>\" Rathazul has purified this to prevent corruption upon use.";
 Items.Consumables.SuccubiMilkPurified.consumeEffect = createCallBackFunction(ConsumableEffects.demonTFs, 1, true);
@@ -156,3 +163,12 @@ Items.Consumables.BodyLotionClear = new BodyLotion("ClearLn", "Clear", "smooth t
 Items.Consumables.BodyLotionRough = new BodyLotion("RoughLn", "Rough", "thick abrasive cream");
 Items.Consumables.BodyLotionSexy = new BodyLotion("SexyLtn", "Sexy", "pretty cream like substance");
 Items.Consumables.BodyLotionSmooth = new BodyLotion("SmthLtn", "Smooth", "smooth thick creamy liquid");
+
+
+//-------------
+// EGGS
+//-------------
+
+// Needed for Amily transformation code to work. Flesh out when we can obtain the items.
+Items.Consumables.BlackEgg = new Item("BlEgg", "Black Egg", "a black egg");
+Items.Consumables.LBlackEgg = new Item("LBlEgg", "L.Black Egg", "a large black egg");
