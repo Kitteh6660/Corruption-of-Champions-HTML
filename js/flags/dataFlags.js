@@ -111,7 +111,7 @@ const AMILY_VISITING_URTA               = "Amily_Visiting_Urta";
 const CREATE_POTENT_MIXTURE        = "Amily_Drank_Potent_Mixture";
 const AMILY_BIRTH_TOTAL                 = "Amily_Birth_Total";
 const AMILY_CORRUPTION_PATH             = "Amily_Corruption_Path";
-
+const AMILY_TREE_FLIPOUT                = "Amily_Tree_Flipout";
 
 //=================
 // PREGNANCY FLAGS

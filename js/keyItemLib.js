@@ -35,3 +35,4 @@ KeyItems.ShieldRack = new KeyItemType("Equipment Rack - Shields");
 
 //Others
 KeyItems.Bow = new KeyItemType("Bow");
+KeyItems.PotentMixture = new KeyItemType("Potent Mixture");
