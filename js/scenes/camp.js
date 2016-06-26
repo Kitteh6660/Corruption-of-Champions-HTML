@@ -52,31 +52,6 @@ Camp.doCamp = function () {
     
     //DEBUGGING CODE FOR AMILY MEETINGS
     //player.gender = 3;
-    outputText("Game thinks that Amily Pregnancy is " + AmilyScene.amilyPregnancy.isPregnant());
-    outputText("<br><br>Amily Pregnancy timer is at " + AmilyScene.amilyPregnancy.pregnancyIncubationFlag);
-    if (AmilyScene.amilyPregnancy.isPregnant() == true && AmilyScene.amilyPregnancy.pregnancyIncubationFlag == 0) {
-    outputText("<br><br>You should be giving birth now!");
-}
-else {
-    outputText("<br><br>Mouse hasn't popped yet...")
-}
-    //if (timeAware.length == 0) {
-    //    outputText("<br>NOTHING in timeAware.")
-    //}
-    //if (timeAware.length > 0) {
-    //    outputText("<br>Something is in timeAware");
-    //    for (i=0; i < timeAware.length; i++) {
-    //timeAware[i].advanceTime();
-    //    }
-    //}
-
-    //timeAware.push(amilyPregnancy);
-    //outputText("<br>Time Aware Functions are " + );
-    //gameFlags[AMILY_AFFECTION] = 40;
-    //outputText("Amily Affection is " + gameFlags[AMILY_AFFECTION]);
-    //player.changeLust(50);
-    //var testingPreg = new PregnancyStore.Pregnancy(0,0,0,0);
-    //outputText("Whee" + testingPreg.isPregnant());
     //player.modStats("cor", 50);
     //Inventory.takeItem(Items.Consumables.IncubiDraftPurified);
     // gameFlags[AMILY_HERM_QUEST] = 2;

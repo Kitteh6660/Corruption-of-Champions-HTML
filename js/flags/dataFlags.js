@@ -108,8 +108,10 @@ const AMILY_HERM_TIMES_FUCKED_BY_FEMPC  = "Amily_Herm_Times_Fucked_By_FemPC";
 const AMILY_HERM_QUEST                  = "Amily_Herm_Quest";
 const PC_TIMES_BIRTHED_AMILYKIDS        = "PC_Times_Birthed_Amilykids";
 const AMILY_VISITING_URTA               = "Amily_Visiting_Urta";
-const AMILY_DRANK_POTENT_MIXTURE        = "Amily_Drank_Potent_Mixture";
+const CREATE_POTENT_MIXTURE        = "Amily_Drank_Potent_Mixture";
 const AMILY_BIRTH_TOTAL                 = "Amily_Birth_Total";
+const AMILY_CORRUPTION_PATH             = "Amily_Corruption_Path";
+
 
 //=================
 // PREGNANCY FLAGS
