@@ -5,11 +5,7 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8a292ce1-df00-4848-8a40-d7241dab169d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/flags/dataFlags.js" afterPath="$PROJECT_DIR$/js/flags/dataFlags.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/keyItemLib.js" afterPath="$PROJECT_DIR$/js/keyItemLib.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/npcs/amily.js" afterPath="$PROJECT_DIR$/js/scenes/npcs/amily.js" />
-    </list>
+    <list default="true" id="8a292ce1-df00-4848-8a40-d7241dab169d" name="Default" comment="" />
     <ignored path="Corruption-of-Champions-HTML.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,8 +28,8 @@
       <file leaf-file-name="amily.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/scenes/npcs/amily.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="2803" column="13" selection-start-line="2803" selection-start-column="13" selection-end-line="2803" selection-end-column="13" />
+            <state relative-caret-position="136">
+              <caret line="2799" column="81" selection-start-line="2799" selection-start-column="81" selection-end-line="2799" selection-end-column="81" />
               <folding>
                 <element signature="n#!!block;n#Amily#0" expanded="false" />
                 <element signature="e#294510#297653#0" expanded="false" />
@@ -303,7 +299,7 @@
       <workItem from="1466623378417" duration="1698000" />
       <workItem from="1466708239359" duration="1746000" />
       <workItem from="1466816770719" duration="22451000" />
-      <workItem from="1466946857377" duration="28628000" />
+      <workItem from="1466946857377" duration="28680000" />
     </task>
     <task id="LOCAL-00001" summary="Release of 0.1 alpha with many more core content!&#10;&#10;Now with explorable zones, followers, etc!">
       <created>1455694082885</created>
@@ -330,7 +326,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89510000" />
+    <option name="totallyTimeSpent" value="89562000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -791,8 +787,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/scenes/npcs/amily.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="2803" column="13" selection-start-line="2803" selection-start-column="13" selection-end-line="2803" selection-end-column="13" />
+        <state relative-caret-position="136">
+          <caret line="2799" column="81" selection-start-line="2799" selection-start-column="81" selection-end-line="2799" selection-end-column="81" />
           <folding>
             <element signature="n#!!block;n#Amily#0" expanded="false" />
             <element signature="e#294510#297653#0" expanded="false" />
