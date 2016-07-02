@@ -2488,7 +2488,7 @@ Creature.prototype.cuntChange = function(cArea, display, spacingsF, spacingsB) {
     return stretched;
 }
 Creature.prototype.cuntChangeNoDisplay = function(cArea) {
-    if (vaginas.length == 0) return false;
+    if (this.vaginas.length == 0) return false;
     var stretched = false;
     if (this.findPerk(PerkLib.FerasBoonMilkingTwat) < 0 || vaginas[0].vaginalLooseness <= VAGINA_LOOSENESS_NORMAL) {
         //cArea > capacity = autostreeeeetch.
@@ -2522,12 +2522,12 @@ Creature.prototype.cuntChangeNoDisplay = function(cArea) {
     return stretched;
 }
 Creature.prototype.cuntChangeDisplay = function() {
-    if (vaginas[0].vaginalLooseness == VAGINA_LOOSENESS_CLOWN_CAR) outputText("<b>Your " + Appearance.vaginaDescript(this,0) + " is stretched painfully wide, large enough to accomodate most beasts and demons.</b>");
-    if (vaginas[0].vaginalLooseness == VAGINA_LOOSENESS_GAPING_WIDE) outputText("<b>Your " + Appearance.vaginaDescript(this,0) + " is stretched so wide that it gapes continually.</b>");
-    if (vaginas[0].vaginalLooseness == VAGINA_LOOSENESS_GAPING) outputText("<b>Your " + Appearance.vaginaDescript(this,0) + " painfully stretches, the lips now wide enough to gape slightly.</b>");
-    if (vaginas[0].vaginalLooseness == VAGINA_LOOSENESS_LOOSE) outputText("<b>Your " + Appearance.vaginaDescript(this,0) + " is now very loose.</b>", false);
-    if (vaginas[0].vaginalLooseness == VAGINA_LOOSENESS_NORMAL) outputText("<b>Your " + Appearance.vaginaDescript(this,0) + " is now a little loose.</b>", false);
-    if (vaginas[0].vaginalLooseness == VAGINA_LOOSENESS_TIGHT) outputText("<b>Your " + Appearance.vaginaDescript(this,0) + " is stretched out to a more normal size.</b>");
+    if (this.vaginas[0].vaginalLooseness == VAGINA_LOOSENESS_CLOWN_CAR) outputText("<b>Your " + Appearance.vaginaDescript(this,0) + " is stretched painfully wide, large enough to accomodate most beasts and demons.</b>");
+    if (this.vaginas[0].vaginalLooseness == VAGINA_LOOSENESS_GAPING_WIDE) outputText("<b>Your " + Appearance.vaginaDescript(this,0) + " is stretched so wide that it gapes continually.</b>");
+    if (this.vaginas[0].vaginalLooseness == VAGINA_LOOSENESS_GAPING) outputText("<b>Your " + Appearance.vaginaDescript(this,0) + " painfully stretches, the lips now wide enough to gape slightly.</b>");
+    if (this.vaginas[0].vaginalLooseness == VAGINA_LOOSENESS_LOOSE) outputText("<b>Your " + Appearance.vaginaDescript(this,0) + " is now very loose.</b>", false);
+    if (this.vaginas[0].vaginalLooseness == VAGINA_LOOSENESS_NORMAL) outputText("<b>Your " + Appearance.vaginaDescript(this,0) + " is now a little loose.</b>", false);
+    if (this.vaginas[0].vaginalLooseness == VAGINA_LOOSENESS_TIGHT) outputText("<b>Your " + Appearance.vaginaDescript(this,0) + " is stretched out to a more normal size.</b>");
 }
 //Anal Stretching
 Creature.prototype.buttChange = function(cArea, display, spacingsF, spacingsB) {

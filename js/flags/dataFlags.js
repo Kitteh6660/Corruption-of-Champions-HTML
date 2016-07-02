@@ -8,6 +8,7 @@
 //------------
 const TIMES_TRANSFORMED                 = "Times_Transformed";
 const TIMES_ORGASMED                    = "Times_Orgasmed";
+const PC_FETISH                         = "PC_Fetish"; // Used in lust attack in combatTeases file
 
 //------------
 // MISC
@@ -121,6 +122,7 @@ const AMILY_TREE_FLIPOUT                = "Amily_Tree_Flipout";
 
 const INCUBATION_MOUSE                  = 350; // Incubation time for mice types/Amily
 const PREGNANCY_PLAYER                  = "Player"; // Marks the player impregnated someone
+const PREGNANCY_AMILY                   = "Amily";
 
 //------------
 // ENCOUNTERS

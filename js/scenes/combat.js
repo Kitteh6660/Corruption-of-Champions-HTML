@@ -15,6 +15,8 @@ battleMenu = function() {
 	outputText("<br>Lust: " + monster.lust + " / " + monster.maxLust());
 	outputText("<br>Fatigue: " + monster.fatigue + " / " + monster.maxFatigue());
 	refreshStats();
+    //DEBUGGING code to check wins
+    //player.HP = 100;
 	hideUpDown();
 	menu();
 	addButton(0, "Attack", attack);

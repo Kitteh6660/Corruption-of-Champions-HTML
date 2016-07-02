@@ -2361,7 +2361,7 @@ Appearance.biggestBreastSizeDescript = function(creature) {
     }
     if (creature.breastRows[temp142].breastRating < 1) return "flat breasts";
     //50% of the time size-descript them
-    if (rand(2) == 0) descript += breastSize(creature.breastRows[temp142].breastRating);
+    if (rand(2) == 0) descript += Appearance.breastSize(creature.breastRows[temp142].breastRating);
     //Nouns!
     temp14 = rand(10);
     if (temp14 == 0) descript += "breasts";
