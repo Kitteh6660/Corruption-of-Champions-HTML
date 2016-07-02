@@ -38,6 +38,6 @@ Time.advanceMinutes = function(minutes) {
 				timeAware[i].advanceTime(hours * 60);
 				}
 		}
+        // Then advance the display clock
 		Time.advanceMinutes(hours * 60);
-		// Then advance the display clock
-	}
+    }

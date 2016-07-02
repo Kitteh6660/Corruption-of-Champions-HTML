@@ -126,7 +126,8 @@ PregnancyStore.Pregnancy.prototype.knockUp = function(newPregType, newPregIncuba
 {
 	if (this.pregnancyTypeFlag == 0) {
 		this.pregnancyTypeFlag = newPregType;
-		this.pregnancyIncubationFlag = newPregIncubation * 60;}
+		this.pregnancyIncubationFlag = newPregIncubation * 60;
+		this.pregnancyEventCounter = 0;}
 }
 
 // Forces pregnancy regardless of existing pregnancy.
@@ -141,6 +142,7 @@ PregnancyStore.Pregnancy.prototype.knockUpForce = function(newPregType, newPregI
 
     this.pregnancyTypeFlag = newPregType;
     this.pregnancyIncubationFlag = newPregIncubation * 60; // Converts hours into minutes
+	this.pregnancyEventCounter = 0; // Resets event counter.
 	// Debugging text
     //outputText("<br><br>You knocked someone up!");
     //outputText("<br>Pregnancy flag is " + this.pregnancyTypeFlag);

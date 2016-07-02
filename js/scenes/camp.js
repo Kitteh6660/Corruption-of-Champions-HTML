@@ -21,9 +21,11 @@ Camp.doCamp = function () {
     else {
         hideMenuButton("buttonLevel");
         }
-	playerMenu = Camp.doCamp;
+    playerMenu = Camp.doCamp;
 	//Display texts
 	clearOutput();
+    // Display Pregnancy related events
+    pregnancyProgression.updatePregnancy();
 	/*if (isabellaFollower()) {
 		outputText("Your campsite got a lot more comfortable once Isabella moved in.  Carpets cover up much of the barren ground, simple awnings tied to the rocks provide shade, and hand-made wooden furniture provides comfortable places to sit and sleep.  ", false);
 	}
@@ -57,10 +59,11 @@ Camp.doCamp = function () {
     // gameFlags[AMILY_HERM_QUEST] = 2;
     //gameFlags[AMILY_AFFECTION] = 50;
     //player.HP = 100;
-    outputText(player.gender + "<br>");
-    outputText("AmilyMet = " + gameFlags[AMILY_MET] + "<br>");
-    outputText("Player pregnancy counter is " + playerPregnancy.pregnancyIncubationFlag + "<br>");
-    outputText("Player knockedup by " + playerPregnancy.pregnancyTypeFlag);
+    //outputText(player.gender + "<br>");
+    //outputText("AmilyMet = " + gameFlags[AMILY_MET] + "<br>");
+    //outputText("Player pregnancy counter is " + playerPregnancy.pregnancyIncubationFlag + "<br>");
+    //outputText("Player knockedup by " + playerPregnancy.pregnancyTypeFlag + "<br>");
+    //outputText("Player pregnancy event counter is " + playerPregnancy.pregnancyEventCounter);
     //Display available options
 	menu();
 
@@ -128,10 +131,10 @@ Camp.doSleep = function() {
     //For now
     clearOutput();
     outputText("You lie down and sleep for eight hours.");
-    Time.advanceHours(8);
     player.changeHP(15 * 8, true);
     player.changeLust(player.lib * 0.04 * 8, false);
     doNext(Camp.doCamp);
+    Time.advanceHours(8);
 };
 
 //UTILS

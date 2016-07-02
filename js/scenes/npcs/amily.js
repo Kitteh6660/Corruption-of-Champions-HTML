@@ -28,14 +28,11 @@ Upgrade - First time Amily Lesbian scene works well, but the code immediately ha
 
 Upgrade - Lesbian sex and herm sex with Amily doesn't increase her affection at all. I feel this should be changed.
 
+Upgrade and Integrate - Amily Freakout Events for other followers. The paths need to be standardized. Will do when doing camp Amily.
 
- Test - Player Pregnancy with Amily
-
- Test - Check gender flag checking. Gender switching convos need to be checked. Need to make a gender change scene debugging thing in the Camp code.
+Test - Check gender flag checking. Gender switching convos need to be checked. Need to make a gender change scene debugging thing in the Camp code.
 
  Test - Defurring Code
-
-Fix Appearance flags for the endings
 
  Fix all tooltip entries (low priority)
 
@@ -2636,6 +2633,7 @@ AmilyScene.determineAmilySexEvent = function () { // May need to force a false b
          outputText("\"<i>Let's see if you'll be a mommy from this load... If not, well, I guess we'll have to try again.");
          //PREGGO CHECK HERE
          playerPregnancy.knockUp(PREGNANCY_AMILY, INCUBATION_MOUSE);
+         playerPregnancy.eventFill(INCUBATION_MOUSE_EVENT);
          }
 
         outputText("</i>\"  Chuckling softly, you lay there and embrace your lover for a time and then, reluctantly, you get dressed and leave.");
@@ -2813,7 +2811,7 @@ AmilyScene.determineAmilySexEvent = function () { // May need to force a false b
 
         //25% + gradually increasing cumQ bonus
         if (rand(4) == 0 || player.cumQ() > rand(1000)) {
-            AmilyScene.amilyPregnancy.eventFill([150, 120, 100, 96, 90, 72, 48]);
+            AmilyScene.amilyPregnancy.eventFill(INCUBATION_AMILY_EVENT);
             AmilyScene.amilyPregnancy.knockUpForce(PREGNANCY_PLAYER, INCUBATION_MOUSE - 182);
             timeAware.push(AmilyScene.amilyPregnancy);
 
@@ -2848,7 +2846,6 @@ AmilyScene.determineAmilySexEvent = function () { // May need to force a false b
         };
 
 // COMPLETE
-        //[Watch]
         AmilyScene.amilyLaborWatch = function () {
             clearOutput();
 
@@ -2923,6 +2920,114 @@ AmilyScene.determineAmilySexEvent = function () { // May need to force a false b
             gameFlags[AMILY_AFFECTION] += 5;
             doNext(Camp.returnToCampUseOneHour);
         };
+
+//Player gives Birth (quest version): UPDATE WHEN WE WORK ON AMILY IN CAMP!
+AmilyScene.pcBirthsAmilysKidsQuestVersion = function() {
+    gameFlags[PC_TIMES_BIRTHED_AMILYKIDS]++;
+    //In camp version:
+    //    if (flags[kFLAGS.AMILY_FOLLOWER] == 1) {
+    //playerBirthsWifAmilyMiceInCamp();
+    //return;
+    //}
+//Quest Ending: Herm Amily Variant
+//Requirements: Player must have given birth to a litter of Amily's children at least five times before.
+    if (gameFlags[PC_TIMES_BIRTHED_AMILYKIDS] + gameFlags[AMILY_BIRTH_TOTAL] >= 5) {
+        outputText("You wake up suddenly to strong pains and pressures in your gut. As your eyes shoot wide open, you look down to see your belly absurdly full and distended. You can feel movement underneath the skin, and watch as it is pushed out in many places, roiling and squirming in disturbing ways. The feelings you get from inside are just as disconcerting. You count not one, but many little things moving around inside you. There are so many, you can't keep track of them.<br><br>");
+
+        outputText("Pain shoots through you as they pull open your cervix forcefully, causing you to cry out involuntarily. At once, Amily suddenly appears, racing out from the undergrowth. \"<i>Is it time? Are you going into labor?</i>\" She asks, worry evident in her voice. Your pain is momentarily forgotten by your surprise and you ask where she came from. She snorts disdainfully at the question. \"<i>I've been shadowing you for a couple of days, now. Did you really think I'd let the mother of my children go through this alone?</i>\"<br><br>");
+
+        outputText("Any reply you may have been inclined to make to that is swallowed by another cry of pain as yet another contraction wrings its way through you. Amily takes your hand in hers and you cling to the lifeline of comfort it offers, thankful to not be alone for this. You can feel the first child moving out of your womb, through your cervix, down and into your " + player.vaginaDescript() + ". Your lips part and, with a grunt, you expel the first child into Amily's waiting hand. She holds it up to you so that you can see your firstborn; it's a little mouselet");
+    //(if player is female: 1 in 3 chance of it being boy, girl or herm, if player is herm, 100% chance of it being a herm)"
+    outputText(((gameFlags[AMILY_NOT_FURRY]==0)?", naked, pink, and totally hairless":"") + ". Amily helps hold it to your " + player.breastDescript(0) + ", where it eagerly takes hold of your " + player.nippleDescript(0) + " and starts to suckle. As it drinks, it starts to grow larger, and " + ((gameFlags[AMILY_NOT_FURRY]==0)?"fur the same color as your own hair starts to cover its body":"") +". It quickly drinks its fill and then detaches, its 'father' putting it aside, which is good, because by this time there's another baby waiting for its turn... and another... and another...<br><br>");
+
+    outputText("Soon, you are back to your old self again, lying down in exhaustion with Amily sitting nearby, your many rambunctious offspring already starting to walk and play around you.<br><br>");
+
+    outputText("\"<i>Get some rest, darling. There are things you and I need to talk about,</i>\" Amily instructs you.<br><br>");
+
+    outputText("You are eager to comply, though your last thought as you sink into unconsciousness is to wonder what Amily wants to talk about.");
+        gameFlags[PC_TIMES_BIRTHED_AMILYKIDS]++;
+        playerPregnancy.knockUpForce(0,0); // May not need this
+    //To part 2!
+    doNext(AmilyScene.postBirthingEndChoices);
+    return;
+}
+    outputText("You wake up suddenly to strong pains and pressures in your gut. As your eyes shoot wide open, you look down to see your belly absurdly full and distended. You can feel movement underneath the skin, and watch as it is pushed out in many places, roiling and squirming in disturbing ways. The feelings you get from inside are just as disconcerting. You count not one, but many little things moving around inside you. There are so many, you can't keep track of them.<br><br>");
+
+outputText("Pain shoots through you as they pull open your cervix forcefully, causing you to cry out involuntarily. At once, Amily suddenly appears, racing out from the undergrowth. \"<i>Is it time? Are you going into labor?</i>\" She asks, worry evident in her voice. Your pain is momentarily forgotten by your surprise and you ask where she came from. She snorts disdainfully at the question. \"<i>I've been shadowing you for a couple of days, now. Did you really think I'd let the mother of my children go through this alone?</i>\"<br><br>");
+
+outputText("Any reply you may have been inclined to make to that is swallowed by another cry of pain as yet another contraction wrings its way through you. Amily takes your hand in hers and you cling to the lifeline of comfort it offers, thankful to not be alone for this. You can feel the first child moving out of your womb, through your cervix, down and into your " + player.vaginaDescript() + ". Your lips part and, with a grunt, you expel the first child into Amily's waiting hand. She holds it up to you so that you can see your firstborn; it's a little mouselet", false);
+//(if player is female: 1 in 3 chance of it being boy, girl or herm, if player is herm, 100% chance of it being a herm)
+outputText(((gameFlags[AMILY_NOT_FURRY]==0)?", naked, pink, and totally hairless":"") +". Amily helps hold it to your " + player.chestDesc() + ", where it eagerly takes hold of your " + player.nippleDescript(0) + " and starts to suckle. As it drinks, it starts to grow larger, and "+((gameFlags[AMILY_NOT_FURRY]==0)?"fur the same color as your own hair starts to cover its body":"") +". It quickly drinks its fill and then detaches, its 'father' putting it aside, which is good, because by this time there's another baby waiting for its turn... and another... and another...<br><br>");
+
+outputText("Soon, you are back to your old self again, lying down in exhaustion with Amily sitting nearby, your many rambunctious offspring already starting to walk and play around you.<br><br>");
+
+outputText("\"<i>Look at them all. You... I never thought it would turn out this way, but you're helping my dream to come true. Thank you,</i>\" Amily tells you sincerely. You're too exhausted to keep your eyes open for long, but she promises to stay in touch and, even as you fall asleep, she's gathering up your children and taking them away.");
+    playerPregnancy.knockUpForce(0,0); // May not need this
+};
+
+AmilyScene.postBirthingEndChoices = function() {
+    clearOutput();
+    outputText("When you awake, the children are gone, and Amily has prepared something for you to eat. You eagerly start to feed yourself as Amily, looking grave, begins to speak.<br><br>");
+
+    outputText("\"<i>You know that this... well, this isn't how I saw my future going. I wanted a human mate to help me make pure children, to revive my race, that's true, but... I kind of always saw myself as the mother to those children. But, being the father... well, it's not so bad.</i>\" She takes your hands in hers, looking deep into your eyes. \"<i>I... I never dreamed I'd say this to ");
+//(if player is female:
+    if (player.gender == 2) outputText("another woman");
+//, if player is herm:
+    else outputText("a hermaphrodite");
+    outputText(", but... I love you. The children, they're going to leave here now, and set up a new village somewhere else. But I... I want to stay here with you. Forever. Please, say yes.</i>\"<br><br>");
+    outputText("Do you accept her offer?");
+    gameFlags[PC_TIMES_BIRTHED_AMILYKIDS]++;
+    menu();
+    addButton(0, "Accept", AmilyScene.acceptAmilyHermPath, null, null, null, "TO BE ADDED");
+    addButton(1, "Stay Friends", AmilyScene.declineAmilyHermPath, null, null, null, "TO BE ADDED");
+    addButton(2, "Shoot Down", AmilyScene.rejectAmilyHermPath, null, null, null, "TO BE ADDED");
+    
+}
+
+
+AmilyScene.acceptAmilyHermPath = function() {
+    clearOutput();
+    outputText("You stare at her in surprise. Then, you take hold of her hands and smile at her. You tell her that nothing would make you happier than to have her here, living with you, being with her. Amily squeaks loudly with joy and passionately embraces you, kissing you as deeply as she can. When she finally lets you go for lack of air, she takes a good long look around the camp, as if she's seeing it for the first time.<br><br>");
+
+    outputText("\"<i>Well, I better start moving in, huh?</i>\" she jokes. She then flops down on your sleeping roll beside you, \"<i>There we are, I'm moved in.</i>\" She grins at you, and you can't help but laugh.<br><br>");
+
+    //(Amily becomes a follower; quest is over)
+    //Disable village encounters!
+    gameFlags[AMILY_VILLAGE_ENCOUNTERS_DISABLED] = 1;
+//Set amily follower flag
+    gameFlags[AMILY_FOLLOWER] = 1;
+    gameFlags[AMILY_CUP_SIZE] = 1;
+    gameFlags[AMILY_NIPPLE_LENGTH] = .3;
+    gameFlags[AMILY_HIP_RATING] = 6;
+    gameFlags[AMILY_ASS_SIZE] = 6;
+    gameFlags[AMILY_VAGINAL_WETNESS] = 1;
+
+    gameFlags[AMILY_CLOTHING] = "rags";
+    doNext(playerMenu); // Check this.
+}
+
+//[=Stay Friends=]
+AmilyScene.declineAmilyHermPath = function() {
+    clearOutput();
+    outputText("You think about it, and then shake your head. You tell her that you do appreciate her feelings, but you're not sure the two of you are ready to make the committment that living together entails. Besides, your camp is set up to guard the portal leading back to your world; that makes it a magnet for demons. You can't imagine exposing her to the danger that moving to camp would entail for her.<br><br>");
+
+outputText("Amily doesn't look entirely happy, but you assure her that you will keep coming back to see her. And when you tease at the possibility of a few more litters in your respective futures, stroking her penis through her tattered pants, she blushes but agrees to go.<br><br>");
+    //(Amily returns to the Ruined Village; this scene will repeat the next time the player gives birth to a litter of Amily's children)
+    doNext(playerMenu); // Check this
+}
+
+//Shoot the bitch down!
+AmilyScene.rejectAmilyHermPath = function() {
+
+clearOutput();
+outputText("You stare at her coldly, and inform her that you have no interest in any kind of relationship with her on that level. You decided to let her plant her brats in you out of pity, but now that she no longer needs your womb, you have no more intention of renting it out to her.<br><br>");
+
+outputText("Amily reels, heartstruck, her expression making it clear that her heart has shattered, tears rolling down her face. \"<i>I...I didn't know that was the way you felt about me. F-Fine, if that's how it is...</i>\" She bursts into sobs and runs away; you know she'll never come back.<br><br>");
+//Disable village encounters, go!
+    gameFlags[AMILY_VILLAGE_ENCOUNTERS_DISABLED] = 1;
+    doNext(playerMenu);
+}
+
 
 
 //--------------
@@ -3808,7 +3913,7 @@ AmilyScene.rapeCorruptAmily4Female = function () {
             AmilyScene.rapeCorruptAmily4Epilogue();
         }
 
-//ADD AMILY APPEARANCE FLAGS. CHECK PURE PATH ON THIS AS WELL. WILL ALSO HAVE A FEW FOLLOWER CHECKS TO ADD AS WELL.
+//NEED MARBLE TO FINISH
 AmilyScene.rapeCorruptAmily4Epilogue = function () {
             outputText("Your cum is completely absorbed by her and she doubles over in pleasure as she screams. Her biggest orgasm yet rocks her to the core; her eyes roll back and you see her begin to change.<br><br>");
             outputText("Her " + ((gameFlags[AMILY_NOT_FURRY] == 0) ? "fur turns to a lewd purple" : "hair turns into a lewd purple, skin fading to a light lavender") + "; her small horns grow and become more defined; small bat-like wing sprout from her shoulders; the spade-like tip of her tail grows bigger and more defined; ");
@@ -3825,18 +3930,18 @@ AmilyScene.rapeCorruptAmily4Epilogue = function () {
             outputText("<b>(Corrupted Amily added to slaves)</b>");
 //Add corrupted amily flag here
             gameFlags[AMILY_FOLLOWER] = 2;
-//ADD THIS LATER
-//if (player.pregnancyType == PregnancyStore.PREGNANCY_AMILY) player.knockUpForce(PregnancyStore.PREGNANCY_MOUSE, player.pregnancyIncubation);
+//Change to normal mouse pregnancy
+            if (playerPregnancy.pregnancyTypeFlag == PREGNANCY_AMILY) playerPregnancy.knockUpForce(PREGNANCY_MOUSE, playerPregnancy.pregnancyIncubationFlag);
 //Set other flags if Amily is moving in for the first time
 //if (flags[kFLAGS.UNKNOWN_FLAG_NUMBER_00173] == 0) { //Corruption freakout flag. Not sure if we need to wrap it like this
-            /*
-             flags[kFLAGS.AMILY_CUP_SIZE] = 5;
-             flags[kFLAGS.AMILY_NIPPLE_LENGTH] = .5;
-             flags[kFLAGS.AMILY_HIP_RATING] = 12;
-             flags[kFLAGS.AMILY_ASS_SIZE] = 12;
-             flags[kFLAGS.AMILY_VAGINAL_WETNESS] = 1;
-             flags[kFLAGS.AMILY_CLOTHING] = "sexy rags";
-             //}
+            gameFlags[AMILY_CUP_SIZE] = 5;
+            gameFlags[AMILY_NIPPLE_LENGTH] = .5;
+            gameFlags[AMILY_HIP_RATING] = 12;
+            gameFlags[AMILY_ASS_SIZE] = 12;
+            gameFlags[AMILY_VAGINAL_WETNESS] = 1;
+            gameFlags[AMILY_CLOTHING] = "sexy rags";
+    /*         
+    //}
              //if marble is there, tag it for freakout
              if (player.findStatusEffect(StatusEffects.CampMarble) >= 0) {
              flags[kFLAGS.MARBLE_OR_AMILY_FIRST_FOR_FREAKOUT] = 1;
@@ -3917,7 +4022,7 @@ AmilyScene.amilyBadEnding = function () {
 
 
         //Have over five litters and affection is 40 or higher
-//ADD AMILY APPEARANCE VARIABLES, MARBLE FREAKOUT CODE
+//ADD AMILY APPEARANCE VARIABLES, MARBLE  AND IZMA FREAKOUT CODE
 AmilyScene.amilyBecomesFollower = function () {
             clearOutput();
             outputText("As you wander through the empty streets of the ruined village, you wonder where Amily is. Even beyond what she means to you now, you simply enjoy knowing that there's someone else in this twisted place you can talk to.<br><br>");
@@ -3954,14 +4059,15 @@ AmilyScene.amilyBecomesFollower = function () {
             outputText("<b>Amily has joined you as a lover.</b><br><br>");
             //Set amily follower flag
             gameFlags[AMILY_FOLLOWER] = 1;
-            //flags[kFLAGS.AMILY_CUP_SIZE] = 1;
-            //flags[kFLAGS.AMILY_NIPPLE_LENGTH] = .3;
-            //flags[kFLAGS.AMILY_HIP_RATING] = 6;
-            //flags[kFLAGS.AMILY_ASS_SIZE] = 6;
-            //flags[kFLAGS.AMILY_VAGINAL_WETNESS] = 1;
+            gameFlags[AMILY_CUP_SIZE] = 1;
+            gameFlags[AMILY_NIPPLE_LENGTH] = .3;
+            gameFlags[AMILY_HIP_RATING] = 6;
+            gameFlags[AMILY_ASS_SIZE] = 6;
+            gameFlags[AMILY_VAGINAL_WETNESS] = 1;
 
-            //flags[kFLAGS.AMILY_CLOTHING] = "rags";
+            gameFlags[AMILY_CLOTHING] = "rags";
             //if marble is there, tag it for freakout
+            /*
             //if (player.findStatusEffect(StatusEffects.CampMarble) >= 0) {
             //    flags[kFLAGS.MARBLE_OR_AMILY_FIRST_FOR_FREAKOUT] = 1;
             //}
@@ -3969,7 +4075,7 @@ AmilyScene.amilyBecomesFollower = function () {
             //if Izma is there, tag for freekout!
             //if (flags[kFLAGS.UNKNOWN_FLAG_NUMBER_00238] == 1) {
             //    flags[kFLAGS.UNKNOWN_FLAG_NUMBER_00236] = 1;
-            //}
+            //}*/
             //Disable amily encounters in the village!
             gameFlags[AMILY_VILLAGE_ENCOUNTERS_DISABLED] = 1;
             doNext(Camp.returnToCampUseOneHour);
