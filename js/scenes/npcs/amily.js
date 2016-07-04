@@ -30,9 +30,11 @@ Upgrade - Lesbian sex and herm sex with Amily doesn't increase her affection at 
 
 Upgrade and Integrate - Amily Freakout Events for other followers. The paths need to be standardized. Will do when doing camp Amily.
 
+Test - Defurring Code
+
 Test - Check gender flag checking. Gender switching convos need to be checked. Need to make a gender change scene debugging thing in the Camp code.
 
- Test - Defurring Code
+
 
  Fix all tooltip entries (low priority)
 
@@ -97,15 +99,7 @@ function Amily() {
     //checkMonster();
     this.victory = AmilyScene.rapeCorruptAmily1;
     this.defeat = cleanupAfterCombat;
-    //Pregnancy
-    this.pregnancyType = 0;
-    this.pregnancyIncubation = 0;
-    this.pregnancyEventArr = [];
-    this.pregnancyEventNum = 0;
-    this.buttPregnancyType = 0;
-    this.buttPregnancyIncubation = 0;
-    this.buttPregnancyEventArr = [];
-    this.buttPregnancyEventNum = 0;
+
 }
 
 Amily.prototype = new Creature();
@@ -115,7 +109,7 @@ amily = new Amily();
 var sexForced = false; // Used to get around a nasty bug.
 
 
-//Okay, let's get this pregnancy system right...
+
 
 // Add a pregnancy array OLD CODE
 //AmilyScene.pregnancy = new PregnancyStore.Pregnancy(gameFlags[AMILY_PREGNANCY_TYPE], gameFlags[AMILY_INCUBATION], gameFlags[AMILY_BUTT_PREGNANCY_TYPE], gameFlags[AMILY_OVIPOSITED_COUNTDOWN]);
@@ -2791,16 +2785,12 @@ AmilyScene.determineAmilySexEvent = function () { // May need to force a false b
         if (gameFlags[FOLLOWER_AT_FARM_AMILY] != 0) return;
 
         //25% + gradually increasing cumQ bonus
-        //if (rand(4) == 0 || player.cumQ() > rand(1000)) {
+        if (rand(4) == 0 || player.cumQ() > rand(1000)) {
 
             amily.knockUpForce(PREGNANCY_PLAYER, INCUBATION_MOUSE - 182, INCUBATION_AMILY_EVENT);
 
-
-          //  }
-
-
-
-        };
+        }
+    };
 
 // COMPLETE
         AmilyScene.amilyGivesBirth = function () {

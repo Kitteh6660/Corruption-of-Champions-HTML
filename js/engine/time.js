@@ -30,7 +30,7 @@ Time.advanceMinutes = function(minutes) {
 			player.pregnancyAdvance(); // Advances the Player's pregnancy.
 			amily.pregnancyAdvance(); // Advances Amily's pregnancy.
 		}
-	pregnancyProgression.updatePregnancy(); // Outputs the results of the Player's pregnancy flags once time passes.
+	//pregnancyProgression.updatePregnancy(); // Outputs the results of the Player's pregnancy flags once time passes.
 }
 
 	Time.advanceHours = function (hours) {

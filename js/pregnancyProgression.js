@@ -113,6 +113,7 @@ pregnancyProgression.updatePregnancy = function() {
             displayedUpdate = true;
             outputText("<br><br>");
             player.knockUpForce(0,0); //Clear Pregnancy
+            displayedUpdate = true;
         }
 
         //Give birth to generic mice and Jojo's / Joy's babies
@@ -166,5 +167,7 @@ pregnancyProgression.updatePregnancy = function() {
          }*/
 
      }
+
     doNext(playerMenu);
+    //doNext(Camp.doCamp);
 };
