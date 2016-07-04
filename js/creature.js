@@ -87,10 +87,15 @@ function Creature() {
 	this.cumMultiplier = 0;
 	//Vaginas
 	this.vaginas = [];
+    // Pregnancy
     this.pregnancyType = 0;
     this.pregnancyIncubation = 0;
+    this.pregnancyEventArr = [];
+    this.pregnancyEventNum = 0;
     this.buttPregnancyType = 0;
     this.buttPregnancyIncubation = 0;
+    this.buttPregnancyEventArr = [];
+    this.buttPregnancyEventNum = 0;
 	//Ass
 	this.ass = new Ass();
 	//Breasts
@@ -2323,7 +2328,7 @@ Creature.prototype.growTits = function(amount, rowsGrown, display, growthType) {
             }
     
             //Grow!
-            breastRows[temp2].breastRating += temp;
+            this.breastRows[temp2].breastRating += temp;
             rowsGrown--;
         }
     }
@@ -2347,8 +2352,8 @@ Creature.prototype.growTits = function(amount, rowsGrown, display, growthType) {
         temp = 0;
         //Start at top and keep growing down, back to top if hit bottom before done.
         while(rowsGrown > 0) {
-            if (temp+1 > breastRows.length) temp = 0;
-            breastRows[temp].breastRating += amount;
+            if (temp+1 > this.breastRows.length) temp = 0;
+            this.breastRows[temp].breastRating += amount;
             temp++;
             temp3 += amount;
             rowsGrown--;
@@ -2357,7 +2362,7 @@ Creature.prototype.growTits = function(amount, rowsGrown, display, growthType) {
     if (growthType == 3) {
         while(rowsGrown > 0) {
             rowsGrown--;
-            breastRows[0].breastRating += amount;
+            this.breastRows[0].breastRating += amount;
             temp3 += amount;
         }
     }
@@ -3438,3 +3443,133 @@ Creature.prototype.oneTailDescript = function() {
 Creature.prototype.wingsDescript = function() {
     return Appearance.wingsDescript(this);
 }
+
+//---------
+// PREGNANCY UTILS
+//---------
+
+
+Creature.prototype.isPregnant = function() { return this.pregnancyType != 0; };
+
+Creature.prototype.isButtPregnant = function() { return this.buttPregnancyType != 0; };
+
+//fertility must be >= random(0-beat)
+//If arg == 1 then override any contraceptives and guarantee fertilization
+//If arg == -1, no chance of fertilization.
+Creature.prototype.knockUp = function(type = 0, incubation = 0, beat = 100, arg = 0, event = [])
+    {
+        //Contraceptives cancel!
+        //if (findStatusEffect(StatusEffects.Contraceptives) >= 0 && arg < 1)
+        //return;
+//			if (findStatusEffect(StatusEffects.GooStuffed) >= 0) return; //No longer needed thanks to PREGNANCY_GOO_STUFFED being used as a blocking value
+var bonus = 0;
+//If arg = 1 (always pregnant), bonus = 9000
+if (arg >= 1)
+    bonus = 9000;
+if (arg <= -1)
+    bonus = -9000;
+
+    this.knockUpForce(type, incubation, event);
+// NEED TOTAL FERTILITY CODE
+    /*
+if (this.pregnancyIncubation == 0 && totalFertility() + bonus > Math.floor(Math.random() * beat) && hasVagina())
+{
+    knockUpForce(type, incubation);
+    trace("PC Knocked up with pregnancy type: " + type + " for " + incubation + " incubation.");
+}
+//Chance for eggs fertilization - ovi elixir and imps excluded!
+if (type != PregnancyStore.PREGNANCY_IMP && type != PregnancyStore.PREGNANCY_OVIELIXIR_EGGS && type != PregnancyStore.PREGNANCY_ANEMONE)
+{
+    if (findPerk(PerkLib.SpiderOvipositor) >= 0 || findPerk(PerkLib.BeeOvipositor) >= 0)
+    {
+        if (totalFertility() + bonus > Math.floor(Math.random() * beat))
+        {
+            fertilizeEggs();
+        }
+    }
+}*/
+}
+
+
+Creature.prototype.knockUpForce = function(type = 0, incubation = 0, event = []) {
+    this.pregnancyType = type;
+    this.pregnancyIncubation = (type == 0 ? 0 : incubation * 60); //Won't allow incubation time without pregnancy type
+    if (event.length > 1) {
+        this.pregnancyEventArr = event;
+        this.pregnancyEventNum = 0;
+    }
+    //Reset pregnancy event array and encounter
+    if (type == 0) {
+        this.pregnancyEventArr.length = 0;
+        this.pregnancyEventNum = 0;
+    }
+};
+
+// More for compatibility, though knockUpForce will take care of this too.
+Creature.prototype.eventFill = function(events) {
+    this.pregnancyEventArr = [];
+    for (i in events)
+        this.pregnancyEventArr.push(events[i] * 60);
+} 
+
+Creature.prototype.pregnancyAdvance = function() {
+    if (this.pregnancyType == 0) {
+        this.pregnancyEventArr.length = 0;
+        this.pregnancyEventNum = 0;
+    }
+    if (this.pregnancyIncubation > 0) this.pregnancyIncubation--;
+    if (this.pregnancyIncubation < 0) this.pregnancyIncubation = 0;
+    if (this.buttPregnancyIncubation > 0) this.buttPregnancyIncubation--;
+    if (this.buttPregnancyIncubation < 0) this.buttPregnancyIncubation = 0;
+    // If there's something in the pregnancy event array, find out what event we're on.
+    if (this.pregnancyEventArr.length > 1) {
+        for (j = 0; j < this.pregnancyEventArr.length; j++) {
+            if (this.pregnancyIncubation < this.pregnancyEventArr[j]) {
+                //outputText("Setting new flag to " + (j + 1));
+                this.pregnancyEventNum = j + 1;
+            }
+        }
+    }
+}
+
+//public function pregnancyUpdate():Boolean { return false; }
+
+
+
+
+/*
+
+
+//The more complex knockUp function used by the player is defined above
+//The player doesn't need to be told of the last event triggered, so the code here is quite a bit simpler than that in PregnancyStore
+
+
+//fertility must be >= random(0-beat)
+public function buttKnockUp(type:int = 0, incubation:int = 0, beat:int = 100, arg:int = 0):void
+    {
+        //Contraceptives cancel!
+        if (findStatusEffect(StatusEffects.Contraceptives) >= 0 && arg < 1)
+return;
+var bonus:int = 0;
+//If arg = 1 (always pregnant), bonus = 9000
+if (arg >= 1)
+    bonus = 9000;
+if (arg <= -1)
+    bonus = -9000;
+//If unpregnant and fertility wins out:
+if (buttPregnancyIncubation == 0 && totalFertility() + bonus > Math.floor(Math.random() * beat))
+{
+    buttKnockUpForce(type, incubation);
+    trace("PC Butt Knocked up with pregnancy type: " + type + " for " + incubation + " incubation.");
+}
+}
+
+//The more complex buttKnockUp function used by the player is defined in Character.as
+public function buttKnockUpForce(type:int = 0, incubation:int = 0):void
+{
+    _buttPregnancyType = type;
+_buttPregnancyIncubation = (type == 0 ? 0 : incubation); //Won't allow incubation time without pregnancy type
+}
+
+*/
+

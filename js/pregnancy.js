@@ -156,14 +156,15 @@ PregnancyStore.Pregnancy.prototype.knockUpForce = function(newPregType, newPregI
 	//	return;
     };
 
-// Time advacement function. Currently only works with normal pregnancy.
+// Time advacement function. Currently only works with normal pregnancy. OLD CODE
+/*
 PregnancyStore.Pregnancy.prototype.advanceTime = function(timeInc) {
 	if (this.pregnancyIncubationFlag >= 1) {
 		// Decrement the incubation flag
 		//outputText("Decrementing Incubation Flag");
 		for (i=0; i < timeInc; i++) {
 			this.pregnancyIncubationFlag--; // Reduce overall timer
-			if (this.pregnancyIncubationFlag < 0) { this.pregnancyIncubationFlag = 0;}
+			if (this.pregnancyIncubationFlag < 0) { this.pregnancyIncubationFlag = 0;}			
 		}
 		// Checking for new Event Array
 		//outputText("Checking Event Array");
@@ -177,6 +178,9 @@ PregnancyStore.Pregnancy.prototype.advanceTime = function(timeInc) {
 	}
 	return;
 };
+*/
+
+
 
 /*
  //this._pregnancyEventValue = [];
@@ -189,10 +193,13 @@ PregnancyStore.Pregnancy.prototype.advanceTime = function(timeInc) {
 */
     // Pregnancy methods
 
+/*
 PregnancyStore.Pregnancy.prototype.type = function(type) {
 		if (this.pregnancyTypeFlag == 0) {return 0;}
 		else { return this.pregnancyTypeFlag }
 	};
+*/
+
 
 /*
     

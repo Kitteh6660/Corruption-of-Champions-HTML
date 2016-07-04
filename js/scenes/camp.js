@@ -25,7 +25,7 @@ Camp.doCamp = function () {
 	//Display texts
 	clearOutput();
     // Display Pregnancy related events
-    pregnancyProgression.updatePregnancy();
+    //pregnancyProgression.updatePregnancy();
 	/*if (isabellaFollower()) {
 		outputText("Your campsite got a lot more comfortable once Isabella moved in.  Carpets cover up much of the barren ground, simple awnings tied to the rocks provide shade, and hand-made wooden furniture provides comfortable places to sit and sleep.  ", false);
 	}
@@ -61,9 +61,17 @@ Camp.doCamp = function () {
     //player.HP = 100;
     //outputText(player.gender + "<br>");
     //outputText("AmilyMet = " + gameFlags[AMILY_MET] + "<br>");
-    //outputText("Player pregnancy counter is " + playerPregnancy.pregnancyIncubationFlag + "<br>");
-    //outputText("Player knockedup by " + playerPregnancy.pregnancyTypeFlag + "<br>");
-    //outputText("Player pregnancy event counter is " + playerPregnancy.pregnancyEventCounter);
+    //if (!player.isPregnant()) { player.knockUpForce(PREGNANCY_AMILY, 100); }
+    outputText("Player pregnancy counter is " + player.pregnancyIncubation + "<br>");
+    outputText("Player knockedup by " + player.pregnancyType + "<br>");
+
+    //if (!amily.isPregnant()) amily.knockUpForce(PREGNANCY_PLAYER, INCUBATION_MOUSE);
+    outputText("Amily pregnancy counter is " + amily.pregnancyIncubation + "<br>");
+    outputText("Player knockedup by " + amily.pregnancyType + "<br>");
+    outputText("Player pregnancy event counter is " + amily.pregnancyEventNum + "<br><br>");
+
+
+
     //Display available options
 	menu();
 

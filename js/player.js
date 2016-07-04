@@ -1465,8 +1465,8 @@ Player.prototype.changeGems = function(amount) {
     refreshStats();
 }
 
-//PREGNANCY
+//PREGNANCY OLD CODE
 // Initialize player Pregnancy array
-playerPregnancy = new PregnancyStore.Pregnancy(0,0,0,0);
+//playerPregnancy = new PregnancyStore.Pregnancy(0,0,0,0);
 // Add at start to timeAware
-timeAware.push(playerPregnancy);
+//timeAware.push(playerPregnancy);

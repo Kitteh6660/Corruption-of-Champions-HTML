@@ -10,8 +10,8 @@ pregnancyProgression.updatePregnancy = function() {
     var displayedUpdate = false;
     //outputText("Reached Pregnancy Loop.<br><br>");
     // Player is pregnant with mice messages and transformations.
-    if (playerPregnancy.pregnancyTypeFlag == PREGNANCY_AMILY) {
-        switch (playerPregnancy.pregnancyEventCounter) {
+    if (player.pregnancyType == PREGNANCY_AMILY) {
+        switch (player.pregnancyEventNum) {
             case 1:
                 outputText("<b>You wake up feeling bloated, and your belly is actually looking a little puffy. At the same time, though, you have the oddest cravings... you could really go for some mixed nuts. And maybe a little cheese, too.</b><br><br>");
                 displayedUpdate = true;
@@ -60,7 +60,7 @@ pregnancyProgression.updatePregnancy = function() {
             }
 
         // Fill player's breasts with milk when knocked up by Amily.
-        if (playerPregnancy.pregnancyEventCounter >= 5 && playerPregnancy.pregnancyEventCounter <= 8) {
+        if (player.pregnancyEventNum >= 5 && player.pregnancyEventNum <= 8) {
             // outputText("<b>Reached Tit Growth Amily Loop</b><br><br>");
             if (player.biggestTitSize() >= 3 && player.mostBreastsPerRow() > 1 && player.biggestLactation() >= 1 && player.biggestLactation() < 2) {
                 outputText("Your breasts feel swollen with all the extra milk they're accumulating.<br><br>");
@@ -87,16 +87,16 @@ pregnancyProgression.updatePregnancy = function() {
         // Player giving birth to Amily's babies
         //Amily failsafes to convert pure Amily babies to mouse babies under certain circumstances.
 
-        if (playerPregnancy.pregnancyIncubationFlag == 0 && playerPregnancy.pregnancyTypeFlag == PREGNANCY_AMILY)
+        if (player.pregnancyIncubation == 0 && player.pregnancyType == PREGNANCY_AMILY)
         {
             statControl = 0; // Reset stat controller
-            if (gameFlags[AMILY_FOLLOWER] == 2 || gameFlags[AMILY_CORRUPTION_PATH] > 0) playerPregnancy.knockUpForce(PREGNANCY_MOUSE, playerPregnancy.pregnancyIncubationFlag);
-            if (gameFlags[AMILY_VISITING_URTA] == 1 || gameFlags[AMILY_VISITING_URTA] == 2) playerPregnancy.knockUpForce(PREGNANCY_MOUSE, playerPregnancy.pregnancyIncubationFlag);
+            if (gameFlags[AMILY_FOLLOWER] == 2 || gameFlags[AMILY_CORRUPTION_PATH] > 0) player.knockUpForce(PREGNANCY_MOUSE, player.pregnancyIncubationFlag);
+            if (gameFlags[AMILY_VISITING_URTA] == 1 || gameFlags[AMILY_VISITING_URTA] == 2) player.knockUpForce(PREGNANCY_MOUSE, player.pregnancyIncubationFlag);
             //if (prison.inPrison) player.knockUpForce(PregnancyStore.PREGNANCY_MOUSE, player.pregnancyIncubation);
         }
 
         //Give birth to pure Amily's kids
-        if (playerPregnancy.pregnancyIncubationFlag == 0 && playerPregnancy.pregnancyTypeFlag == PREGNANCY_AMILY) {
+        if (player.pregnancyIncubation == 0 && player.pregnancyType == PREGNANCY_AMILY) {
             player.boostLactation(.01);
             outputText("<br>");
             if (player.vaginas.length == 0) {
@@ -112,7 +112,7 @@ pregnancyProgression.updatePregnancy = function() {
             player.modStats("str", -1,"tou", -2, "spe", 3, "lib", 1, "sen", .5);
             displayedUpdate = true;
             outputText("<br><br>");
-            playerPregnancy.knockUpForce(0,0); //Clear Pregnancy
+            player.knockUpForce(0,0); //Clear Pregnancy
         }
 
         //Give birth to generic mice and Jojo's / Joy's babies

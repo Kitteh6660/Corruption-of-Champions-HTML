@@ -20,24 +20,20 @@ Time.increment = function() {
 
 
 Time.advanceMinutes = function(minutes) {
-	if (timeAware.length > 0) { // If there's a function in timeAware
-		for (i = 0; i < timeAware.length; i++) {
-			timeAware[i].advanceTime(minutes);
+	//if (timeAware.length > 0) { // If there's a function in timeAware
+	//	for (i = 0; i < timeAware.length; i++) {
+	//		timeAware[i].advanceTime(minutes);
 
-		}
+	//	}
 		for (i = 0; i < minutes; i++) {
 			Time.increment();
+			player.pregnancyAdvance(); // Advances the Player's pregnancy.
+			amily.pregnancyAdvance(); // Advances Amily's pregnancy.
 		}
-	}
+	pregnancyProgression.updatePregnancy(); // Outputs the results of the Player's pregnancy flags once time passes.
 }
 
 	Time.advanceHours = function (hours) {
-		//Feed the number of hours through a for loop and force advancement code
-		if (timeAware.length > 0) { // If there's a function in timeAware
-			for (i = 1; i < timeAware.length; i++) {
-				timeAware[i].advanceTime(hours * 60);
-				}
-		}
-        // Then advance the display clock
+
 		Time.advanceMinutes(hours * 60);
     }
