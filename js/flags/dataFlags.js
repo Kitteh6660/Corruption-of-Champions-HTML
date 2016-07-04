@@ -8,6 +8,7 @@
 //------------
 const TIMES_TRANSFORMED                 = "Times_Transformed";
 const TIMES_ORGASMED                    = "Times_Orgasmed";
+const PC_FETISH                         = "PC_Fetish"; // Used in lust attack in combatTeases file
 
 //------------
 // MISC
@@ -112,6 +113,13 @@ const CREATE_POTENT_MIXTURE        = "Amily_Drank_Potent_Mixture";
 const AMILY_BIRTH_TOTAL                 = "Amily_Birth_Total";
 const AMILY_CORRUPTION_PATH             = "Amily_Corruption_Path";
 const AMILY_TREE_FLIPOUT                = "Amily_Tree_Flipout";
+const AMILY_CUP_SIZE                    = "Amily_Cup_Size";
+const AMILY_NIPPLE_LENGTH               = "Amily_Nipple_Length";
+const AMILY_HIP_RATING                  = "Amily_Hip_Rating";
+const AMILY_ASS_SIZE                    = "Amily_Ass_Size";
+const AMILY_VAGINAL_WETNESS             = "Amily_Vaginal_Wetness";
+const AMILY_CLOTHING                    = "Amily_Clothing";
+
 
 //=================
 // PREGNANCY FLAGS
@@ -119,8 +127,19 @@ const AMILY_TREE_FLIPOUT                = "Amily_Tree_Flipout";
 // Note that these are actual constants, not called by gameFlags yet until the pregnancy system is figured out.
 //=================
 
+// Base incubation values
 const INCUBATION_MOUSE                  = 350; // Incubation time for mice types/Amily
+
+// Pregnancy event arrays
+const INCUBATION_MOUSE_EVENT            = [336, 280, 216, 180, 120, 72, 48, 32]; // Event flags for Mouse Pregnancy
+const INCUBATION_AMILY_EVENT            = [150, 120, 100, 96, 90, 72, 48]; // Special array for Amily pregnancy in Town Ruins.
+
+// Pregnancy Flags
 const PREGNANCY_PLAYER                  = "Player"; // Marks the player impregnated someone
+const PREGNANCY_AMILY                   = "Amily";
+
+// Misc Pregnancy flags
+const PC_PENDING_PREGGERS               = "PC_Pending_Preggers"; // Unsure what this is for. Used in Amily Herm Quest.
 
 //------------
 // ENCOUNTERS

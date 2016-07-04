@@ -164,6 +164,23 @@ Data.saveGameObject = function(slot) {
             }
         }
 
+        //Player Pregnancy
+        saveData.player.pregnancyIncubation = player.pregnancyIncubation;
+        saveData.player.pregnancyType = player.pregnancyType;
+        saveData.player.pregnancyEventArr = player.pregnancyEventArr;
+        saveData.buttPregnancyIncubation = player.buttPregnancyIncubation;
+        saveData.buttPregnancyType = player.buttPregnancyType;
+        saveData.player.pregnancyEventNum = player.pregnancyEventNum;
+
+        //Amily Pregnancy
+        saveData.amilypregnancyIncubation = amily.pregnancyIncubation;
+        saveData.amilypregnancyType = amily.pregnancyType;
+        saveData.amilypregnancyEventArr = amily.pregnancyEventArr;
+        saveData.amilybuttPregnancyIncubation = amily.buttPregnancyIncubation;
+        saveData.amilybuttPregnancyType = amily.buttPregnancyType;
+        saveData.amilypregnancyEventNum = amily.pregnancyEventNum;
+
+
         //Spells
         saveData.player.spells = {};
         saveData.player.spells.chargeWeapon = player.spells.chargeWeapon;
@@ -187,10 +204,18 @@ Data.saveGameObject = function(slot) {
         saveData.time.hours = time.hours;
         saveData.time.minutes = time.minutes;
 
+        //Game Flags
         saveData.gameFlags = {};
         for (i in gameFlags) {
             saveData.gameFlags[i] = gameFlags[i];
         }
+
+        //Amily Save Test
+        //if (AmilyScene.pregnancy.pregnancyTypeFlag != 0) {
+        //    saveData.gameFlags[AMILY_PREGNANCY_TYPE] = AmilyScene.pregnancy.pregnancyTypeFlag;
+        //    saveData.gameFlags[AMILY_INCUBATION] = AmilyScene.pregnancy.pregnancyIncubationFlag;
+        //}
+
 
         //Assign Save Version
         saveData.saveVersion = saveVersion;
@@ -272,6 +297,25 @@ Data.loadGameObject = function(slot) {
             //player.createKeyItem(lookupKeyItem(saveData.player.keyItems[i].id), saveData.player.keyItems[i].value1, saveData.player.keyItems[i].value2, saveData.player.keyItems[i].value3, saveData.player.keyItems[i].value4);
         }
 
+        //Player Pregnancy Load
+        player.pregnancyIncubation = saveData.player.pregnancyIncubation;
+        player.pregnancyType = saveData.player.pregnancyType;
+        player.pregnancyEventArr = saveData.player.pregnancyEventArr;
+        player.buttPregnancyIncubation = saveData.player.buttPregnancyIncubation;
+        player.buttPregnancyType = saveData.player.buttPregnancyType;
+        player.pregnancyEventNum = saveData.player.pregnancyEventNum;
+
+        //Amily Pregnancy Load
+        amily.pregnancyIncubation = saveData.amilypregnancyIncubation;
+        amily.pregnancyType = saveData.amilypregnancyType;
+        amily.pregnancyEventArr = saveData.amilypregnancyEventArr;
+        amily.buttPregnancyIncubation = saveData.amilybuttPregnancyIncubation;
+        amily.buttPregnancyType = saveData.amilybuttPregnancyType;
+        amily.pregnancyEventNum = saveData.amilypregnancyEventNum;
+
+
+
+
         //Spells
         if (saveData.player.spells != undefined) {
             player.spells = [];
@@ -308,6 +352,15 @@ Data.loadGameObject = function(slot) {
                     gameFlags[i] = saveData.gameFlags[i];
             }
         }
+
+        /*
+        //Amily Test Load
+        if (saveData.amilyPregType != 0) {
+            AmilyScene.pregnancy.pregnancyTypeFlag = gameFlags[saveData.amilyPregType];
+            AmilyScene.pregnancy.pregnancyIncubationFlag = gameFlags[saveData.amilyPregDur];
+        };
+        */
+
         Data.fixSave();
 
         //Set to successful and return
@@ -359,6 +412,7 @@ Data.fixSave = function() {
     for (i in player.breastRows) {
         unfuckBreastRow(player.breastRows[i]);
     }
+    
 }
 
 //DELETE SAVE

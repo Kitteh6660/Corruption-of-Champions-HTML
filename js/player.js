@@ -1464,3 +1464,9 @@ Player.prototype.changeGems = function(amount) {
     if (player.gems > Number.MAX_VALUE) player.gems = Number.MAX_VALUE;
     refreshStats();
 }
+
+//PREGNANCY OLD CODE
+// Initialize player Pregnancy array
+//playerPregnancy = new PregnancyStore.Pregnancy(0,0,0,0);
+// Add at start to timeAware
+//timeAware.push(playerPregnancy);

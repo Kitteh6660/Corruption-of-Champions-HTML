@@ -1,5 +1,6 @@
 function StatusEffect(type, val1, val2, val3, val4) {
     //Default values
+    if (type == undefined) type = 0; //Fixed now
     if (val1 == undefined) val1 = 0;
     if (val2 == undefined) val2 = 0;
     if (val3 == undefined) val3 = 0;

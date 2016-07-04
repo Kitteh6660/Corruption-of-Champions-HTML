@@ -10,7 +10,7 @@ const PREGNANCY_CENTAUR               =   7;
 const PREGNANCY_MARBLE                =   8;
 const PREGNANCY_BUNNY                 =   9;
 const PREGNANCY_ANEMONE               =  10;
-const PREGNANCY_AMILY                 =  11;
+//const PREGNANCY_AMILY                 =  11;
 const PREGNANCY_IZMA                  =  12;
 const PREGNANCY_SPIDER                =  13;
 const PREGNANCY_BASILISK              =  14;
@@ -122,7 +122,16 @@ PregnancyStore.Pregnancy.prototype.eventFill = function(hourArray) {
 	this.pregnancyEventArray = hourArray.map(function(item) { return item * 60; });
 }
 
-PregnancyStore.Pregnancy.prototype.knockUpForce = function (newPregType, newPregIncubation) {
+PregnancyStore.Pregnancy.prototype.knockUp = function(newPregType, newPregIncubation)
+{
+	if (this.pregnancyTypeFlag == 0) {
+		this.pregnancyTypeFlag = newPregType;
+		this.pregnancyIncubationFlag = newPregIncubation * 60;
+		this.pregnancyEventCounter = 0;}
+}
+
+// Forces pregnancy regardless of existing pregnancy.
+PregnancyStore.Pregnancy.prototype.knockUpForce = function(newPregType, newPregIncubation) {
     // Passing 0 and 0  to this function now clears out pregnancy.
 	/*
 	if (newPregType == 0 || newPregIncubation == 0) {
@@ -133,6 +142,7 @@ PregnancyStore.Pregnancy.prototype.knockUpForce = function (newPregType, newPreg
 
     this.pregnancyTypeFlag = newPregType;
     this.pregnancyIncubationFlag = newPregIncubation * 60; // Converts hours into minutes
+	this.pregnancyEventCounter = 0; // Resets event counter.
 	// Debugging text
     //outputText("<br><br>You knocked someone up!");
     //outputText("<br>Pregnancy flag is " + this.pregnancyTypeFlag);
@@ -146,14 +156,15 @@ PregnancyStore.Pregnancy.prototype.knockUpForce = function (newPregType, newPreg
 	//	return;
     };
 
-// Time advacement function. Currently only works with normal pregnancy.
+// Time advacement function. Currently only works with normal pregnancy. OLD CODE
+/*
 PregnancyStore.Pregnancy.prototype.advanceTime = function(timeInc) {
 	if (this.pregnancyIncubationFlag >= 1) {
 		// Decrement the incubation flag
 		//outputText("Decrementing Incubation Flag");
 		for (i=0; i < timeInc; i++) {
 			this.pregnancyIncubationFlag--; // Reduce overall timer
-			if (this.pregnancyIncubationFlag < 0) { this.pregnancyIncubationFlag = 0;}
+			if (this.pregnancyIncubationFlag < 0) { this.pregnancyIncubationFlag = 0;}			
 		}
 		// Checking for new Event Array
 		//outputText("Checking Event Array");
@@ -167,6 +178,9 @@ PregnancyStore.Pregnancy.prototype.advanceTime = function(timeInc) {
 	}
 	return;
 };
+*/
+
+
 
 /*
  //this._pregnancyEventValue = [];
@@ -176,13 +190,18 @@ PregnancyStore.Pregnancy.prototype.advanceTime = function(timeInc) {
     
 	//if (pregType < 0 || pregType > MAX_FLAG_VALUE || pregInc < 0 || pregInc > MAX_FLAG_VALUE || buttPregType < 0 || buttPregType > MAX_FLAG_VALUE || buttPregInc < 0 || buttPregInc > MAX_FLAG_VALUE || pregType == buttPregType || pregInc == buttPregInc) {
 	//trace("Error: PregnancyStore created with invalid values for its flags. PregnancyStore(" + pregType + ", " + pregInc + ", " + buttPregType + ", " + buttPregInc + ")");	}
-
+*/
     // Pregnancy methods
-    
-//    this.type = function () { 
-        //if _pregnancyTypeFlag == 0 return 0;
-    //    else return _pregnancyTypeFlag; // & PREG_TYPE_MASK?
-      //  }
+
+/*
+PregnancyStore.Pregnancy.prototype.type = function(type) {
+		if (this.pregnancyTypeFlag == 0) {return 0;}
+		else { return this.pregnancyTypeFlag }
+	};
+*/
+
+
+/*
     
 // isPregnant rewrite. Checks to see if Amily is pregnant
     
@@ -204,13 +223,8 @@ PregnancyStore.Pregnancy.prototype.advanceTime = function(timeInc) {
 
 		public function get isButtPregnant():Boolean { return buttType != 0; } //At birth the incubation can be zero so a check vs. type is safer
 */		
-		/* Using this function adds a series of events which happen during the pregnancy. They must be added in descending order (ex. 500, 450, 350, 225, 100, 25)
-		   to work properly. For NPCs who have multiple pregnancy types each type has its own set of events. Events can be used to see how far along the NPC
-		   is in her pregnancy with the event property. They can also be checked using the eventTriggered() function. This checks to see which was the latest event
-		   the player noticed. The eventTriggered() function only triggers once per event per pregnancy. */
 
 /*
-
 
 		//Same as addPregnancyEventSet, but for butts
 		public function addButtPregnancyEventSet(buttPregType:int, ... buttPregStage):void
@@ -222,10 +236,7 @@ PregnancyStore.Pregnancy.prototype.advanceTime = function(timeInc) {
 			_buttPregnancyEventValue.push(pregVector);
 		}
 		
-		public function knockUp(newPregType:int = 0, newPregIncubation:int = 0):void
-		{
-			if (!isPregnant) knockUpForce(newPregType, newPregIncubation);
-		}
+
 		
 		
 	
