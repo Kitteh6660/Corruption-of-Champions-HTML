@@ -81,6 +81,7 @@ Camp.doCamp = function () {
     if (Camp.followersCount() > 0) addButton(2, "Followers", Camp.campFollowersMenu, null, null, null, "Check up on any followers or companions who are joining you in or around your camp. You'll probably just end up sleeping with them.");
     if (Camp.loversCount() > 0) addButton(3, "Lovers", Camp.campLoversMenu, null, null, null, "Check up on any lovers you have invited so far and interact with them.");
     if (Camp.slavesCount() > 0) addButton(4, "Slaves", Camp.campSlavesMenu, null, null, null, "Check up on any slaves you have received and interact with them.");
+    addButton(6, "Debug", Debug.doDebug, null, null, null, "Debug Menu.");
 	addButton(8, "Masturbate", Camp.doMasturbate);
 	addButton(9, "Sleep", Camp.doSleep);
     if (Inventory.showStash(stashbool) == true) {

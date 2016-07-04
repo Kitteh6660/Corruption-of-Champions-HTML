@@ -30,15 +30,9 @@ Upgrade - Lesbian sex and herm sex with Amily doesn't increase her affection at 
 
 Upgrade and Integrate - Amily Freakout Events for other followers. The paths need to be standardized. Will do when doing camp Amily.
 
-Test - Defurring Code
+Upgrade - Fix all tooltip entries (low priority)
 
-Test - Check gender flag checking. Gender switching convos need to be checked. Need to make a gender change scene debugging thing in the Camp code.
-
-
-
- Fix all tooltip entries (low priority)
-
- Go through completed Amily list and find out everything that's been commented out. Fix or remove.
+Go through completed Amily list and find out everything that's been commented out. Fix or remove.
 
  */
 
@@ -229,16 +223,16 @@ AmilyScene.start = function () {
         AmilyScene.amilyGivesBirth();
         amily.knockUpForce(0, 0); //Clear Pregnancy
         return;
-    }
+    };
 
     // SOMETHING IS FUCKED HERE
-    /*
+
     // Transformation Scene
     if (AmilyScene.amilyCanHaveTFNow() == true) {
         AmilyScene.amilyDefurrify();
         return;
-    }
-    */
+    };
+
 
     //Ending Scenes for Amily in the Town Ruins on the Pure Path
     if (gameFlags[AMILY_PC_GENDER] == player.gender) {
@@ -299,16 +293,7 @@ AmilyScene.start = function () {
                 return;
             } else if (player.gender == 1 && gameFlags[AMILY_OFFER_ACCEPTED] == 0) {
                 outputText("Wandering into the ruined village, you set off in search of Amily.<br><br>");
-                /*NOPE!
-                 //[Player meets the requirements to stalk Amily]
-                 if (player.spe > 50 && player.inte > 40) {
-                 outputText("Using all of your knowledge, skill and cunning, you sneak and squirm through the ruins until you finally find yourself coming up right behind the dusty mouse girl. She's picking berries off of a small bush and hasn't noticed you yet.<br><br>");
-                 outputText("How do you approach her?");
-                 //Announce yourself / Scare her
-                 simpleChoices("Announce",remeetingAmilyAnnounceSelf,"Scare",remeetingAmilyScare,"",0,"",0,"",0);
-                 }
-                 //[Player does not meets the requirements to stalk Amily]*/
-                //else { */
+
                 outputText("After wondering for a while how on earth you are going to track down Amily, you hear a whistle. Looking around, you see her waving cheekily at you from around a corner; it's pretty obvious that you have a long way to go before you'll be able to beat her at this kind of game.<br><br>");
                 gameFlags[AMILY_PC_GENDER] = player.gender;
                 AmilyScene.amilyRemeetingContinued();
@@ -318,15 +303,7 @@ AmilyScene.start = function () {
             //Desperate Plea response (Affection 50 without any sex, requires PC to be male in previous encounter)
             if (gameFlags[AMILY_AFFECTION] >= 50 && gameFlags[AMILY_FUCK_COUNTER] == 0 && gameFlags[AMILY_PC_GENDER] == 1) {
                 outputText("Wandering into the ruined village, you set off in search of Amily.<br><br>");
-                /*NOPE! (This was commented out in original COC)
-                 [Player meets the requirements to stalk Amily]
-                 if (player.spe > 50 && player.inte > 40) {
-                 outputText("Using all of your knowledge, skill and cunning, you sneak and squirm through the ruins until you finally find yourself coming up right behind the dusty mouse girl. She's picking berries off of a small bush and hasn't noticed you yet.<br><br>");
-                 outputText("How do you approach her?");
-                 //Announce yourself / Scare her
-                 simpleChoices("Announce",announceSelfOnDesperatePleaMeeting,"Scare Her",scareAmilyOnDesperatePleaMeeting,"",0,"",0,"",0);
-                 }
-                 */
+
                 outputText("After wondering for a while how on earth you are going to track down Amily, you hear a whistle. Looking around, you see her waving cheekily at you from around a corner; it's pretty obvious that you have a long way to go before you'll be able to beat her at this kind of game.<br><br>");
                 outputText("\"<i>Ah... do you have the time to talk? There's something I want to get off my chest,</i>\" Amily nervously asks.<br><br>");
                 outputText("Curious what she has to say, you agree.<br><br>");
@@ -1011,11 +988,15 @@ AmilyScene.start = function () {
                 if (gameFlags[AMILY_AFFECTION] < 15) {
                     outputText("\"<i>Oh, great. Now what am I going to do with you? Why on earth would you stuff this up?</i>\" Amily complains. She shakes her head. \"<i>Come back later - I'm too frustrated to talk to you now.</i>\" She storms away and you decide it would be best to take her advice.<br><br>");
                     //(Player must now begin the Female Quest from the beginning.)
+                    doNext(Camp.returnToCampUseOneHour);
+                    return;
                 }
                 //Medium Affection:
                 else if (gameFlags[AMILY_AFFECTION] < 40) {
                     outputText("\"<i>I... I... why would you do that?</i>\" Amily asks, looking hurt. \"<i>I... no, This wasn't an effort by you to hurt me, I'm sorry, I was being selfish.</i>\" She apologizes. \"<i>But... I don't know what we can do any more. I... I need time to think.</i>\" She turns and walks away, and you decide to give her what she asks for.");
                     //(When next the PC encounters Amily, they will receive the "confession of love" scene.)
+                    doNext(Camp.returnToCampUseOneHour);
+                    return;
                 }
                 //High Affection:
                 else {
@@ -1031,11 +1012,15 @@ AmilyScene.start = function () {
                 if (gameFlags[AMILY_AFFECTION] < 15) {
                     outputText("\"<i>...Are you a herm, now?</i>\" She asks, sounding appalled. When you confirm it, she grimaces in disgust. \"<i>Stay away from me! You're not coming near my bed again until you're all man again!</i>\" She orders, and then storms off.<br><br>");
                     //(Player must now begin the Herm Quest from the beginning.)
+                    doNext(Camp.returnToCampUseOneHour);
+                    return;
                 }
                 //Medium Affection:
                 else if (gameFlags[AMILY_AFFECTION] < 40) {
                     outputText("She looks intimidated. \"<i>I... I'm sorry, but I don't think I can share my bed with you, not any more. Please, find a way to become male again, then come back to me?</i>\" She pleads, then slips away.<br><br>");
                     //(Amily's affection score remains unchanged, but the player must make the "What's Wrong With Herms" scene.)
+                    doNext(Camp.returnToCampUseOneHour);
+                    return;
                 }
                 //High Affection:
                 else {
@@ -1050,6 +1035,8 @@ AmilyScene.start = function () {
                 if (gameFlags[AMILY_AFFECTION] < 15) {
                     outputText("She looks at you in disdain. \"<i>How can you be so stupid as to completely remove all gender from yourself? Get out of my sight and don't come back until you're one gender or the other again!</i>\" She then proceeds to storm off.<br><br>");
                     //(Amily will repeat this scene on each remeeting until the player becomes a gender other than Genderless.)
+                    doNext(Camp.returnToCampUseOneHour);
+                    return;
                 }
                 else if (gameFlags[AMILY_AFFECTION] < 40) {
                     outputText("She shakes her head sadly. \"<i>I guess this kind of puts a kink in our relationship, doesn't it? Still, I'll always be willing to talk with you.</i>\"<br><br>");
@@ -1128,6 +1115,8 @@ AmilyScene.start = function () {
                 if (gameFlags[AMILY_AFFECTION] < 15) {
                     outputText("She looks at you in disdain. \"<i>How can you be so stupid as to completely remove all gender from yourself? Get out of my sight and don't come back until you're one gender or the other again!</i>\" She then proceeds to storm off.<br><br>");
                     //(Amily will repeat this scene on each remeeting until the player becomes a gender other than Genderless.)
+                    doNext(Camp.returnToCampUseOneHour);
+                    return;
                 }
                 else if (gameFlags[AMILY_AFFECTION] < 40) {
                     outputText("She shakes her head sadly. \"<i>I guess this kind of puts a kink in our relationship, doesn't it? Still, I'll always be willing to talk with you.</i>\"<br><br>");
@@ -1161,11 +1150,12 @@ AmilyScene.start = function () {
                     //(Use the Remeeting scene options.)
                     if (player.lust >= 33) AmilyScene.sexWithAmily();
                     else {
+                        menu();
+                        addButton(0, "Sex", AmilyScene.determineAmilySexEvent, null, null, null, "You wanted me to knock you up. Let's do this.");
+                        addButton(2, "Both", AmilyScene.talkThenSexWithAmily, null, null, null, "Let's spend the day together. A little talking. A little cuddling...");
 
-                        // ADD BUTTONS
-                        //if (sex != null) simpleChoices("Sex", sex, "Talk", talkToAmily, "Both", talkThenSexWithAmily, "", null, "", null);
-                        //		else simpleChoices("", null, "Talk", talkToAmily, "", null, "", null, "", null);
-                        doNext(Camp.doCamp);
+                        addButton(1, "Talk", AmilyScene.talkToAmily, null, null, null, "Actually, I just came for conversation...");
+
                     }
 
                 }
@@ -1179,10 +1169,13 @@ AmilyScene.start = function () {
                     //(Use the Remeeting scene options.)
                     if (player.lust >= 33) AmilyScene.sexWithAmily();
                     else {
-                        // ADD BUTTONS
-                        //if (sex != null) simpleChoices("Sex", sex, "Talk", talkToAmily, "Both", talkThenSexWithAmily, "", null, "", null);
-                        //		else simpleChoices("", null, "Talk", talkToAmily, "", null, "", null, "", null);
-                        doNext(Camp.doCamp);
+                        menu();
+                        addButton(0, "Sex", AmilyScene.determineAmilySexEvent, null, null, null, "You wanted me to knock you up. Let's do this.");
+                        addButton(2, "Both", AmilyScene.talkThenSexWithAmily, null, null, null, "Let's spend the day together. A little talking. A little cuddling...");
+
+                        addButton(1, "Talk", AmilyScene.talkToAmily, null, null, null, "Actually, I just came for conversation...");
+
+
                     }
                 }
             }
@@ -1193,9 +1186,9 @@ AmilyScene.start = function () {
                     outputText("\"<i>Well, I guess it's nice to see another woman around... though I could have used you as all male. So, do you want to talk?</i>\" Amily asks.<br><br>");
                     //(Amily gains a small amount of Affection, begin the Female variant of Amily's quest.)
                     gameFlags[AMILY_AFFECTION] += 2;
-                    //UNCOMMENT THIS WHEN CONVERSATION GETS ADDED!
-                    //doNext(talkToAmily);
-                    //return;
+
+                    doNext(AmilyScene.talkToAmily);
+                    return;
                 }
                 //Medium Affection:
                 else if (gameFlags[AMILY_AFFECTION] < 40) {
@@ -1214,6 +1207,8 @@ AmilyScene.start = function () {
                 //Low Affection:
                 if (gameFlags[AMILY_AFFECTION] < 15) {
                     outputText("She looks at you in disdain. \"<i>How can you be so stupid as to completely remove all gender from yourself? Get out of my sight and don't come back until you're one gender or the other again!</i>\" She then proceeds to storm off.<br><br>");
+                    doNext(Camp.returnToCampUseOneHour);
+                    return;
                     //(Amily will repeat this scene on each remeeting until the player becomes a gender other than Genderless.)
                 }
                 else if (gameFlags[AMILY_AFFECTION] < 40) {
@@ -1238,7 +1233,8 @@ AmilyScene.start = function () {
                 }
                 if (player.hasVagina()) outputText(player.vaginaDescript());
                 outputText(". \"<i>Maybe you're not that stupid after all,</i>\" mutters the mouse before she flounces off.");
-                //{player normal encounter options}
+                doNext(Camp.returnToCampUseOneHour);
+                return;
             }
             //[Medium Affection]
             else if (gameFlags[AMILY_AFFECTION] < 40) {
@@ -1249,7 +1245,8 @@ AmilyScene.start = function () {
                 }
                 if (player.hasVagina()) outputText(player.vaginaDescript(), false);
                 outputText(", and she smiles at you. \"<i>I guess this means we can continue with our task?</i>\" You nod in affirmation.  The mouse-girl nods, but turns to leave.  It seems she needs a little time to adjust to this new development.<br><br>");
-                //{normal encounter options}
+                doNext(Camp.returnToCampUseOneHour);
+                return;
             }
             //[High Affection]
             else {
@@ -1260,10 +1257,12 @@ AmilyScene.start = function () {
                 outputText(".  \"<i>I'm so glad you've recovered a gender!</i>\"\n\nAmily turns and stalks off with a spring in her step.  Clearly she's happy, but she still needs some time to get used to it.");
                 //{normal encounter options}
                 player.changeLust(25 + (player.sens / 10));
+                doNext(Camp.returnToCampUseOneHour);
+                return;
             }
-            doNext(Camp.returnToCampUseOneHour);
+           // doNext(Camp.returnToCampUseOneHour);
         }
-        doNext(AmilyScene.amilyStandardMeeting);
+        doNext(AmilyScene.talkToAmily);
     };
 
 //---------------
