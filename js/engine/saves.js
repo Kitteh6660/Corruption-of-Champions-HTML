@@ -172,7 +172,7 @@ Data.saveGameObject = function(slot) {
         saveData.buttPregnancyType = player.buttPregnancyType;
         saveData.player.pregnancyEventNum = player.pregnancyEventNum;
 
-        //Amily Pregnancy
+        //Amily Pregnancy - This may need to go into an array for better saving?
         saveData.amilypregnancyIncubation = amily.pregnancyIncubation;
         saveData.amilypregnancyType = amily.pregnancyType;
         saveData.amilypregnancyEventArr = amily.pregnancyEventArr;
@@ -306,12 +306,35 @@ Data.loadGameObject = function(slot) {
         player.pregnancyEventNum = saveData.player.pregnancyEventNum;
 
         //Amily Pregnancy Load
-        amily.pregnancyIncubation = saveData.amilypregnancyIncubation;
-        amily.pregnancyType = saveData.amilypregnancyType;
-        amily.pregnancyEventArr = saveData.amilypregnancyEventArr;
-        amily.buttPregnancyIncubation = saveData.amilybuttPregnancyIncubation;
-        amily.buttPregnancyType = saveData.amilybuttPregnancyType;
-        amily.pregnancyEventNum = saveData.amilypregnancyEventNum;
+        if saveData.amilypregnancyIncubation = undefined {
+            amily.pregnancyIncubation = 0;
+        }
+        else amily.pregnancyIncubation = saveData.amilypregnancyIncubation;
+
+        if saveData.amilypregnancyType = undefined {
+            amily.pregnancyType = 0;
+        }
+        else amily.pregnancyType = saveData.amilypregnancyType;
+
+        if saveData.amilypregnancyEventArr = undefined {
+            amily.pregnancyEventArr = [];
+        }
+        else amily.pregnancyEventArr = saveData.amilypregnancyEventArr;
+
+        if saveData.amilybuttPregnancyIncubation = undefined {
+            amily.buttPregnancyIncubation = 0;
+        }
+        else amily.buttPregnancyIncubation = saveData.amilybuttPregnancyIncubation;
+
+        if saveData.amilybuttPregnancyType = undefined {
+            amily.buttPregnancyType = 0;
+        }
+        else amily.buttPregnancyType = saveData.amilybuttPregnancyType;
+
+        if saveData.amilypregnancyEventNum = undefined {
+            amily.pregnancyEventNum = 0;
+        }
+        else amily.pregnancyEventNum = saveData.amilypregnancyEventNum;
 
 
 
