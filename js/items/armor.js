@@ -18,3 +18,11 @@ Items.Armor.BeeArmor.equipmentName = "sexy black chitin armour-plating";
 Items.Armor.BeeArmor.value = 200;
 Items.Armor.BeeArmor.defense = 18;
 Items.Armor.BeeArmor.sexiness = 3;
+
+Items.Armor.LustyMaidenArmor = new Item("L.Mad.Arm.", "Lusty Maiden's Armor", "to be added", ITEM_TYPE_ARMOUR);
+Items.Armor.LustyMaidenArmor.description = "To Be Added.";
+//Items.Armor.LustyMaidenArmor.equipmentName
+//Items.Armor.LustyMaidenArmor.value
+//Items.Armor.LustyMaidenArmor.defense
+//Items.Armor.LustyMaidenArmor.sexiness
+

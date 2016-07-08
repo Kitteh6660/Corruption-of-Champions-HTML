@@ -32,7 +32,7 @@ Upgrade and Integrate - Amily Freakout Events for other followers. The paths nee
 
 Upgrade - Fix all tooltip entries (low priority)
 
-Go through completed Amily list and find out everything that's been commented out. Fix or remove.
+Go through file and find out everything that's been commented out. Fix or remove.
 
  */
 

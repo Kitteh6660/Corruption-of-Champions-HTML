@@ -36,6 +36,9 @@ Items.Consumables.CaninePepperBulby.description = "This bulbous pepper has a sli
 Items.Consumables.CaninePepperBulby.consumeEffect = createCallBackFunction(ConsumableEffects.canineTFs, 5);
 Items.Consumables.CaninePepperBulby.value = 10;
 
+Items.Consumables.Condom = new Item("Condom", "Condom", "TO BE ADDED", ITEM_TYPE_CONSUMABLE);
+Items.Consumables.Condom.description = "TO BE ADDED";
+
 Items.Consumables.Equinum = new Item("Equinum", "Equinum", "a vial of Equinum", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.Equinum.description = "This is a long flared vial with a small label that reads, \"<i>Equinum</i>\". It is likely this potion is tied to horses in some way.";
 Items.Consumables.Equinum.consumeEffect = ConsumableEffects.equineTFs;
