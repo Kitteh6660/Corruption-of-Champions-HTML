@@ -37,4 +37,5 @@ StatusEffects.Poison = new StatusEffectType("Poison");
 StatusEffects.Silence = new StatusEffectType("Silence");
 StatusEffects.StoneLust = new StatusEffectType("StoneLust");
 StatusEffects.Stunned = new StatusEffectType("Stunned");
+StatusEffects.TemporaryHeat = new StatusEffectType("TempHeat");
 StatusEffects.Venom = new StatusEffectType("Venom");

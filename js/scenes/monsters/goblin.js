@@ -31,6 +31,7 @@ function Goblin() {
     this.weapon.verb = "tiny punch";
     this.armor.equipmentName = "leather straps";
     this.lustVuln = 1;
+	this.temperment = 2; // TEMPERMENT_RANDOM_GRAPPLES
 
     //Appearance
     this.tallness = 35 + rand(4);
@@ -67,13 +68,18 @@ Goblin.prototype.constructor = Goblin;
 // COMBAT
 //------------
 Goblin.prototype.doAI = function() {
+	/*
 	switch(rand(4)) {
 		case 0:
 			Goblin.goblinTeaseAttack();
 			break;
+		case 1:
+			Goblin.goblinDrugAttack();
+			break;
 		default:
 			this.attack();
-	}
+	}*/
+	Goblin.goblinDrugAttack();
 	combatRoundOver();
 }
 
@@ -108,6 +114,88 @@ Goblin.goblinTeaseAttack = function() {
 	outputText("  The display distracts you long enough to prevent you from taking advantage of her awkward pose, leaving you more than a little flushed.  ");
 	player.changeLust(lustDmg, true);
 }
+
+// This drug attack is used across all Goblins.
+Goblin.goblinDrugAttack = function() {
+	var temp2 = rand(2);
+
+	var multiplier = 1; //Higher tier goblins have more powerful red and green potions. Multiplier controls strength.
+	if (monster.refName == "goblin assassin") multiplier += 0.2;
+	if (monster.refName == "goblin shaman") multiplier += 0.4;
+	if (monster.refName == "goblin warrior") multiplier += 0.5;
+	if (monster.refName == "goblin elder") multiplier += 1;
+	multiplier += player.newGamePlusMod() * 0.5; // Make it more potent in a new game!
+
+	// Only Tamani and the daughters have access to blue, white, and black potions.
+	if (monster.refName == "Tamani") temp2 = rand(5);
+	if (monster.refName == "Tamani's daughters") temp2 = rand(5);
+
+	// Set Color
+	var color = "";
+	if (temp2 == 0) color = "red";
+	if (temp2 == 1) color = "green";
+	if (temp2 == 2) color = "blue";
+	if (temp2 == 3) color = "white";
+	if (temp2 == 4) color = "black";
+
+	//Throw offensive potions at the player
+	if (color != "blue") {
+		if (monster.refName == "Tamani's daughters") outputText("Tamani uncorks a glass bottle full of " + color + " fluid and swings her arm, flinging a wave of fluid at you.", false);
+		else outputText(capitalize(monster.a) + monster.refName + " uncorks a glass bottle full of " + color + " fluid and swings her arm, flinging a wave of fluid at you.", false);
+}
+	//Drink blue pots
+	else if (monster.refName == "Tamani's daughters") {
+		outputText("Tamani pulls out a blue vial and uncaps it, then douses the mob with the contents.", false);
+			if (this.HPRatio() < 1) {
+				outputText("  Though less effective than ingesting it, the potion looks to have helped the goblins recover from their wounds!<br>", false);
+				this.changeHP(80 * multiplier);
+			}
+			else outputText("  There doesn't seem to be any effect.<br>", false);
+			outputText("<br>", false);
+			return;
+		}
+	else {
+			outputText(capitalize(monster.a) + monster.refName + " pulls out a blue vial and uncaps it, swiftly downing its contents.", false);
+			if (this.HPRatio() < 1) {
+				outputText("  She looks to have recovered from some of her wounds!<br>", false);
+				this.changeHP((this.maxHP() / 4) * multiplier);
+				if (monster.name == "Tamani") monster.changeHP((monster.maxHP() / 4) * multiplier);
+				}
+			else outputText("  There doesn't seem to be any effect.<br>", false);
+			return;
+	}
+
+	//Dodge chance!
+	if ((player.findPerk(PerkLib.Evade) >= 0 && rand(10) <= 3) || (rand(100) < player.spe/5)) {
+		outputText("<br>You narrowly avoid the gush of alchemic fluids!<br>", false);
+	}
+	else {
+	//Get hit!
+		if (color == "red") {
+		//Temporary heat
+			outputText("<br>The red fluids hit you and instantly soak into your skin, disappearing.  Your skin flushes and you feel warm.  Oh no...<br>", false);
+			if (player.findStatusEffect(StatusEffects.TemporaryHeat) < 0) player.createStatusEffect(StatusEffects.TemporaryHeat, 0, multiplier, 0, 0);
+		}
+		else if (color == "green") {
+		//Green poison
+			outputText("<br>The greenish fluids splash over you, making you feel slimy and gross.  Nausea plagues you immediately - you have been poisoned!<br>", false);
+			if (player.findStatusEffect(StatusEffects.Poison) < 0) player.createStatusEffect(StatusEffects.Poison, 0, multiplier, 0, 0);
+		}
+		else if (color == "white") {
+		//sticky flee prevention
+			outputText("<br>You try to avoid it, but it splatters the ground around you with very sticky white fluid, making it difficult to run.  You'll have a hard time escaping now!<br>", false);
+			if (player.findStatusEffect(StatusEffects.NoFlee) < 0) player.createStatusEffect(StatusEffects.NoFlee, 0, 0, 0, 0);
+		}
+		else if (color == "black") {
+		//Increase fatigue
+			outputText("<br>The black fluid splashes all over you and wicks into your skin near-instantly.  It makes you feel tired and drowsy.<br>", false);
+			player.changeFatigue(10 + rand(25) * multiplier);
+		}
+	}
+	// Possible multiple throws. Check at higher level gobs?
+	return;
+}
+
 
 //------------
 // SCENES
@@ -166,8 +254,8 @@ GoblinScene.gatsGoblinBoners = function() {
 
 	outputText("You pick yourself back up, jerking yourself slowly as cum dribbles from your " + player.cockDescript(x) + " onto the collapsed body of the goblin.  It'll be awhile before she comes back to consciousness, but you're certain she'll have a better appreciation for sex when she does.");
 
-	player.orgasm();
 	cleanupAfterCombat();
+	player.orgasm();
 }
 
 GoblinScene.gobboGetsRapedMaleFits = function() {

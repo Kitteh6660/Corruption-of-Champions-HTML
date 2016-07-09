@@ -6,11 +6,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8a292ce1-df00-4848-8a40-d7241dab169d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/creature.js" afterPath="$PROJECT_DIR$/js/creature.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/debug.js" afterPath="$PROJECT_DIR$/js/debug.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/pregnancyProgression.js" afterPath="$PROJECT_DIR$/js/pregnancyProgression.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/combat.js" afterPath="$PROJECT_DIR$/js/scenes/combat.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/monsters/imp.js" afterPath="$PROJECT_DIR$/js/scenes/monsters/imp.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/player.js" afterPath="$PROJECT_DIR$/js/player.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/monsters/goblin.js" afterPath="$PROJECT_DIR$/js/scenes/monsters/goblin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/statusEffectLib.js" afterPath="$PROJECT_DIR$/js/statusEffectLib.js" />
     </list>
     <ignored path="Corruption-of-Champions-HTML.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,11 +30,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="debug.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/js/debug.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="251">
+              <caret line="59" column="19" selection-start-line="59" selection-start-column="19" selection-end-line="59" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="imp.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/scenes/monsters/imp.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="109">
-              <caret line="923" column="26" selection-start-line="923" selection-start-column="26" selection-end-line="923" selection-end-column="26" />
+            <state relative-caret-position="118">
+              <caret line="344" column="42" selection-start-line="344" selection-start-column="42" selection-end-line="344" selection-end-column="42" />
               <folding>
                 <element signature="e#16053#16451#0" expanded="false" />
                 <element signature="e#16525#16675#0" expanded="false" />
@@ -52,43 +61,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="combat.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="combat.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/scenes/combat.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="598" column="6" selection-start-line="598" selection-start-column="6" selection-end-line="598" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pregnancyProgression.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/pregnancyProgression.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="188" column="12" selection-start-line="188" selection-start-column="12" selection-end-line="188" selection-end-column="12" />
-              <folding>
-                <element signature="e#579#11010#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="player.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/player.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="1253" column="52" selection-start-line="1253" selection-start-column="52" selection-end-line="1253" selection-end-column="52" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="creature.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/creature.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="149">
-              <caret line="216" column="0" selection-start-line="216" selection-start-column="0" selection-end-line="216" selection-end-column="0" />
+            <state relative-caret-position="104">
+              <caret line="568" column="77" selection-start-line="568" selection-start-column="77" selection-end-line="568" selection-end-column="77" />
               <folding />
             </state>
           </provider>
@@ -97,8 +74,40 @@
       <file leaf-file-name="gui.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/engine/gui.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
-              <caret line="214" column="67" selection-start-line="214" selection-start-column="67" selection-end-line="214" selection-end-column="67" />
+            <state relative-caret-position="145">
+              <caret line="128" column="4" selection-start-line="128" selection-start-column="4" selection-end-line="128" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="goblin.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/scenes/monsters/goblin.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2130">
+              <caret line="167" column="4" selection-start-line="167" selection-start-column="4" selection-end-line="167" selection-end-column="4" />
+              <folding>
+                <element signature="e#2995#6318#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="text.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/engine/text.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="player.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/player.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="1473" column="0" selection-start-line="1473" selection-start-column="0" selection-end-line="1473" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -107,8 +116,28 @@
       <file leaf-file-name="utils.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/engine/utils.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="108" column="8" selection-start-line="108" selection-start-column="8" selection-end-line="108" selection-end-column="8" />
+            <state relative-caret-position="160">
+              <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="creature.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/creature.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="160">
+              <caret line="216" column="0" selection-start-line="216" selection-start-column="0" selection-end-line="216" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="statusEffectClass.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/statusEffectClass.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -136,8 +165,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/js/scenes/npcs/giacomo.js" />
-        <option value="$PROJECT_DIR$/js/scenes/exploration.js" />
         <option value="$PROJECT_DIR$/js/scenes/masturbations.js" />
         <option value="$PROJECT_DIR$/js/cockClass.js" />
         <option value="$PROJECT_DIR$/js/vaginaClass.js" />
@@ -168,12 +195,10 @@
         <option value="$PROJECT_DIR$/js/pp.js" />
         <option value="$PROJECT_DIR$/js/statusEffectClass.js" />
         <option value="$PROJECT_DIR$/js/pregnancy.js" />
-        <option value="$PROJECT_DIR$/js/player.js" />
         <option value="$PROJECT_DIR$/js/engine/time.js" />
         <option value="$PROJECT_DIR$/js/scenes/camp.js" />
         <option value="$PROJECT_DIR$/coc.html" />
         <option value="$PROJECT_DIR$/js/scenes/npcs/amily.js" />
-        <option value="$PROJECT_DIR$/js/statusEffectLib.js" />
         <option value="$PROJECT_DIR$/js/items/armor.js" />
         <option value="$PROJECT_DIR$/js/flags/dataFlags.js" />
         <option value="$PROJECT_DIR$/js/items/materials.js" />
@@ -182,11 +207,15 @@
         <option value="$PROJECT_DIR$/js/perkLib.js" />
         <option value="$USER_HOME$/Downloads/Corruption-of-Champions-Mod-master/classes/classes/Creature.as" />
         <option value="$PROJECT_DIR$/js/engine/saves.js" />
-        <option value="$PROJECT_DIR$/js/debug.js" />
         <option value="$PROJECT_DIR$/js/scenes/combat.js" />
         <option value="$PROJECT_DIR$/js/creature.js" />
         <option value="$PROJECT_DIR$/js/pregnancyProgression.js" />
         <option value="$PROJECT_DIR$/js/scenes/monsters/imp.js" />
+        <option value="$USER_HOME$/Downloads/Corruption-of-Champions-Mod-master/classes/classes/Scenes/Monsters/Goblin.as" />
+        <option value="$PROJECT_DIR$/js/statusEffectLib.js" />
+        <option value="$PROJECT_DIR$/js/debug.js" />
+        <option value="$PROJECT_DIR$/js/player.js" />
+        <option value="$PROJECT_DIR$/js/scenes/monsters/goblin.js" />
       </list>
     </option>
   </component>
@@ -262,7 +291,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/Corruption-of-Champions-Mod-master/classes/classes/Saves.as" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/Corruption-of-Champions-Mod-master/classes/classes/Scenes/Monsters/GoblinScene.as" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="settings.editor.selected.configurable" value="preferences.fileTypes" />
@@ -272,15 +301,15 @@
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///home/sudhamma/Projects/Corruption-of-Champions-HTML/js/scenes/npcs/amily.js" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/js" />
-      <recent name="C:\Users\Sylvain\Documents\Corruption_of_Champions\Corruption-of-Champions-HTML\assets\sprites" />
-      <recent name="C:\Users\Sylvain\Documents\Corruption_of_Champions\Corruption-of-Champions-HTML\assets\interface" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Sylvain\Documents\Corruption_of_Champions\Corruption-of-Champions-HTML\assets\sprites" />
       <recent name="G:\Sylvain\Data Files\Documents\Corruption_of_Champions\Corruption-of-Champions-HTML\js\scenes" />
       <recent name="G:\Sylvain\Data Files\Documents\Corruption_of_Champions\Corruption-of-Champions-HTML\js" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/js" />
+      <recent name="C:\Users\Sylvain\Documents\Corruption_of_Champions\Corruption-of-Champions-HTML\assets\sprites" />
+      <recent name="C:\Users\Sylvain\Documents\Corruption_of_Champions\Corruption-of-Champions-HTML\assets\interface" />
     </key>
   </component>
   <component name="RunManager" selected="JavaScript Debug.coc.html">
@@ -385,7 +414,7 @@
       <workItem from="1467754049156" duration="3052000" />
       <workItem from="1467905670582" duration="2604000" />
       <workItem from="1467987538335" duration="7830000" />
-      <workItem from="1468080350632" duration="7873000" />
+      <workItem from="1468080350632" duration="12320000" />
     </task>
     <task id="LOCAL-00001" summary="Release of 0.1 alpha with many more core content!&#10;&#10;Now with explorable zones, followers, etc!">
       <created>1455694082885</created>
@@ -412,7 +441,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="181169000" />
+    <option name="totallyTimeSpent" value="185616000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -430,19 +459,19 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3682284" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32861635" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32854864" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32854864" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.38827258" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33438987" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33438987" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32861635" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38827258" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24963397" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32854864" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -486,10 +515,16 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/js/scenes/combat.js</url>
-          <line>598</line>
+          <url>file://$PROJECT_DIR$/js/scenes/monsters/goblin.js</url>
+          <line>77</line>
           <properties />
-          <option name="timeStamp" value="102" />
+          <option name="timeStamp" value="105" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/js/debug.js</url>
+          <line>64</line>
+          <properties />
+          <option name="timeStamp" value="106" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -500,39 +535,11 @@
           <properties />
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="104" />
+      <option name="time" value="107" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/js/itemClass.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1350">
-          <caret line="90" column="5" selection-start-line="90" selection-start-column="5" selection-end-line="90" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/itemConstructors.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="19" column="1" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/scenes/places/farm/kelt.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="169" column="25" selection-start-line="169" selection-start-column="18" selection-end-line="169" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/keyItemLib.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="520">
-          <caret line="37" column="59" selection-start-line="37" selection-start-column="59" selection-end-line="37" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/scenes/places/townruins.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="262">
@@ -596,13 +603,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/scenes/monsters/goblin.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="24" selection-start-line="7" selection-start-column="4" selection-end-line="10" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/scenes/areas/lake.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="555">
@@ -661,24 +661,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/statusEffectClass.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/flags/legacyFlags.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="825" column="22" selection-start-line="825" selection-start-column="21" selection-end-line="825" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/statusEffectLib.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -797,18 +783,86 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/debug.js">
+    <entry file="file://$PROJECT_DIR$/js/pregnancyProgression.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="64" column="27" selection-start-line="64" selection-start-column="27" selection-end-line="64" selection-end-column="27" />
+        <state relative-caret-position="119">
+          <caret line="188" column="12" selection-start-line="188" selection-start-column="12" selection-end-line="188" selection-end-column="12" />
+          <folding>
+            <element signature="e#579#11010#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/Corruption-of-Champions-Mod-master/classes/classes/Scenes/Monsters/GoblinScene.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/Corruption-of-Champions-Mod-master/classes/classes/Scenes/Monsters/Goblin.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
+          <folding>
+            <element signature="n#!!block;n#goblinTeaseAttack#0;n#Goblin#0;n#Monsters#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/statusEffectLib.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="39" column="63" selection-start-line="39" selection-start-column="63" selection-end-line="39" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/vaginaClass.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/appearance.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="1294" column="4" selection-start-line="1294" selection-start-column="4" selection-end-line="1294" selection-end-column="4" />
+        <state relative-caret-position="295">
+          <caret line="1904" column="0" selection-start-line="1904" selection-start-column="0" selection-end-line="1904" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/breastRowClass.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/statusEffectClass.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/creature.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="216" column="0" selection-start-line="216" selection-start-column="0" selection-end-line="216" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/engine/utils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -821,52 +875,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/pregnancyProgression.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="188" column="12" selection-start-line="188" selection-start-column="12" selection-end-line="188" selection-end-column="12" />
-          <folding>
-            <element signature="e#579#11010#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/player.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="1253" column="52" selection-start-line="1253" selection-start-column="52" selection-end-line="1253" selection-end-column="52" />
+        <state relative-caret-position="300">
+          <caret line="1473" column="0" selection-start-line="1473" selection-start-column="0" selection-end-line="1473" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/creature.js">
+    <entry file="file://$PROJECT_DIR$/js/scenes/monsters/goblin.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="216" column="0" selection-start-line="216" selection-start-column="0" selection-end-line="216" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/engine/utils.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="108" column="8" selection-start-line="108" selection-start-column="8" selection-end-line="108" selection-end-column="8" />
-          <folding />
+        <state relative-caret-position="2130">
+          <caret line="167" column="4" selection-start-line="167" selection-start-column="4" selection-end-line="167" selection-end-column="4" />
+          <folding>
+            <element signature="e#2995#6318#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/engine/gui.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="214" column="67" selection-start-line="214" selection-start-column="67" selection-end-line="214" selection-end-column="67" />
+        <state relative-caret-position="145">
+          <caret line="128" column="4" selection-start-line="128" selection-start-column="4" selection-end-line="128" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/scenes/combat.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="568" column="77" selection-start-line="568" selection-start-column="77" selection-end-line="568" selection-end-column="77" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/scenes/monsters/imp.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109">
-          <caret line="923" column="26" selection-start-line="923" selection-start-column="26" selection-end-line="923" selection-end-column="26" />
+        <state relative-caret-position="118">
+          <caret line="344" column="42" selection-start-line="344" selection-start-column="42" selection-end-line="344" selection-end-column="42" />
           <folding>
             <element signature="e#16053#16451#0" expanded="false" />
             <element signature="e#16525#16675#0" expanded="false" />
@@ -882,10 +928,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/scenes/combat.js">
+    <entry file="file://$PROJECT_DIR$/js/debug.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="598" column="6" selection-start-line="598" selection-start-column="6" selection-end-line="598" selection-end-column="6" />
+        <state relative-caret-position="251">
+          <caret line="59" column="19" selection-start-line="59" selection-start-column="19" selection-end-line="59" selection-end-column="19" />
           <folding />
         </state>
       </provider>
