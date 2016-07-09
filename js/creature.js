@@ -36,6 +36,7 @@ function Creature() {
 	this.bonusHP = 0;
     this.additionalXP = 0;
     this.lustVuln = 1;
+    this.temperment = 0;
 
     this.drops = [];
     this.dropThresholds = [];
@@ -3573,3 +3574,47 @@ _buttPregnancyIncubation = (type == 0 ? 0 : incubation); //Won't allow incubatio
 
 */
 
+//---------------
+// OVIPOSITING - TOTALLY NOT COMPLETE. CHECK ALL FUNCTIONS WHEN WE DECIDE TO GET THIS GOING.
+//---------------
+
+Creature.prototype.canOvipositSpider = function()
+{
+    if (this.eggs() >= 10 && this.findPerk(PerkLib.SpiderOvipositor) >= 0 && this.isDrider() && this.tailType == TAIL_TYPE_SPIDER_ADBOMEN)
+        return true;
+    return false;
+}
+
+Creature.prototype.canOvipositBee = function()
+{
+    if (this.eggs() >= 10 && this.findPerk(PerkLib.BeeOvipositor) >= 0 && this.tailType == TAIL_TYPE_BEE_ABDOMEN)
+        return true;
+    return false;
+}
+
+Creature.prototype.canOviposit = function()
+{
+    if (this.canOvipositSpider() || this.canOvipositBee())
+        return true;
+    return false;
+}
+
+Creature.prototype.eggs = function()
+{
+    if (this.findPerk(PerkLib.SpiderOvipositor) < 0 && this.findPerk(PerkLib.BeeOvipositor) < 0)
+        return -1;
+    else if (this.findPerk(PerkLib.SpiderOvipositor) >= 0)
+        //return perkv1(PerkLib.SpiderOvipositor);
+    //else
+        //return perkv1(PerkLib.BeeOvipositor);
+        return;
+}
+
+//
+Creature.prototype.dumpEggs = function() {
+    if (this.findPerk(PerkLib.SpiderOvipositor) < 0 && this.findPerk(PerkLib.BeeOvipositor) < 0)
+return;
+    //setEggs(0);
+//Sets fertile eggs = regular eggs (which are 0)
+    //fertilizeEggs();
+}

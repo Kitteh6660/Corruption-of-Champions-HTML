@@ -9,6 +9,7 @@
 const TIMES_TRANSFORMED                 = "Times_Transformed";
 const TIMES_ORGASMED                    = "Times_Orgasmed";
 const PC_FETISH                         = "PC_Fetish"; // Used in lust attack in combatTeases file
+const IMPS_KILLED                       = "Imps_Killed"; // How many Imps has the player killed?
 
 //------------
 // MISC

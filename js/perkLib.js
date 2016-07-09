@@ -25,3 +25,14 @@ PerkLib.WizardsFocus = new PerkType("Wizard", "Wizard's Focus", "Your wizard's s
 PerkLib.ControlledBreath = new PerkType("ControlledBreath", "Controlled Breath", "Jojo’s training allows you to recover more quickly. Increases rate of fatigue regeneration by 10%.");
 PerkLib.CleansingPalm = new PerkType("CleansingPalm", "Cleansing Palm", "A ranged fighting technique of Jojo’s order, allows you to blast your enemies with waves of pure spiritual energy, weakening them and hurting the corrupt.");
 PerkLib.Enlightenment = new PerkType("Enlightenment", "Enlightenment", "Jojo’s tutelage has given you a master’s focus and you can feel the universe in all its glory spread out before you. You’ve finally surpassed your teacher.");
+
+//Ovipositing
+PerkLib.BeeOvipositor = new PerkType("BeeOvipositor", "Bee Ovipositor", "Bee Ovipositor Description to be added.");
+PerkLib.SpiderOvipositor = new PerkType("SpiderOvipositor", "Spider Ovipositor", "Spider Ovipositor Description to be added.");
+
+//-----------
+// TRANSFORMATION RELATED
+//-----------
+
+PerkLib.BimboBrains = new PerkType("BimboBrains", "Bimbo Brains", "TO BE ADDED");
+PerkLib.FutaFaculties = new PerkType("FutaFac", "Futa Faculties", "TO BE ADDED");

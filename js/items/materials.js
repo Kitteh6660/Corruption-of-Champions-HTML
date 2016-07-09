@@ -7,3 +7,7 @@ Items.Materials.GreenGel.useText = function() { outputText("You examine the gel 
 Items.Materials.BeeChitin = new Item("B.Chitn", "B.Chitin", "a large shard of chitinous plating", ITEM_TYPE_MATERIAL);
 Items.Materials.BeeChitin.description = "A perfect piece of black chitin from a bee-girl. It still has some fuzz on it.";
 Items.Materials.BeeChitin.useText = function() { outputText("You look over the chitin carefully but cannot find a use for it. Maybe someone else will know how to use it."); return false; };
+
+Items.Materials.ImpSkull = new Item("ImpSkull", "Imp Skull", "To Be Added", ITEM_TYPE_MATERIAL);
+Items.Materials.ImpSkull.description = "To be added";
+Items.Materials.ImpSkull.useText = function() { outputText("To Be Added."); return false; };

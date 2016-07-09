@@ -18,6 +18,9 @@ StatusEffects.BonusVCapacity = new StatusEffectType("Bonus vCapacity");
 //Penalties
 StatusEffects.Infested = new StatusEffectType("Infested");
 
+//Neutral
+StatusEffects.Feeder = new StatusEffectType("Feeder");
+
 //------------
 // COMBAT
 //------------

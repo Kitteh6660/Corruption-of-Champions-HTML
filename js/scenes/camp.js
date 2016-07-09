@@ -25,7 +25,7 @@ Camp.doCamp = function () {
 	//Display texts
 	clearOutput();
     // Display Pregnancy related events
-    //pregnancyProgression.updatePregnancy();
+    pregnancyProgression.updatePregnancy(); // Displays special messages before the main camp message prints.
 	/*if (isabellaFollower()) {
 		outputText("Your campsite got a lot more comfortable once Isabella moved in.  Carpets cover up much of the barren ground, simple awnings tied to the rocks provide shade, and hand-made wooden furniture provides comfortable places to sit and sleep.  ", false);
 	}
@@ -62,13 +62,13 @@ Camp.doCamp = function () {
     //outputText(player.gender + "<br>");
     //outputText("AmilyMet = " + gameFlags[AMILY_MET] + "<br>");
     //if (!player.isPregnant()) { player.knockUpForce(PREGNANCY_AMILY, 100); }
-    outputText("Player pregnancy counter is " + player.pregnancyIncubation + "<br>");
-    outputText("Player knockedup by " + player.pregnancyType + "<br>");
+    //outputText("Player pregnancy counter is " + player.pregnancyIncubation + "<br>");
+    //outputText("Player knockedup by " + player.pregnancyType + "<br>");
 
     //if (!amily.isPregnant()) amily.knockUpForce(PREGNANCY_PLAYER, INCUBATION_MOUSE);
-    outputText("Amily pregnancy counter is " + amily.pregnancyIncubation + "<br>");
-    outputText("Player knockedup by " + amily.pregnancyType + "<br>");
-    outputText("Player pregnancy event counter is " + amily.pregnancyEventNum + "<br><br>");
+    //outputText("Amily pregnancy counter is " + amily.pregnancyIncubation + "<br>");
+    //outputText("Player knockedup by " + amily.pregnancyType + "<br>");
+    //outputText("Player pregnancy event counter is " + amily.pregnancyEventNum + "<br><br>");
 
 
 
@@ -81,6 +81,7 @@ Camp.doCamp = function () {
     if (Camp.followersCount() > 0) addButton(2, "Followers", Camp.campFollowersMenu, null, null, null, "Check up on any followers or companions who are joining you in or around your camp. You'll probably just end up sleeping with them.");
     if (Camp.loversCount() > 0) addButton(3, "Lovers", Camp.campLoversMenu, null, null, null, "Check up on any lovers you have invited so far and interact with them.");
     if (Camp.slavesCount() > 0) addButton(4, "Slaves", Camp.campSlavesMenu, null, null, null, "Check up on any slaves you have received and interact with them.");
+    addButton(6, "Debug", Debug.doDebug, null, null, null, "Debug Menu.");
 	addButton(8, "Masturbate", Camp.doMasturbate);
 	addButton(9, "Sleep", Camp.doSleep);
     if (Inventory.showStash(stashbool) == true) {
