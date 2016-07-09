@@ -8,6 +8,7 @@ var statControl = 0; // This prevents huge stat freakouts while pregnant
 
 pregnancyProgression.updatePregnancy = function() {
     var displayedUpdate = false;
+
     //outputText("Reached Pregnancy Loop.<br><br>");
     // Player is pregnant with mice messages and transformations.
     if (player.pregnancyType == PREGNANCY_AMILY) {
@@ -170,42 +171,50 @@ pregnancyProgression.updatePregnancy = function() {
 
     //Imp Pregnancy!
     if (player.pregnancyType == PREGNANCY_IMP) {
-        if (player.pregnancyIncubation == 336) {
+        var impStat1;
+        var impStat2;
+        if (player.pregnancyIncubation <= 336 * 60 && player.pregnancyIncubation >= 280 * 60) {
             outputText("<b>You realize your belly has gotten slightly larger.  Maybe you need to cut back on the strange food.</b><br><br>");
             displayedUpdate = true;
         }
-        if (player.pregnancyIncubation == 280) {
+        if (player.pregnancyIncubation <= 280 * 60 && player.pregnancyIncubation >= 216 * 60) {
             outputText("<b>Your belly is getting more noticeably distended.   You are probably pregnant.</b><br><br>");
             displayedUpdate = true;
         }
-        if (player.pregnancyIncubation == 216) {
+        if (player.pregnancyIncubation <= 216 * 60 && player.pregnancyIncubation >= 180 * 60) {
             outputText("<b>The unmistakable bulge of pregnancy is visible in your tummy.  ");
             if (player.cor < 40) outputText("You are distressed by your unwanted pregnancy, and your inability to force this thing out of you.</b><br><br>");
             if (player.cor >= 40 && player.cor < 75) outputText("Considering the size of the creatures you've fucked, you hope it doesn't hurt when it comes out.</b><br><br>");
             if (player.cor >= 75) outputText("You think dreamily about the monstrous cocks that have recently been fucking you, and hope that your offspring inherit such a pleasure tool.</b><br><br>");
-            player.modStats("spe", -1, "lib", 1, "sen", 1);
-            player.changeLust(2);
-            displayedUpdate = true;
+            if (statControl == 0) {
+                statControl = 1;
+                player.modStats("spe", -1, "lib", 1, "sen", 1);
+                player.changeLust(2);
+                displayedUpdate = true;
+            }
         }
-        if (player.pregnancyIncubation == 180) {
+        if (player.pregnancyIncubation <= 180 * 60 && player.pregnancyIncubation >= 120 * 60) {
             outputText("<b>The sudden impact of a kick from inside your womb startles you.</b><br><br>");
             displayedUpdate = true;
         }
-        if (player.pregnancyIncubation == 120) {
+        if (player.pregnancyIncubation <= 120 * 60 && player.pregnancyIncubation >= 72 * 60) {
             outputText("<b>Your ever-growing belly makes your pregnancy obvious for those around you.</b><br><br>");
             displayedUpdate = true;
         }
-        if (player.pregnancyIncubation == 72) {
+        if (player.pregnancyIncubation <= 72 * 60 && player.pregnancyIncubation >= 48 * 60) {
             outputText("<b>Your belly is painfully distended, ");
             if (player.cor < 40) outputText("making it difficult to function.</b>");
             if (player.cor >= 40 && player.cor < 75) outputText("and you wonder how much longer you have to wait.</b>");
             if (player.cor >= 75) outputText("and you're eager to give birth, so you can get impregnated again by corrupted or monstrous cum filling out your eager womb.</b>");
             outputText("<br><br>");
-            player.modStats("spe", -3, "lib", 1, "sen", 1);
-            player.changeLust(4);
-            displayedUpdate = true;
+            if (statControl == 1) {
+                statControl = 2;
+                player.modStats("spe", -3, "lib", 1, "sen", 1);
+                player.changeLust(4);
+                displayedUpdate = true;
+            }
         }
-        if (player.pregnancyIncubation == 48) {
+        if (player.pregnancyIncubation <= 48 * 60) {
             outputText("<b>You rub your hands over your bulging belly, lost in the sensations of motherhood.  ");
             if (player.cor < 40) outputText("Afterwards you feel somewhat disgusted with yourself.</b>");
             if (player.cor >= 40 && player.cor < 75) outputText("You estimate you'll give birth in the next few days.</b>");
@@ -216,6 +225,7 @@ pregnancyProgression.updatePregnancy = function() {
     }
 
     if (player.pregnancyIncubation == 0 && player.pregnancyType == PREGNANCY_IMP) {
+        statControl = 0;
         outputText("<br>");
         //Add imp birth status - used to control frequency of night imp gangbag
         //if (player.findStatusEffect(StatusEffects.BirthedImps) >= 0) player.addStatusValue(StatusEffects.BirthedImps,1,1);

@@ -1264,7 +1264,7 @@ Creature.prototype.cumCapacity = function() {
 }
 
 Creature.prototype.inHeat = {
-    get inHeat() { return this.findStatusEffect(StatusEffects.Heat) >= 0; }
+    get inHeat() { return this.findStatusEffect(StatusEffects.Heat) >= 1; } // Setting to 0 was causing heat messages for the Imp scene.
 }
 
 Creature.prototype.inRut = {

@@ -580,11 +580,11 @@ function combatRoundOver(skipEnemy) {
 }
 
 function checkCombatOver() {
-	if (monster.HP <= 0 || monster.lust >= monster.maxLust) {
+	if (monster.HP <= 0 || monster.lust >= monster.maxLust()) {
 		doNext(monster.victory);
 		return true;
 	}
-	else if (player.HP <= 0 || player.lust >= player.maxLust) {
+	else if (player.HP <= 0 || player.lust >= player.maxLust()) {
 		doNext(monster.defeat);
 		return true;
 	}
