@@ -141,10 +141,36 @@ Imp.lustMagicAttack = function() {
 
 
 
-// Initial Win
+// Initial Win Scenes
+
+/* You can always kill the imp and take the skull no matter how you win.
+
+To rape the imp, you need at least one of these factors:
+
+Have the Feeder status effect
+Be female, have large breasts, and wear the Lusty Maiden Armor
+Have a bee ovipositor
+Have a lust score equal or greater to 33
+
+Possible results:
+If you have a cock and your lust is => 33: male rape.
+If you have a cock, your lust is => 33, and you're a taur: male taur rape.
+If you have a vagina and your lust is => 33: female rape.
+If you have a vagina, your lust is => 33, and you're a taur: group imp female rape.
+If your lust is => 33 and you have fuckable nipples: nipple rape
+If you have the feeder status: force imp to drain your breasts
+If you have a bee ovipositor: implant eggs into imp
+If you are wearing the lusty maiden armor and your breasts are big enough: paizuri. (not implemented yet)
+
+Additional possible results are in the commented code above.
+
+ */
+
+
 
 ImpScene.victoryAgainstImp = function() {
 	clearOutput();
+	//Screen messages
 	var canFeed = (player.findStatusEffect(StatusEffects.Feeder) >= 0);
 	var canBikiniTits = (player.hasVagina() && player.biggestTitSize() >= 4 && player.armor == Items.Armor.LustyMaidenArmor);
 	outputText("You smile in satisfaction as " + monster.a + monster.refName + " collapses and begins masturbating feverishly.");
@@ -166,6 +192,8 @@ ImpScene.victoryAgainstImp = function() {
 		else cleanupAfterCombat();
 		return;
 	}
+
+	// Generate buttons + additional text.
 	if (player.lust >= 33) {
 		if (player.hasCock()) {
 			if (player.cockThatFits(monster.analCapacity()) == -1)
@@ -849,6 +877,8 @@ ImpScene.takeSkull = function() {
 // LOSE TO IMP SCENES
 
 // STANDARD LOSS
+
+/* The imp rapes you, pretty much. The only special loss is a 50% chance for males with thick penises to have their urethra raped by the imp. */
 
 ImpScene.impRapesYou = function() {
 	clearOutput();
