@@ -10,6 +10,7 @@ Debug.doDebug = function() {
     outputText("Player Gender: " + player.gender);
     menu();
     addButton(0, "Gender", Debug.genderChange, null, null, null, "Change the Player's Gender.");
+    addButton(1, "Fight", Debug.fightCreature, null, null, null, "Fight a creature.");
     addButton(14, "Leave", Camp.doCamp, null, null, null, "Return to Camp.");
 };
 
@@ -54,3 +55,12 @@ Debug.genderChangeNone = function() {
     player.gender = 0;
     doNext(Debug.doDebug);
 };
+
+//----------
+// Fight a creature
+//----------
+
+Debug.fightCreature = function() {
+    clearOutput();
+    startCombat(new Goblin());
+}

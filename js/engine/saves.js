@@ -306,32 +306,32 @@ Data.loadGameObject = function(slot) {
         player.pregnancyEventNum = saveData.player.pregnancyEventNum;
 
         //Amily Pregnancy Load
-        if saveData.amilypregnancyIncubation = undefined {
+        if (saveData.amilypregnancyIncubation == undefined) {
             amily.pregnancyIncubation = 0;
         }
         else amily.pregnancyIncubation = saveData.amilypregnancyIncubation;
 
-        if saveData.amilypregnancyType = undefined {
+        if (saveData.amilypregnancyType == undefined) {
             amily.pregnancyType = 0;
         }
         else amily.pregnancyType = saveData.amilypregnancyType;
 
-        if saveData.amilypregnancyEventArr = undefined {
+        if (saveData.amilypregnancyEventArr == undefined) {
             amily.pregnancyEventArr = [];
         }
         else amily.pregnancyEventArr = saveData.amilypregnancyEventArr;
 
-        if saveData.amilybuttPregnancyIncubation = undefined {
+        if (saveData.amilybuttPregnancyIncubation == undefined) {
             amily.buttPregnancyIncubation = 0;
         }
         else amily.buttPregnancyIncubation = saveData.amilybuttPregnancyIncubation;
 
-        if saveData.amilybuttPregnancyType = undefined {
+        if (saveData.amilybuttPregnancyType == undefined) {
             amily.buttPregnancyType = 0;
         }
         else amily.buttPregnancyType = saveData.amilybuttPregnancyType;
 
-        if saveData.amilypregnancyEventNum = undefined {
+        if (saveData.amilypregnancyEventNum == undefined) {
             amily.pregnancyEventNum = 0;
         }
         else amily.pregnancyEventNum = saveData.amilypregnancyEventNum;

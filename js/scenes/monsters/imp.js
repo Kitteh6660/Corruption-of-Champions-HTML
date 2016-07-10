@@ -141,10 +141,36 @@ Imp.lustMagicAttack = function() {
 
 
 
-// Initial Win
+// Initial Win Scenes
+
+/* You can always kill the imp and take the skull no matter how you win.
+
+To rape the imp, you need at least one of these factors:
+
+Have the Feeder status effect
+Be female, have large breasts, and wear the Lusty Maiden Armor
+Have a bee ovipositor
+Have a lust score equal or greater to 33
+
+Possible results:
+If you have a cock and your lust is => 33: male rape.
+If you have a cock, your lust is => 33, and you're a taur: male taur rape.
+If you have a vagina and your lust is => 33: female rape.
+If you have a vagina, your lust is => 33, and you're a taur: group imp female rape.
+If your lust is => 33 and you have fuckable nipples: nipple rape
+If you have the feeder status: force imp to drain your breasts
+If you have a bee ovipositor: implant eggs into imp
+If you are wearing the lusty maiden armor and your breasts are big enough: paizuri. (not implemented yet)
+
+Additional possible results are in the commented code above.
+
+ */
+
+
 
 ImpScene.victoryAgainstImp = function() {
 	clearOutput();
+	//Screen messages
 	var canFeed = (player.findStatusEffect(StatusEffects.Feeder) >= 0);
 	var canBikiniTits = (player.hasVagina() && player.biggestTitSize() >= 4 && player.armor == Items.Armor.LustyMaidenArmor);
 	outputText("You smile in satisfaction as " + monster.a + monster.refName + " collapses and begins masturbating feverishly.");
@@ -166,6 +192,8 @@ ImpScene.victoryAgainstImp = function() {
 		else cleanupAfterCombat();
 		return;
 	}
+
+	// Generate buttons + additional text.
 	if (player.lust >= 33) {
 		if (player.hasCock()) {
 			if (player.cockThatFits(monster.analCapacity()) == -1)
@@ -200,6 +228,7 @@ ImpScene.victoryAgainstImp = function() {
 // MALE RAPE
 
 ImpScene.rapeImpWithDick = function(condomed) {
+	clearOutput();
 	var x = player.cockThatFits(monster.analCapacity());
 	if (x < 0) x = 0;
 	if (condomed) {
@@ -265,14 +294,14 @@ ImpScene.rapeImpWithPussy = function() {
         if (player.breastRows.length > 0 && player.breastRows[0].breastRating > 1) {
             outputText("  You happily tug and pinch on your erect nipples, adding to your pleasure and nearly driving yourself to orgasm.");
         }
-        outputText("\n\nYou lose track of time as you languidly pump against the imp's " + monster.cockDescriptShort(0) + ".  At long last you feel your " + player.vaginaDescript(0) + " ripple and quiver.  Your " + player.legs() + " give out as you lose your muscle control and collapse against the small demon.  You gasp as his " + monster.cockDescriptShort(0) + " erupts against you, splattering your chest with hot demonic cum that rapidly soaks into your skin.  You giggle as you rise up from the exhausted imp, feeling totally satisfied.");
+        outputText("<br><br>You lose track of time as you languidly pump against the imp's " + monster.cockDescriptShort(0) + ".  At long last you feel your " + player.vaginaDescript(0) + " ripple and quiver.  Your " + player.legs() + " give out as you lose your muscle control and collapse against the small demon.  You gasp as his " + monster.cockDescriptShort(0) + " erupts against you, splattering your chest with hot demonic cum that rapidly soaks into your skin.  You giggle as you rise up from the exhausted imp, feeling totally satisfied.");
     }
     //Big enough!
     else {
         outputText("  You sink down his " + monster.cockDescriptShort(0) + " slowly, delighting in the gradual penetration and the tingling feeling of his dripping hot pre-cum.  At last you bottom out on his balls.");
         player.cuntChange(monster.cockArea(0), true);
         outputText("  Your lust and desire spurs you into movement, driving you to bounce yourself up and down on the " + monster.cockDescriptShort(0) + ".  His exquisite member pushes you to the very height of pleasure, your " + player.vaginaDescript(0) + " clenching tightly of its own accord each time you bottom out.  The tensing of the little demon's hips is the only warning you get before he cums inside you, hot demonic jizz pouring into your womb.  Your " + player.legs() + " give out, pushing him deeper as he finishes filling you.");
-        outputText("\n\nThe two of you lay there a moment while you recover, at last separating as you rise up off his " + monster.cockDescriptShort(0) + ".  Spunk drips down your legs, quickly wicking into your skin and disappearing.");
+        outputText("<br><br>The two of you lay there a moment while you recover, at last separating as you rise up off his " + monster.cockDescriptShort(0) + ".  Spunk drips down your legs, quickly wicking into your skin and disappearing.");
         //Taking it internal is more corruptive!
         player.modStats("cor", 1);
         //Preggers chance!
@@ -321,13 +350,13 @@ ImpScene.centaurOnImpMale = function(vape = false) {
 
 	//{{Player has multicock and they're very long}}
 	if (player.cockTotal() > 1 && player.cocks[player.biggestCockIndex()].cockLength >= 24) {
-		outputText("As your shadow falls over it, it looks with a hint of fear between your legs, and then its eyes widen in a mixture of apprehension and lust.  Before you can even more the little creatures scrambles forward between your hooves and wraps its hands around your " + player.cockDescript(player.biggestCockIndex()) + ".  Its tongue begins to trail all along the length of it as its small hands stroke it intensely.\n\n", false);
+		outputText("As your shadow falls over it, it looks with a hint of fear between your legs, and then its eyes widen in a mixture of apprehension and lust.  Before you can even more the little creatures scrambles forward between your hooves and wraps its hands around your " + player.cockDescript(player.biggestCockIndex()) + ".  Its tongue begins to trail all along the length of it as its small hands stroke it intensely.<br><br>");
 		//<< Cor <50>>
 		if (player.cor < 50) {
 			outputText("You slowly undulate your " + player.cockDescript(player.biggestCockIndex()) + " against the creature's mouth, delighting in its eager tongue.  ", false);
 			//<<GoTo I3 then return>> 
 			ImpScene.centaurOnImpResults(3);
-			outputText("The sounds beneath you quickly take on a more intense note and you feel massive amounts of cum splashing liberally over your hooves, belly, and " + player.cockDescript(player.biggestCockIndex()) + ".  The hot sensation sends you over the edge as you begin spilling yourself into the creature's eager mouth.\n\n", false);
+			outputText("The sounds beneath you quickly take on a more intense note and you feel massive amounts of cum splashing liberally over your hooves, belly, and " + player.cockDescript(player.biggestCockIndex()) + ".  The hot sensation sends you over the edge as you begin spilling yourself into the creature's eager mouth.<br><br>");
 			//<<GoTo I2>>
 			ImpScene.centaurOnImpResults(2);
 			//<<End>>
@@ -337,7 +366,7 @@ ImpScene.centaurOnImpMale = function(vape = false) {
 		}
 		//Really big cock, high corruption
 		else {
-			outputText("With an evil smile you wait for the creature's mouth to touch one of your tentacles before the other two snake their way down and wrap themselves around the imp's thighs.  With a tug the creatures is pulled off of it's feet and upside down, its eyes widening in a mixture of fear and debased lust as it sees your " + player.cockDescript(player.biggestCockIndex()) + " undulating in front of it.  You slowly move the tentacle up as your other cocks forcefully tug its legs apart, and then playfully begin sliding yourself over the imp's small cheeks.\n\n", false);
+			outputText("With an evil smile you wait for the creature's mouth to touch one of your tentacles before the other two snake their way down and wrap themselves around the imp's thighs.  With a tug the creatures is pulled off of it's feet and upside down, its eyes widening in a mixture of fear and debased lust as it sees your " + player.cockDescript(player.biggestCockIndex()) + " undulating in front of it.  You slowly move the tentacle up as your other cocks forcefully tug its legs apart, and then playfully begin sliding yourself over the imp's small cheeks.<br><br>");
 			//<<Cor 80+, has given birth to an imp>>Part of you wonders idly if this is one of the creatures that you spawned, and that left its spermy surprise on you after it came out of the womb<</Cor>>  
 			outputText("Licking your lips in anticipation you begin pushing your " + player.cockDescript(player.biggestCockIndex()) + " into the imp's " + monster.assholeDescript() + " while listening to the mewling sounds coming from beneath you.  You take your time as you push in, seeing no need to rush yourself as you feel the creature gaping more and more.  Once you bottom out you reach down and grab the creature's arms, securing it firmly against your belly as you break into a trot.  The sensation of the imp's " + monster.assholeDescript() + " bouncing around your " + player.cockDescript(player.biggestCockIndex()) + " is intense and you ride harder until you know you are close to the bring.  Quickly you slow down and drape the creature over a nearby boulder, using your hands and tentacles to pin it to the harsh surface, and then your mighty legs push you forward even deeper into the creature's bowels.  The shriek should be audible pretty far in this area, and you groan in debased pleasure thinking it might draw someone else for you to rape or be raped by.  Grunting slightly you begin pushing into the imp even harder just to generate more loud sex-noise.  ", false);
 			//<<Breasts>>
@@ -347,7 +376,7 @@ ImpScene.centaurOnImpMale = function(vape = false) {
 				if (player.hasFuckableNipples()) outputText(" and fingering your " + player.nippleDescript(0) + "s", false);
 				outputText(" as you drool slightly in absolute pleasure.  ", false);
 			}
-			outputText("When the creature's noises lessen and all you can hear is the sloppy sounds of its ass being fucked you push yourself in a single mighty heave, grinding the creature into the rock and eliciting one last scream that pushes you over.\n\n", false);
+			outputText("When the creature's noises lessen and all you can hear is the sloppy sounds of its ass being fucked you push yourself in a single mighty heave, grinding the creature into the rock and eliciting one last scream that pushes you over.<br><br>");
 			//<<GoTo I1>>
 			ImpScene.centaurOnImpResults(1);
 			//<<End>>
@@ -358,12 +387,12 @@ ImpScene.centaurOnImpMale = function(vape = false) {
 	}
 	// Player has multicock, but not huge ones
 	else if (player.cockTotal() == 2) {
-		outputText("With an evil smile you wait for your " + player.cockDescript(player.smallestCockIndex()) + " to be at its lips before you slide it forward into its waiting mouth.  Giving it little more than a moment to catch its breath you slide your " + player.cockDescript(player.smallestCockIndex()) + " further and down the creature's throat.  Though you cannot see the obscene bulge it is making in the creature's mouth-pussy you delight in the intense tightness beneath you.  The throat muscles are massaging your " + player.cockDescript(player.smallestCockIndex()) + " as the imp desperately scrambles for air, pulling at the tentacles you have forced into it.  It cannot even begin to close its jaw as you thrust deeper and deeper, as you try to intensify the sensations.\n\n", false);
-		outputText("As the imp is focused on the tentacles cutting off its air, you position your " + player.cockDescript(player.biggestCockIndex()) + " against its " + monster.assholeDescript() + ".  Pausing only for a second for the pleasure of anticipation, you shove yourself deep inside the imp's " + monster.assholeDescript() + ", only making it a few inches before having to pull back and try again.  The creature's throat seems to be working overtime now as it tries to divide its attention between the two invaders.  Each thrust of your " + player.cockDescript(player.smallestCockIndex()) + " makes it a little bit deeper inside of the creature, and you wonder passionately if you can get the two to meet in the middle.\n\n", false);
+		outputText("With an evil smile you wait for your " + player.cockDescript(player.smallestCockIndex()) + " to be at its lips before you slide it forward into its waiting mouth.  Giving it little more than a moment to catch its breath you slide your " + player.cockDescript(player.smallestCockIndex()) + " further and down the creature's throat.  Though you cannot see the obscene bulge it is making in the creature's mouth-pussy you delight in the intense tightness beneath you.  The throat muscles are massaging your " + player.cockDescript(player.smallestCockIndex()) + " as the imp desperately scrambles for air, pulling at the tentacles you have forced into it.  It cannot even begin to close its jaw as you thrust deeper and deeper, as you try to intensify the sensations.<br><br>");
+		outputText("As the imp is focused on the tentacles cutting off its air, you position your " + player.cockDescript(player.biggestCockIndex()) + " against its " + monster.assholeDescript() + ".  Pausing only for a second for the pleasure of anticipation, you shove yourself deep inside the imp's " + monster.assholeDescript() + ", only making it a few inches before having to pull back and try again.  The creature's throat seems to be working overtime now as it tries to divide its attention between the two invaders.  Each thrust of your " + player.cockDescript(player.smallestCockIndex()) + " makes it a little bit deeper inside of the creature, and you wonder passionately if you can get the two to meet in the middle.<br><br>");
 		outputText("It is not long before you begin to feel the creature's struggles slowing down.  ", false);
 		//<<Cor <80 >> 
 		if (player.cor < 80) {
-			outputText("Feeling merciful you extract yourself from the creature, flipping it unto a nearby rock as it begins to regain consciousness.  Before it realizes what you are doing your " + player.cockDescript(player.biggestCockIndex()) + " is prodding at its " + monster.assholeDescript() + ", then sliding quickly between its cheeks.  The amount of slobber over you is more than enough lubricant.  You groan in pleasure as it gives a slight squeal, then proceed to finish yourself off in the once-tight orifice.\n\n", false);
+			outputText("Feeling merciful you extract yourself from the creature, flipping it unto a nearby rock as it begins to regain consciousness.  Before it realizes what you are doing your " + player.cockDescript(player.biggestCockIndex()) + " is prodding at its " + monster.assholeDescript() + ", then sliding quickly between its cheeks.  The amount of slobber over you is more than enough lubricant.  You groan in pleasure as it gives a slight squeal, then proceed to finish yourself off in the once-tight orifice.<br><br>");
 			//<<Goto I1>> 
 			ImpScene.centaurOnImpResults(1);
 			player.orgasm();
@@ -374,8 +403,8 @@ ImpScene.centaurOnImpMale = function(vape = false) {
 		else {
 			outputText("You groan in pleasure and slide your " + player.cockDescript(player.biggestCockIndex()) + " even deeper down the creature's throat, until you can feel its head against your ", false);
 			//<<if balls>>
-			if (player.balls > 0) outputText(player.ballsDescriptLight() + ".\n\n", false);
-			else outputText("groin.\n\n", false);
+			if (player.balls > 0) outputText(player.ballsDescriptLight() + ".<br><br>");
+			else outputText("groin.<br><br>");
 			//<<GoTo I3 then return>> 
 			ImpScene.centaurOnImpResults(3);
 			outputText("A guttural moan escapes your mouth as you realize the creature has completely passed out underneath you.  ", false);
@@ -396,9 +425,9 @@ ImpScene.centaurOnImpMale = function(vape = false) {
 		if (player.cockArea(x) <= 15) {
 			outputText("Relief washes over it followed by intense lust as is throws itself onto a mossy rock and eagerly presents its " + monster.assholeDescript() + ".   The sound of your hooves moving on either side of its body seems to send the creature into a frenzy as it begins humping the air while small mewling sounds escape its lips.  ", false);
 			//<<Cor <50>> 
-			if (player.cor < 50) outputText("You slowly rub your " + player.cockDescript(x) + " between the creature's cheeks, letting your pre-cum oil the small hole, before slowly beginning the insertion.  Before you can get half-way the creatures drives its self back against you, impaling its " + monster.assholeDescript() + " around your " + player.cockDescript(x) + " and making inhuman sounds of ecstasy. The " + monster.assholeDescript() + " relaxes around your " + player.cockDescript(x) + ", taking it all in while its practiced muscles grip and jerk you off internally.\n\n", false);
+			if (player.cor < 50) outputText("You slowly rub your " + player.cockDescript(x) + " between the creature's cheeks, letting your pre-cum oil the small hole, before slowly beginning the insertion.  Before you can get half-way the creatures drives its self back against you, impaling its " + monster.assholeDescript() + " around your " + player.cockDescript(x) + " and making inhuman sounds of ecstasy. The " + monster.assholeDescript() + " relaxes around your " + player.cockDescript(x) + ", taking it all in while its practiced muscles grip and jerk you off internally.<br><br>");
 			//<<Cor 50+>> 
-			else outputText("You position your " + player.cockDescript(x) + " against its dry anus and drive yourself inside of it using your powerful equine legs.  The creatures gives a loud shriek as its insides are forced open, and you feel the raw tightness trying to resist your intrusion.  Giving the creature no chance to relax you begin pistoning into it, grinning as the sounds of pain give way to grunts and yelps of pleasure. You cannot last long in the creature's hole, and soon spurts of cum begin shooting out and filling its bowels.\n\n", false);
+			else outputText("You position your " + player.cockDescript(x) + " against its dry anus and drive yourself inside of it using your powerful equine legs.  The creatures gives a loud shriek as its insides are forced open, and you feel the raw tightness trying to resist your intrusion.  Giving the creature no chance to relax you begin pistoning into it, grinning as the sounds of pain give way to grunts and yelps of pleasure. You cannot last long in the creature's hole, and soon spurts of cum begin shooting out and filling its bowels.<br><br>");
 			//<<GoTo I1>>
 			ImpScene.centaurOnImpResults(1);
 			//<<End>>
@@ -417,7 +446,7 @@ ImpScene.centaurOnImpMale = function(vape = false) {
 				outputText(" as you feel the foreign invader wiggling inside.  ", false);
 				//<</Thick>>  
 			}
-			outputText("You cannot take the attention for long before your hooves are scraping at the ground and jets of sperm shoot out of your " + player.cockDescript(x) + " and down its waiting throat.\n\n", false);
+			outputText("You cannot take the attention for long before your hooves are scraping at the ground and jets of sperm shoot out of your " + player.cockDescript(x) + " and down its waiting throat.<br><br>");
 			//<<GoTo I2>>
 			ImpScene.centaurOnImpResults(2);
 			//<<End>>
@@ -427,7 +456,7 @@ ImpScene.centaurOnImpMale = function(vape = false) {
 		}
 		//<<Cock: large, Cor 50+>>
 		else {
-			outputText("The imp's eyes widen and you see apprehension as it tries to turn around and get away.  It does not make it far before you run it down, knocking it over with your muscled flank.  Before it can try to run again you pin it down and position your " + player.cockDescript(x) + " against its " + monster.assholeDescript() + ".  It feels far too small to handle your girth but a push of your powerful legs gets you in with the first inches.  The imp squeals out in pain and you wince slightly in the vice-like grip.  Gritting your teeth you push in the remaining length, the sounds of pain only serving to drive you forward all the harder.  Soon your " + player.cockDescript(x) + " is moving in and out with more ease, though the imp's tender asshole is distending abnormally to accommodate the invading member.  As much as you long to extend your pleasure, the sensation and the unnatural sounds of the penetration prove too much for you to last long.\n\n", false);
+			outputText("The imp's eyes widen and you see apprehension as it tries to turn around and get away.  It does not make it far before you run it down, knocking it over with your muscled flank.  Before it can try to run again you pin it down and position your " + player.cockDescript(x) + " against its " + monster.assholeDescript() + ".  It feels far too small to handle your girth but a push of your powerful legs gets you in with the first inches.  The imp squeals out in pain and you wince slightly in the vice-like grip.  Gritting your teeth you push in the remaining length, the sounds of pain only serving to drive you forward all the harder.  Soon your " + player.cockDescript(x) + " is moving in and out with more ease, though the imp's tender asshole is distending abnormally to accommodate the invading member.  As much as you long to extend your pleasure, the sensation and the unnatural sounds of the penetration prove too much for you to last long.<br><br>");
 			//<<GoTo I1>>
 			ImpScene.centaurOnImpResults(1);
 			//<<End>>
@@ -510,7 +539,7 @@ ImpScene.centaurOnImpFemale = function(vape = false) {
 		if (player.ass.analLooseness < 4 && player.cor < 80) outputText("Your howl of pain leaves your throat raw.  ", false);
 		else outputText("Your howl of perverse pleasure leaves your throat raw.  ", false);
 		}
-		outputText("\n\nIt is a relief when you feel the creature's sperm filling your womb and lubricating your raw cervix, your own body is wrecked by an intense orgasm while it breeds you.  You pass out, waking up to find that the imp has slipped out of you and is lying unconscious and coated completely in a mixture of your juices and his own. After looking for anything you might be able to take away from him you limp away, you ", false);
+		outputText("<br><br>It is a relief when you feel the creature's sperm filling your womb and lubricating your raw cervix, your own body is wrecked by an intense orgasm while it breeds you.  You pass out, waking up to find that the imp has slipped out of you and is lying unconscious and coated completely in a mixture of your juices and his own. After looking for anything you might be able to take away from him you limp away, you ", false);
 		if (player.cor < 80) outputText("promise to yourself that you will not do that again.", false);
 		else outputText("find your cunt juices already dripping down your legs in anticipation of doing this again.", false);
 		player.orgasm();
@@ -753,11 +782,11 @@ ImpScene.impNippleRape = function() {
 
 ImpScene.areImpsLactoseIntolerant = function() {
 	clearOutput();
-	outputText("You advance on the masturbating imp, baring your " + player.allBreastsDescript() + " and swinging them from side to side. The little creature watches them, mesmerized as he masturbates his foot-long erection.\n\n", false);
+	outputText("You advance on the masturbating imp, baring your " + player.allBreastsDescript() + " and swinging them from side to side. The little creature watches them, mesmerized as he masturbates his foot-long erection.<br><br>");
 
-	outputText("You sit down in front of the little creature and grab ahold of his hair. The imp squeals slightly in pain before his cries are silenced with a " + player.nippleDescript(0) + ".  It fills his mouth as he yields, defeated. At once he starts to drink down as much of your milk as he can.\n\n", false);
+	outputText("You sit down in front of the little creature and grab ahold of his hair. The imp squeals slightly in pain before his cries are silenced with a " + player.nippleDescript(0) + ".  It fills his mouth as he yields, defeated. At once he starts to drink down as much of your milk as he can.<br><br>");
 
-	outputText("After a moment, he takes one of his hands off his large member and puts it against your " + player.biggestBreastSizeDescript() + " to steady himself as he continues to nurse. You give a pleased sigh and simply bask in the sensations of pleasure that being nursed gives you.  You ruffle the little imp's hair affectionately. \"<i>These creatures are so much nicer to be around when they just take their minds off their cocks,</i>\" you think as you see his other hand relax and stop rubbing his swollen, demonic member.\n\n", false);
+	outputText("After a moment, he takes one of his hands off his large member and puts it against your " + player.biggestBreastSizeDescript() + " to steady himself as he continues to nurse. You give a pleased sigh and simply bask in the sensations of pleasure that being nursed gives you.  You ruffle the little imp's hair affectionately. \"<i>These creatures are so much nicer to be around when they just take their minds off their cocks,</i>\" you think as you see his other hand relax and stop rubbing his swollen, demonic member.<br><br>");
 
 	outputText("You feel the imp's mighty gulps start to slow down until he lets out a sigh of relief. While imps may be small, they're very hungry creatures. Your " + player.nippleDescript(0) + " slips out of the imp's mouth, and you gently lay it down on the ground. It gives a few gentle burps before dozing off; you can see that the imp's erection has retracted, and its belly has expanded significantly. You smile to yourself and, feeling fully satisfied, you stand up.", false);
 //set lust to 0, increase sensitivity slightly
@@ -776,34 +805,34 @@ ImpScene.putBeeEggsInAnImp = function() {
 	//outputText(images.showImage("imp-egg"), false);
 	outputText("You glance down at the masturbating imp, feeling a twitch in your swollen, insectile abdomen.  As the red-skinned homunculus writhes on the ground, beating his meat, you smile, feeling a globule of sweet nectar oozing out of your ovipositor.");
 
-	outputText("\n\nHe’s too busy humping the air and stroking himself to notice you hooking the tip of one of your [feet] under him.  You kick up one of your [legs], flipping the fapping imp over.  He gasps as he lands face-down on the ground, startled enough to stop jerking his tool.");
-	outputText("\n\nYou grin, straddling his surprisingly perky ass, resting your [hips] on his small, round cheeks.  With your arms pinning down his shoulders, he can’t stroke himself, and he whimpers at the restraint.");
+	outputText("<br><br>He’s too busy humping the air and stroking himself to notice you hooking the tip of one of your [feet] under him.  You kick up one of your [legs], flipping the fapping imp over.  He gasps as he lands face-down on the ground, startled enough to stop jerking his tool.");
+	outputText("<br><br>You grin, straddling his surprisingly perky ass, resting your [hips] on his small, round cheeks.  With your arms pinning down his shoulders, he can’t stroke himself, and he whimpers at the restraint.");
 
-	outputText("\n\n\"<i>Wait - what’s going on?</i>\" he gasps.");
+	outputText("<br><br>\"<i>Wait - what’s going on?</i>\" he gasps.");
 
-	outputText("\n\nYou deign not to answer him, lost in the unique sensation of your abdomen curling behind you.  You toss your head back, luxuriating in the pleasure of your black ovipositor emerging against smooth, glossy skin of the imp’s ass.");
+	outputText("<br><br>You deign not to answer him, lost in the unique sensation of your abdomen curling behind you.  You toss your head back, luxuriating in the pleasure of your black ovipositor emerging against smooth, glossy skin of the imp’s ass.");
 
-	outputText("\n\n\"<i>No, nooooooo...</i>\" whimpers the imp as you bite your lip, pushing the tip of your organ into his surprisingly pliant hole.");
+	outputText("<br><br>\"<i>No, nooooooo...</i>\" whimpers the imp as you bite your lip, pushing the tip of your organ into his surprisingly pliant hole.");
 
-	outputText("\n\nYou and the imp shudder in tandem as your sweet honey smears between his cheeks, oozing down his crack as you squeeze your throbbing ovipositor further and further into him.  Buried deep in his bowels, you feel the first of your eggs push through your rubbery organ, stretching out your tube along with his asshole.");
+	outputText("<br><br>You and the imp shudder in tandem as your sweet honey smears between his cheeks, oozing down his crack as you squeeze your throbbing ovipositor further and further into him.  Buried deep in his bowels, you feel the first of your eggs push through your rubbery organ, stretching out your tube along with his asshole.");
 
-	outputText("\n\nAs you lay your first egg inside the imp, he gurgles, face-down against the ground, and you feel him tighten around your ovipositor.  The imp wriggles beneath your body and by the slowly-spreading pool of steaming cum; you guess that he just climaxed.");
+	outputText("<br><br>As you lay your first egg inside the imp, he gurgles, face-down against the ground, and you feel him tighten around your ovipositor.  The imp wriggles beneath your body and by the slowly-spreading pool of steaming cum; you guess that he just climaxed.");
 
-	outputText("\n\nThe imp pants, trying to catch his breath as you twitch your abdomen, adjusting your ovipositor inside him.  Before he can recover, you push another egg down your tube, implanting it deep in the imp alongside the first egg.");
+	outputText("<br><br>The imp pants, trying to catch his breath as you twitch your abdomen, adjusting your ovipositor inside him.  Before he can recover, you push another egg down your tube, implanting it deep in the imp alongside the first egg.");
 
-	outputText("\n\n\"<i>Suh-stop...</i>\" groans the imp even as you push a third egg into his tiny body.  But you’re beyond stopping.  Egg after egg, you fill his twitching body.  The pool of cum grows, and it oozes around your ");
+	outputText("<br><br>\"<i>Suh-stop...</i>\" groans the imp even as you push a third egg into his tiny body.  But you’re beyond stopping.  Egg after egg, you fill his twitching body.  The pool of cum grows, and it oozes around your ");
 	if (player.isGoo()) outputText("rippled goo edges");
 	else if (player.isNaga()) outputText("trembling coils");
 	else outputText("straddling knees");
 	outputText(" as you turn the imp into your own, private incubator.");
 
-	outputText("\n\nAfter a handful of eggs, you grunt, realizing that you’ve run out of room inside the imp.  Tilting your head to one side, you consider that the imp is face-down, and that his stomach might need more room to stretch.  You rise halfway up and flip him over beneath you, careful to leave your ovipositor still buried inside him.");
+	outputText("<br><br>After a handful of eggs, you grunt, realizing that you’ve run out of room inside the imp.  Tilting your head to one side, you consider that the imp is face-down, and that his stomach might need more room to stretch.  You rise halfway up and flip him over beneath you, careful to leave your ovipositor still buried inside him.");
 
-	outputText("\n\nThe imp’s eyes are almost completely rolled back in his head, his flat chest smothered with his own spunk.  His breathing is ragged, and his hard, massive cock is slathered with thick, white cum.  His belly already bulges slightly with your eggs and his small hands move to clutch at his stomach, giving him the look of a debased, pregnant mother.");
+	outputText("<br><br>The imp’s eyes are almost completely rolled back in his head, his flat chest smothered with his own spunk.  His breathing is ragged, and his hard, massive cock is slathered with thick, white cum.  His belly already bulges slightly with your eggs and his small hands move to clutch at his stomach, giving him the look of a debased, pregnant mother.");
 
-	outputText("\n\nThat realization is enough to stimulate your ovipositor again.  With a groan, you plant your hands on the ground to either side of his head, on your knees as your ovipositor pumps another egg into the imp’s bowels.  The imp shudders as his belly swells, filling with your brood.");
+	outputText("<br><br>That realization is enough to stimulate your ovipositor again.  With a groan, you plant your hands on the ground to either side of his head, on your knees as your ovipositor pumps another egg into the imp’s bowels.  The imp shudders as his belly swells, filling with your brood.");
 
-	outputText("\n\n\"<i>More... more!</i>\" moans the imp beneath you.  You oblige, and ");
+	outputText("<br><br>\"<i>More... more!</i>\" moans the imp beneath you.  You oblige, and ");
 	if (player.biggestTitSize() >= 1) {
 		outputText("his tiny claws grab your ");
 		if (player.bRows() > 1) outputText("first row of ");
@@ -815,13 +844,13 @@ ImpScene.putBeeEggsInAnImp = function() {
 	else if (player.hasVagina()) outputText("the imp’s tiny, clawed feet scrabble against you as he flails in pleasure.  By mistake, one slips between the lips of your pussy, small toes wriggling against your inner walls, and you instinctively push down against the small limb, fucking yourself with his foot.");
 	else outputText("you feel a firm pressure at your [asshole] as the tip of the imp’s lashing tail prods frantically against you, manically shoving in and out of your [asshole].");
 
-	outputText("\n\nYou groan, climaxing against the imp, just as he lets out another gout of hot seed from his cum-smeared dick.  He spatters your front, his spunk mingling with your fluids, shuddering as he takes the last of your eggs inside him, his belly swollen to the size of a beach ball.");
+	outputText("<br><br>You groan, climaxing against the imp, just as he lets out another gout of hot seed from his cum-smeared dick.  He spatters your front, his spunk mingling with your fluids, shuddering as he takes the last of your eggs inside him, his belly swollen to the size of a beach ball.");
 
-	outputText("\n\nYou pant heavily, and with a messy squelching, you pull yourself out of the imp, pushing yourself up from your crouched position.  A gush of honey pours from the imp’s ass, cutting off quickly as an egg rolls into place from the inside, stopping up your imp-cubator.");
+	outputText("<br><br>You pant heavily, and with a messy squelching, you pull yourself out of the imp, pushing yourself up from your crouched position.  A gush of honey pours from the imp’s ass, cutting off quickly as an egg rolls into place from the inside, stopping up your imp-cubator.");
 
-	outputText("\n\nYou hear a strange noise from the imp, one that sounds strangely like a giggle.  You glance down at him, instinctively evaluating him as a bearer of your eggs.  The imp is still panting, looking up at you from under his messy, black hair.  With a flushed, submissive expression and swollen, pregnant belly, the imp seems almost... cute?  He cradles his massive, egg-filled belly, caressing it, then looks back to you, blushing.");
+	outputText("<br><br>You hear a strange noise from the imp, one that sounds strangely like a giggle.  You glance down at him, instinctively evaluating him as a bearer of your eggs.  The imp is still panting, looking up at you from under his messy, black hair.  With a flushed, submissive expression and swollen, pregnant belly, the imp seems almost... cute?  He cradles his massive, egg-filled belly, caressing it, then looks back to you, blushing.");
 
-	outputText("\n\nYou blink then stand up.  You shake your head as you walk away, chalking the odd thoughts up to your egg-laying instincts.  Some of these mutations have some weird effects, after all...");
+	outputText("<br><br>You blink then stand up.  You shake your head as you walk away, chalking the odd thoughts up to your egg-laying instincts.  Some of these mutations have some weird effects, after all...");
 	player.orgasm();
 	player.modStats("sen", -1);
 	player.dumpEggs();
@@ -850,20 +879,22 @@ ImpScene.takeSkull = function() {
 
 // STANDARD LOSS
 
+/* The imp rapes you, pretty much. The only special loss is a 50% chance for males with thick penises to have their urethra raped by the imp. */
+
 ImpScene.impRapesYou = function() {
 	clearOutput();
 	//if (doSFWloss()) return; FIGURE OUT THIS FUNCTION
 
 	if ((player.findPerk(PerkLib.BimboBrains) >= 0 || player.findPerk(PerkLib.FutaFaculties) >= 0) && !player.isTaur() && player.hasVagina()) {
 		//outputText(images.showImage("imp-loss-female-fuck"), false);
-		outputText("You sink to the ground, assuming a position that feels all too natural to you now, leaning forward to let your " + player.allBreastsDescript() + " hang down slightly. The imp looks you up and down, wickedly eyeing your ready, slightly open lips. He drops his loin-cloth to reveal a hardening cock. Your eyes bulge as it grows larger... and larger... and larger! The imp's cock finally bulges to a full twelve inches... and it's moving closer. You struggle to think... but you just can't! You want that in your mouth, like, so bad!\n\n", false);
-		outputText("Your " + player.vaginaDescript(0) + " drips in anticipation, and you find yourself involuntarily moving your knees farther apart to prepare yourself to be filled. He smiles and presses his cock against your " + player.vaginaDescript(0) + ", pushing you back to get a better angle. You try to make words, but your brain can only think of so much at once! Right now, it's thinking of cock, which, naturally, makes you open your mouth and let out a slutty moan.\n\n", false);
+		outputText("You sink to the ground, assuming a position that feels all too natural to you now, leaning forward to let your " + player.allBreastsDescript() + " hang down slightly. The imp looks you up and down, wickedly eyeing your ready, slightly open lips. He drops his loin-cloth to reveal a hardening cock. Your eyes bulge as it grows larger... and larger... and larger! The imp's cock finally bulges to a full twelve inches... and it's moving closer. You struggle to think... but you just can't! You want that in your mouth, like, so bad!<br><br>");
+		outputText("Your " + player.vaginaDescript(0) + " drips in anticipation, and you find yourself involuntarily moving your knees farther apart to prepare yourself to be filled. He smiles and presses his cock against your " + player.vaginaDescript(0) + ", pushing you back to get a better angle. You try to make words, but your brain can only think of so much at once! Right now, it's thinking of cock, which, naturally, makes you open your mouth and let out a slutty moan.<br><br>");
 
 		outputText("The imp pushes into you violently, ramming his cock in to the hilt, leaving you gasping in pain and surprise. He leaves it in your slutty pussy, giving you a second to... oh who is he kidding... he can tell by your air-headed look that you've done nothing but take cocks your whole life. He fucks you hard, slapping your " + player.buttDescript() + " to remind you who is in charge. You can't help but think about, like, how you just love it when a man takes charge. Less thinking!", false);
 		player.cuntChange(12,true,true,false);
-		outputText("\n\n", false);
+		outputText("<br><br>");
 
-		outputText("The rough fucking becomes more and more pleasurable as time goes on. You moan air-headedly with each thrust, hips squeezing around the demon-cock- loving the feeling of his fullness. Before long you can't help but cum all over him, your vagina locking around his cock like a vice, muscles rippling, milking him for his cum. The imp's prick explodes inside you, pumping huge loads of hot demon-seed inside you with each eruption. You swoon, feeling it fill your womb and distend your belly as the imp's orgasm fills you with insane amounts of cum.\n\n", false);
+		outputText("The rough fucking becomes more and more pleasurable as time goes on. You moan air-headedly with each thrust, hips squeezing around the demon-cock- loving the feeling of his fullness. Before long you can't help but cum all over him, your vagina locking around his cock like a vice, muscles rippling, milking him for his cum. The imp's prick explodes inside you, pumping huge loads of hot demon-seed inside you with each eruption. You swoon, feeling it fill your womb and distend your belly as the imp's orgasm fills you with insane amounts of cum.<br><br>");
 
 		outputText("With a sigh, he pulls his dick free, and you flop down, cum leaking out onto the ground from your well-fucked hole. If you could, like, focus at all, you'd totally be worrying about being, like, pregnant or whatever. But you lose consciousness.", false);
 		player.knockUp(PREGNANCY_IMP, INCUBATION_IMP - 14); //Bigger imp means faster pregnancy
@@ -875,112 +906,116 @@ ImpScene.impRapesYou = function() {
 	}
 	//Lust loss
 	if (player.lust >= player.maxLust()) {
-	//50% chance of sprocket rape for super-thick people.
-	if (player.cocks.length >= 1 && rand(2) == 0) {
-		if (player.cocks[0].cockThickness >= 4) {
-			ImpScene.sprocketImp();
-			return;
+		//50% chance of sprocket rape for super-thick people.
+		if (player.cocks.length >= 1 && rand(2) == 0) {
+			if (player.cocks[0].cockThickness >= 4) {
+				ImpScene.sprocketImp();
+				return;
+			}
 		}
-	}
-	//Female or Futa
-	if (player.gender == 2 || player.gender == 3) {
-		player.slimeFeed(); // Check this function
-		//outputText(images.showImage("imp-loss-female-fuck"), false);
-		outputText("You sink to the ground, too overcome by lust and desire to fight.  The imp smiles, a wicked look glinting in his eyes.  He drops his loincloth to reveal a hardening cock.  Your eyes bulge a bit as it grows...and grows...and grows!  That imp has a twelve inch cock..and he's walking towards you.   Your " + player.vaginaDescript(0) + " practically juices itself in anticipation, and you find yourself spreading your " + player.legs() + " in preparation.", false);
-		outputText("\n\nHe smiles and presses his cock against your " + player.vaginaDescript(0) + ".  Your lust-driven mind is speechless, leaving you panting and moaning like a whore.", false);
-		//If too big, only partly penetrate.
-		if (player.vaginalCapacity() < monster.cockArea(0)) {
-			if (player.vaginas[0].virgin) {
-				outputText("  He plunges in hard, breaking your hymen and stealing your virginity.  A look of surprise crosses his face, chased away by ecstasy.  If you had a rational bit left in your mind, you'd notice he looks... stronger somehow, but you're too horny to care.", false);
-				player.vaginas[0].virgin = false;
+		//Female or Futa
+		if (player.gender == 2 || player.gender == 3) {
+			player.slimeFeed(); // Check this function
+			//outputText(images.showImage("imp-loss-female-fuck"), false);
+			outputText("You sink to the ground, too overcome by lust and desire to fight.  The imp smiles, a wicked look glinting in his eyes.  He drops his loincloth to reveal a hardening cock.  Your eyes bulge a bit as it grows...and grows...and grows!  That imp has a twelve inch cock..and he's walking towards you.   Your " + player.vaginaDescript(0) + " practically juices itself in anticipation, and you find yourself spreading your " + player.legs() + " in preparation.", false);
+			outputText("<br><br>He smiles and presses his cock against your " + player.vaginaDescript(0) + ".  Your lust-driven mind is speechless, leaving you panting and moaning like a whore.", false);
+			//If too big, only partly penetrate.
+			if (player.vaginalCapacity() < monster.cockArea(0)) {
+				if (player.vaginas[0].virgin) {
+					outputText("  He plunges in hard, breaking your hymen and stealing your virginity.  A look of surprise crosses his face, chased away by ecstasy.  If you had a rational bit left in your mind, you'd notice he looks... stronger somehow, but you're too horny to care.", false);
+					player.vaginas[0].virgin = false;
+				}
+				else {
+					outputText("  He pushes against your tight little pussy, struggling to penetrate you.", false);
+				}
+				outputText("  His cock only sinks a few inches in, but he begins fucking you hard, each time claiming a bit more of your pussy for his demonic tool.  You feel a painful stretching as he gets half of it inside you, ruining your " + player.vaginaDescript(0) + " for most humans.  He fucks you like this for what seems like forever, never getting much further. ", false);
+				player.cuntChange(monster.cockArea(0), true);
 			}
 			else {
-				outputText("  He pushes against your tight little pussy, struggling to penetrate you.", false);
+				outputText("  He plunges in violently, ramming his " + monster.cockDescriptShort(0) + " in to the hilt, leaving you gasping in pain and surprise.  He leaves it there, giving you a second to get used to him, and then begins fucking you hard, slapping your ass every few thrusts to remind you who is in charge.", false);
+				player.cuntChange(12, true, true, false);
 			}
-			outputText("  His cock only sinks a few inches in, but he begins fucking you hard, each time claiming a bit more of your pussy for his demonic tool.  You feel a painful stretching as he gets half of it inside you, ruining your " + player.vaginaDescript(0) + " for most humans.  He fucks you like this for what seems like forever, never getting much further. ", false);
-			player.cuntChange(monster.cockArea(0),true);
-		}
-		else {
-			outputText("  He plunges in violently, ramming his " + monster.cockDescriptShort(0) + " in to the hilt, leaving you gasping in pain and surprise.  He leaves it there, giving you a second to get used to him, and then begins fucking you hard, slapping your ass every few thrusts to remind you who is in charge.", false);
-			player.cuntChange(12,true,true,false);
-		}
-		if (player.gender == 3) outputText("\n\nThe rough fucking becomes more and more pleasurable as time passes, until you cannot help but stroke your " + player.cockDescript(0) + " along with each plunge he takes in your " + player.vaginaDescript(0) + ".  You feel yourself clench around him as your sexual organs release, erupting spurts of cum and milking the demon's cock like your life depended on it.", false);
-		if (player.gender == 2) outputText("\n\nThe rough fucking becomes more and more pleasurable as time passes.  You moan loudly and lewdly with each thrust, hips squeezing around the demon-cock, relishing the feeling of fullness.  Before long you cannot help but cum all over him, " + player.vaginaDescript(0) + " locking around his cock like a vice, muscles rippling, milking him for his cum.", false);
-		outputText("  The imp's " + monster.cockDescriptShort(0) + " explodes inside you, pumping huge loads of hot demon-seed inside you with each eruption.  You swoon, feeling it fill your womb and distend your belly as the imp's orgasm fills you with an unnatural quantity of corrupted semen.\n\nWith a sigh, he pulls his dick free, and you flop back on your back, cum surging out onto the ground from your well-fucked hole.  ", false);
-		if (player.pregnancyIncubation > 0 && player.pregnancyIncubation <= 216) {
-			outputText("You wonder what this will do to whatever is growing in your womb...  ", false);
-		}
-		else {
-			if (player.inHeat) outputText("You find yourself hoping you're pregnant as you swiftly lose consciousness.", false);
-			else if (player.pregnancyIncubation <= 0) {
-				if (player.cor > 75) outputText("With an appreciative moan, you bury your fingers in its slimy warmth, hoping you are pregnant with some fiendish offspring, and lose consciousness.", false);
-				else outputText("You hope you don't become pregnant, but promptly lose consciousness before you can contemplate the prospect any further.", false);
+			if (player.gender == 3) outputText("<br><br>The rough fucking becomes more and more pleasurable as time passes, until you cannot help but stroke your " + player.cockDescript(0) + " along with each plunge he takes in your " + player.vaginaDescript(0) + ".  You feel yourself clench around him as your sexual organs release, erupting spurts of cum and milking the demon's cock like your life depended on it.", false);
+			if (player.gender == 2) outputText("<br><br>The rough fucking becomes more and more pleasurable as time passes.  You moan loudly and lewdly with each thrust, hips squeezing around the demon-cock, relishing the feeling of fullness.  Before long you cannot help but cum all over him, " + player.vaginaDescript(0) + " locking around his cock like a vice, muscles rippling, milking him for his cum.", false);
+			outputText("  The imp's " + monster.cockDescriptShort(0) + " explodes inside you, pumping huge loads of hot demon-seed inside you with each eruption.  You swoon, feeling it fill your womb and distend your belly as the imp's orgasm fills you with an unnatural quantity of corrupted semen.<br><br>With a sigh, he pulls his dick free, and you flop back on your back, cum surging out onto the ground from your well-fucked hole.  ", false);
+			if (player.pregnancyIncubation > 0 && player.pregnancyIncubation <= 216) {
+				outputText("You wonder what this will do to whatever is growing in your womb...  ", false);
 			}
-		}
-		player.knockUp(PREGNANCY_IMP, INCUBATION_IMP - 14); //Bigger imp means faster pregnancy
-		player.modStats("lib", 1, "sen", 1, "lus", 1, "cor", 1);
-		player.orgasm();
-	}
-	//Male or genderless
-	if (player.gender == 0 || player.gender == 1) {
-		//Alternate male-only case
-		if (player.gender == 1 && rand(2) == 0) {
-			//outputText(images.showImage("imp-loss-male-fuck"), false);
-			outputText("Your eyes glaze over with lust as the imp's dark magic destroys your will to continue fighting. You sink to your ", true);
-			if (player.isTaur()) outputText("hocks and knees, your " + player.cockDescript(0) + " hurting from the massive blood pressure caused by your unbridled lust. He approaches you and stops about two feet in front of you, watching with delight your helpless state", false);
-			else outputText("knees, pull out your " + player.cockDescript(0) + " and begin mindlessly stroking yourself as the imp approaches you, a wicked grin on his face. Your mind races with thoughts and images of sucking the imp's cock. He approaches you and stops about two feet in front of you, watching with delight as you succumb to your own lust", false);
-			outputText(". Your eyes glance down to his waist and see a massive bulge form under his loincloth, the sight of which causes your " + player.cockDescript(0) + " to twitch and begin leaking pre-cum.\n\n", false);
-			outputText("The imp drops his loincloth, revealing his huge 12-inch penis, and then forcefully grabs your head and pulls you down on to his hard throbbing demon dick. He shoves his cock past your lips and deep down your throat in one slow, forceful push. You can barely accommodate his huge cock, and yet your lust makes you hunger for more. You cough and gag while the imp proceeds to fuck your mouth hard, slapping his hot balls against your chin, disregarding your need to breathe.  ", false);
-			if (player.isTaur()) outputText("Dropping down to the ground, your " + player.cockDescript(0) + " trembles against your body to the rhythm of the imp's thrusts, leaving your underbelly smeared with its own pre-cum.\n\n", false);
-			else outputText("On all fours now, your " + player.cockDescript(0) + " bounces up and down against you to the rhythm of the imp's thrusts, leaving your belly smeared in your own pre-cum.\n\n", false);
-			if (player.ballSize >= 5) outputText("Your huge " + player.ballsDescriptLight() + " swing heavily against you as well, responding to the force of the imp's thrusts, slapping your own ass and driving your " + player.cockDescript(0) + " even stiffer with lust, the pre-cum pulsing out of your cock in time with the slapping.\n\n", false);
-			outputText("You begin to feel light-headed from lack of air just as the imp grips your head firmly and begins making rapid, shallow thrusts down your throat, nearing his orgasm. Suddenly he clenches tight, his claws digging into your head and thrusts down your throat as far as he can, holding his massive cock deep in your stomach. Your eyes go wide as you feel the imp's balls on your chin spasm violently.  His cock pulses in your mouth as the thick demon cum is pumped violently down your throat. It feels like an eternity as the imp continues to fill your guts with his hot cum, his orgasm lasting far longer than any human's. ");
-			player.refillHunger(40); // CHECK THIS
-			outputText("He slowly withdraws his still-pumping cock from you, coating your throat and then mouth with an almost continual spray of his unnaturally hot and sticky demon seed. The imp pulls out of your mouth just in time to splatter your face with his cum before his orgasm stops, coating your lips, nose, eyes, and hair with his incredibly thick and sticky cum.\n\n", false);
-			outputText("You fall to the ground gasping, exhausted and unable to move, the demon cum on your face and inside you still burning with intense heat and corruption. You lose consciousness, your " + player.cockDescript(0) + " still firmly erect, your lust not sated.", false);
-			player.modStats("cor", 2);
-			player.changeLust(20);
-			cleanupAfterCombat();
-			player.slimeFeed(); // CHECK THIS
-			return;
-		}
-		else {
-			player.slimeFeed(); // CHECK THIS
-			outputText("You sink to the ground, too overcome by lust and desire to fight.  The imp smiles and circles you, dropping his loincloth as he goes.  You are roughly shoved to the ground, your backside slapped hard.  You're too horny to do anything but moan from the pain ", false);
-			if (!player.isTaur()) outputText("as you are disrobed", false);
-			outputText(".  As the imp presses a large bulk against your backside, you realize he has a massive penis!\n\nThe imp pushes his " + monster.cockDescriptShort(0) + " into your ass and fucks you hard, with little regard to your pleasure.  After a rough fucking, he cums, stuffing your ass full of hot demon cum.  His orgasm lasts far longer than any human's, leaving your belly slightly distended.", false);
-			player.buttChange(monster.cockArea(0), true,true,false);
-			player.modStats("lib", 1, "sen", 1, "cor", 1);
-			player.changeLust(1);
-			if (player.sens > 40) {
-				outputText("  You manage to orgasm from the feeling of being filled by hot cum.", false);
-				if (player.gender == 1) outputText("  You jizz all over the ground in front of you, spraying cum in huge squirts in time with the demon's thrusts.", false);
+			else {
+				if (player.inHeat) outputText("You find yourself hoping you're pregnant as you swiftly lose consciousness.", false);
+				else if (player.pregnancyIncubation <= 0) {
+					if (player.cor > 75) outputText("With an appreciative moan, you bury your fingers in its slimy warmth, hoping you are pregnant with some fiendish offspring, and lose consciousness.", false);
+					else outputText("You hope you don't become pregnant, but promptly lose consciousness before you can contemplate the prospect any further.", false);
+				}
+			}
+			player.knockUp(PREGNANCY_IMP, INCUBATION_IMP - 14); //Bigger imp means faster pregnancy
+			player.modStats("lib", 1, "sen", 1, "lus", 1, "cor", 1);
 
-				player.orgasm();
-				player.modStats("cor", 1);
-			}
-			outputText("\n\nYou drop to the ground when he's done with you, cum spilling from your abused ass all over the ground, too exhausted to move.  Consciousness fades.  ", false);
 		}
-	}
+		//Male or genderless
+		if (player.gender == 0 || player.gender == 1) {
+			//Alternate male-only case
+			if (player.gender == 1 && rand(2) == 0) {
+				//outputText(images.showImage("imp-loss-male-fuck"), false);
+				outputText("Your eyes glaze over with lust as the imp's dark magic destroys your will to continue fighting. You sink to your ", true);
+				if (player.isTaur()) outputText("hocks and knees, your " + player.cockDescript(0) + " hurting from the massive blood pressure caused by your unbridled lust. He approaches you and stops about two feet in front of you, watching with delight your helpless state", false);
+				else outputText("knees, pull out your " + player.cockDescript(0) + " and begin mindlessly stroking yourself as the imp approaches you, a wicked grin on his face. Your mind races with thoughts and images of sucking the imp's cock. He approaches you and stops about two feet in front of you, watching with delight as you succumb to your own lust", false);
+				outputText(". Your eyes glance down to his waist and see a massive bulge form under his loincloth, the sight of which causes your " + player.cockDescript(0) + " to twitch and begin leaking pre-cum.<br><br>");
+				outputText("The imp drops his loincloth, revealing his huge 12-inch penis, and then forcefully grabs your head and pulls you down on to his hard throbbing demon dick. He shoves his cock past your lips and deep down your throat in one slow, forceful push. You can barely accommodate his huge cock, and yet your lust makes you hunger for more. You cough and gag while the imp proceeds to fuck your mouth hard, slapping his hot balls against your chin, disregarding your need to breathe.  ", false);
+				if (player.isTaur()) outputText("Dropping down to the ground, your " + player.cockDescript(0) + " trembles against your body to the rhythm of the imp's thrusts, leaving your underbelly smeared with its own pre-cum.<br><br>");
+				else outputText("On all fours now, your " + player.cockDescript(0) + " bounces up and down against you to the rhythm of the imp's thrusts, leaving your belly smeared in your own pre-cum.<br><br>");
+				if (player.ballSize >= 5) outputText("Your huge " + player.ballsDescriptLight() + " swing heavily against you as well, responding to the force of the imp's thrusts, slapping your own ass and driving your " + player.cockDescript(0) + " even stiffer with lust, the pre-cum pulsing out of your cock in time with the slapping.<br><br>");
+				outputText("You begin to feel light-headed from lack of air just as the imp grips your head firmly and begins making rapid, shallow thrusts down your throat, nearing his orgasm. Suddenly he clenches tight, his claws digging into your head and thrusts down your throat as far as he can, holding his massive cock deep in your stomach. Your eyes go wide as you feel the imp's balls on your chin spasm violently.  His cock pulses in your mouth as the thick demon cum is pumped violently down your throat. It feels like an eternity as the imp continues to fill your guts with his hot cum, his orgasm lasting far longer than any human's. ");
+				player.refillHunger(40); // CHECK THIS
+				outputText("He slowly withdraws his still-pumping cock from you, coating your throat and then mouth with an almost continual spray of his unnaturally hot and sticky demon seed. The imp pulls out of your mouth just in time to splatter your face with his cum before his orgasm stops, coating your lips, nose, eyes, and hair with his incredibly thick and sticky cum.<br><br>");
+				outputText("You fall to the ground gasping, exhausted and unable to move, the demon cum on your face and inside you still burning with intense heat and corruption. You lose consciousness, your " + player.cockDescript(0) + " still firmly erect, your lust not sated.", false);
+				player.modStats("cor", 2);
+				player.changeLust(20);
+				cleanupAfterCombat();
+				player.slimeFeed(); // CHECK THIS
+				return;
+			}
+			else {
+				player.slimeFeed(); // CHECK THIS
+				outputText("You sink to the ground, too overcome by lust and desire to fight.  The imp smiles and circles you, dropping his loincloth as he goes.  You are roughly shoved to the ground, your backside slapped hard.  You're too horny to do anything but moan from the pain ", false);
+				if (!player.isTaur()) outputText("as you are disrobed", false);
+				outputText(".  As the imp presses a large bulk against your backside, you realize he has a massive penis!<br><br>The imp pushes his " + monster.cockDescriptShort(0) + " into your ass and fucks you hard, with little regard to your pleasure.  After a rough fucking, he cums, stuffing your ass full of hot demon cum.  His orgasm lasts far longer than any human's, leaving your belly slightly distended.", false);
+				player.buttChange(monster.cockArea(0), true, true, false);
+				player.modStats("lib", 1, "sen", 1, "cor", 1);
+				player.changeLust(1);
+				if (player.sens > 40) {
+					outputText("  You manage to orgasm from the feeling of being filled by hot cum.", false);
+					if (player.gender == 1) outputText("  You jizz all over the ground in front of you, spraying cum in huge squirts in time with the demon's thrusts.", false);
+
+
+					player.modStats("cor", 1);
+				}
+				outputText("<br><br>You drop to the ground when he's done with you, cum spilling from your abused ass all over the ground, too exhausted to move.  Consciousness fades.  ", false);
+			}
+		}
+		cleanupAfterCombat();
+		player.orgasm();
+
 	}
 //HP or insta-loss
 	else {
 	outputText("\n<b>You fall, defeated by the imp!</b>\nThe last thing you see before losing consciousness is the creature undoing its crude loincloth to reveal a rather disproportionately-sized member.", false);
+		cleanupAfterCombat();
 	}
-	cleanupAfterCombat();
+
 };
 
-// RARE LOSS SCENE FOR MALES
+// RARE LOSS SCENE FOR THICK MALES
 
 ImpScene.sprocketImp = function() {
 	player.slimeFeed();
 	clearOutput();
-	outputText("You fall to your knees, lost in thoughts of what you want the imp to do to you.  Your body burns with desire, ready for the anal assault to come.  At least that's what you think.  You reach a hand out to the imp, wanting to pull him to you, to make him take you the way you need to be taken.  But he doesn't, not this time.\n\n", false);
+	outputText("You fall to your knees, lost in thoughts of what you want the imp to do to you.  Your body burns with desire, ready for the anal assault to come.  At least that's what you think.  You reach a hand out to the imp, wanting to pull him to you, to make him take you the way you need to be taken.  But he doesn't, not this time.<br><br>");
 	//New PG
 	outputText("Much to your surprise, the imp flutters upward on his small leathery wings and rushes toward you.  ", false);
 	if (player.hairLength > 0) outputText("His claws dig into your hair ", false);
 	else outputText("His claws dig into your wrists ", false);
-	outputText("and you find yourself dragged upward with him, soaring over the tops of the trees.  The cool rush of air does nothing to abate your arousal.  If anything, the cold shock only makes your body more aware of its own need.  After just a few seconds that feel like an eternity to your lust-filled being, the imp hurls you down into a tree.  You flail as you fall, barely catching yourself on the upper branches.  Your hands and " + player.legs() + " are tangled in the smooth wooden spiderweb below you, your mind torn between desire for the imp above and fear of the fall below.  You can see from the gleam in the horned creature's red eyes that he has you right where he wants you.\n\n", false);
+	outputText("and you find yourself dragged upward with him, soaring over the tops of the trees.  The cool rush of air does nothing to abate your arousal.  If anything, the cold shock only makes your body more aware of its own need.  After just a few seconds that feel like an eternity to your lust-filled being, the imp hurls you down into a tree.  You flail as you fall, barely catching yourself on the upper branches.  Your hands and " + player.legs() + " are tangled in the smooth wooden spiderweb below you, your mind torn between desire for the imp above and fear of the fall below.  You can see from the gleam in the horned creature's red eyes that he has you right where he wants you.<br><br>");
 //New PG
 outputText("The imp pulls the loincloth from his waist, revealing his red throbbing cock.  It is certainly large, even though it stands smaller than your own erection.  He tosses the cloth aside, and you see him fluttering down toward you just before the rough fabric lands on your face.  His clawed fingers grasp ", false);
 //Variable cocktext
@@ -994,7 +1029,7 @@ outputText("smearing your pre-cum together.  You wonder if he is planning on jus
 	else if (player.cocks[0].cockType == CockTypesEnum.HORSE) outputText("seats his dick in the flared head of your prick, and then pushes farther. His shaft plunges into yours, filling your cock more than any cum load ever could.  ", false);
 	else if (player.cocks[0].cockType == CockTypesEnum.TENTACLE) outputText("shoves his dick deeply into the slit in the head of your vine-like cock.  ", false);
 //New PG
-	outputText("\n\n", false);
+	outputText("<br><br>");
 	outputText("He grips your cock tightly as he fucks you, treating you like a ", false);
 //Differing cocksleeve texts
 	if (player.skinDesc == "fur") outputText("furry cock-sleeve", false);
