@@ -2070,6 +2070,59 @@ Creature.prototype.hasKnot = function(arg) {
     return this.cocks[arg].hasKnot();
 }
 
+// WILL NEED TESTING
+Creature.prototype.cockHead = function(cockNum = 0) {
+    if (cockNum < 0 || cockNum > cocks.length - 1) {
+        outputText("Something went wrong in Creature.prototype.cockHead!");
+        return;
+    }
+    switch (this.cocks[cockNum].cockType) {
+        case CockTypesEnum.CAT:
+            if (rand(2) == 0) return "point";
+            return "narrow tip";
+        case CockTypesEnum.DEMON:
+            if (rand(2) == 0) return "tainted crown";
+            return "nub-ringed tip";
+        case CockTypesEnum.DISPLACER:
+            switch (rand(5)) {
+                case  0: return "star tip";
+                case  1: return "blooming cock-head";
+                case  2: return "open crown";
+                case  3: return "alien tip";
+                default: return "bizarre head";
+            }
+        case CockTypesEnum.DOG:
+        case CockTypesEnum.FOX:
+            if (rand(2) == 0) return "pointed tip";
+            return "narrow tip";
+        case CockTypesEnum.HORSE:
+            if (rand(2) == 0) return "flare";
+            return "flat tip";
+        case CockTypesEnum.KANGAROO:
+            if (rand(2) == 0) return "tip";
+            return "point";
+        case CockTypesEnum.LIZARD:
+            if (rand(2) == 0) return "crown";
+            return "head";
+        case CockTypesEnum.TENTACLE:
+            if (rand(2) == 0) return "mushroom-like tip";
+            return "wide plant-like crown";
+        case CockTypesEnum.PIG:
+            if (rand(2) == 0) return "corkscrew tip";
+            return "corkscrew head";
+        case CockTypesEnum.RHINO:
+            if (rand(2) == 0) return "flared head";
+            return "rhinoceros dickhead";
+        case CockTypesEnum.ECHIDNA:
+            if (rand(2) == 0) return "quad heads";
+            return "echidna quad heads";
+        default:
+    }
+    if (rand(2) == 0) return "crown";
+    if (rand(2) == 0) return "head";
+    return "cock-head";
+};
+
 //------------
 // ALTERATIONS
 //------------

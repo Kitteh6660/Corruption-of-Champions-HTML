@@ -11,10 +11,13 @@ const TIMES_ORGASMED                    = "Times_Orgasmed";
 const PC_FETISH                         = "PC_Fetish"; // Used in lust attack in combatTeases file
 const IMPS_KILLED                       = "Imps_Killed"; // How many Imps has the player killed?
 
+
 //------------
 // MISC
 //------------
 const HAIR_GROWTH_STOPPED_BECAUSE_LIZARD= "Hair_Growth_Stopped";
+const EVER_INFESTED                     = "Ever_Infested"; // Has the PC ever been infested with worms?
+const MEANINGLESS_CORRUPTION            = "Meaningless_Corruption"; //Unknown, used in Goblin victory code.
 
 //------------
 // CODEX
