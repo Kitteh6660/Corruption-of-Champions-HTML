@@ -36,3 +36,9 @@ PerkLib.SpiderOvipositor = new PerkType("SpiderOvipositor", "Spider Ovipositor",
 
 PerkLib.BimboBrains = new PerkType("BimboBrains", "Bimbo Brains", "TO BE ADDED");
 PerkLib.FutaFaculties = new PerkType("FutaFac", "Futa Faculties", "TO BE ADDED");
+
+//----------
+// UNKNOWN
+//---------
+
+PerkLib.Misdirection = new PerkType("Misdirection", "Misdirection", "TO BE ADDED");

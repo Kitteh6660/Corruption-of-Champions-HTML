@@ -59,6 +59,14 @@ Items.Consumables.PigTruffle = new Item("PigTruf", "Pig Truffle", "a pigtail tru
 Items.Consumables.PigTruffle.description = "It's clear where this fungus gets its name. A small, curly sprig resembling a pig's tail can be seen jutting out of it.";
 Items.Consumables.PigTruffle.consumeEffect = ConsumableEffects.pigTFs;
 
+Items.Consumables.Reptilum = new Item("Reptilum", "Reptilum", "TO BE ADDED", ITEM_TYPE_CONSUMABLE);
+Items.Consumables.Reptilum.description = "TO BE ADDED.";
+//Items.Consumables.Reptilum.consumeEffect = ConsumableEffects.
+
+Items.Consumables.SnakeOil = new Item("SnakeOil", "Snake Oil", "TO BE ADDED", ITEM_TYPE_CONSUMABLE);
+Items.Consumables.SnakeOil.description = "TO BE ADDED.";
+//Items.Consumables.SnakeOil.consumeEffect = ConsumableEffects.
+
 Items.Consumables.WhiskerFruit = new Item("W.Fruit", "W.Fruit", "a piece of whisker-fruit", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.WhiskerFruit.description = "This small, peach-sized fruit has tiny whisker-like protrusions growing from the sides.";
 Items.Consumables.WhiskerFruit.consumeEffect = ConsumableEffects.felineTFs;

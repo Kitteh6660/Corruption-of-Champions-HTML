@@ -2,6 +2,11 @@
 
 //The default value for all of these flags is zero. To change the value of a flag, you have to call gameFlags[NAMEOFFLAG] = int or whatever it's getting set to. If you use addToGameFlags and set flags in this way, your values will be saved.
 
+//------------
+// META FLAGS
+//------------
+const SFW_MODE                          = "SFW_Mode"; // Is the game in SFW mode?
+
 
 //------------
 // STATS

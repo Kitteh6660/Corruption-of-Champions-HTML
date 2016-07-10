@@ -62,5 +62,5 @@ Debug.genderChangeNone = function() {
 
 Debug.fightCreature = function() {
     clearOutput();
-    startCombat(new Goblin());
+    startCombat(new Naga());
 }

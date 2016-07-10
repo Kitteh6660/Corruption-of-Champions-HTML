@@ -2072,7 +2072,7 @@ Creature.prototype.hasKnot = function(arg) {
 
 // WILL NEED TESTING
 Creature.prototype.cockHead = function(cockNum = 0) {
-    if (cockNum < 0 || cockNum > cocks.length - 1) {
+    if (cockNum < 0 || cockNum > this.cocks.length - 1) {
         outputText("Something went wrong in Creature.prototype.cockHead!");
         return;
     }
@@ -3628,7 +3628,7 @@ _buttPregnancyIncubation = (type == 0 ? 0 : incubation); //Won't allow incubatio
 */
 
 //---------------
-// OVIPOSITING - TOTALLY NOT COMPLETE. CHECK ALL FUNCTIONS WHEN WE DECIDE TO GET THIS GOING.
+// OVIPOSITING - NOT COMPLETE IN THE SLIGHTEST. CHECK ALL FUNCTIONS WHEN WE DECIDE TO GET THIS GOING.
 //---------------
 
 Creature.prototype.canOvipositSpider = function()
@@ -3670,4 +3670,8 @@ return;
     //setEggs(0);
 //Sets fertile eggs = regular eggs (which are 0)
     //fertilizeEggs();
+}
+
+Creature.prototype.fertilizedEggs = function() {
+    return;
 }
