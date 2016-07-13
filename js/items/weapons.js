@@ -14,3 +14,11 @@ Items.Weapons.Pipe.verb = "smash";
 Items.Weapons.Pipe.value = 25;
 Items.Weapons.Pipe.attack = 5;
 
+Items.Weapons.WizardStaff = new Item("W.Staff", "Wizard Staff", "TO BE ADDED", ITEM_TYPE_WEAPON);
+//Items.Weapons.WizardStaff.description = ""
+//Items.Weapons.WizardStaff.equipmentName = "";
+//Items.Weapons.WizardStaff.verb = "";
+//Items.Weapons.WizardStaff.value = ;
+//Items.Weapons.WizardStaff.attack = ;
+
+

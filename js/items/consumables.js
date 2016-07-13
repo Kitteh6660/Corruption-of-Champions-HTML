@@ -47,6 +47,11 @@ Items.Consumables.GoblinAle = new Item("Gob.Ale", "Goblin Ale", "a flagon of pot
 Items.Consumables.GoblinAle.description = "This sealed flagon of 'Goblin Ale' sloshes noisily with alcoholic brew. Judging by the markings on the flagon, it's a VERY strong drink, and not to be trifled with.";
 Items.Consumables.GoblinAle.consumeEffect = ConsumableEffects.goblinTFs;
 
+// Needed for Amily transformation code. Flesh out when we reach the areas of the game when you can actually get them.
+Items.Consumables.GoldenSeed = new Item("G.Seed", "Golden Seed", "a golden seed", ITEM_TYPE_CONSUMABLE);
+//Items.Consumables.GoldenSeed.description =
+//Items.Consumables.GoldenSeed.consumeEffect =
+
 Items.Consumables.Hummanus = new Item("Hummus ", "Hummanus", "a small jar of hummus", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.Hummanus.description = "This is a small jar with label that reads, \"<i>Hummanus</i>\". If the name clues you in, this might be how humanity is regained.";
 Items.Consumables.Hummanus.consumeEffect = ConsumableEffects.humanTFs;
@@ -55,26 +60,37 @@ Items.Consumables.ImpFood = new Item("ImpFood", "Imp Food", "a parcel of imp foo
 Items.Consumables.ImpFood.description = "This is a small parcel of reddish-brown bread stuffed with some kind of meat. It smells delicious.";
 Items.Consumables.ImpFood.consumeEffect = ConsumableEffects.impTFs;
 
+Items.Consumables.LaBova = new Item("LaBova", "La Bova", "TO BE ADDED", ITEM_TYPE_CONSUMABLE);
+//Items.Consumables.LaBova.description =
+//Items.Consumables.LaBova.consumeEffect = ConsumableEffects
+
+Items.Consumables.Lactaid = new Item("Lactaid", "Lactaid", "TO BE ADDED", ITEM_TYPE_CONSUMABLE);
+//Items.Consumables.Lactaid.description =
+//Items.Consumables.Lactaid.consumeEffect = ConsumableEffects
+
 Items.Consumables.PigTruffle = new Item("PigTruf", "Pig Truffle", "a pigtail truffle", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.PigTruffle.description = "It's clear where this fungus gets its name. A small, curly sprig resembling a pig's tail can be seen jutting out of it.";
 Items.Consumables.PigTruffle.consumeEffect = ConsumableEffects.pigTFs;
 
 Items.Consumables.Reptilum = new Item("Reptilum", "Reptilum", "TO BE ADDED", ITEM_TYPE_CONSUMABLE);
-Items.Consumables.Reptilum.description = "TO BE ADDED.";
+//Items.Consumables.Reptilum.description = "TO BE ADDED.";
 //Items.Consumables.Reptilum.consumeEffect = ConsumableEffects.
 
 Items.Consumables.SnakeOil = new Item("SnakeOil", "Snake Oil", "TO BE ADDED", ITEM_TYPE_CONSUMABLE);
-Items.Consumables.SnakeOil.description = "TO BE ADDED.";
+//Items.Consumables.SnakeOil.description = "TO BE ADDED.";
 //Items.Consumables.SnakeOil.consumeEffect = ConsumableEffects.
+
+Items.Consumables.TatteredScroll = new Item("T.Scroll", "Tattered Scroll", "TO BE ADDED", ITEM_TYPE_CONSUMABLE);
+//Items.Consumables.TatteredScroll.description = "TO BE ADDED.";
+//Items.Consumables.TatteredScroll.consumeEffect = ConsumableEffects.
 
 Items.Consumables.WhiskerFruit = new Item("W.Fruit", "W.Fruit", "a piece of whisker-fruit", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.WhiskerFruit.description = "This small, peach-sized fruit has tiny whisker-like protrusions growing from the sides.";
 Items.Consumables.WhiskerFruit.consumeEffect = ConsumableEffects.felineTFs;
 
-// Needed for Amily transformation code. Flesh out when we reach the areas of the game when you can actually get them.
-Items.Consumables.GoldenSeed = new Item("G.Seed", "Golden Seed", "a golden seed", ITEM_TYPE_CONSUMABLE);
-
-
+Items.Consumables.WhiteBook = new Item("W.Book", "White Book", "TO BE ADDED", ITEM_TYPE_CONSUMABLE);
+//Items.Consumables.WhiteBook.description
+//Items.Consumables.WhiteBook.consumeEffect = ConsumableEffects.
 
 //------------
 // DEMONIC

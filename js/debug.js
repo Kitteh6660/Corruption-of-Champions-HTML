@@ -11,6 +11,7 @@ Debug.doDebug = function() {
     menu();
     addButton(0, "Gender", Debug.genderChange, null, null, null, "Change the Player's Gender.");
     addButton(1, "Fight", Debug.fightCreature, null, null, null, "Fight a creature.");
+    addButton(2, "StatChange", Debug.statChange, null, null, null, "Change a Stat for testing.");
     addButton(14, "Leave", Camp.doCamp, null, null, null, "Return to Camp.");
 };
 
@@ -62,5 +63,21 @@ Debug.genderChangeNone = function() {
 
 Debug.fightCreature = function() {
     clearOutput();
-    startCombat(new Naga());
+    startCombat(new SandWitch());
+}
+
+//-------
+// Change a Stat
+//-------
+
+Debug.statChange = function() {
+    clearOutput();
+    outputText("Which Stat do you want to change?");
+    addButton(0, "HP BOOST", Debug.changeHP);
+    addButton(14, "Back", Debug.doDebug);
+}
+
+Debug.changeHP = function() {
+    outputText("Changing HP");
+    player.HP = 999;
 }

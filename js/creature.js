@@ -2070,7 +2070,14 @@ Creature.prototype.hasKnot = function(arg) {
     return this.cocks[arg].hasKnot();
 }
 
-// WILL NEED TESTING
+//PLACEHOLDER
+Creature.prototype.dogCocks = function() {
+    outputText("Placeholder for dogCocks in creature.js. Returning.")
+    doNext(Camp.returnToCampUseOneHour);
+}
+
+
+
 Creature.prototype.cockHead = function(cockNum = 0) {
     if (cockNum < 0 || cockNum > this.cocks.length - 1) {
         outputText("Something went wrong in Creature.prototype.cockHead!");
