@@ -1,15 +1,14 @@
 PregnancyStore = [];
 
 //Pregancy types. Both butt and normal. Each type represents the father of this baby.
-const PREGNANCY_IMP                   =   1;
+
 const PREGNANCY_MINOTAUR              =   2;
 const PREGNANCY_MOUSE                 =   4;
-const PREGNANCY_OVIELIXIR_EGGS        =   5; //Also caused by Phoenixes apparently
 const PREGNANCY_HELL_HOUND            =   6;
 const PREGNANCY_CENTAUR               =   7;
 const PREGNANCY_MARBLE                =   8;
 const PREGNANCY_BUNNY                 =   9;
-const PREGNANCY_ANEMONE               =  10;
+
 //const PREGNANCY_AMILY                 =  11;
 const PREGNANCY_IZMA                  =  12;
 const PREGNANCY_SPIDER                =  13;
@@ -53,7 +52,7 @@ const PREG_VERY_OVERDUE               =   9; //NPC is very overdue. Probably tri
 //Old Value, replaced in Saves.unFuckSave()        const PREGNANCY_BUTT_SANDTRAP_FERTILE =   4;
 //Old Value, replaced in Saves.unFuckSave()        const PREGNANCY_BUTT_SANDTRAP         =   5; //Sandtrap did not have fertilized eggs
 
-const INCUBATION_IMP                  = 432; //Time for standard imps. Imp lords, Ceraph, Lilium and the imp horde cause slightly faster pregnancies
+
 const INCUBATION_MINOTAUR             = 432;
 
 const INCUBATION_OVIELIXIR_EGGS       =  50;

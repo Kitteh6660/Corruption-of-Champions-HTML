@@ -141,6 +141,7 @@ const AMILY_CLOTHING                    = "Amily_Clothing";
 const INCUBATION_MOUSE                  = 350; // Incubation time for mice types/Amily
 const INCUBATION_DRIDER                 = 400;
 const INCUBATION_BEE                    =  48;
+const INCUBATION_IMP                    = 432; //Time for standard imps. Imp lords, Ceraph, Lilium and the imp horde cause slightly faster pregnancies
 
 
 // Pregnancy event arrays
@@ -152,7 +153,11 @@ const INCUBATION_SAND_WITCH_EVENT        = [142, 96];
 const PREGNANCY_PLAYER                  = "Player"; // Marks the player impregnated someone
 const PREGNANCY_AMILY                   = "Amily";
 const PREGNANCY_BEE_EGGS                = "Bee_Eggs";
-const PREGNANCY_DRIDER_EGGS             = "Drider_Eggs"; 
+const PREGNANCY_DRIDER_EGGS             = "Drider_Eggs";
+const PREGNANCY_IMP                     = "Imp";
+const PREGNANCY_OVIELIXIR_EGGS          = "Ovielixir_Eggs";
+const PREGNANCY_ANEMONE                 = "Anemone";
+
 
 // Misc Pregnancy flags
 const PC_PENDING_PREGGERS               = "PC_Pending_Preggers"; // Unsure what this is for. Used in Amily Herm Quest.

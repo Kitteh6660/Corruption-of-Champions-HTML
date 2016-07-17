@@ -3517,39 +3517,34 @@ Creature.prototype.isButtPregnant = function() { return this.buttPregnancyType !
 //fertility must be >= random(0-beat)
 //If arg == 1 then override any contraceptives and guarantee fertilization
 //If arg == -1, no chance of fertilization.
-Creature.prototype.knockUp = function(type = 0, incubation = 0, beat = 100, arg = 0, event = [])
-    {
-        //Contraceptives cancel!
-        //if (findStatusEffect(StatusEffects.Contraceptives) >= 0 && arg < 1)
-        //return;
-//			if (findStatusEffect(StatusEffects.GooStuffed) >= 0) return; //No longer needed thanks to PREGNANCY_GOO_STUFFED being used as a blocking value
-var bonus = 0;
+Creature.prototype.knockUp = function(type = 0, incubation = 0, beat = 100, arg = 0, event = []) {
+    //Contraceptives cancel!
+    if (this.findStatusEffect(StatusEffects.Contraceptives) >= 0 && arg < 1) return;
+    // Originally commented out
+    //if (this.findStatusEffect(StatusEffects.GooStuffed) >= 0) return; //No longer needed thanks to PREGNANCY_GOO_STUFFED being used as a blocking value
+    var bonus = 0;
 //If arg = 1 (always pregnant), bonus = 9000
-if (arg >= 1)
-    bonus = 9000;
-if (arg <= -1)
-    bonus = -9000;
+    if (arg >= 1) bonus = 9000;
+    if (arg <= -1) bonus = -9000;
 
-    this.knockUpForce(type, incubation, event);
-// NEED TOTAL FERTILITY CODE
-    /*
-if (this.pregnancyIncubation == 0 && totalFertility() + bonus > Math.floor(Math.random() * beat) && hasVagina())
-{
-    knockUpForce(type, incubation);
-    trace("PC Knocked up with pregnancy type: " + type + " for " + incubation + " incubation.");
-}
+
+    //this.knockUpForce(type, incubation, event);
+
+    if (this.pregnancyIncubation == 0 && this.totalFertility() + bonus > Math.floor(Math.random() * beat) && this.hasVagina()) {
+        this.knockUpForce(type, incubation);
+        //trace("PC Knocked up with pregnancy type: " + type + " for " + incubation + " incubation.");
+    }
+    
 //Chance for eggs fertilization - ovi elixir and imps excluded!
-if (type != PregnancyStore.PREGNANCY_IMP && type != PregnancyStore.PREGNANCY_OVIELIXIR_EGGS && type != PregnancyStore.PREGNANCY_ANEMONE)
-{
-    if (findPerk(PerkLib.SpiderOvipositor) >= 0 || findPerk(PerkLib.BeeOvipositor) >= 0)
-    {
-        if (totalFertility() + bonus > Math.floor(Math.random() * beat))
-        {
-            fertilizeEggs();
+    if (type != PREGNANCY_IMP && type != PREGNANCY_OVIELIXIR_EGGS && type != PREGNANCY_ANEMONE) {
+        if (this.findPerk(PerkLib.SpiderOvipositor) >= 0 || this.findPerk(PerkLib.BeeOvipositor) >= 0) {
+            if (this.totalFertility() + bonus > Math.floor(Math.random() * beat)) {
+                this.fertilizeEggs();
+            }
         }
     }
-}*/
-}
+};
+
 
 
 Creature.prototype.knockUpForce = function(type = 0, incubation = 0, event = []) {

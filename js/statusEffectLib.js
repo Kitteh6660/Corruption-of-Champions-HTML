@@ -21,6 +21,7 @@ StatusEffects.Infested = new StatusEffectType("Infested");
 //Neutral
 StatusEffects.Feeder = new StatusEffectType("Feeder");
 StatusEffects.MeanToNaga = new StatusEffectType("Mean to Naga");
+StatusEffects.Contraceptives = new StatusEffectType("Contraceptives");
 
 //------------
 // COMBAT
