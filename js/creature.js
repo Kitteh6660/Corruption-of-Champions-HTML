@@ -3527,9 +3527,6 @@ Creature.prototype.knockUp = function(type = 0, incubation = 0, beat = 100, arg 
     if (arg >= 1) bonus = 9000;
     if (arg <= -1) bonus = -9000;
 
-
-    //this.knockUpForce(type, incubation, event);
-
     if (this.pregnancyIncubation == 0 && this.totalFertility() + bonus > Math.floor(Math.random() * beat) && this.hasVagina()) {
         this.knockUpForce(type, incubation);
         //trace("PC Knocked up with pregnancy type: " + type + " for " + incubation + " incubation.");
@@ -3545,6 +3542,34 @@ Creature.prototype.knockUp = function(type = 0, incubation = 0, beat = 100, arg 
     }
 };
 
+Creature.prototype.buttKnockUp = function(type = 0, incubation = 0, beat = 100, arg = 0) {
+    //Contraceptives cancel!
+    if (this.findStatusEffect(StatusEffects.Contraceptives) >= 0 && arg < 1)
+        return;
+    var bonus = 0;
+//If arg = 1 (always pregnant), bonus = 9000
+    if (arg >= 1) bonus = 9000;
+    if (arg <= -1) bonus = -9000;
+//If unpregnant and fertility wins out:
+    if (this.buttPregnancyIncubation == 0 && this.totalFertility() + bonus > Math.floor(Math.random() * beat)) {
+        this.buttKnockUpForce(type, incubation);
+        //trace("PC Butt Knocked up with pregnancy type: " + type + " for " + incubation + " incubation.");
+    }
+};
+
+//The more complex buttKnockUp function used by the player is defined in Character.as
+Creature.prototype.buttKnockUpForce = function(type = 0, incubation = 0, event = []) {
+    this.buttPregnancyType = type;
+    this.buttPregnancyIncubation = (type == 0 ? 0 : incubation * 60); //Won't allow incubation time without pregnancy type
+    if (event.length > 1) {
+        this.buttPregnancyEventArr = event;
+        this.buttPregnancyEventNum = 0;
+    }
+    if (type == 0) {
+        this.buttPregnancyEventArr.length = 0;
+        this.pregnancyEventNum = 0;
+    }
+};
 
 
 Creature.prototype.knockUpForce = function(type = 0, incubation = 0, event = []) {
@@ -3586,6 +3611,14 @@ Creature.prototype.pregnancyAdvance = function() {
             }
         }
     }
+    if (this.buttPregnancyEventArr.length > 1) {
+        for (j = 0; j < this.buttPregnancyEventArr.length; j++) {
+            if (this.buttPregnancyIncubation < this.buttPregnancyEventArr[j]) {
+                //outputText("Setting new flag to " + (j + 1));
+                this.buttPregnancyEventNum = j + 1;
+            }
+        }
+    }
 }
 
 //public function pregnancyUpdate():Boolean { return false; }
@@ -3601,31 +3634,7 @@ Creature.prototype.pregnancyAdvance = function() {
 
 
 //fertility must be >= random(0-beat)
-public function buttKnockUp(type:int = 0, incubation:int = 0, beat:int = 100, arg:int = 0):void
-    {
-        //Contraceptives cancel!
-        if (findStatusEffect(StatusEffects.Contraceptives) >= 0 && arg < 1)
-return;
-var bonus:int = 0;
-//If arg = 1 (always pregnant), bonus = 9000
-if (arg >= 1)
-    bonus = 9000;
-if (arg <= -1)
-    bonus = -9000;
-//If unpregnant and fertility wins out:
-if (buttPregnancyIncubation == 0 && totalFertility() + bonus > Math.floor(Math.random() * beat))
-{
-    buttKnockUpForce(type, incubation);
-    trace("PC Butt Knocked up with pregnancy type: " + type + " for " + incubation + " incubation.");
-}
-}
 
-//The more complex buttKnockUp function used by the player is defined in Character.as
-public function buttKnockUpForce(type:int = 0, incubation:int = 0):void
-{
-    _buttPregnancyType = type;
-_buttPregnancyIncubation = (type == 0 ? 0 : incubation); //Won't allow incubation time without pregnancy type
-}
 
 */
 

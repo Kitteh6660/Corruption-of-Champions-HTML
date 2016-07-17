@@ -17,6 +17,7 @@ StatusEffects.BonusVCapacity = new StatusEffectType("Bonus vCapacity");
 
 //Penalties
 StatusEffects.Infested = new StatusEffectType("Infested");
+StatusEffects.WormPlugged = new StatusEffectType("Worm Plugged");
 
 //Neutral
 StatusEffects.Feeder = new StatusEffectType("Feeder");
@@ -41,3 +42,5 @@ StatusEffects.StoneLust = new StatusEffectType("StoneLust");
 StatusEffects.Stunned = new StatusEffectType("Stunned");
 StatusEffects.TemporaryHeat = new StatusEffectType("TempHeat");
 StatusEffects.Venom = new StatusEffectType("Venom");
+StatusEffects.ParalyzeVenom = new StatusEffectType("ParalyzeVenom");
+StatusEffects.LustVenom = new StatusEffectType("LustVenom");

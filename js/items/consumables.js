@@ -72,6 +72,8 @@ Items.Consumables.PigTruffle = new Item("PigTruf", "Pig Truffle", "a pigtail tru
 Items.Consumables.PigTruffle.description = "It's clear where this fungus gets its name. A small, curly sprig resembling a pig's tail can be seen jutting out of it.";
 Items.Consumables.PigTruffle.consumeEffect = ConsumableEffects.pigTFs;
 
+Items.Consumables.PureHoney = new Item("PurHon", "Pure Honey", "TO BE ADDED", ITEM_TYPE_CONSUMABLE);
+
 Items.Consumables.Reptilum = new Item("Reptilum", "Reptilum", "TO BE ADDED", ITEM_TYPE_CONSUMABLE);
 //Items.Consumables.Reptilum.description = "TO BE ADDED.";
 //Items.Consumables.Reptilum.consumeEffect = ConsumableEffects.
@@ -79,6 +81,11 @@ Items.Consumables.Reptilum = new Item("Reptilum", "Reptilum", "TO BE ADDED", ITE
 Items.Consumables.SnakeOil = new Item("SnakeOil", "Snake Oil", "TO BE ADDED", ITEM_TYPE_CONSUMABLE);
 //Items.Consumables.SnakeOil.description = "TO BE ADDED.";
 //Items.Consumables.SnakeOil.consumeEffect = ConsumableEffects.
+
+Items.Consumables.SpecialHoney = new Item("SPHoney", "Special Honey", "TO BE ADDED", ITEM_TYPE_CONSUMABLE);
+//Items.Consumables.SpecialHoney.description = "TO BE ADDED.";
+//Items.Consumables.SpecialHoney.consumeEffect = ConsumableEffects.
+
 
 Items.Consumables.TatteredScroll = new Item("T.Scroll", "Tattered Scroll", "TO BE ADDED", ITEM_TYPE_CONSUMABLE);
 //Items.Consumables.TatteredScroll.description = "TO BE ADDED.";

@@ -216,6 +216,13 @@ const NAGA_FUCKED_AS_NAGA               = "Naga_Fucked_As_Naga";
 //Sand Witch
 const SAND_WITCH_RAPED                  = "Sand_Witch_Raped";
 
+//Bee Girl
+const BEE_GIRL_COMBAT_WINS_WITHOUT_RAPE = "Bee_Girl_Combat_Wins_Without_Rape";
+const BEE_GIRL_COMBAT_WINS_WITH_RAPE    = "Bee_Girl_Combat_Wins_With_Rape";
+const BEE_GIRL_COMBAT_LOSSES            = "Bee_Girl_Combat_Losses";
+const BEE_BAD_END_WARNING               = "Bee_Bad_End_Warning";
+const FORCE_BEE_TO_PRODUCE_HONEY        = "Force_Bee_To_Produce_Honey";
+
 //------------
 // KEY ITEMS
 //------------
