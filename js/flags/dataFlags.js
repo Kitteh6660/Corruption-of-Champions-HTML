@@ -137,16 +137,22 @@ const AMILY_CLOTHING                    = "Amily_Clothing";
 // Note that these are actual constants, not called by gameFlags yet until the pregnancy system is figured out.
 //=================
 
-// Base incubation values
+// Base incubation values for a pregnancy
 const INCUBATION_MOUSE                  = 350; // Incubation time for mice types/Amily
+const INCUBATION_DRIDER                 = 400;
+const INCUBATION_BEE                    =  48;
+
 
 // Pregnancy event arrays
 const INCUBATION_MOUSE_EVENT            = [336, 280, 216, 180, 120, 72, 48, 32]; // Event flags for Mouse Pregnancy
 const INCUBATION_AMILY_EVENT            = [150, 120, 100, 96, 90, 72, 48]; // Special array for Amily pregnancy in Town Ruins.
+const INCUBATION_SAND_WITCH_EVENT        = [142, 96];
 
-// Pregnancy Flags
+// Pregnancy types. Marks who did the impregnation
 const PREGNANCY_PLAYER                  = "Player"; // Marks the player impregnated someone
 const PREGNANCY_AMILY                   = "Amily";
+const PREGNANCY_BEE_EGGS                = "Bee_Eggs";
+const PREGNANCY_DRIDER_EGGS             = "Drider_Eggs"; 
 
 // Misc Pregnancy flags
 const PC_PENDING_PREGGERS               = "PC_Pending_Preggers"; // Unsure what this is for. Used in Amily Herm Quest.

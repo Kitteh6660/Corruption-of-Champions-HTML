@@ -14,7 +14,7 @@ const PREGNANCY_ANEMONE               =  10;
 const PREGNANCY_IZMA                  =  12;
 const PREGNANCY_SPIDER                =  13;
 const PREGNANCY_BASILISK              =  14;
-const PREGNANCY_DRIDER_EGGS           =  15;
+
 const PREGNANCY_GOO_GIRL              =  16;
 const PREGNANCY_EMBER                 =  17;
 const PREGNANCY_BENOIT                =  18;
@@ -25,7 +25,7 @@ const PREGNANCY_SAND_WITCH            =  22;
 const PREGNANCY_FROG_GIRL             =  23;
 const PREGNANCY_FAERIE                =  24; //Indicates you are carrying either a phouka or faerie baby. Which one is determined by the PREGNANCY_CORRUPTION flag
 //const PREGNANCY_PLAYER                =  25; //The player is the father. Will be used when an NPC is able to have children from multiple different fathers.
-const PREGNANCY_BEE_EGGS              =  26;
+
 const PREGNANCY_SANDTRAP_FERTILE      =  27;
 const PREGNANCY_SANDTRAP              =  28;
 const PREGNANCY_JOJO                  =  29; //So we can track them separately from other mouse pregnancies
@@ -55,7 +55,7 @@ const PREG_VERY_OVERDUE               =   9; //NPC is very overdue. Probably tri
 
 const INCUBATION_IMP                  = 432; //Time for standard imps. Imp lords, Ceraph, Lilium and the imp horde cause slightly faster pregnancies
 const INCUBATION_MINOTAUR             = 432;
-//const INCUBATION_MOUSE                = 350;
+
 const INCUBATION_OVIELIXIR_EGGS       =  50;
 const INCUBATION_HELL_HOUND           = 352;
 const INCUBATION_CENTAUR              = 420;
@@ -66,7 +66,7 @@ const INCUBATION_ANEMONE              = 256;
 const INCUBATION_IZMA                 = 300;
 const INCUBATION_SPIDER               = 400;
 const INCUBATION_BASILISK             = 250;
-const INCUBATION_DRIDER               = 400;
+
 const INCUBATION_GOO_GIRL             =  85;
 const INCUBATION_EMBER                = 336;
 const INCUBATION_SATYR                = 160;
@@ -75,7 +75,6 @@ const INCUBATION_URTA                 = 515;
 const INCUBATION_SAND_WITCH           = 360;
 const INCUBATION_FROG_GIRL            =  30;
 const INCUBATION_FAERIE               = 200;
-const INCUBATION_BEE                  =  48;
 const INCUBATION_SANDTRAP             =  42;
 const INCUBATION_HARPY                = 168;
 const INCUBATION_SHIELA               =  72;

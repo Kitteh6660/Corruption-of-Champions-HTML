@@ -3638,6 +3638,7 @@ _buttPregnancyIncubation = (type == 0 ? 0 : incubation); //Won't allow incubatio
 // OVIPOSITING - NOT COMPLETE IN THE SLIGHTEST. CHECK ALL FUNCTIONS WHEN WE DECIDE TO GET THIS GOING.
 //---------------
 
+// Does the creature have a spider ovipositor?
 Creature.prototype.canOvipositSpider = function()
 {
     if (this.eggs() >= 10 && this.findPerk(PerkLib.SpiderOvipositor) >= 0 && this.isDrider() && this.tailType == TAIL_TYPE_SPIDER_ADBOMEN)
@@ -3645,6 +3646,7 @@ Creature.prototype.canOvipositSpider = function()
     return false;
 }
 
+// Does the creature have an bee ovipositor?
 Creature.prototype.canOvipositBee = function()
 {
     if (this.eggs() >= 10 && this.findPerk(PerkLib.BeeOvipositor) >= 0 && this.tailType == TAIL_TYPE_BEE_ABDOMEN)
@@ -3652,6 +3654,7 @@ Creature.prototype.canOvipositBee = function()
     return false;
 }
 
+// Can the creature oviposit at all?
 Creature.prototype.canOviposit = function()
 {
     if (this.canOvipositSpider() || this.canOvipositBee())
@@ -3659,26 +3662,92 @@ Creature.prototype.canOviposit = function()
     return false;
 }
 
+// How many eggs, held in value 1 in the perks, does the creature have?
 Creature.prototype.eggs = function()
 {
     if (this.findPerk(PerkLib.SpiderOvipositor) < 0 && this.findPerk(PerkLib.BeeOvipositor) < 0)
         return -1;
     else if (this.findPerk(PerkLib.SpiderOvipositor) >= 0)
-        //return perkv1(PerkLib.SpiderOvipositor);
-    //else
-        //return perkv1(PerkLib.BeeOvipositor);
-        return;
-}
-
-//
-Creature.prototype.dumpEggs = function() {
-    if (this.findPerk(PerkLib.SpiderOvipositor) < 0 && this.findPerk(PerkLib.BeeOvipositor) < 0)
-return;
-    //setEggs(0);
-//Sets fertile eggs = regular eggs (which are 0)
-    //fertilizeEggs();
-}
-
-Creature.prototype.fertilizedEggs = function() {
+        return this.perkValue(PerkLib.SpiderOvipositor, 1);
+    else
+        return this.perkValue(PerkLib.BeeOvipositor, 1);
     return;
 }
+
+// Add eggs to the ovipositors
+Creature.prototype.addEggs = function(arg = 0) {
+    if (this.findPerk(PerkLib.SpiderOvipositor) < 0 && this.findPerk(PerkLib.BeeOvipositor) < 0)
+        return -1;
+    else {
+        // Increase the number of Spider eggs by arg.
+        if (this.findPerk(PerkLib.SpiderOvipositor) >= 0) {
+            this.addPerkValue(PerkLib.SpiderOvipositor, 1, arg);
+            // Can't hold more than 50 eggs
+            if (this.eggs() > 50)
+                this.setPerkValue(PerkLib.SpiderOvipositor, 1, 50);
+            return this.perkValue(PerkLib.SpiderOvipositor, 1);
+        }
+        else {
+            // Increase Bee eggs by arg.
+            this.addPerkValue(PerkLib.BeeOvipositor, 1, arg);
+            if (this.eggs() > 50)
+                this.setPerkValue(PerkLib.BeeOvipositor, 1, 50);
+            return this.perkValue(PerkLib.BeeOvipositor);
+        }
+    }
+};
+
+// Sets a specific number of eggs to the ovipositors
+Creature.prototype.setEggs = function(arg = 0) {
+    if (this.findPerk(PerkLib.SpiderOvipositor) < 0 && this.findPerk(PerkLib.BeeOvipositor) < 0)
+        return -1;
+    else {
+        // Set the number of Spider eggs by arg.
+        if (this.findPerk(PerkLib.SpiderOvipositor) >= 0) {
+            this.setPerkValue(PerkLib.SpiderOvipositor, 1, arg);
+            // Can't hold more than 50 eggs
+            if (this.eggs() > 50)
+                this.setPerkValue(PerkLib.SpiderOvipositor, 1, 50);
+            return this.perkValue(PerkLib.SpiderOvipositor, 1);
+        }
+        else {
+            // Set the number of Bee eggs by arg.
+            this.setPerkValue(PerkLib.BeeOvipositor, 1, arg);
+            // No more than 50 eggs
+            if (this.eggs() > 50)
+                this.setPerkValue(PerkLib.BeeOvipositor, 1, 50);
+            return this.perkValue(PerkLib.BeeOvipositor);
+        }
+    }
+};
+
+// Returns value 2 to check to see if the creature's eggs are fertilized.
+Creature.prototype.fertilizedEggs = function() {
+    if (this.findPerk(PerkLib.SpiderOvipositor) < 0 && this.findPerk(PerkLib.BeeOvipositor) < 0)
+        return -1;
+    else if (this.findPerk(PerkLib.SpiderOvipositor) >= 0)
+        return this.perkValue(PerkLib.SpiderOvipositor, 2);
+    else
+        return this.perkValue(PerkLib.BeeOvipositor, 2);
+};
+
+// Fertilize the player's eggs by setting value 2 to eggs()
+Creature.prototype.fertilizeEggs = function() {
+    if (this.findPerk(PerkLib.SpiderOvipositor) < 0 && this.findPerk(PerkLib.BeeOvipositor) < 0)
+        return -1;
+    else if (this.findPerk(PerkLib.SpiderOvipositor) >= 0)
+        this.setPerkValue(PerkLib.SpiderOvipositor, 2, this.eggs());
+    else
+        this.setPerkValue(PerkLib.BeeOvipositor, 2, this.eggs());
+    return this.fertilizedEggs();
+};
+
+// Remove all eggs from the ovipositors
+Creature.prototype.dumpEggs = function() {
+    if (this.findPerk(PerkLib.SpiderOvipositor) < 0 && this.findPerk(PerkLib.BeeOvipositor) < 0) return;
+    // Clear out the eggs
+    this.setEggs(0);
+    // Use the new egg number to clear out the fertilized eggs
+    this.fertilizeEggs();
+};
+

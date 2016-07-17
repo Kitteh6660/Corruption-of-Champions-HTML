@@ -11,8 +11,19 @@ Areas.Desert.explore = function() {
     var select = choice[rand(choice.length)];
     switch(select) {
         case 0: //Sand Witch
+            // Check for birthing scene. Sand Witch must be in second half of pregnancy and hit a 1/4 chance.
+            // May possibly have to rename constructor like Amily/amily to make this work.
+            if (SandWitch.pregnancyEventNum == 2 && rand(4) == 0) {
+                if (SandWitch.pregnancyType = "Drider_Eggs") SandWitchScene.sammitchBirthsDriders();
+                else SandWitchScene.witchBirfsSomeBees();
+                return;
+                break;
+            }
+            // Otherwise, do normal encounter
+            else {
             SandWitchScene.encounter();
             break;
+            }
         case 1: //Naga
             NagaScene.nagaEncounter();
             break;
