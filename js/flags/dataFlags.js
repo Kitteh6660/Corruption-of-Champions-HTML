@@ -2,6 +2,11 @@
 
 //The default value for all of these flags is zero. To change the value of a flag, you have to call gameFlags[NAMEOFFLAG] = int or whatever it's getting set to. If you use addToGameFlags and set flags in this way, your values will be saved.
 
+//------------
+// META FLAGS
+//------------
+const SFW_MODE                          = "SFW_Mode"; // Is the game in SFW mode?
+
 
 //------------
 // STATS
@@ -10,6 +15,7 @@ const TIMES_TRANSFORMED                 = "Times_Transformed";
 const TIMES_ORGASMED                    = "Times_Orgasmed";
 const PC_FETISH                         = "PC_Fetish"; // Used in lust attack in combatTeases file
 const IMPS_KILLED                       = "Imps_Killed"; // How many Imps has the player killed?
+const COMBAT_BONUS_XP_VALUE             = "Combat_Bonus_XP_Value";
 
 
 //------------
@@ -131,16 +137,27 @@ const AMILY_CLOTHING                    = "Amily_Clothing";
 // Note that these are actual constants, not called by gameFlags yet until the pregnancy system is figured out.
 //=================
 
-// Base incubation values
+// Base incubation values for a pregnancy
 const INCUBATION_MOUSE                  = 350; // Incubation time for mice types/Amily
+const INCUBATION_DRIDER                 = 400;
+const INCUBATION_BEE                    =  48;
+const INCUBATION_IMP                    = 432; //Time for standard imps. Imp lords, Ceraph, Lilium and the imp horde cause slightly faster pregnancies
+
 
 // Pregnancy event arrays
 const INCUBATION_MOUSE_EVENT            = [336, 280, 216, 180, 120, 72, 48, 32]; // Event flags for Mouse Pregnancy
 const INCUBATION_AMILY_EVENT            = [150, 120, 100, 96, 90, 72, 48]; // Special array for Amily pregnancy in Town Ruins.
+const INCUBATION_SAND_WITCH_EVENT        = [142, 96];
 
-// Pregnancy Flags
+// Pregnancy types. Marks who did the impregnation
 const PREGNANCY_PLAYER                  = "Player"; // Marks the player impregnated someone
 const PREGNANCY_AMILY                   = "Amily";
+const PREGNANCY_BEE_EGGS                = "Bee_Eggs";
+const PREGNANCY_DRIDER_EGGS             = "Drider_Eggs";
+const PREGNANCY_IMP                     = "Imp";
+const PREGNANCY_OVIELIXIR_EGGS          = "Ovielixir_Eggs";
+const PREGNANCY_ANEMONE                 = "Anemone";
+
 
 // Misc Pregnancy flags
 const PC_PENDING_PREGGERS               = "PC_Pending_Preggers"; // Unsure what this is for. Used in Amily Herm Quest.
@@ -198,6 +215,13 @@ const NAGA_FUCKED_AS_NAGA               = "Naga_Fucked_As_Naga";
 
 //Sand Witch
 const SAND_WITCH_RAPED                  = "Sand_Witch_Raped";
+
+//Bee Girl
+const BEE_GIRL_COMBAT_WINS_WITHOUT_RAPE = "Bee_Girl_Combat_Wins_Without_Rape";
+const BEE_GIRL_COMBAT_WINS_WITH_RAPE    = "Bee_Girl_Combat_Wins_With_Rape";
+const BEE_GIRL_COMBAT_LOSSES            = "Bee_Girl_Combat_Losses";
+const BEE_BAD_END_WARNING               = "Bee_Bad_End_Warning";
+const FORCE_BEE_TO_PRODUCE_HONEY        = "Force_Bee_To_Produce_Honey";
 
 //------------
 // KEY ITEMS

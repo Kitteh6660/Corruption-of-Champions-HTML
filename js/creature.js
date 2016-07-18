@@ -2070,9 +2070,16 @@ Creature.prototype.hasKnot = function(arg) {
     return this.cocks[arg].hasKnot();
 }
 
-// WILL NEED TESTING
+//PLACEHOLDER
+Creature.prototype.dogCocks = function() {
+    outputText("Placeholder for dogCocks in creature.js. Returning.")
+    doNext(Camp.returnToCampUseOneHour);
+}
+
+
+
 Creature.prototype.cockHead = function(cockNum = 0) {
-    if (cockNum < 0 || cockNum > cocks.length - 1) {
+    if (cockNum < 0 || cockNum > this.cocks.length - 1) {
         outputText("Something went wrong in Creature.prototype.cockHead!");
         return;
     }
@@ -3510,39 +3517,59 @@ Creature.prototype.isButtPregnant = function() { return this.buttPregnancyType !
 //fertility must be >= random(0-beat)
 //If arg == 1 then override any contraceptives and guarantee fertilization
 //If arg == -1, no chance of fertilization.
-Creature.prototype.knockUp = function(type = 0, incubation = 0, beat = 100, arg = 0, event = [])
-    {
-        //Contraceptives cancel!
-        //if (findStatusEffect(StatusEffects.Contraceptives) >= 0 && arg < 1)
-        //return;
-//			if (findStatusEffect(StatusEffects.GooStuffed) >= 0) return; //No longer needed thanks to PREGNANCY_GOO_STUFFED being used as a blocking value
-var bonus = 0;
+Creature.prototype.knockUp = function(type = 0, incubation = 0, beat = 100, arg = 0, event = []) {
+    //Contraceptives cancel!
+    if (this.findStatusEffect(StatusEffects.Contraceptives) >= 0 && arg < 1) return;
+    // Originally commented out
+    //if (this.findStatusEffect(StatusEffects.GooStuffed) >= 0) return; //No longer needed thanks to PREGNANCY_GOO_STUFFED being used as a blocking value
+    var bonus = 0;
 //If arg = 1 (always pregnant), bonus = 9000
-if (arg >= 1)
-    bonus = 9000;
-if (arg <= -1)
-    bonus = -9000;
+    if (arg >= 1) bonus = 9000;
+    if (arg <= -1) bonus = -9000;
 
-    this.knockUpForce(type, incubation, event);
-// NEED TOTAL FERTILITY CODE
-    /*
-if (this.pregnancyIncubation == 0 && totalFertility() + bonus > Math.floor(Math.random() * beat) && hasVagina())
-{
-    knockUpForce(type, incubation);
-    trace("PC Knocked up with pregnancy type: " + type + " for " + incubation + " incubation.");
-}
+    if (this.pregnancyIncubation == 0 && this.totalFertility() + bonus > Math.floor(Math.random() * beat) && this.hasVagina()) {
+        this.knockUpForce(type, incubation);
+        //trace("PC Knocked up with pregnancy type: " + type + " for " + incubation + " incubation.");
+    }
+    
 //Chance for eggs fertilization - ovi elixir and imps excluded!
-if (type != PregnancyStore.PREGNANCY_IMP && type != PregnancyStore.PREGNANCY_OVIELIXIR_EGGS && type != PregnancyStore.PREGNANCY_ANEMONE)
-{
-    if (findPerk(PerkLib.SpiderOvipositor) >= 0 || findPerk(PerkLib.BeeOvipositor) >= 0)
-    {
-        if (totalFertility() + bonus > Math.floor(Math.random() * beat))
-        {
-            fertilizeEggs();
+    if (type != PREGNANCY_IMP && type != PREGNANCY_OVIELIXIR_EGGS && type != PREGNANCY_ANEMONE) {
+        if (this.findPerk(PerkLib.SpiderOvipositor) >= 0 || this.findPerk(PerkLib.BeeOvipositor) >= 0) {
+            if (this.totalFertility() + bonus > Math.floor(Math.random() * beat)) {
+                this.fertilizeEggs();
+            }
         }
     }
-}*/
-}
+};
+
+Creature.prototype.buttKnockUp = function(type = 0, incubation = 0, beat = 100, arg = 0) {
+    //Contraceptives cancel!
+    if (this.findStatusEffect(StatusEffects.Contraceptives) >= 0 && arg < 1)
+        return;
+    var bonus = 0;
+//If arg = 1 (always pregnant), bonus = 9000
+    if (arg >= 1) bonus = 9000;
+    if (arg <= -1) bonus = -9000;
+//If unpregnant and fertility wins out:
+    if (this.buttPregnancyIncubation == 0 && this.totalFertility() + bonus > Math.floor(Math.random() * beat)) {
+        this.buttKnockUpForce(type, incubation);
+        //trace("PC Butt Knocked up with pregnancy type: " + type + " for " + incubation + " incubation.");
+    }
+};
+
+//The more complex buttKnockUp function used by the player is defined in Character.as
+Creature.prototype.buttKnockUpForce = function(type = 0, incubation = 0, event = []) {
+    this.buttPregnancyType = type;
+    this.buttPregnancyIncubation = (type == 0 ? 0 : incubation * 60); //Won't allow incubation time without pregnancy type
+    if (event.length > 1) {
+        this.buttPregnancyEventArr = event;
+        this.buttPregnancyEventNum = 0;
+    }
+    if (type == 0) {
+        this.buttPregnancyEventArr.length = 0;
+        this.pregnancyEventNum = 0;
+    }
+};
 
 
 Creature.prototype.knockUpForce = function(type = 0, incubation = 0, event = []) {
@@ -3584,6 +3611,14 @@ Creature.prototype.pregnancyAdvance = function() {
             }
         }
     }
+    if (this.buttPregnancyEventArr.length > 1) {
+        for (j = 0; j < this.buttPregnancyEventArr.length; j++) {
+            if (this.buttPregnancyIncubation < this.buttPregnancyEventArr[j]) {
+                //outputText("Setting new flag to " + (j + 1));
+                this.buttPregnancyEventNum = j + 1;
+            }
+        }
+    }
 }
 
 //public function pregnancyUpdate():Boolean { return false; }
@@ -3599,38 +3634,15 @@ Creature.prototype.pregnancyAdvance = function() {
 
 
 //fertility must be >= random(0-beat)
-public function buttKnockUp(type:int = 0, incubation:int = 0, beat:int = 100, arg:int = 0):void
-    {
-        //Contraceptives cancel!
-        if (findStatusEffect(StatusEffects.Contraceptives) >= 0 && arg < 1)
-return;
-var bonus:int = 0;
-//If arg = 1 (always pregnant), bonus = 9000
-if (arg >= 1)
-    bonus = 9000;
-if (arg <= -1)
-    bonus = -9000;
-//If unpregnant and fertility wins out:
-if (buttPregnancyIncubation == 0 && totalFertility() + bonus > Math.floor(Math.random() * beat))
-{
-    buttKnockUpForce(type, incubation);
-    trace("PC Butt Knocked up with pregnancy type: " + type + " for " + incubation + " incubation.");
-}
-}
 
-//The more complex buttKnockUp function used by the player is defined in Character.as
-public function buttKnockUpForce(type:int = 0, incubation:int = 0):void
-{
-    _buttPregnancyType = type;
-_buttPregnancyIncubation = (type == 0 ? 0 : incubation); //Won't allow incubation time without pregnancy type
-}
 
 */
 
 //---------------
-// OVIPOSITING - TOTALLY NOT COMPLETE. CHECK ALL FUNCTIONS WHEN WE DECIDE TO GET THIS GOING.
+// OVIPOSITING - NOT COMPLETE IN THE SLIGHTEST. CHECK ALL FUNCTIONS WHEN WE DECIDE TO GET THIS GOING.
 //---------------
 
+// Does the creature have a spider ovipositor?
 Creature.prototype.canOvipositSpider = function()
 {
     if (this.eggs() >= 10 && this.findPerk(PerkLib.SpiderOvipositor) >= 0 && this.isDrider() && this.tailType == TAIL_TYPE_SPIDER_ADBOMEN)
@@ -3638,6 +3650,7 @@ Creature.prototype.canOvipositSpider = function()
     return false;
 }
 
+// Does the creature have an bee ovipositor?
 Creature.prototype.canOvipositBee = function()
 {
     if (this.eggs() >= 10 && this.findPerk(PerkLib.BeeOvipositor) >= 0 && this.tailType == TAIL_TYPE_BEE_ABDOMEN)
@@ -3645,6 +3658,7 @@ Creature.prototype.canOvipositBee = function()
     return false;
 }
 
+// Can the creature oviposit at all?
 Creature.prototype.canOviposit = function()
 {
     if (this.canOvipositSpider() || this.canOvipositBee())
@@ -3652,22 +3666,92 @@ Creature.prototype.canOviposit = function()
     return false;
 }
 
+// How many eggs, held in value 1 in the perks, does the creature have?
 Creature.prototype.eggs = function()
 {
     if (this.findPerk(PerkLib.SpiderOvipositor) < 0 && this.findPerk(PerkLib.BeeOvipositor) < 0)
         return -1;
     else if (this.findPerk(PerkLib.SpiderOvipositor) >= 0)
-        //return perkv1(PerkLib.SpiderOvipositor);
-    //else
-        //return perkv1(PerkLib.BeeOvipositor);
-        return;
+        return this.perkValue(PerkLib.SpiderOvipositor, 1);
+    else
+        return this.perkValue(PerkLib.BeeOvipositor, 1);
+    return;
 }
 
-//
-Creature.prototype.dumpEggs = function() {
+// Add eggs to the ovipositors
+Creature.prototype.addEggs = function(arg = 0) {
     if (this.findPerk(PerkLib.SpiderOvipositor) < 0 && this.findPerk(PerkLib.BeeOvipositor) < 0)
-return;
-    //setEggs(0);
-//Sets fertile eggs = regular eggs (which are 0)
-    //fertilizeEggs();
-}
+        return -1;
+    else {
+        // Increase the number of Spider eggs by arg.
+        if (this.findPerk(PerkLib.SpiderOvipositor) >= 0) {
+            this.addPerkValue(PerkLib.SpiderOvipositor, 1, arg);
+            // Can't hold more than 50 eggs
+            if (this.eggs() > 50)
+                this.setPerkValue(PerkLib.SpiderOvipositor, 1, 50);
+            return this.perkValue(PerkLib.SpiderOvipositor, 1);
+        }
+        else {
+            // Increase Bee eggs by arg.
+            this.addPerkValue(PerkLib.BeeOvipositor, 1, arg);
+            if (this.eggs() > 50)
+                this.setPerkValue(PerkLib.BeeOvipositor, 1, 50);
+            return this.perkValue(PerkLib.BeeOvipositor);
+        }
+    }
+};
+
+// Sets a specific number of eggs to the ovipositors
+Creature.prototype.setEggs = function(arg = 0) {
+    if (this.findPerk(PerkLib.SpiderOvipositor) < 0 && this.findPerk(PerkLib.BeeOvipositor) < 0)
+        return -1;
+    else {
+        // Set the number of Spider eggs by arg.
+        if (this.findPerk(PerkLib.SpiderOvipositor) >= 0) {
+            this.setPerkValue(PerkLib.SpiderOvipositor, 1, arg);
+            // Can't hold more than 50 eggs
+            if (this.eggs() > 50)
+                this.setPerkValue(PerkLib.SpiderOvipositor, 1, 50);
+            return this.perkValue(PerkLib.SpiderOvipositor, 1);
+        }
+        else {
+            // Set the number of Bee eggs by arg.
+            this.setPerkValue(PerkLib.BeeOvipositor, 1, arg);
+            // No more than 50 eggs
+            if (this.eggs() > 50)
+                this.setPerkValue(PerkLib.BeeOvipositor, 1, 50);
+            return this.perkValue(PerkLib.BeeOvipositor);
+        }
+    }
+};
+
+// Returns value 2 to check to see if the creature's eggs are fertilized.
+Creature.prototype.fertilizedEggs = function() {
+    if (this.findPerk(PerkLib.SpiderOvipositor) < 0 && this.findPerk(PerkLib.BeeOvipositor) < 0)
+        return -1;
+    else if (this.findPerk(PerkLib.SpiderOvipositor) >= 0)
+        return this.perkValue(PerkLib.SpiderOvipositor, 2);
+    else
+        return this.perkValue(PerkLib.BeeOvipositor, 2);
+};
+
+// Fertilize the player's eggs by setting value 2 to eggs()
+Creature.prototype.fertilizeEggs = function() {
+    if (this.findPerk(PerkLib.SpiderOvipositor) < 0 && this.findPerk(PerkLib.BeeOvipositor) < 0)
+        return -1;
+    else if (this.findPerk(PerkLib.SpiderOvipositor) >= 0)
+        this.setPerkValue(PerkLib.SpiderOvipositor, 2, this.eggs());
+    else
+        this.setPerkValue(PerkLib.BeeOvipositor, 2, this.eggs());
+    return this.fertilizedEggs();
+};
+
+// Remove all eggs from the ovipositors
+Creature.prototype.dumpEggs = function() {
+    if (this.findPerk(PerkLib.SpiderOvipositor) < 0 && this.findPerk(PerkLib.BeeOvipositor) < 0) return;
+    // Clear out the eggs
+    this.setEggs(0);
+    // Use the new egg number to clear out the fertilized eggs
+    this.fertilizeEggs();
+};
+

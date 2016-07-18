@@ -5,6 +5,7 @@
 
 var pregnancyProgression = [];
 var statControl = 0; // This prevents huge stat freakouts while pregnant
+var buttStatControl = 0; // This prevents huge stat freakouts while anal pregnant
 
 pregnancyProgression.updatePregnancy = function() {
     var displayedUpdate = false;
@@ -121,7 +122,7 @@ pregnancyProgression.updatePregnancy = function() {
         /*
         if (player.pregnancyIncubation == 1 && (player.pregnancyType == PregnancyStore.PREGNANCY_MOUSE || player.pregnancyType == PregnancyStore.PREGNANCY_JOJO)) {
             player.boostLactation(.01);
-            outputText("\nYou wake up suddenly to strong pains and pressures in your gut. As your eyes shoot wide open, you look down to see your belly absurdly full and distended. You can feel movement underneath the skin, and watch as it is pushed out in many places, roiling and squirming in disturbing ways. The feelings you get from inside are just as disconcerting. You count not one, but many little things moving around inside you. There are so many, you can't keep track of them.\n\n", false);
+            outputText("<br>You wake up suddenly to strong pains and pressures in your gut. As your eyes shoot wide open, you look down to see your belly absurdly full and distended. You can feel movement underneath the skin, and watch as it is pushed out in many places, roiling and squirming in disturbing ways. The feelings you get from inside are just as disconcerting. You count not one, but many little things moving around inside you. There are so many, you can't keep track of them.<br><br>", false);
             if (player.vaginas.length == 0) {
                 outputText("You feel a terrible pressure in your groin... then an incredible pain accompanied by the rending of flesh.  <b>You look down and behold a new vagina</b>.  ", false);
                 player.createVagina();
@@ -137,8 +138,8 @@ pregnancyProgression.updatePregnancy = function() {
          else kGAMECLASS.jojoScene.giveBirthToPureJojoBabies();
          }
          else {
-         outputText("Pain shoots through you as they pull open your cervix forcefully. You grip the ground and pant and push as the pains of labor overwhelm you. You feel your hips being forceably widened by the collective mass of the creatures moving down your birth canal. You spread your legs wide, laying your head back with groans and cries of agony as little white figures begin to emerge from between the lips of your abused pussy. Large innocent eyes, even larger ears, cute little muzzles, long slender pink tails all appear as the figures emerge. Each could be no larger than six inches tall, but they seem as active and curious as if they were already developed children. \n\n", false);
-         outputText("Two emerge, then four, eight... you lose track. They swarm your body, scrambling for your chest, and take turns suckling at your nipples. Milk does their bodies good, making them grow rapidly, defining their genders as the girls grow cute little breasts and get broader hips and the boys develop their little mouse cocks and feel their balls swell. Each stops suckling when they reach two feet tall, and once every last one of them has departed your sore, abused cunt and drunk their fill of your milk, they give you a few grateful nuzzles, then run off towards the forest, leaving you alone to recover.\n", false);
+         outputText("Pain shoots through you as they pull open your cervix forcefully. You grip the ground and pant and push as the pains of labor overwhelm you. You feel your hips being forceably widened by the collective mass of the creatures moving down your birth canal. You spread your legs wide, laying your head back with groans and cries of agony as little white figures begin to emerge from between the lips of your abused pussy. Large innocent eyes, even larger ears, cute little muzzles, long slender pink tails all appear as the figures emerge. Each could be no larger than six inches tall, but they seem as active and curious as if they were already developed children. <br><br>", false);
+         outputText("Two emerge, then four, eight... you lose track. They swarm your body, scrambling for your chest, and take turns suckling at your nipples. Milk does their bodies good, making them grow rapidly, defining their genders as the girls grow cute little breasts and get broader hips and the boys develop their little mouse cocks and feel their balls swell. Each stops suckling when they reach two feet tall, and once every last one of them has departed your sore, abused cunt and drunk their fill of your milk, they give you a few grateful nuzzles, then run off towards the forest, leaving you alone to recover.<br>", false);
          }
          player.knockUpForce(); //Clear Pregnancy
          if (player.averageLactation() > 0 && player.averageLactation() < 5) {
@@ -156,15 +157,15 @@ pregnancyProgression.updatePregnancy = function() {
          if (player.buttRating < 14 && rand(2) == 0) {
          if (player.buttRating < 10) {
          player.buttRating++;
-         outputText("\n\nYou notice your " + player.buttDescript() + " feeling larger and plumper after the ordeal.", false);
+         outputText("<br><br>You notice your " + player.buttDescript() + " feeling larger and plumper after the ordeal.", false);
          }
          //Big butts grow slower!
          else if (player.buttRating < 14 && rand(2) == 0) {
          player.buttRating++;
-         outputText("\n\nYou notice your " + player.buttDescript() + " feeling larger and plumper after the ordeal.", false);
+         outputText("<br><br>You notice your " + player.buttDescript() + " feeling larger and plumper after the ordeal.", false);
          }
          }
-         outputText("\n", false);
+         outputText("<br>", false);
          }*/
 
      }
@@ -224,6 +225,10 @@ pregnancyProgression.updatePregnancy = function() {
         }
     }
 
+    //---------------
+    // IMP PREGNANCY
+    //--------------
+
     if (player.pregnancyIncubation == 0 && player.pregnancyType == PREGNANCY_IMP) {
         statControl = 0;
         outputText("<br>");
@@ -281,6 +286,71 @@ pregnancyProgression.updatePregnancy = function() {
         else if (player.hipRating < 10) {
             player.hipRating++;
             outputText("<br><br>After the birth your " + player.armorName + " fits a bit more snugly about your " + player.hipDescript() + ".");
+        }
+        outputText("<br>", false);
+        displayedUpdate = true;
+    }
+
+    //-------------------
+    // BEE PREGNANCY
+    //-------------------
+    if (player.buttPregnancyType == PREGNANCY_BEE_EGGS) {
+        if (player.buttPregnancyIncubation <= 36 * 60 && player.buttPregnancyIncubation >= 20 * 60) {
+            outputText("<b><br>You feel bloated, your bowels shifting uncomfortably from time to time.</b><br><br>", false);
+            displayedUpdate = true;
+        }
+        if (player.buttPregnancyIncubation <= 20 * 60) {
+            outputText("<b><br>A honey-scented fluid drips from your rectum.</b>  At first it worries you, but as the smell fills the air around you, you realize anything with such a beautiful scent must be good.  ", false);
+            if (player.cockTotal() > 0) outputText("The aroma seems to permeate your very being, slowly congregating in your ", false);
+            if (player.cockTotal() == 1) {
+                outputText(player.cockDescript(0), false);
+                if (player.countCocksOfType(CockTypesEnum.HORSE) == 1) outputText(", each inhalation making it bigger, harder, and firmer.  You suck in huge lungfuls of air, until your " + player.cockDescript(0) + " is twitching and dripping, the flare swollen and purple.  ", false);
+                if (player.dogCocks() == 1) outputText(", each inhalation making it thicker, harder, and firmer.  You suck in huge lungfuls of air, desperate for more, until your " + player.cockDescript(0) + " is twitching and dripping, its knot swollen to the max.  ", false);
+                if (player.countCocksOfType(CockTypesEnum.HUMAN) == 1) outputText(", each inhalation making it bigger, harder, and firmer.  You suck in huge lungfuls of air, until your " + player.cockDescript(0) + " is twitching and dripping, the head swollen and purple.  ", false);
+                //FAILSAFE FOR NEW COCKS
+                if (player.countCocksOfType(CockTypesEnum.HUMAN) == 0 && player.dogCocks() == 0 && player.countCocksOfType(CockTypesEnum.HORSE) == 0) outputText(", each inhalation making it bigger, harder, and firmer.  You suck in huge lungfuls of air until your " + player.cockDescript(0) + " is twitching and dripping.  ", false);
+            }
+            if (player.cockTotal() > 1) outputText("groin.  Your " + player.multiCockDescriptLight() + " fill and grow with every lungful of the stuff you breathe in.  You suck in great lungfuls of the tainted air, desperate for more, your cocks twitching and dripping with need.  ", false);
+            outputText("You smile knowing you couldn't stop from masturbating if you wanted to.<br><br>", false);
+            if (buttStatControl == 0) {
+                buttStatControl = 1;
+                player.dynStats("int", -.5);
+                player.changeLust(500);
+            };
+            displayedUpdate = true;
+        }
+    }
+
+    if (player.buttPregnancyIncubation == 0 && player.buttPregnancyType == PREGNANCY_BEE_EGGS) {
+        outputText("<br>", false);
+        outputText("There is a sudden gush of honey-colored fluids from your ass.  Before panic can set in, a wonderful scent overtakes you, making everything ok.  ", false);
+        if (player.cockTotal() > 0) outputText("The muzzy feeling that fills your head seems to seep downwards, making your equipment hard and tight.  ", false);
+        if (player.vaginas.length > 0) outputText("Your " + player.vaginaDescript(0) + " becomes engorged and sensitive.  ", false);
+        outputText("Your hand darts down to the amber, scooping up a handful of the sticky stuff.  You wonder what your hand is doing as it brings it up to your mouth, which instinctively opens.  You shudder in revulsion as you swallow the sweet-tasting stuff, your mind briefly wondering why it would do that.  The stuff seems to radiate warmth, quickly pushing those nagging thoughts away as you scoop up more.<br><br>", false);
+        outputText("A sudden slip from below surprises you; a white sphere escapes from your anus along with another squirt of honey.  Your drugged brain tries to understand what's happening, but it gives up, your hands idly slathering honey over your loins.  The next orb pops out moments later, forcing a startled moan from your mouth.  That felt GOOD.  You begin masturbating to the thought of laying more eggs... yes, that's what those are.  You nearly cum as egg number three squeezes out.  ", false);
+        if (player.averageLactation() >= 1 && player.biggestTitSize() > 2) outputText("Seeking even greater sensation, your hands gather the honey and massage it into your " + player.breastDescript(0) + ", slowly working up to your nipples.  Milk immediately begins pouring out from the attention, flooding your chest with warmth.  ", false);
+        outputText("Each egg seems to come out closer on the heels of the one before, and each time your conscious mind loses more of its ability to do anything but masturbate and wallow in honey.<br><br>", false);
+        outputText("Some time later, your mind begins to return, brought to wakefulness by an incredibly loud buzzing...  You sit up and see a pile of dozens of eggs resting in a puddle of sticky honey.  Most are empty, but a few have hundreds of honey-bees emptying from them, joining the massive swarms above you.  ", false);
+        if (player.cor < 35) outputText("You are disgusted, but glad you were not stung during the ordeal.  You stagger away and find a brook to wash out your mouth with.", false);
+        if (player.cor >= 35 && player.cor < 65) outputText("You are amazed you could lay so many eggs, and while the act was strange there was something definitely arousing about it.", false);
+        if (player.cor >= 65 && player.cor < 90) outputText("You stretch languidly, noting that most of the drugged honey is gone.  Maybe you can find the Bee again and remember to bottle it next time.", false);
+        if (player.cor >= 90) outputText("You lick your lips, savoring the honeyed residue on them as you admire your thousands of children.  If only every night could be like this...<br>", false);
+        buttStatControl = 0;
+        player.buttKnockUpForce(); //Clear Butt Pregnancy
+        player.orgasm();
+        player.dynStats("int", 1, "lib", 4, "sen", 3);
+        if (player.buttChange(20, true)) outputText("<br>", false);
+        if (player.buttRating < 17) {
+            //Guaranteed increase up to level 10
+            if (player.buttRating < 13) {
+                player.buttRating++;
+                outputText("<br>You notice your " + player.buttDescript() + " feeling larger and plumper after the ordeal.", false);
+            }
+            //Big butts only increase 50% of the time.
+            else if (rand(2) == 0){
+                player.buttRating++;
+                outputText("<br>You notice your " + player.buttDescript() + " feeling larger and plumper after the ordeal.", false);
+            }
         }
         outputText("<br>", false);
         displayedUpdate = true;
