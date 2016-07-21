@@ -11,6 +11,9 @@ Debug.doDebug = function() {
     outputText("Player Pregnant by: " + player.pregnancyType + "<br>");
     outputText("Player Anal Pregnant by: " + player.buttPregnancyType + "<br>");
     outputText("Player Anal Pregnancy Duration: " + player.buttPregnancyIncubation + "<br>");
+    outputText("Have an armor rack? " + gameFlags[HAS_ARMOR_RACK] + "<br>");
+    outputText("Have a weapon rack? " + gameFlags[HAS_WEAPON_RACK] + "<br>");
+    outputText("Have a shield rack? " + gameFlags[HAS_EQUIPMENT_RACK] + "<br>");
     menu();
     addButton(0, "Gender", Debug.genderChange, null, null, null, "Change the Player's Gender.");
     addButton(1, "Fight", Debug.fightCreature, null, null, null, "Fight a creature.");
@@ -67,7 +70,7 @@ Debug.genderChangeNone = function() {
 
 Debug.fightCreature = function() {
     clearOutput();
-    startCombat(new SandWitch());
+    startCombat(new GooGirl());
 }
 
 //-------

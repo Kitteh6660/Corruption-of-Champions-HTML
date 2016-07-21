@@ -16,7 +16,8 @@ const TIMES_ORGASMED                    = "Times_Orgasmed";
 const PC_FETISH                         = "PC_Fetish"; // Used in lust attack in combatTeases file
 const IMPS_KILLED                       = "Imps_Killed"; // How many Imps has the player killed?
 const COMBAT_BONUS_XP_VALUE             = "Combat_Bonus_XP_Value";
-
+const SLIME_CRAVING                     = "Slime_Craving" // Replaces Slime Craving status effect.
+const GOOGIRL_BIRTHS                    = "GooGirl_Births"
 
 //------------
 // MISC
@@ -223,6 +224,15 @@ const BEE_GIRL_COMBAT_LOSSES            = "Bee_Girl_Combat_Losses";
 const BEE_BAD_END_WARNING               = "Bee_Bad_End_Warning";
 const FORCE_BEE_TO_PRODUCE_HONEY        = "Force_Bee_To_Produce_Honey";
 
+//Goo Girl
+const GOOGIRL_CONSECUTIVE_LOSSES        = "GooGirl_Consecutive_Losses";
+const TIMES_FUCKED_NORMAL_GOOS          = "Times_Fucked_Normal_Goos";
+const GOO_TFED_MEAN                     = "Goo_TFed_Mean";
+const GOO_TFED_NICE                     = "Goo_TFed_Nice";
+const PC_KNOWS_ABOUT_BLACK_EGGS         = "PC_Knows_About_Black_Eggs"; //May need to move this one, and possibly integrate with Amily?
+const TIMES_THOUGHT_ABOUT_GOO_RECRUITMENT = "Times_Thought_About_Goo_Recruitment";
+
+
 //------------
 // KEY ITEMS
 //------------
@@ -232,3 +242,9 @@ const HAS_KEY_ITEM                          = "Has_Key_Item" // Does the player 
 const HAS_ARMOR_RACK                        = "Has_Armor_Rack" // Does the player have the armor rack?
 const HAS_WEAPON_RACK                       = "Has_Weapon_Rack" // Does the player have the weapon rack?
 const HAS_EQUIPMENT_RACK                    = "Has_Equipment_Rack" // Does the player have the equipment rack?
+
+//---------
+// PLOT VARIABLES
+//---------
+
+const FACTORY_SHUTDOWN                      = "Factory_Shutdown" // Is the factory on, shut down, or destroyed?

@@ -34,6 +34,14 @@ Areas.Lake.explore = function () {
         case 3: //Fetish Cultists and Zealots, encounterable if factory is shut down (Not yet implemented)
             break;
         case 4: //Green Slime or Goo Girl, encounterable if you're at least level 2.
+            if (gameFlags[FACTORY_SHUTDOWN] == 2 && rand(10) == 0) {
+                GooGirlScene.spyOnGooAndOozeSex();
+                return;
+            }
+            else if (rand(25) == 0) {
+                GooGirlScene.spyOnGooAndOozeSex();
+                return;
+            }
             var gooOrSlime = 50;
             if (rand(100) < gooOrSlime) //GOO!
                 GooGirlScene.encounterGooGirl();

@@ -351,14 +351,14 @@ Inventory.stashMenu = function () {
     }
     */
 	// Weapon Rack
-    if (player.hasKeyItem(KeyItems.WeaponRack)) {
+    if (gameFlags[HAS_WEAPON_RACK] == 1) {
         outputText("There's a weapon rack set up here, set up to hold up to nine various weapons.<br><br>");
 		addButton(2, "W.Rack Put", Inventory.pickItemWeaponRack);
 		//if (weaponRackDescription()) addButton(3, "W.Rack Take", pickItemToTakeFromWeaponRack);
     }
     //Armor Rack
 
-	if (player.hasKeyItem(KeyItems.ArmorRack)) {
+	if (gameFlags[HAS_ARMOR_RACK] == 1) {
         outputText("Your camp has an armor rack set up to hold your various sets of gear.  It appears to be able to hold nine different types of armor.<br><br>");
         addButton(5, "A.Rack Put", Inventory.pickItemArmorRack);
 		//if (armorRackDescription()) addButton(6, "A.Rack Take", pickItemToTakeFromArmorRack);
@@ -366,7 +366,7 @@ Inventory.stashMenu = function () {
 
 	//Shield Rack
     
-	if (player.hasKeyItem(KeyItems.ShieldRack)) {
+	if (gameFlags[HAS_EQUIPMENT_RACK] == 1) {
         outputText("There's a shield rack set up here, set up to hold up to nine various shields.<br><br>");
 		addButton(7, "S.Rack Put", Inventory.pickItemShieldRack);
 		//if (shieldRackDescription()) addButton(8, "S.Rack Take", pickItemToTakeFromShieldRack);

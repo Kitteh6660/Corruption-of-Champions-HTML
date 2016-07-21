@@ -91,6 +91,8 @@ Items.Consumables.TatteredScroll = new Item("T.Scroll", "Tattered Scroll", "TO B
 //Items.Consumables.TatteredScroll.description = "TO BE ADDED.";
 //Items.Consumables.TatteredScroll.consumeEffect = ConsumableEffects.
 
+Items.Consumables.WetCloth = new Item("W.Cloth", "Wet Cloth", "TO BE ADDED", ITEM_TYPE_CONSUMABLE);
+
 Items.Consumables.WhiskerFruit = new Item("W.Fruit", "W.Fruit", "a piece of whisker-fruit", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.WhiskerFruit.description = "This small, peach-sized fruit has tiny whisker-like protrusions growing from the sides.";
 Items.Consumables.WhiskerFruit.consumeEffect = ConsumableEffects.felineTFs;
