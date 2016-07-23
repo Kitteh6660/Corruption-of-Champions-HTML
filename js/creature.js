@@ -3755,3 +3755,44 @@ Creature.prototype.dumpEggs = function() {
     this.fertilizeEggs();
 };
 
+
+//---------------
+// MINO CUM ADDICTION
+//---------------
+
+Creature.prototype.minoCumAddiction = function(raw) {
+    //Fix if variables go out of range.
+    if (gameFlags[MINOTAUR_CUM_ADDICTION_TRACKER] < 0) gameFlags[MINOTAUR_CUM_ADDICTION_TRACKER] = 0;
+    if (gameFlags[MINOTAUR_CUM_ADDICTION_STATE] < 0) gameFlags[MINOTAUR_CUM_ADDICTION_STATE] = 0;
+    if (gameFlags[MINOTAUR_CUM_ADDICTION_TRACKER] > 120) gameFlags[MINOTAUR_CUM_ADDICTION_TRACKER] = 120;
+    gameFlags[EVER_DRANK_MINOCUM] = 1;
+//Turn off withdrawal
+//if (flags[kFLAGS.MINOTAUR_CUM_ADDICTION_STATE] > 1) flags[kFLAGS.MINOTAUR_CUM_ADDICTION_STATE] = 1;
+//Reset counter
+    gameFlags[TIME_SINCE_LAST_CONSUMED_MINOTAUR_CUM] = 0;
+//If highly addicted, rises slower
+    if (gameFlags[MINOTAUR_CUM_ADDICTION_TRACKER] >= 60) raw /= 2;
+    if (gameFlags[MINOTAUR_CUM_ADDICTION_TRACKER] >= 80) raw /= 2;
+    if (gameFlags[MINOTAUR_CUM_ADDICTION_TRACKER] >= 90) raw /= 2;
+    if (player.findPerk(PerkLib.MinotaurCumResistance) >= 0) raw *= 0;
+//If in withdrawl, readdiction is potent!
+    if (gameFlags[MINOTAUR_CUM_ADDICTION_STATE] == 3) raw += 10;
+    if (gameFlags[MINOTAUR_CUM_ADDICTION_STATE] == 2) raw += 5;
+    raw = Math.round(raw * 100) / 100;
+//PUT SOME CAPS ON DAT' SHIT
+    if (raw > 50) raw = 50;
+    if (raw < -50) raw = -50;
+    gameFlags[MINOTAUR_CUM_ADDICTION_TRACKER] += raw;
+//Recheck to make sure shit didn't break
+    if (this.findPerk(PerkLib.MinotaurCumResistance) >= 0) gameFlags[MINOTAUR_CUM_ADDICTION_TRACKER] = 0; //Never get addicted!
+    if (gameFlags[MINOTAUR_CUM_ADDICTION_TRACKER] > 120) gameFlags[MINOTAUR_CUM_ADDICTION_TRACKER] = 120;
+    if (gameFlags[MINOTAUR_CUM_ADDICTION_TRACKER] < 0) gameFlags[MINOTAUR_CUM_ADDICTION_TRACKER] = 0;
+};
+
+Creature.prototype.minotaurAddicted = function() {
+    return this.findPerk(PerkLib.MinotaurCumResistance) < 0 && (this.findPerk(PerkLib.MinotaurCumAddict) >= 0 || gameFlags[MINOTAUR_CUM_ADDICTION_STATE] >= 1);
+};
+
+Creature.prototype.minotaurNeed = function() {
+    return this.findPerk(PerkLib.MinotaurCumResistance) < 0 && gameFlags[MINOTAUR_CUM_ADDICTION_STATE] > 1;
+};

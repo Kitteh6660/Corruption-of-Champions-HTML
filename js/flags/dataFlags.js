@@ -16,8 +16,9 @@ const TIMES_ORGASMED                    = "Times_Orgasmed";
 const PC_FETISH                         = "PC_Fetish"; // Used in lust attack in combatTeases file
 const IMPS_KILLED                       = "Imps_Killed"; // How many Imps has the player killed?
 const COMBAT_BONUS_XP_VALUE             = "Combat_Bonus_XP_Value";
-const SLIME_CRAVING                     = "Slime_Craving" // Replaces Slime Craving status effect.
-const GOOGIRL_BIRTHS                    = "GooGirl_Births"
+const SLIME_CRAVING                     = "Slime_Craving"; // Replaces Slime Craving status effect.
+const GOOGIRL_BIRTHS                    = "GooGirl_Births";
+
 
 //------------
 // MISC
@@ -25,6 +26,7 @@ const GOOGIRL_BIRTHS                    = "GooGirl_Births"
 const HAIR_GROWTH_STOPPED_BECAUSE_LIZARD= "Hair_Growth_Stopped";
 const EVER_INFESTED                     = "Ever_Infested"; // Has the PC ever been infested with worms?
 const MEANINGLESS_CORRUPTION            = "Meaningless_Corruption"; //Unknown, used in Goblin victory code.
+const INFESTED                          = "Infested";
 
 //------------
 // CODEX
@@ -209,6 +211,13 @@ const KELLY_VAGINALLY_FUCKED_COUNT      = "Kelly_Vaginally_Fucked_Count";
 //Minotaur
 const MINOTAUR_TF2                      = "Minotaur_TF2"; //One-time silly mode scene.
 const MINOTAUR_AND_COWGIRL              = "Minotaur_And_CowGirl";
+
+const HAS_SEEN_MINO_AND_COWGIRL         = "Has_Seen_Mino_And_Cowgirl";
+const MINOTAUR_CUM_ADDICT               = "Minotaur_Cum_Addict" // Replacment for status effect. Marks if you are an addict or not.
+const MINOTAUR_CUM_ADDICTION_STATE      = "Minotaur_Cum_Addiction_State"; // What stage of addiction are you at?
+const MINOTAUR_CUM_ADDICTION_TRACKER       = "Minotaur_Cum_Addiction_Tracker"; //How much cum? (0-120)
+const TIME_SINCE_LAST_CONSUMED_MINOTAUR_CUM = "Time_Since_Last_Consumed_Minotaur_Cum" // Timer for cum problems
+const EVER_DRANK_MINOCUM                    = "Ever_Drank_Minocum" // Used for playerinfo menu
 
 //Naga
 const NAGA_LAST_ENCOUNTERED_AS_NAGA     = "Naga_Last_Encountered_As_Naga"; //0 indicates player isn't naga, 1 indicates player is naga, 2 indicates player is naga but hostile.
