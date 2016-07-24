@@ -46,8 +46,15 @@ PerkLib.FireLord = new PerkType("FireLord", "FireLord", "TO BE ADDED");
 PerkLib.Hellfire = new PerkType("Hellfire", "Hellfire", "TO BE ADDED");
 PerkLib.Dragonfire = new PerkType("Dragonfire", "Dragonfire", "TO BE ADDED");
 
+PerkLib.SlimeCore = new PerkType("SlimeCore", "Slime Core", "TO BE ADDED");
+
 //----------
 // UNKNOWN
 //---------
 
 PerkLib.Misdirection = new PerkType("Misdirection", "Misdirection", "TO BE ADDED");
+PerkLib.Flexibility = new PerkType("Flexibility", "Flexibility", "TO BE ADDED");
+PerkLib.ArousingAura = new PerkType("ArousingAura", "Arousing Aura", "TO BE ADDED");
+PerkLib.MinotaurCumResistance = new PerkType("MinoCumResist", "Minotaur Cum Resistance", "TO BE ADDED");
+PerkLib.MinotaurCumAddict = new PerkType("MinoCumAddict", "Minotaur Cum Addict", "TO BE ADDED");
+PerkLib.Masochist = new PerkType("Masochist", "Masochist", "TO BE ADDED");

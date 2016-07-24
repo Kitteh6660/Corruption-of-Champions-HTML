@@ -68,6 +68,10 @@ Items.Consumables.Lactaid = new Item("Lactaid", "Lactaid", "TO BE ADDED", ITEM_T
 //Items.Consumables.Lactaid.description =
 //Items.Consumables.Lactaid.consumeEffect = ConsumableEffects
 
+Items.Consumables.MinotaurBlood = new Item("M.Blood", "MinoBlood", "TO BE ADDED", ITEM_TYPE_CONSUMABLE);
+
+Items.Consumables.MinotaurCum = new Item("M.Cum", "MinoCum", "TO BE ADDED", ITEM_TYPE_CONSUMABLE);
+
 Items.Consumables.PigTruffle = new Item("PigTruf", "Pig Truffle", "a pigtail truffle", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.PigTruffle.description = "It's clear where this fungus gets its name. A small, curly sprig resembling a pig's tail can be seen jutting out of it.";
 Items.Consumables.PigTruffle.consumeEffect = ConsumableEffects.pigTFs;
@@ -90,6 +94,8 @@ Items.Consumables.SpecialHoney = new Item("SPHoney", "Special Honey", "TO BE ADD
 Items.Consumables.TatteredScroll = new Item("T.Scroll", "Tattered Scroll", "TO BE ADDED", ITEM_TYPE_CONSUMABLE);
 //Items.Consumables.TatteredScroll.description = "TO BE ADDED.";
 //Items.Consumables.TatteredScroll.consumeEffect = ConsumableEffects.
+
+Items.Consumables.WetCloth = new Item("W.Cloth", "Wet Cloth", "TO BE ADDED", ITEM_TYPE_CONSUMABLE);
 
 Items.Consumables.WhiskerFruit = new Item("W.Fruit", "W.Fruit", "a piece of whisker-fruit", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.WhiskerFruit.description = "This small, peach-sized fruit has tiny whisker-like protrusions growing from the sides.";

@@ -11,11 +11,14 @@ Debug.doDebug = function() {
     outputText("Player Pregnant by: " + player.pregnancyType + "<br>");
     outputText("Player Anal Pregnant by: " + player.buttPregnancyType + "<br>");
     outputText("Player Anal Pregnancy Duration: " + player.buttPregnancyIncubation + "<br>");
+    outputText("Have an armor rack? " + gameFlags[HAS_ARMOR_RACK] + "<br>");
+    outputText("Have a weapon rack? " + gameFlags[HAS_WEAPON_RACK] + "<br>");
+    outputText("Have a shield rack? " + gameFlags[HAS_EQUIPMENT_RACK] + "<br>");
     menu();
     addButton(0, "Gender", Debug.genderChange, null, null, null, "Change the Player's Gender.");
     addButton(1, "Fight", Debug.fightCreature, null, null, null, "Fight a creature.");
     addButton(2, "StatChange", Debug.statChange, null, null, null, "Change a Stat for testing.");
-    addButton(2, "PregTest", Debug.pregTest, null, null, null, "Start a Pregnancy in the Player.");
+    addButton(3, "PregTest", Debug.pregTest, null, null, null, "Start a Pregnancy in the Player.");
     addButton(14, "Leave", Camp.doCamp, null, null, null, "Return to Camp.");
 };
 
@@ -67,7 +70,7 @@ Debug.genderChangeNone = function() {
 
 Debug.fightCreature = function() {
     clearOutput();
-    startCombat(new SandWitch());
+    startCombat(new Hellhound());
 }
 
 //-------
@@ -78,6 +81,7 @@ Debug.statChange = function() {
     clearOutput();
     outputText("Which Stat do you want to change?");
     addButton(0, "HP BOOST", Debug.changeHP);
+    addButton(1, "Main Stats", Debug.changeStats);
     addButton(14, "Back", Debug.doDebug);
 }
 
@@ -85,6 +89,13 @@ Debug.changeHP = function() {
     outputText("Changing HP");
     player.HP = 999;
 }
+
+Debug.changeStats = function() {
+    clearOutput();
+    outputText("Becoming a Beast!");
+    player.modStats("str", 99, "tou", 99, "spe", 99);
+
+};
 
 //----------
 // PregTest

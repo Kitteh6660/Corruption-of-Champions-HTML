@@ -183,6 +183,24 @@ function statsScreen() {
 	if (bodyStats.length > 0)
 		outputText("<b><u>Body Stats</u></b><br>" + bodyStats + "<br><br>");
 	doNext(playerMenu);
+    
+    // Addiction Stats
+    var addictStats = "";
+
+    // Mino Cum Addiction
+    if (gameFlags[EVER_DRANK_MINOCUM] > 0 || gameFlags[MINOTAUR_CUM_ADDICTION_TRACKER] > 0 || player.findPerk(PerkLib.MinotaurCumAddict) >= 0 || player.findPerk(PerkLib.MinotaurCumResistance) >= 0) {
+        if (player.findPerk(PerkLib.MinotaurCumAddict) < 0)
+            addictStats += "<b>Minotaur Cum:</b> " + Math.round(gameFlags[MINOTAUR_CUM_ADDICTION_TRACKER] * 10)/10 + "%<br>";
+        else if (player.findPerk(PerkLib.MinotaurCumResistance) >= 0)
+            addictStats += "<b>Minotaur Cum:</b> 0% (Immune)<br>";
+        else
+            addictStats += "<b>Minotaur Cum:</b> 100+%<br>";
+    }
+
+    if (addictStats != "")
+        outputText("<br><b><u>Addictions</u></b><br>" + addictStats, false);
+    // End Addiction Stats
+    
 }
 //------------
 // PERKS

@@ -24,6 +24,8 @@ Camp.doCamp = function () {
     playerMenu = Camp.doCamp;
 	//Display texts
 	clearOutput();
+    // Display Special events
+    CampEvents.checkEvents();
     // Display Pregnancy related events
     pregnancyProgression.updatePregnancy(); // Displays special messages before the main camp message prints.
 	/*if (isabellaFollower()) {
