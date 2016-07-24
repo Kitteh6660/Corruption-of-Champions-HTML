@@ -70,7 +70,7 @@ Debug.genderChangeNone = function() {
 
 Debug.fightCreature = function() {
     clearOutput();
-    startCombat(new Minotaur());
+    startCombat(new Hellhound());
 }
 
 //-------
