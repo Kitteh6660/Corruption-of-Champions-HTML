@@ -241,6 +241,9 @@ const GOO_TFED_NICE                     = "Goo_TFed_Nice";
 const PC_KNOWS_ABOUT_BLACK_EGGS         = "PC_Knows_About_Black_Eggs"; //May need to move this one, and possibly integrate with Amily?
 const TIMES_THOUGHT_ABOUT_GOO_RECRUITMENT = "Times_Thought_About_Goo_Recruitment";
 
+//Green Goo
+const TIMES_MET_OOZE                    = "Times_Met_Ooze";
+
 
 //------------
 // KEY ITEMS
