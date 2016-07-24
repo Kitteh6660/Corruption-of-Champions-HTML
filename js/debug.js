@@ -18,7 +18,7 @@ Debug.doDebug = function() {
     addButton(0, "Gender", Debug.genderChange, null, null, null, "Change the Player's Gender.");
     addButton(1, "Fight", Debug.fightCreature, null, null, null, "Fight a creature.");
     addButton(2, "StatChange", Debug.statChange, null, null, null, "Change a Stat for testing.");
-    addButton(2, "PregTest", Debug.pregTest, null, null, null, "Start a Pregnancy in the Player.");
+    addButton(3, "PregTest", Debug.pregTest, null, null, null, "Start a Pregnancy in the Player.");
     addButton(14, "Leave", Camp.doCamp, null, null, null, "Return to Camp.");
 };
 
@@ -81,6 +81,7 @@ Debug.statChange = function() {
     clearOutput();
     outputText("Which Stat do you want to change?");
     addButton(0, "HP BOOST", Debug.changeHP);
+    addButton(1, "Main Stats", Debug.changeStats);
     addButton(14, "Back", Debug.doDebug);
 }
 
@@ -88,6 +89,13 @@ Debug.changeHP = function() {
     outputText("Changing HP");
     player.HP = 999;
 }
+
+Debug.changeStats = function() {
+    clearOutput();
+    outputText("Becoming a Beast!");
+    player.modStats("str", 99, "tou", 99, "spe", 99);
+
+};
 
 //----------
 // PregTest

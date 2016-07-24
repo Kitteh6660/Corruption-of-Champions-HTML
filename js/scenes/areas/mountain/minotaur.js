@@ -516,6 +516,7 @@ MinotaurScene.minoVictoryRapeChoices = function() {
         //addButton(10, "B.Titfuck", lustyMaidenPaizuri); //TODO Add Lusty Maiden Armor Scene
     };
 
+    addButton(11, "Leave", cleanupAfterCombat);
 
     // Text display!
     //Hungry for cum?  Grab a snickers.
@@ -523,12 +524,12 @@ MinotaurScene.minoVictoryRapeChoices = function() {
         outputText("Smiling down at your vanquished foe, you feel a familiar hunger growing within you.  What do you do?", true);
     }
 //Not an addict
-    else if (player.lust >= 33 && player.gender > 0 && gameFlags[SFW_MODE] <= 0) {
+    else if (player.lust >= 33 && player.gender > 0 && gameFlags[SFW_MODE] != 1) {
         if (monster.lust >= monster.maxLust()) outputText("You smile in satisfaction as the " + monster.name + " drops down on all fours and begins masturbating feverishly.  Sadly you realize your own needs have not been met.  Of course you could always fuck the eager bull...<br><br>What do you do?", true);
         else outputText("You smile in satisfaction as the " + monster.name + " collapses, unable to continue fighting.  Sadly you realize your own needs have not been met.  Of course you could always rape the poor thing...<br><br>What do you do?", true);
     }
 //Not able to rape but a feeder
-    else if (player.findStatusEffect(StatusEffects.Feeder) >= 0 && gameFlags[SFW_MODE] <= 0) {
+    else if (player.findStatusEffect(StatusEffects.Feeder) >= 0 && gameFlags[SFW_MODE] == 0) {
         if (monster.lust >= monster.maxLust()) outputText("You smile in satisfaction as the " + monster.name + " collapses, unable to continue fighting.  Sadly you realize your own need to breastfeed has not been met.  You could always let the poor thing have a drink...<br><br>Do you?", true);
         else outputText("You smile in satisfaction as the " + monster.name + " collapses, unable to continue fighting.  Sadly you realize your own need to breastfeed has not been met.  You could always let the poor thing have a drink...<br><br>What do you do?", true);
     }
@@ -537,11 +538,12 @@ MinotaurScene.minoVictoryRapeChoices = function() {
         if (monster.lust >= monster.maxLust()) outputText("You smile in satisfaction as the " + monster.name + " drops down on all fours and begins masturbating feverishly.", true);
         else outputText("You smile in satisfaction as the " + monster.name + " collapses, unable to continue fighting.", true);
         cleanupAfterCombat();
-        return;
     }
 
     if (x < 0 && player.hasCock()) outputText("<br>Sadly, you're too well endowed to penetrate the minotaur.", false);
     if (player.gender == 3 && player.isTaur()) outputText("<br>If you had a different body type you might be able to penetrate him while taking him, but as a centaur that's not an option.", false);
+
+
 
 };
 

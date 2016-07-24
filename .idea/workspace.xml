@@ -6,13 +6,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8a292ce1-df00-4848-8a40-d7241dab169d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/creature.js" afterPath="$PROJECT_DIR$/js/creature.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/debug.js" afterPath="$PROJECT_DIR$/js/debug.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/flags/dataFlags.js" afterPath="$PROJECT_DIR$/js/flags/dataFlags.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/items/consumables.js" afterPath="$PROJECT_DIR$/js/items/consumables.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/perkLib.js" afterPath="$PROJECT_DIR$/js/perkLib.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/playerInfo.js" afterPath="$PROJECT_DIR$/js/playerInfo.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/engine/gui.js" afterPath="$PROJECT_DIR$/js/engine/gui.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/areas/mountain/minotaur.js" afterPath="$PROJECT_DIR$/js/scenes/areas/mountain/minotaur.js" />
     </list>
     <ignored path="Corruption-of-Champions-HTML.iws" />
@@ -33,7 +28,98 @@
     <favorites_list name="Corruption-of-Champions-HTML" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="minotaur.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/js/scenes/areas/mountain/minotaur.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="192">
+              <caret line="547" column="0" selection-start-line="547" selection-start-column="0" selection-end-line="547" selection-end-column="0" />
+              <folding>
+                <element signature="n#!!block;n#Minotaur#0" expanded="false" />
+                <element signature="e#3863#4035#0" expanded="false" />
+                <element signature="e#4074#5554#0" expanded="false" />
+                <element signature="e#5844#9244#0" expanded="false" />
+                <element signature="e#9258#10301#0" expanded="false" />
+                <element signature="e#41222#41574#0" expanded="false" />
+                <element signature="e#41804#43183#0" expanded="false" />
+                <element signature="e#43329#43676#0" expanded="false" />
+                <element signature="e#46088#46435#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="combat.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/scenes/combat.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="293">
+              <caret line="619" column="23" selection-start-line="619" selection-start-column="23" selection-end-line="619" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="creature.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/creature.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="142">
+              <caret line="216" column="0" selection-start-line="216" selection-start-column="0" selection-end-line="216" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="intro.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/scenes/intro.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="30" column="62" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="62" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="debug.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/debug.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="95" column="51" selection-start-line="95" selection-start-column="51" selection-end-line="95" selection-end-column="51" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="gui.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/engine/gui.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="247">
+              <caret line="142" column="0" selection-start-line="142" selection-start-column="0" selection-end-line="142" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="utils.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/engine/utils.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="142">
+              <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="text.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/engine/text.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -55,7 +141,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/js/engine/utils.js" />
         <option value="$PROJECT_DIR$/js/keyItemLib.js" />
         <option value="$PROJECT_DIR$/js/scenes/combatTeases.js" />
         <option value="$PROJECT_DIR$/js/appearance.js" />
@@ -104,6 +189,7 @@
         <option value="$USER_HOME$/Downloads/Corruption-of-Champions-Mod-master/classes/classes/Player.as" />
         <option value="$PROJECT_DIR$/js/creature.js" />
         <option value="$USER_HOME$/Downloads/Corruption-of-Champions-Mod-master/classes/classes/Scenes/Areas/Mountain/MinotaurScene.as" />
+        <option value="$PROJECT_DIR$/js/engine/gui.js" />
         <option value="$PROJECT_DIR$/js/debug.js" />
         <option value="$PROJECT_DIR$/js/scenes/areas/mountain/minotaur.js" />
       </list>
@@ -176,56 +262,7 @@
       <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Corruption-of-Champions-HTML" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Corruption-of-Champions-HTML" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Corruption-of-Champions-HTML" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Corruption-of-Champions-HTML" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Corruption-of-Champions-HTML" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Corruption-of-Champions-HTML" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Corruption-of-Champions-HTML" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scenes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
+        <subPane />
       </pane>
     </panes>
   </component>
@@ -240,15 +277,15 @@
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///home/sudhamma/Projects/Corruption-of-Champions-HTML/js/scenes/npcs/amily.js" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Sylvain\Documents\Corruption_of_Champions\Corruption-of-Champions-HTML\assets\sprites" />
-      <recent name="G:\Sylvain\Data Files\Documents\Corruption_of_Champions\Corruption-of-Champions-HTML\js\scenes" />
-      <recent name="G:\Sylvain\Data Files\Documents\Corruption_of_Champions\Corruption-of-Champions-HTML\js" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/js" />
       <recent name="C:\Users\Sylvain\Documents\Corruption_of_Champions\Corruption-of-Champions-HTML\assets\sprites" />
       <recent name="C:\Users\Sylvain\Documents\Corruption_of_Champions\Corruption-of-Champions-HTML\assets\interface" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Sylvain\Documents\Corruption_of_Champions\Corruption-of-Champions-HTML\assets\sprites" />
+      <recent name="G:\Sylvain\Data Files\Documents\Corruption_of_Champions\Corruption-of-Champions-HTML\js\scenes" />
+      <recent name="G:\Sylvain\Data Files\Documents\Corruption_of_Champions\Corruption-of-Champions-HTML\js" />
     </key>
   </component>
   <component name="RunManager" selected="JavaScript Debug.coc.html">
@@ -364,7 +401,7 @@
       <workItem from="1468887833342" duration="2310000" />
       <workItem from="1469053544360" duration="2261000" />
       <workItem from="1469056060083" duration="7523000" />
-      <workItem from="1469301832513" duration="8058000" />
+      <workItem from="1469301832513" duration="13417000" />
     </task>
     <task id="LOCAL-00001" summary="Release of 0.1 alpha with many more core content!&#10;&#10;Now with explorable zones, followers, etc!">
       <created>1455694082885</created>
@@ -391,7 +428,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="255985000" />
+    <option name="totallyTimeSpent" value="261344000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -404,9 +441,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1366" height="741" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3682284" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3682284" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32861635" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32854864" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32854864" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -416,7 +453,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33438987" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4183835" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32861635" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -470,11 +507,6 @@
           <option name="timeStamp" value="113" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/js/debug.js</url>
-          <line>97</line>
-          <option name="timeStamp" value="114" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/js/scenes/places/townruins.js</url>
           <line>51</line>
           <option name="timeStamp" value="116" />
@@ -489,6 +521,12 @@
           <line>345</line>
           <option name="timeStamp" value="118" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/js/scenes/areas/mountain/minotaur.js</url>
+          <line>526</line>
+          <properties />
+          <option name="timeStamp" value="122" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
@@ -498,7 +536,7 @@
           <properties />
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="119" />
+      <option name="time" value="123" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -514,6 +552,9 @@
             <element signature="e#5844#9244#0" expanded="false" />
             <element signature="e#9258#10301#0" expanded="false" />
             <element signature="e#41222#41574#0" expanded="false" />
+            <element signature="e#41804#43183#0" expanded="false" />
+            <element signature="e#43329#43676#0" expanded="false" />
+            <element signature="e#46088#46435#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -577,25 +618,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/engine/utils.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="110" column="0" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/scenes/inventory.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="130">
           <caret line="353" column="37" selection-start-line="353" selection-start-column="37" selection-end-line="353" selection-end-column="37" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/engine/text.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -611,13 +638,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/engine/gui.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="130" column="0" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -665,7 +686,7 @@
         <state relative-caret-position="90">
           <caret line="190" column="20" selection-start-line="190" selection-start-column="20" selection-end-line="190" selection-end-column="20" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -694,45 +715,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/scenes/combat.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-945">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/scenes/areas/mountain/minotaur.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="422" column="0" selection-start-line="422" selection-start-column="0" selection-end-line="422" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!block;n#Minotaur#0" expanded="false" />
-            <element signature="e#3863#4035#0" expanded="false" />
-            <element signature="e#4074#5554#0" expanded="false" />
-            <element signature="e#5844#9244#0" expanded="false" />
-            <element signature="e#9258#10301#0" expanded="false" />
-            <element signature="e#41222#41574#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/debug.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="72" column="28" selection-start-line="72" selection-start-column="28" selection-end-line="72" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/creature.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="3793" column="2" selection-start-line="3793" selection-start-column="2" selection-end-line="3793" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/perkLib.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="312">
@@ -746,6 +728,88 @@
         <state relative-caret-position="273">
           <caret line="219" column="94" selection-start-line="219" selection-start-column="94" selection-end-line="219" selection-end-column="94" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="25" column="74" selection-start-line="25" selection-start-column="44" selection-end-line="25" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/scenes/intro.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="30" column="62" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/debug.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="95" column="51" selection-start-line="95" selection-start-column="51" selection-end-line="95" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/engine/gui.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="142" column="0" selection-start-line="142" selection-start-column="0" selection-end-line="142" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/engine/utils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/scenes/combat.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="619" column="23" selection-start-line="619" selection-start-column="23" selection-end-line="619" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/creature.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="216" column="0" selection-start-line="216" selection-start-column="0" selection-end-line="216" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/engine/text.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/scenes/areas/mountain/minotaur.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="547" column="0" selection-start-line="547" selection-start-column="0" selection-end-line="547" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!block;n#Minotaur#0" expanded="false" />
+            <element signature="e#3863#4035#0" expanded="false" />
+            <element signature="e#4074#5554#0" expanded="false" />
+            <element signature="e#5844#9244#0" expanded="false" />
+            <element signature="e#9258#10301#0" expanded="false" />
+            <element signature="e#41222#41574#0" expanded="false" />
+            <element signature="e#41804#43183#0" expanded="false" />
+            <element signature="e#43329#43676#0" expanded="false" />
+            <element signature="e#46088#46435#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
