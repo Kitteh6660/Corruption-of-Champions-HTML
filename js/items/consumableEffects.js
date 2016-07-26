@@ -10,10 +10,11 @@ ConsumableEffects.fishFillet = function() {
     if (!inCombat) outputText("You sit down and unwrap your fish fillet. It's perfectly flaky, allowing you to break it off in bite-sized chunks.  The salty meal disappears quickly, and your stomach gives an appreciative gurgle.");
     //(In combat?)
     else outputText("You produce the fish fillet from your bag.  Rather than unwrap it and savor the taste as you normally would, you take a large bite out of it, leaf wrapping and all.  In no time your salty meal is gone, your stomach giving an appreciative gurgle.  ");
+    if (gameFlags[FACTORY_SHUTDOWN] == 2) player.modStats("cor", 0.5);
+    else if (gameFlags[FACTORY_SHUTDOWN] == 1) player.modStats("cor", -0.1);
+    else player.modStats("cor", 0.1);
     //Increase HP by quite a bit!)
-    //if (gameFlags[FACTORY_SHUTDOWN] == 2) player.modStats("cor", 0.5);
-    //if (gameFlags[FACTORY_SHUTDOWN] == 1) player.modStats("cor", -0.1);
-    player.modStats("cor", 0.1);
+
     player.changeHP(Math.round(player.maxHP() * .25), true);
     player.refillHunger(30);
 }
