@@ -58,3 +58,6 @@ PerkLib.ArousingAura = new PerkType("ArousingAura", "Arousing Aura", "TO BE ADDE
 PerkLib.MinotaurCumResistance = new PerkType("MinoCumResist", "Minotaur Cum Resistance", "TO BE ADDED");
 PerkLib.MinotaurCumAddict = new PerkType("MinoCumAddict", "Minotaur Cum Addict", "TO BE ADDED");
 PerkLib.Masochist = new PerkType("Masochist", "Masochist", "TO BE ADDED");
+PerkLib.HistoryAlchemist = new PerkType("H.Alchemist", "Alchemist History", "TO BE ADDED");
+PerkLib.TransformationResistance = new PerkType("T.Resist", "Transformation Resistance", "TO BE ADDED");
+PerkLib.Oviposition = new PerkType("Oviposit", "Oviposition", "TO BE ADDED");

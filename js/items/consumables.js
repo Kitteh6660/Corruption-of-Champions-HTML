@@ -87,7 +87,7 @@ Items.Consumables.PureHoney = new Item("PurHon", "Pure Honey", "TO BE ADDED", IT
 
 Items.Consumables.Reptilum = new Item("Reptilum", "Reptilum", "a vial of Reptilum", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.Reptilum.description = "This is a rounded bottle with a small label that reads, \"<i>Reptilum</i>\".  It is likely this potion is tied to reptiles in some way.";
-//Items.Consumables.Reptilum.consumeEffect = ConsumableEffects.
+Items.Consumables.Reptilum.consumeEffect = ConsumableEffects.lizardTFs;
 
 Items.Consumables.SnakeOil = new Item("SnakeOil", "Snake Oil", "a vial of snake oil", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.SnakeOil.description = "A vial the size of your fist made of dark brown glass. It contains what appears to be an oily, yellowish liquid. The odor is abominable.";
@@ -101,7 +101,7 @@ Items.Consumables.SpecialHoney = new Item("SPHoney", "Special Honey", "TO BE ADD
 
 Items.Consumables.TatteredScroll = new Item("T.Scroll", "Tattered Scroll", "a tattered scroll", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.TatteredScroll.description = "This tattered scroll is written in strange symbols, yet you have the feeling that if you tried to, you could decipher it.";
-//Items.Consumables.TatteredScroll.consumeEffect = ConsumableEffects.
+Items.Consumables.TatteredScroll.consumeEffect = ConsumableEffects.tatteredScroll;
 
 Items.Consumables.WetCloth = new Item("W.Cloth", "Wet Cloth", "a wet cloth dripping with slippery slime", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.WetCloth.description = "Dripping with a viscous slime, you've no doubt rubbing this cloth on your body would have some kind of strange effect.";

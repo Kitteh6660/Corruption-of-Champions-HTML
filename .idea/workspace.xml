@@ -9,6 +9,8 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/items/consumableEffects.js" afterPath="$PROJECT_DIR$/js/items/consumableEffects.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/items/consumables.js" afterPath="$PROJECT_DIR$/js/items/consumables.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/items/transformationEffects.js" afterPath="$PROJECT_DIR$/js/items/transformationEffects.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/perkLib.js" afterPath="$PROJECT_DIR$/js/perkLib.js" />
     </list>
     <ignored path="Corruption-of-Champions-HTML.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,22 +30,63 @@
     <favorites_list name="Corruption-of-Champions-HTML" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="consumableEffects.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/items/consumableEffects.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="11" column="189" selection-start-line="11" selection-start-column="189" selection-end-line="11" selection-end-column="189" />
+            <state relative-caret-position="190">
+              <caret line="148" column="14" selection-start-line="148" selection-start-column="12" selection-end-line="148" selection-end-column="14" />
+              <folding>
+                <element signature="e#155#1071#0" expanded="false" />
+                <element signature="e#1131#2959#0" expanded="false" />
+                <element signature="e#3029#3820#0" expanded="false" />
+                <element signature="e#3881#4715#0" expanded="false" />
+                <element signature="e#4776#5648#0" expanded="false" />
+                <element signature="e#5709#8177#0" expanded="false" />
+                <element signature="e#8242#13567#0" expanded="false" />
+                <element signature="e#14370#21369#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="transformationEffects.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/js/items/transformationEffects.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="2588" column="40" selection-start-line="2588" selection-start-column="40" selection-end-line="2588" selection-end-column="40" />
+              <folding>
+                <element signature="e#42#22227#0" expanded="false" />
+                <element signature="e#22275#73065#0" expanded="false" />
+                <element signature="e#73122#73265#0" expanded="false" />
+                <element signature="e#73321#77641#0" expanded="false" />
+                <element signature="e#77685#115881#0" expanded="false" />
+                <element signature="e#115925#137667#0" expanded="false" />
+                <element signature="e#137711#150924#0" expanded="false" />
+                <element signature="e#150967#173026#0" expanded="false" />
+                <element signature="e#173067#175075#0" expanded="false" />
+                <element signature="e#175120#185926#0" expanded="false" />
+                <element signature="e#185970#213429#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="perkLib.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/perkLib.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="646">
+              <caret line="62" column="77" selection-start-line="62" selection-start-column="77" selection-end-line="62" selection-end-column="77" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="consumables.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="consumables.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/items/consumables.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3555">
-              <caret line="222" column="0" selection-start-line="222" selection-start-column="0" selection-end-line="222" selection-end-column="0" />
+            <state relative-caret-position="286">
+              <caret line="89" column="71" selection-start-line="89" selection-start-column="71" selection-end-line="89" selection-end-column="71" />
               <folding />
             </state>
           </provider>
@@ -52,8 +95,18 @@
       <file leaf-file-name="ConsumableLib.as" pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/Downloads/Corruption-of-Champions-Mod-master/classes/classes/Items/ConsumableLib.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="106" column="92" selection-start-line="106" selection-start-column="92" selection-end-line="106" selection-end-column="92" />
+            <state relative-caret-position="161">
+              <caret line="175" column="85" selection-start-line="175" selection-start-column="77" selection-end-line="175" selection-end-column="85" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Mutations.as" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/Downloads/Corruption-of-Champions-Mod-master/classes/classes/Items/Mutations.as">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="4987" column="12" selection-start-line="4987" selection-start-column="12" selection-end-line="4987" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -81,8 +134,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/js/items/materials.js" />
-        <option value="$USER_HOME$/Downloads/Corruption-of-Champions-Mod-master/classes/classes/Scenes/Monsters/ImpScene.as" />
         <option value="$PROJECT_DIR$/js/engine/saves.js" />
         <option value="$PROJECT_DIR$/js/scenes/combat.js" />
         <option value="$PROJECT_DIR$/js/scenes/monsters/imp.js" />
@@ -122,7 +173,6 @@
         <option value="$PROJECT_DIR$/js/scenes/areas/mountain/minotaur.js" />
         <option value="$USER_HOME$/Downloads/Corruption-of-Champions-Mod-master/classes/classes/Scenes/Areas/Mountain/HellHound.as" />
         <option value="$USER_HOME$/Downloads/Corruption-of-Champions-Mod-master/classes/classes/Scenes/Areas/Mountain/HellHoundScene.as" />
-        <option value="$PROJECT_DIR$/js/perkLib.js" />
         <option value="$PROJECT_DIR$/js/debug.js" />
         <option value="$PROJECT_DIR$/js/scenes/areas/mountain/hellhound.js" />
         <option value="$PROJECT_DIR$/js/flags/dataFlags.js" />
@@ -131,7 +181,10 @@
         <option value="$PROJECT_DIR$/js/scenes/areas/lake/greenSlime.js" />
         <option value="$PROJECT_DIR$/js/items/consumableEffects.js" />
         <option value="$USER_HOME$/Downloads/Corruption-of-Champions-Mod-master/classes/classes/Items/ConsumableLib.as" />
+        <option value="$USER_HOME$/Downloads/Corruption-of-Champions-Mod-master/classes/classes/Items/Mutations.as" />
         <option value="$PROJECT_DIR$/js/items/consumables.js" />
+        <option value="$PROJECT_DIR$/js/perkLib.js" />
+        <option value="$PROJECT_DIR$/js/items/transformationEffects.js" />
       </list>
     </option>
   </component>
@@ -342,7 +395,8 @@
       <workItem from="1469053544360" duration="2261000" />
       <workItem from="1469056060083" duration="7523000" />
       <workItem from="1469301832513" duration="18011000" />
-      <workItem from="1469547055471" duration="1381000" />
+      <workItem from="1469547055471" duration="1980000" />
+      <workItem from="1469556190826" duration="1538000" />
     </task>
     <task id="LOCAL-00001" summary="Release of 0.1 alpha with many more core content!&#10;&#10;Now with explorable zones, followers, etc!">
       <created>1455694082885</created>
@@ -369,7 +423,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="267319000" />
+    <option name="totallyTimeSpent" value="269456000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -481,6 +535,39 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/js/items/consumableEffects.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="189" selection-start-line="11" selection-start-column="189" selection-end-line="11" selection-end-column="189" />
+          <folding>
+            <element signature="e#155#1071#0" expanded="false" />
+            <element signature="e#1131#2959#0" expanded="false" />
+            <element signature="e#3029#3820#0" expanded="false" />
+            <element signature="e#3881#4715#0" expanded="false" />
+            <element signature="e#4776#5648#0" expanded="false" />
+            <element signature="e#5709#8177#0" expanded="false" />
+            <element signature="e#8242#13567#0" expanded="false" />
+            <element signature="e#14370#21369#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/items/consumables.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/Corruption-of-Champions-Mod-master/classes/classes/Items/ConsumableLib.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1500">
+          <caret line="106" column="92" selection-start-line="106" selection-start-column="92" selection-end-line="106" selection-end-column="92" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/scenes/areas/mountain/minotaur.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -724,13 +811,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/perkLib.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="511">
-          <caret line="59" column="74" selection-start-line="59" selection-start-column="74" selection-end-line="59" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Downloads/Corruption-of-Champions-Mod-master/classes/classes/Scenes/Areas/Lake/GreenSlime.as">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
@@ -763,31 +843,75 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/Corruption-of-Champions-Mod-master/classes/classes/Items/Mutations.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="4987" column="12" selection-start-line="4987" selection-start-column="12" selection-end-line="4987" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/items/consumableEffects.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="11" column="189" selection-start-line="11" selection-start-column="189" selection-end-line="11" selection-end-column="189" />
+        <state relative-caret-position="190">
+          <caret line="148" column="14" selection-start-line="148" selection-start-column="12" selection-end-line="148" selection-end-column="14" />
+          <folding>
+            <element signature="e#155#1071#0" expanded="false" />
+            <element signature="e#1131#2959#0" expanded="false" />
+            <element signature="e#3029#3820#0" expanded="false" />
+            <element signature="e#3881#4715#0" expanded="false" />
+            <element signature="e#4776#5648#0" expanded="false" />
+            <element signature="e#5709#8177#0" expanded="false" />
+            <element signature="e#8242#13567#0" expanded="false" />
+            <element signature="e#14370#21369#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/items/consumables.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="89" column="71" selection-start-line="89" selection-start-column="71" selection-end-line="89" selection-end-column="71" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/Downloads/Corruption-of-Champions-Mod-master/classes/classes/Items/ConsumableLib.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="106" column="92" selection-start-line="106" selection-start-column="92" selection-end-line="106" selection-end-column="92" />
+        <state relative-caret-position="161">
+          <caret line="175" column="85" selection-start-line="175" selection-start-column="77" selection-end-line="175" selection-end-column="85" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/items/consumables.js">
+    <entry file="file://$PROJECT_DIR$/js/perkLib.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3555">
-          <caret line="222" column="0" selection-start-line="222" selection-start-column="0" selection-end-line="222" selection-end-column="0" />
+        <state relative-caret-position="646">
+          <caret line="62" column="77" selection-start-line="62" selection-start-column="77" selection-end-line="62" selection-end-column="77" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/items/transformationEffects.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="2588" column="40" selection-start-line="2588" selection-start-column="40" selection-end-line="2588" selection-end-column="40" />
+          <folding>
+            <element signature="e#42#22227#0" expanded="false" />
+            <element signature="e#22275#73065#0" expanded="false" />
+            <element signature="e#73122#73265#0" expanded="false" />
+            <element signature="e#73321#77641#0" expanded="false" />
+            <element signature="e#77685#115881#0" expanded="false" />
+            <element signature="e#115925#137667#0" expanded="false" />
+            <element signature="e#137711#150924#0" expanded="false" />
+            <element signature="e#150967#173026#0" expanded="false" />
+            <element signature="e#173067#175075#0" expanded="false" />
+            <element signature="e#175120#185926#0" expanded="false" />
+            <element signature="e#185970#213429#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
