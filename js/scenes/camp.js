@@ -72,9 +72,9 @@ Camp.doCamp = function () {
 	addButton(9, "Sleep", Camp.doSleep);
     if (Inventory.showStash(stashbool) == true) {
         addButton(12, "Stash", Inventory.stashMenu, null, null, null, "The stash allows you to store your items safely until you need them later.");
-    };    
+    }
     addButton(13, "Inventory", Inventory.inventoryMenu, null, null, null, "The inventory allows you to use an item. Be careful as this leaves you open to a counterattack when in combat.");
-    //addButton(14, "Codex", Codex.readCodex);
+    addButtonDisabled(14, "Codex", "Not yet implemented."); //Codex.readCodex
 }
 
 

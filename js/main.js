@@ -6,7 +6,7 @@ function mainMenu() {
 	if (typeof(Storage) !== "undefined") {
 		// All good to go!
 	}
-    else if (GetIEVersion() > 0) {
+    else if (GetIEVersion() < 11) {
         errorOldInternetExplorerEwwww();
         return;
     } 
@@ -28,6 +28,7 @@ function mainMenu() {
     showMenuButton("buttonData");
 	playerMenu = mainMenu;
     if (gameStarted) addButton(0, "Resume", Camp.doCamp);
+    else addButtonDisabled(0, "Resume", "Please load a game or start a new game first.");
 	addButton(1, "Settings", settingsScreenMain);
     addButton(2, "Credits", creditsScreen);
 }
@@ -149,18 +150,19 @@ function creditsScreen() {
     clearOutput();
     //displayHeader("Credits");
     var creditsContents = "";
-    
-    creditsContents += "<b><u>Coding and Main Events:</u></b>";
+
+    creditsContents += "<b><u>Original Game Creator:</u></b>";
     creditsContents += "<ul>";
     creditsContents += "<li> Fenoxo</li>";
     creditsContents += "</ul>";
 
-    creditsContents += "<b><u>Game Mod:</u></b><br>";
+    creditsContents += "<b><u>HTML Coding:</u></b>";
     creditsContents += "<ul>";
-    creditsContents += "<li> Kitteh6660 (Mod Creator)</li>";
+    creditsContents += "<li> Kitteh6660 (Main coder)</li>";
+    creditsContents += "<li> Mattibun</li>";
     creditsContents += "</ul>";
 
-    creditsContents += "<b><u>Game Mod Contributors:</u></b>";
+    /*creditsContents += "<b><u>Game Mod Contributors:</u></b>";
     creditsContents += "<ul>";
     creditsContents += "<li> Parth37955 (Pure Jojo anal pitch scene, Behemoth's vaginal catch scene)</li>";
     creditsContents += "<li> Liadri (Manticore and Dragonne suggestions)</li>";
@@ -174,9 +176,9 @@ function creditsScreen() {
     creditsContents += "<li> Foxxling (Lizan Rogue, Skin Oils & Body Lotions, Black Cock)</li>";
     creditsContents += "<li> LukaDoc (Bimbo Jojo)</li>";
     creditsContents += "<li> Kitteh6660 (Behemoth, Cabin, Ingnam, Pure Jojo sex scenes. Feel free to help me with quality control.)</li>";
-    creditsContents += "</ul>";
+    creditsContents += "</ul>";*/
 
-    creditsContents += "<b><u>Game Mod Bug Reporting:</u></b>";
+    /*creditsContents += "<b><u>Game Mod Bug Reporting:</u></b>";
     creditsContents += "<ul>";
     creditsContents += "<li> Wastarce</li>";
     creditsContents += "<li> Sorenant</li>";
@@ -194,7 +196,9 @@ function creditsScreen() {
     creditsContents += "<li> kalleangka (github)</li>";
     creditsContents += "<li> sworve (github)</li>";
     creditsContents += "<li> Netys (github)</li>";
-    creditsContents += "</ul>";
+    creditsContents += "</ul>";*/
+
+    creditsContents += "<b><u>The contents below are leftover from Flash. This will be sorted out later.</u></b><br><br>"
 
     creditsContents += "<b><u>Typo Reporting</u></b>";
     creditsContents += "<ul>";

@@ -13,7 +13,7 @@ Places.placesMenu = function() {
 	//}
 	//if (dungeonFound()) addButton(3, "Dungeons", dungeons, null, null, null, "Delve into dungeons.");
 	
-	//if (farmFound()) addButton(5, "Farm", kGAMECLASS.farm.farmExploreEncounter, null, null, null, "Visit Whitney's farm.");
+	if (gameFlags[MET_WHITNEY] >= 2) addButton(5, "Farm", Places.Farm.farmExploreEncounter, null, null, null, "Visit Whitney's farm.");
 	//if (flags[kFLAGS.OWCA_UNLOCKED] == 1) addButton(6, "Owca", kGAMECLASS.owca.gangbangVillageStuff, null, null, null, "Visit the sheep village of Owca, known for its pit where a person is hung on the pole weekly to be gang-raped by the demons.");
 	//if (flags[kFLAGS.MET_MINERVA] >= 4) addButton(7, "Oasis Tower", kGAMECLASS.highMountains.minervaScene.encounterMinerva, null, null, null, "Visit the ruined tower in the high mountains where Minerva resides.");
 	//if (player.findStatusEffect(StatusEffects.HairdresserMeeting) >= 0) addButton(8, "Salon", kGAMECLASS.mountain.salon.salonGreeting, null, null, null, "Visit the salon for hair services.");

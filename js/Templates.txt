@@ -1,0 +1,100 @@
+-- ### CREATURE TEMPLATE ### --
+
+function Creature() {
+    //Name and references
+	this.a = "";
+	this.name = "";
+	this.refName = this.name;
+	this.isAre = "is";
+	this.heShe = "";
+	this.himHer = "";
+	this.hisHer = "";
+    this.plural = false;
+	this.battleDesc = "";
+	//Core stats
+	this.str = 15;
+	this.tou = 15;
+	this.spe = 15;
+	this.inte = 15;
+	this.lib = 15;
+	this.sens = 15;
+	this.cor = 15;
+	//Combat stats
+	this.HP = this.maxHP();
+	this.lust = 0;
+	this.fatigue = 0;
+	//Advancement
+	this.level = 1;
+	this.XP = 0;
+	this.gems = 0;
+	//Battle variables
+	this.weapon = Items.NOTHING;
+    this.shield = Items.NOTHING;
+	this.armor = Items.NOTHING;
+    this.upperGarment = Items.NOTHING;
+    this.lowerGarment = Items.NOTHING;
+    this.accessory1 = Items.NOTHING;
+    this.accessory2 = Items.NOTHING;
+	this.bonusHP = 0;
+    this.additionalXP = 0;
+    this.lustVuln = 1;
+
+    this.drops = [];
+    this.dropThresholds = [];
+
+	//Appearance
+	this.gender = 0; //0 genderless, 1 male, 2 female, 3 hermaphrodite
+	this.tallness = 36; //Height in inches
+	this.skinTone = "";
+	this.skinType = 0;
+	this.skinAdj = "";
+    this.skinDesc = "skin";
+	this.hairType = 0;
+	this.hairColor = "";
+	this.hairLength = 0;
+    this.beardStyle = 0;
+    this.beardLength = 0;
+	this.furColor = "";
+
+    //Head
+	this.earType = 0;
+    this.eyeType = 0;
+    this.faceType = 0;
+    this.tongueType = 0;
+    //Body (This code section may be removed)
+    this.lowerBody = 0;
+    this.legCount = 2;
+    this.armType = 0;
+    //Extra parts (This code section may be removed)
+    this.antennae = 0;
+    this.hornType = 0;
+    this.horns = 0;
+    this.gills = false;
+    this.tailType = 0;
+    this.tailVenom = 0;
+    this.tailRecharge = 0;
+    this.wingType = 0;
+
+	this.femininity = 50;
+	this.tone = 0;
+	this.thickness = 0;
+	this.hipRating = 0;
+
+	//Sexual Characteristics
+	//Cocks
+	this.createCock(6, 1, CockTypesEnum.HUMAN);
+	//Vaginas
+	this.createVagina(false, VAGINA_WETNESS_NORMAL, VAGINA_LOOSENESS_NORMAL);
+	//Ass
+	this.ass = new Ass();
+	//Breasts
+	this.createBreastRow(Appearance.breastCupInverse("A"));
+
+    //Drops
+    this.clearDrops(); //Need to be called before populating the item arrays.
+    this.addDrop(Items.Consumables.Reducto, 5); //The former is the item, the latter is the drop chance in percent.
+
+	//Victory/defeat
+	this.victory = cleanupAfterCombat;
+	this.defeat = cleanupAfterCombat;
+}
