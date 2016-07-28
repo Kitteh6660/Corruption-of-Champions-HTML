@@ -96,8 +96,13 @@ Each creation of a PregnancyStore object is a new pregnancy. One variable holds 
 
 
 // Creating a constructor for pregnancies. Declaring default variables to prevent JS from turning these into the Number type.
-PregnancyStore.Pregnancy = function(pregType = 0, pregInc = 0, buttPregType = 0, buttPregInc = 0) {
-    
+PregnancyStore.Pregnancy = function(pregType, pregInc, buttPregType, buttPregInc) {
+    //Defaulting
+    if (pregType == undefined) pregType = 0;
+    if (pregInc == undefined) pregInc = 0;
+    if (buttPregType == undefined) buttPregType = 0;
+    if (buttPregInc == undefined) buttPregInc = 0;
+    //Main function
     this.pregnancyTypeFlag = pregType; // This marks who did the impregnation for standard births
     this.pregnancyIncubationFlag = pregInc; // This is the base counter for how long the impregnation last for standard births
     this.buttPregnancyTypeFlag = buttPregType; // As above, but for anal pregnancy

@@ -2078,7 +2078,8 @@ Creature.prototype.dogCocks = function() {
 
 
 
-Creature.prototype.cockHead = function(cockNum = 0) {
+Creature.prototype.cockHead = function(cockNum) {
+    if (cockNum == undefined) cockNum = 0;
     if (cockNum < 0 || cockNum > this.cocks.length - 1) {
         outputText("Something went wrong in Creature.prototype.cockHead!");
         return;
@@ -3517,7 +3518,13 @@ Creature.prototype.isButtPregnant = function() { return this.buttPregnancyType !
 //fertility must be >= random(0-beat)
 //If arg == 1 then override any contraceptives and guarantee fertilization
 //If arg == -1, no chance of fertilization.
-Creature.prototype.knockUp = function(type = 0, incubation = 0, beat = 100, arg = 0, event = []) {
+Creature.prototype.knockUp = function(type, incubation, beat, arg, event) {
+    //Defaulting
+    if (type == undefined) type = 0;
+    if (incubation == undefined) incubation = 0;
+    if (beat == undefined) beat = 100;
+    if (arg == undefined) arg = 0;
+    if (event == undefined) event = [];
     //Contraceptives cancel!
     if (this.findStatusEffect(StatusEffects.Contraceptives) >= 0 && arg < 1) return;
     // Originally commented out
@@ -3542,7 +3549,12 @@ Creature.prototype.knockUp = function(type = 0, incubation = 0, beat = 100, arg 
     }
 };
 
-Creature.prototype.buttKnockUp = function(type = 0, incubation = 0, beat = 100, arg = 0) {
+Creature.prototype.buttKnockUp = function(type, incubation, beat, arg) {
+    //Defaulting
+    if (type == undefined) type = 0;
+    if (incubation == undefined) incubation = 0;
+    if (beat == undefined) beat = 100;
+    if (arg == undefined) arg = 0;
     //Contraceptives cancel!
     if (this.findStatusEffect(StatusEffects.Contraceptives) >= 0 && arg < 1)
         return;
@@ -3558,7 +3570,12 @@ Creature.prototype.buttKnockUp = function(type = 0, incubation = 0, beat = 100, 
 };
 
 //The more complex buttKnockUp function used by the player is defined in Character.as
-Creature.prototype.buttKnockUpForce = function(type = 0, incubation = 0, event = []) {
+Creature.prototype.buttKnockUpForce = function(type, incubation, event) {
+    //Defaulting
+    if (type == undefined) type = 0;
+    if (incubation == undefined) incubation = 0;
+    if (event == undefined) event = [];
+    //Functionality
     this.buttPregnancyType = type;
     this.buttPregnancyIncubation = (type == 0 ? 0 : incubation * 60); //Won't allow incubation time without pregnancy type
     if (event.length > 1) {
@@ -3572,7 +3589,12 @@ Creature.prototype.buttKnockUpForce = function(type = 0, incubation = 0, event =
 };
 
 
-Creature.prototype.knockUpForce = function(type = 0, incubation = 0, event = []) {
+Creature.prototype.knockUpForce = function(type, incubation, event) {
+    //Defaulting
+    if (type == undefined) type = 0;
+    if (incubation == undefined) incubation = 0;
+    if (event == undefined) event = [];
+    //Functionality
     this.pregnancyType = type;
     this.pregnancyIncubation = (type == 0 ? 0 : incubation * 60); //Won't allow incubation time without pregnancy type
     if (event.length > 1) {
@@ -3679,7 +3701,8 @@ Creature.prototype.eggs = function()
 }
 
 // Add eggs to the ovipositors
-Creature.prototype.addEggs = function(arg = 0) {
+Creature.prototype.addEggs = function(arg) {
+    if (arg == undefined) arg = 0;
     if (this.findPerk(PerkLib.SpiderOvipositor) < 0 && this.findPerk(PerkLib.BeeOvipositor) < 0)
         return -1;
     else {
@@ -3702,7 +3725,8 @@ Creature.prototype.addEggs = function(arg = 0) {
 };
 
 // Sets a specific number of eggs to the ovipositors
-Creature.prototype.setEggs = function(arg = 0) {
+Creature.prototype.setEggs = function(arg) {
+    if (arg == undefined) arg = 0;
     if (this.findPerk(PerkLib.SpiderOvipositor) < 0 && this.findPerk(PerkLib.BeeOvipositor) < 0)
         return -1;
     else {

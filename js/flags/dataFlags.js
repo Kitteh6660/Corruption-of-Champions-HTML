@@ -267,9 +267,3 @@ const HAS_KEY_ITEM                          = "Has_Key_Item" // Does the player 
 const HAS_ARMOR_RACK                        = "Has_Armor_Rack" // Does the player have the armor rack?
 const HAS_WEAPON_RACK                       = "Has_Weapon_Rack" // Does the player have the weapon rack?
 const HAS_EQUIPMENT_RACK                    = "Has_Equipment_Rack" // Does the player have the equipment rack?
-
-//---------
-// PLOT VARIABLES
-//---------
-
-const FACTORY_SHUTDOWN                      = "Factory_Shutdown" // Is the factory on, shut down, or destroyed?

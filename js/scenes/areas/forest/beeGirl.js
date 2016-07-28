@@ -581,7 +581,8 @@ BeeGirlScene.beeEncounterSheBeatsYouRegularlyDontLetHer = function() {
     doNext(Camp.returnToCampUseOneHour);
 }
 
-BeeGirlScene.beeEncounterSheBeatsYouRegularlyAndYouLetHerLaysEggs = function(clearScreen = true) {
+BeeGirlScene.beeEncounterSheBeatsYouRegularlyAndYouLetHerLaysEggs = function(clearScreen) {
+    if (clearScreen == undefined) clearScreen = true;
     if (clearScreen)
         clearOutput();
     else outputText("<br><br>");
@@ -891,13 +892,15 @@ BeeGirlScene.beeEncounterRefusedHerEggsLeave = function() {
 
 // Normal encounter
 
-BeeGirlScene.beeEncounterClassic = function(clearScreen = true) {
+BeeGirlScene.beeEncounterClassic = function(clearScreen) {
+    if (clearScreen == undefined) clearScreen = true;
     if (clearScreen) clearOutput();
     if (beeGirlAttitude == 7 || beeGirlAttitude == 6) beeGirlAttitude = 8; //Reset your friendly conversation path if autorape or accepted
     BeeGirlScene.beeEncounterClassicSex(false);
 }
 
-BeeGirlScene.beeEncounterClassicSex = function(postCombat = true) {
+BeeGirlScene.beeEncounterClassicSex = function(postCombat) {
+    if (postCombat == undefined) postCombat = true;
     //spriteSelect(6);
 //Give into the beeee
     if (beeGirlAttitude == 7 || beeGirlAttitude == 6) beeGirlAttitude = 8; //Reset your friendly conversation path if autorape or accepted
@@ -1238,12 +1241,10 @@ BeeGirlScene.rapeTheBeeMultiCockStuff = function() {
         outputText("At this the bee-girl shrieks in utter bliss as her eyes roll back and she can't fight back the tingles coursing through her as you stretch her pussy lips.  You let go of her hands and watch with a satisfied grin as she tosses, turns, and clings to the dirt with a rich mix of pain and pleasure from the rough double-penetration. Suddenly you're caught off guard slightly as she pushes forward, almost tackling you. For an instant you're prepared to finish off the bee-girl, but the lust in her eyes is easy enough to read and she looks down, begging to be fucked and filled.  Grabbing onto her arms to brace against and suckling at her ample breast, you force your twin rods into her again and again while a pool of her sexual juices and sweet nectar form at your crotch from each slip in to her moist wetness. The bee-slut moans as you push your rock-hard cocks into her slick pussy, and you can just see the detectable bump of your cock head edging along her stomach, but strong as you are the tightness is overwhelming as her pussy muscles clench about your cocks.<br><br>", false);
         outputText("Letting go of your hands the bee-girl leans back and her mouth opens in a powerful scream of ecstasy that you're sure will scatter any wild-life or imps who hear the noise. As she flings herself back, your body clenches and a torrential storm of white, warm cum soars from the tip of your members into her innermost spaces. Unable to cope with the feelings coursing through her, the bee-girl nearly faints as she comes to a rest on your chest.  You catch your breath and the last couple of cum shots is milked by her still clenching pussy. Rolling over, you free both of your cocks from her fuck-hole and watch with more than a bit of satisfaction.  The dam breaks and a sea of white escapes her stretched, well-lubricated pussy. Pleased with your latest jaunt through the forest, you collect your gear and settle off, leaving the cum-drenched bee-girl covered in your seed.", false);
         cleanupAfterCombat();
-        return;
         player.orgasm();
-
+        return;
     }
     else BeeGirlScene.beeAlternate();
-    return;
 }
 
 //MALE sometimes herm

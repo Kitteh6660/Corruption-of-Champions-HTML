@@ -14,7 +14,11 @@ function mainMenu() {
 		errorOldBrowser();
         return;
 	}
-
+    //Don't run the game if on Edge due to issues.
+    if (GetIEVersion() >= 13) {
+        errorEdgeNeverWorks();
+        return;
+    }
     // Load the start screen
     outputText("<img src=\"assets/interface/CoCLogo.png\" height=\"300\" width=\"400\"><br>");
 	outputText("Corruption of Champions: HTML Edition (" + gameVersion + ")<br><br>");
@@ -41,7 +45,10 @@ function mainMenu() {
 function GetIEVersion() {
     var sAgent = window.navigator.userAgent;
     var Idx = sAgent.indexOf("MSIE");
-
+    //Check if on Edge
+    if (Idx == -1) {
+        Idx = sAgent.indexOf("Edge");
+    }
     // If IE, return version number.
     if (Idx > 0)
         return parseInt(sAgent.substring(Idx+ 5, sAgent.indexOf(".", Idx)));
@@ -66,7 +73,12 @@ function errorOldInternetExplorerEwwww() {
     menu();
     hideMenus();
 }
-
+function errorEdgeNeverWorks() {
+    clearOutput();
+    outputText("<font size=\"64\"><b>:(</b></font><br>Unfortunately, it appears that Microsoft Edge won't be able to run this game properly due to issue with local storage. I will look for possible workarounds. Until then, please switch to Firefox or Chrome.");
+    menu();
+    hideMenus();
+}
 //------------
 // SETTINGS
 //------------

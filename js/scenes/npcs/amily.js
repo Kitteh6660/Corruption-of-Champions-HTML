@@ -95,7 +95,7 @@ function Amily() {
     this.clearDrops(); //Need to be called before populating the item arrays.
 
     //Victory/defeat
-    this.victory = rapeCorruptAmily1;
+    this.victory = AmilyScene.rapeCorruptAmily1;
     this.defeat = cleanupAfterCombat;
     /*this.a = "";
     this.short = "Amily";

@@ -342,7 +342,7 @@ else {
 
 // MALE RAPE AS TAUR
 
-ImpScene.centaurOnImpMale = function(vape = false) {
+ImpScene.centaurOnImpMale = function(vape) {
 	var x = player.cockThatFits(monster.analCapacity());
 	if (x < 0) x = 0;
 	if (vape) clearOutput();
@@ -475,7 +475,7 @@ ImpScene.centaurOnImpMale = function(vape = false) {
 
 // FEMALE RAPE AS TAUR
 
-ImpScene.centaurOnImpFemale = function(vape = false) {
+ImpScene.centaurOnImpFemale = function(vape) {
 	if (vape) clearOutput();
 	//PREGGERS CHANCE HERE - unfinished
 	//{{Player has a cunt}}

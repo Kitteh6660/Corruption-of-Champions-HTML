@@ -403,7 +403,8 @@ GooGirlScene.beatUpGoo = function() {
 
 
 //Victory – Male
-GooGirlScene.gooMaleRape = function(type = 1) {
+GooGirlScene.gooMaleRape = function(type) {
+    if (type == undefined) type = 1;
     gameFlags[TIMES_FUCKED_NORMAL_GOOS]++;
     clearOutput();
     var x = player.biggestCockIndex();

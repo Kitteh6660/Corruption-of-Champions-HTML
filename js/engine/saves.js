@@ -477,8 +477,13 @@ Data.saveSettings = function() {
 }
 Data.loadSettings = function() {
     var success = false;
-    if (localStorage["CoC_Main"] == undefined)
-        return success;
+    if (GetIEVersion == 0) {
+        if (localStorage["CoC_Main"] == undefined)
+            return success;
+    }
+    else {
+        return false;
+    }
     var saveData = JSON.parse(localStorage["CoC_Main"]);
     try {
         silly = saveData.silly;

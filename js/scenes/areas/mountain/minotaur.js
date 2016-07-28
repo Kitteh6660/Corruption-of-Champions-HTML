@@ -1154,7 +1154,8 @@ MinotaurScene.minotaurLose = function() {
 
 
 // Loss Selector //TODO Test this. This function seems very strange. Appears to be both non-combat and combat encounters in here. Split this code.
-MinotaurScene.getRapedByMinotaur = function(autoRape = false) {
+MinotaurScene.getRapedByMinotaur = function(autoRape) {
+    if (autoRape == undefined) autoRape = false;
     //spriteSelect(44);
     player.slimeFeed();
     clearOutput();
