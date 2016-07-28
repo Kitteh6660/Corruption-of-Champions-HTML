@@ -1,7 +1,7 @@
 var Inventory = [];
 var gearStorage = [];
 
-var keyItemList = [];
+//var keyItemList = [];
 
 const inventorySlotName = ["first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth"];
 var currentItemSlot;
@@ -19,14 +19,8 @@ Inventory.inventoryMenu = function() {
 	//outputText("<b>Lower underwear:</b> " + player.lowerGarment.name + "<br>");
 	//outputText("<b>Accessory:</b> " + player.jewelryName + "<br>");
     
-    //Following three are for debugging
-    //outputText(gameFlags[HAS_WEAPON_RACK]);
-    //outputText(gameFlags[HAS_ARMOR_RACK]);
-    //outputText(gameFlags[HAS_EQUIPMENT_RACK]);
-    
-    // Bug here. keyItemList needs to either be saved or generated on load so the key items display properly.
-    if (keyItemList.length > 0) outputText("<b><u>Key Items:</u></b><br>");
-    for (x = 0; x < keyItemList.length; x++) outputText(keyItemList[x].keyName + "<br>");
+    if (player.keyItems.length > 0) outputText("<b><u>Key Items:</u></b><br>");
+    for (x = 0; x < player.keyItems.length; x++) outputText(player.keyItems[x].ktype.id + "<br>");
     outputText("<br>To discard unwanted items, hold Shift then click any of the items.");
     if (inCombat()) {
         callNext = Inventory.inventoryCombatHandler;
@@ -148,7 +142,7 @@ Inventory.inventoryCombatHandler = function() {
     combatRoundOver();
 }
 
-// Promps to destroys an item
+// Prompts to destroys an item
 Inventory.deleteItemPrompt = function(item, slotNum) {
     clearOutput();
     outputText("Are you sure you want to destroy " + player.itemSlots[slotNum].quantity + "x " + item.shortName + "?  You won't be able to retrieve " + (player.itemSlots[slotNum].quantity == 1 ? "it": "them") + "!");
@@ -289,9 +283,8 @@ Inventory.itemGoNext = function() {
 }
 
 
-// New Function to replace awful code in creature.js for Key Items.
-// Will have to decide later whether we want to bother alphabetizing the list of key items.
-
+// Probably don't need this code anymore with new keyItems methods
+/*
 Inventory.newKeyItemAdd = function (name, var1, var2, var3, var4) {
     keyItemList.push({keyName: name, 
                       value1: var1, 
@@ -315,7 +308,7 @@ Inventory.hasKeyItem = function(name) {
         }
     return -1;
 };
-
+*/
 
 // Used to decide whether to show the stash button or not.
 Inventory.showStash = function(bool) {
@@ -331,7 +324,7 @@ Inventory.showStash = function(bool) {
    
 };
 
-// Stash menu.
+// Stash menu, crazy crazy stash menu
 Inventory.stashMenu = function () {
     hideMenus();
 	clearOutput();
@@ -360,14 +353,14 @@ Inventory.stashMenu = function () {
 	// Weapon Rack
     if (gameFlags[HAS_WEAPON_RACK] == 1) {
         outputText("There's a weapon rack set up here, set up to hold up to nine various weapons.<br><br>");
-		addButton(2, "W.Rack Put", pickItemToPlaceInWeaponRack);
+		addButton(2, "W.Rack Put", Inventory.pickItemWeaponRack);
 		//if (weaponRackDescription()) addButton(3, "W.Rack Take", pickItemToTakeFromWeaponRack);
     }
     //Armor Rack
 
 	if (gameFlags[HAS_ARMOR_RACK] == 1) {
         outputText("Your camp has an armor rack set up to hold your various sets of gear.  It appears to be able to hold nine different types of armor.<br><br>");
-        addButton(5, "A.Rack Put", pickItemToPlaceInArmorRack);
+        addButton(5, "A.Rack Put", Inventory.pickItemArmorRack);
 		//if (armorRackDescription()) addButton(6, "A.Rack Take", pickItemToTakeFromArmorRack);
     }
 
@@ -375,7 +368,7 @@ Inventory.stashMenu = function () {
     
 	if (gameFlags[HAS_EQUIPMENT_RACK] == 1) {
         outputText("There's a shield rack set up here, set up to hold up to nine various shields.<br><br>");
-		addButton(7, "S.Rack Put", pickItemToPlaceInShieldRack);
+		addButton(7, "S.Rack Put", Inventory.pickItemShieldRack);
 		//if (shieldRackDescription()) addButton(8, "S.Rack Take", pickItemToTakeFromShieldRack);
     }
     
@@ -409,8 +402,8 @@ Inventory.stashMenu = function () {
 
 
 // These are used to check if things are in the stash already to make the removal buttons appear
-function armorRackDescription() {
-    if (itemAnyInStorage(gearStorage, 9, 18)) {
+Inventory.armorRackDescription = function() {
+    if (Inventory.itemAnyInStorage(gearStorage, 9, 18)) {
         var itemList = [];
         for (x = 9; x < 18; x++) {
             if (gearStorage[x].quantity > 0) itemList[itemList.length] = gearStorage[x].itype.longName;
@@ -421,8 +414,8 @@ function armorRackDescription() {
     }
 };
 
-function weaponRackDescription() {
-    if (itemAnyInStorage(gearStorage, 0, 9)) {
+Inventory.weaponRackDescription = function() {
+    if (Inventory.itemAnyInStorage(gearStorage, 0, 9)) {
         var itemList = [];
         for (x = 0; x < 9; x++) {
             if (gearStorage[x].quantity > 0) itemList[itemList.length] = gearStorage[x].itype.longName;
@@ -433,8 +426,8 @@ function weaponRackDescription() {
     }
 };
 
-function shieldRackDescription() {
-    if (itemAnyInStorage(gearStorage, 36, 45)) {
+Inventory.weaponRackDescription = function() {
+    if (Inventory.itemAnyInStorage(gearStorage, 36, 45)) {
         var itemList = [];
         for (x = 36; x < 45; x++) {
             if (gearStorage[x].quantity > 0) itemList[itemList.length] = gearStorage[x].itype.longName;
@@ -448,33 +441,33 @@ function shieldRackDescription() {
 
 
 // These are used to pick an item from storage to put back into inventory
-function pickItemToTakeFromShieldRack() {
-    callNext = pickItemToTakeFromShieldRack;
-	pickItemToTakeFromStorage(gearStorage, 36, 45, "rack");
+Inventory.takeFromShieldRack = function() {
+    callNext = Inventory.takeFromShieldRack;
+	Inventory.takeFromStorage(gearStorage, 36, 45, "rack");
 };
 		
-function pickItemToTakeFromArmorRack() {
-    callNext = pickItemToTakeFromArmorRack;
-	pickItemToTakeFromStorage(gearStorage, 9, 18, "rack");
+Inventory.takeFromArmorRack = function() {
+    callNext = Inventory.takeFromArmorRack;
+	Inventory.takeFromStorage(gearStorage, 9, 18, "rack");
 };
 		
-function pickItemToTakeFromWeaponRack() {
-    callNext = pickItemToTakeFromWeaponRack;
-	pickItemToTakeFromStorage(gearStorage, 0, 9, "rack");
+Inventory.takeFromWeaponRack = function() {
+    callNext = Inventory.takeFromWeaponRack;
+	Inventory.takeFromStorage(gearStorage, 0, 9, "rack");
 };
 
 
 // The following functions pick an item to put into storage
-function pickItemToPlaceInWeaponRack() {
-    pickItemToPlaceInStorage(placeInWeaponRack, weaponAcceptable, "weapon rack", true);
+Inventory.pickItemWeaponRack = function() {
+    Inventory.placeInStorage(Inventory.placeInWeaponRack, Inventory.weaponAcceptable, "weapon rack", true);
 };
 
-function pickItemToPlaceInShieldRack() {
- pickItemToPlaceInStorage(placeInShieldRack, shieldAcceptable, "shield rack", true);   
+Inventory.pickItemShieldRack = function() {
+ Inventory.placeInStorage(Inventory.placeInShieldRack, Inventory.shieldAcceptable, "shield rack", true);
 };
 
-function pickItemToPlaceInArmorRack() {
-    pickItemToPlaceInStorage(placeInArmorRack, armorAcceptable, "armor rack", true);    
+Inventory.pickItemArmorRack = function() {
+    Inventory.placeInStorage(Inventory.placeInArmorRack, Inventory.armorAcceptable, "armor rack", true);
 };
 
 
@@ -483,14 +476,17 @@ function pickItemToPlaceInArmorRack() {
 //function pickItemToPlaceInDresser() { pickItemToPlaceInStorage(placeInDresser, undergarmentAcceptable, "dresser", true); };
 
 // These functions test to see if the right item type is being put into the right stash.
-function allAcceptable(itype) { return true; };
-function armorAcceptable(itype) { 
+Inventory.allAcceptable = new function(itype) { return true; };
+
+Inventory.armorAcceptable = new function(itype) {
     if (itype == ITEM_TYPE_ARMOUR) return true;
     return false; };
-function weaponAcceptable(itype) { 
+
+Inventory.weaponAcceptable = new function(itype) {
     if (itype == ITEM_TYPE_WEAPON) return true;
     return false; };
-function shieldAcceptable(itype) {
+
+Inventory.shieldAcceptable = new function(itype) {
     if (itype == ITEM_TYPE_SHIELD) return true;
     return false; };
 //function jewelryAcceptable(itype) { return itype is Jewelry; };
@@ -500,7 +496,7 @@ function shieldAcceptable(itype) {
 // This function puts the item into storage
 // CANNOT TEST UNTIL SOME MORE THINGS ARE PUT INTO THE GAME
 
-function pickItemToPlaceInStorage(placeInStorageFunction, typeAcceptableFunction, text, showEmptyWarning) {
+Inventory.placeInStorage = function(placeInStorageFunction, typeAcceptableFunction, text, showEmptyWarning) {
     clearOutput(); 
     hideUpDown();
 	outputText("What item slot do you wish to empty into your " + text + "?");
@@ -527,21 +523,21 @@ function placeInCampStorage(slotNum) {
 */
 
 // For armor rack
-function placeInArmorRack(slotNum) {
-    placeIn(gearStorage, 9, 18, slotNum);
-    doNext(pickItemToPlaceInArmorRack);
+Inventory.placeInArmorRack = function(slotNum) {
+    Inventory.placeIn(gearStorage, 9, 18, slotNum);
+    doNext(Inventory.pickItemArmorRack);
 };
 		
 // For weapon rack
-function placeInWeaponRack(slotNum) {
-    placeIn(gearStorage, 0, 9, slotNum);
-	doNext(pickItemToPlaceInWeaponRack);
+Inventory.placeInWeaponRack = function(slotNum) {
+    Inventory.placeIn(gearStorage, 0, 9, slotNum);
+	doNext(Inventory.pickItemWeaponRack);
 };
 
 // For shield rack
-function placeInShieldRack(slotNum) {
-    placeIn(gearStorage, 36, 45, slotNum);
-	doNext(pickItemToPlaceInShieldRack);
+Inventory.placeInShieldRack = function(slotNum) {
+    Inventory.placeIn(gearStorage, 36, 45, slotNum);
+	doNext(Inventory.pickItemShieldRack);
 };
 
 /* For jewelry box
@@ -559,7 +555,7 @@ function placeInDresser(slotNum) {
 */
 
 // This function put the item into the gearStorage array for later retrieval
-function placeIn(storage, startSlot, endSlot, slotNum) {
+Inventory.placeIn = function(storage, startSlot, endSlot, slotNum) {
     clearOutput();
 			var x = startSlot; // Get the starting slot in the gearStorage array
 			var temp = 5 - storage[x].quantity; // Used for numbering
@@ -571,7 +567,7 @@ function placeIn(storage, startSlot, endSlot, slotNum) {
 				if (storage[x].itype == itype && storage[x].quantity < 5) {
 					temp = 5 - storage[x].quantity;
 					if (qty < temp) temp = qty;
-					outputText("You add " + temp + "x " + itype.shortName + " into storage slot " + num2Text(x + 1 - startSlot) + ".\n");
+					outputText("You add " + temp + "x " + itype.shortName + " into storage slot " + num2Text(x + 1 - startSlot) + ".<Br>");
 					storage[x].quantity += temp;
 					qty -= temp;
 					if (qty == 0) return;
@@ -580,22 +576,22 @@ function placeIn(storage, startSlot, endSlot, slotNum) {
 			for (x = startSlot; x < endSlot && qty > 0; x++) { //Find any empty slots and put the item(s) there
                 if (storage[x].quantity == 0) {
 					storage[x].setItemAndQty(itype, qty);
-					outputText("You place " + qty + "x " + itype.shortName + " into storage slot " + num2Text(x + 1 - startSlot) + ".\n");
+					outputText("You place " + qty + "x " + itype.shortName + " into storage slot " + num2Text(x + 1 - startSlot) + ".<br>");
 					qty = 0;
 					return;
 				}
 			}
-			outputText("There is no room for " + (orig == qty ? "" : "the remaining ") + qty + "x " + itype.shortName + ".  You leave " + (qty > 1 ? "them" : "it") + " in your inventory.\n");
+			outputText("There is no room for " + (orig == qty ? "" : "the remaining ") + qty + "x " + itype.shortName + ".  You leave " + (qty > 1 ? "them" : "it") + " in your inventory.<br>");
 			player.itemSlots[slotNum].setItemAndQty(itype, qty);
 		};
 
 
 
 // This function takes an item out of storage
-function pickItemToTakeFromStorage(Array, startSlot, endSlot, text) {
+Inventory.takeFromStorage = function(Array, startSlot, endSlot, text) {
     clearOutput(); 
     hideUpDown();
-	if (!itemAnyInStorage(storage, startSlot, endSlot)) { //If no items are left then return to the camp menu. Can only happen if the player removes the last item.
+	if (!Inventory.itemAnyInStorage(gearStorage, startSlot, endSlot)) { //If no items are left then return to the camp menu. Can only happen if the player removes the last item.
         playerMenu();
 		return;
     }
@@ -603,20 +599,20 @@ function pickItemToTakeFromStorage(Array, startSlot, endSlot, text) {
 	var button = 0;
     menu();
 	for (var x = startSlot; x < endSlot; x++, button++) {
-        if (storage[x].quantity > 0) addButton(button, (storage[x].itype.shortName + " x" + storage[x].quantity), pickFrom(storage, x));
+        if (gearStorage[x].quantity > 0) addButton(button, (gearStorage[x].itype.shortName + " x" + gearStorage[x].quantity), Inventory.pickFrom(gearStorage, x));
     }
-    addButton(14, "Back", stash);
+    addButton(14, "Back", Inventory.stashMenu);
 };
 
-function pickFrom(storage, slotNum) {
+Inventory.pickFrom = function(storage, slotNum) {
     clearOutput();
 	var itype = storage[slotNum].itype;
 	storage[slotNum].quantity--;
-    inventory.takeItem(itype, callNext, callNext, storage[slotNum]);
+    Inventory.takeItem(itype, callNext, callNext, storage[slotNum]);
 };
 
 
-function itemAnyInStorage(storage, startSlot, endSlot) {
+Inventory.itemAnyInStorage = function(storage, startSlot, endSlot) {
 			for (var x = startSlot; x < endSlot; x++) {
 				if (storage[x] != undefined) 
                     if (storage[x].quantity > 0) return true;

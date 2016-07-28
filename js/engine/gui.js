@@ -155,7 +155,7 @@ function removeButton(pos) {
 }
 
 function doNext(func) {
-	menu();
+	    menu();
 	addButton(0, "Next", func);
 }
 function doYesNo(yesFunc, noFunc) {

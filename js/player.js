@@ -1464,3 +1464,11 @@ Player.prototype.changeGems = function(amount) {
     if (player.gems > Number.MAX_VALUE) player.gems = Number.MAX_VALUE;
     refreshStats();
 }
+
+//-----------
+// NEW GAME PLUS
+//-----------
+
+Player.prototype.newGamePlusMod = function () {
+    return 0;
+};

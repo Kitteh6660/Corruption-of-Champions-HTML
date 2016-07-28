@@ -27,5 +27,12 @@ KeyItems.CockMilkerInstalled = new KeyItemType("Cock Milker - Installed at Whitn
 
 //Keys
 
+//Storage Containers
+KeyItems.ArmorRack = new KeyItemType("Equipment Rack - Armor");
+KeyItems.WeaponRack = new KeyItemType("Equipment Rack - Weapons");
+KeyItems.ShieldRack = new KeyItemType("Equipment Rack - Shields");
+
+
 //Others
 KeyItems.Bow = new KeyItemType("Bow");
+KeyItems.PotentMixture = new KeyItemType("Potent Mixture");

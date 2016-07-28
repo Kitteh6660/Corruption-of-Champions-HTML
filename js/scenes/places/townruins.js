@@ -87,25 +87,26 @@ TownRuins.exploreVillageRuin = function () {
 		switch(rack) {
 			case 0:
 				gameFlags[HAS_ARMOR_RACK] = 1;
-                Inventory.newKeyItemAdd("Equipment Rack - Armor",0,0,0,0);
+                player.createKeyItem(KeyItems.ArmorRack,0,0,0,0);
                 break;
 			case 1:
 				gameFlags[HAS_WEAPON_RACK] = 1;
-                Inventory.newKeyItemAdd("Equipment Rack - Weapons",0,0,0,0);
+                player.createKeyItem(KeyItems.WeaponRack,0,0,0,0);
                 break;
 			case 2:
 		        gameFlags[HAS_EQUIPMENT_RACK] = 1;
-                Inventory.newKeyItemAdd("Equipment Rack - Shields",0,0,0,0);
+                player.createKeyItem(KeyItems.ShieldRack,0,0,0,0);
                 break;
             default:
 				outputText("  <b>Please let Kitteh6660 know about this bug.</b>");
 			}
-        doNext(Camp.returnToCampUseOneHour);
+        menu();
+		doNext(Camp.returnToCampUseOneHour);
 		return;
     }
     // Chance to counter Amily
     else if(rand(2) == 0) {
-        Amily.start();
+        AmilyScene.start();
     }
     // Otherwise, find nothing and go back to camp
     else {

@@ -15,6 +15,8 @@ battleMenu = function() {
 	outputText("<br>Lust: " + monster.lust + " / " + monster.maxLust());
 	outputText("<br>Fatigue: " + monster.fatigue + " / " + monster.maxFatigue());
 	refreshStats();
+    //DEBUGGING code to check wins
+    //player.HP = 100;
 	hideUpDown();
 	menu();
 	addButton(0, "Attack", attack);
@@ -578,11 +580,11 @@ function combatRoundOver(skipEnemy) {
 }
 
 function checkCombatOver() {
-	if (monster.HP <= 0 || monster.lust >= monster.maxLust) {
+	if (monster.HP <= 0 || monster.lust >= monster.maxLust()) {
 		doNext(monster.victory);
 		return true;
 	}
-	else if (player.HP <= 0 || player.lust >= player.maxLust) {
+	else if (player.HP <= 0 || player.lust >= player.maxLust()) {
 		doNext(monster.defeat);
 		return true;
 	}

@@ -1365,7 +1365,7 @@ function teaseMain(justText) {
         //else if (monster is Doppleganger && monster.findStatusEffect(StatusEffects.Stunned) < 0) (monster as Doppleganger).mirrorTease(damage, true);
         /*else */if (!justText) monster.teased(damage);
 
-        if (flags[PC_FETISH] >= 1/* && !urtaQuest.isUrta()*/) {
+        if (gameFlags[PC_FETISH] >= 1/* && !urtaQuest.isUrta()*/) {
             if (player.lust < 75)
                 outputText("<br>Flaunting your body in such a way gets you a little hot and bothered. ");
             else

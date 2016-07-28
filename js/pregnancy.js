@@ -1,20 +1,19 @@
-//PregnancyStore = [];
+PregnancyStore = [];
 
 //Pregancy types. Both butt and normal. Each type represents the father of this baby.
-const PREGNANCY_IMP                   =   1;
+
 const PREGNANCY_MINOTAUR              =   2;
 const PREGNANCY_MOUSE                 =   4;
-const PREGNANCY_OVIELIXIR_EGGS        =   5; //Also caused by Phoenixes apparently
 const PREGNANCY_HELL_HOUND            =   6;
 const PREGNANCY_CENTAUR               =   7;
 const PREGNANCY_MARBLE                =   8;
 const PREGNANCY_BUNNY                 =   9;
-const PREGNANCY_ANEMONE               =  10;
-const PREGNANCY_AMILY                 =  11;
+
+//const PREGNANCY_AMILY                 =  11;
 const PREGNANCY_IZMA                  =  12;
 const PREGNANCY_SPIDER                =  13;
 const PREGNANCY_BASILISK              =  14;
-const PREGNANCY_DRIDER_EGGS           =  15;
+
 const PREGNANCY_GOO_GIRL              =  16;
 const PREGNANCY_EMBER                 =  17;
 const PREGNANCY_BENOIT                =  18;
@@ -25,7 +24,7 @@ const PREGNANCY_SAND_WITCH            =  22;
 const PREGNANCY_FROG_GIRL             =  23;
 const PREGNANCY_FAERIE                =  24; //Indicates you are carrying either a phouka or faerie baby. Which one is determined by the PREGNANCY_CORRUPTION flag
 //const PREGNANCY_PLAYER                =  25; //The player is the father. Will be used when an NPC is able to have children from multiple different fathers.
-const PREGNANCY_BEE_EGGS              =  26;
+
 const PREGNANCY_SANDTRAP_FERTILE      =  27;
 const PREGNANCY_SANDTRAP              =  28;
 const PREGNANCY_JOJO                  =  29; //So we can track them separately from other mouse pregnancies
@@ -53,9 +52,9 @@ const PREG_VERY_OVERDUE               =   9; //NPC is very overdue. Probably tri
 //Old Value, replaced in Saves.unFuckSave()        const PREGNANCY_BUTT_SANDTRAP_FERTILE =   4;
 //Old Value, replaced in Saves.unFuckSave()        const PREGNANCY_BUTT_SANDTRAP         =   5; //Sandtrap did not have fertilized eggs
 
-const INCUBATION_IMP                  = 432; //Time for standard imps. Imp lords, Ceraph, Lilium and the imp horde cause slightly faster pregnancies
+
 const INCUBATION_MINOTAUR             = 432;
-//const INCUBATION_MOUSE                = 350;
+
 const INCUBATION_OVIELIXIR_EGGS       =  50;
 const INCUBATION_HELL_HOUND           = 352;
 const INCUBATION_CENTAUR              = 420;
@@ -66,7 +65,7 @@ const INCUBATION_ANEMONE              = 256;
 const INCUBATION_IZMA                 = 300;
 const INCUBATION_SPIDER               = 400;
 const INCUBATION_BASILISK             = 250;
-const INCUBATION_DRIDER               = 400;
+
 const INCUBATION_GOO_GIRL             =  85;
 const INCUBATION_EMBER                = 336;
 const INCUBATION_SATYR                = 160;
@@ -75,7 +74,6 @@ const INCUBATION_URTA                 = 515;
 const INCUBATION_SAND_WITCH           = 360;
 const INCUBATION_FROG_GIRL            =  30;
 const INCUBATION_FAERIE               = 200;
-const INCUBATION_BEE                  =  48;
 const INCUBATION_SANDTRAP             =  42;
 const INCUBATION_HARPY                = 168;
 const INCUBATION_SHIELA               =  72;
@@ -98,40 +96,90 @@ Each creation of a PregnancyStore object is a new pregnancy. One variable holds 
 
 
 // Creating a constructor for pregnancies. Declaring default variables to prevent JS from turning these into the Number type.
-function PregnancyStore(pregType = 0, pregInc = 0, buttPregType = 0, buttPregInc = 0) {
+PregnancyStore.Pregnancy = function(pregType = 0, pregInc = 0, buttPregType = 0, buttPregInc = 0) {
     
-    this.pregnancyTypeFlag = pregType;
-    this.pregnancyIncubationFlag = pregInc;
-    this.buttPregnancyTypeFlag = buttPregType;
-    this.buttPregnancyIncubationFlag = buttPregInc;
-   
+    this.pregnancyTypeFlag = pregType; // This marks who did the impregnation for standard births
+    this.pregnancyIncubationFlag = pregInc; // This is the base counter for how long the impregnation last for standard births
+    this.buttPregnancyTypeFlag = buttPregType; // As above, but for anal pregnancy
+    this.buttPregnancyIncubationFlag = buttPregInc; // As above, but for anal pregnancy
+	this.pregnancyEventArray = []; // Holds pregnancy event countdown numbers
+	this.buttPregnancyEventArray = []; // Hold butt pregnancy event countdown numbers
+	this.incrementer = 0; // Used to time the pregnancies.
+	this.pregnancyEventCounter = 0; // Used for pregnancy event switch blocks. 0 should make it fall through to the default.
  };
 
-    
-PregnancyStore.prototype.isPregnant = function() {
+// Method for determining whether or not there is a pregnancy
+PregnancyStore.Pregnancy.prototype.isPregnant = function() {
     if (this.pregnancyTypeFlag != 0) return true;
     else return false;
 };
 
+// Method for filling pregnancyEventArrays. Original code specifies by hours. This will convert into minutes automatically
+PregnancyStore.Pregnancy.prototype.eventFill = function(hourArray) {
+	// Convert all elements in hourArray into minutes using fancy Haskell-like JS
+	this.pregnancyEventArray = hourArray.map(function(item) { return item * 60; });
+}
 
-PregnancyStore.prototype.knockUpForce = function (newPregType, newPregIncubation) {
-    if (newPregType == 0 || newPregIncubation == 0) {
+PregnancyStore.Pregnancy.prototype.knockUp = function(newPregType, newPregIncubation)
+{
+	if (this.pregnancyTypeFlag == 0) {
+		this.pregnancyTypeFlag = newPregType;
+		this.pregnancyIncubationFlag = newPregIncubation * 60;
+		this.pregnancyEventCounter = 0;}
+}
+
+// Forces pregnancy regardless of existing pregnancy.
+PregnancyStore.Pregnancy.prototype.knockUpForce = function(newPregType, newPregIncubation) {
+    // Passing 0 and 0  to this function now clears out pregnancy.
+	/*
+	if (newPregType == 0 || newPregIncubation == 0) {
         outputText("<br><br>DEBUGGER: Attempted to start a pregnancy without passing the right flags!");
         return;
     }
+	*/
+
     this.pregnancyTypeFlag = newPregType;
-    this.pregnancyIncubationFlag = newPregIncubation;
-    outputText("<br><br>You knocked someone up!");
-    outputText("<br>Pregnancy flag is " + this.pregnancyTypeFlag);
-    outputText("<br>Incubation flag is" + this.pregnancyIncubationFlag);
+    this.pregnancyIncubationFlag = newPregIncubation * 60; // Converts hours into minutes
+	this.pregnancyEventCounter = 0; // Resets event counter.
+	// Debugging text
+    //outputText("<br><br>You knocked someone up!");
+    //outputText("<br>Pregnancy flag is " + this.pregnancyTypeFlag);
+    //outputText("<br>Incubation flag is" + this.pregnancyIncubationFlag);
+	//outputText("<br>Pregnancy array is" + this.pregnancyEventArray);
     //if (newPregType != 0) newPregType = (kGAMECLASS.flags[_pregnancyTypeFlag] & PREG_NOTICE_MASK) + newPregType;
 	//If a pregnancy 'continues' an existing pregnancy then do not change the value for last noticed stage
 	//kGAMECLASS.flags[_pregnancyTypeFlag] = newPregType;
 	//kGAMECLASS.flags[_pregnancyIncubationFlag] = (newPregType == 0 ? 0 : newPregIncubation); 
     //Won't allow incubation time without pregnancy type
 	//	return;
-    }
-    
+    };
+
+// Time advacement function. Currently only works with normal pregnancy. OLD CODE
+/*
+PregnancyStore.Pregnancy.prototype.advanceTime = function(timeInc) {
+	if (this.pregnancyIncubationFlag >= 1) {
+		// Decrement the incubation flag
+		//outputText("Decrementing Incubation Flag");
+		for (i=0; i < timeInc; i++) {
+			this.pregnancyIncubationFlag--; // Reduce overall timer
+			if (this.pregnancyIncubationFlag < 0) { this.pregnancyIncubationFlag = 0;}			
+		}
+		// Checking for new Event Array
+		//outputText("Checking Event Array");
+		for (j=0; j < this.pregnancyEventArray.length; j++) {
+			if (this.pregnancyIncubationFlag < this.pregnancyEventArray[j]) {
+				//outputText("Setting new flag to " + (j + 1));
+				this.pregnancyEventCounter = j + 1;
+			}
+		}
+		//return;
+	}
+	return;
+};
+*/
+
+
+
 /*
  //this._pregnancyEventValue = [];
     //this._buttPregnancyEventValue = [];
@@ -140,13 +188,18 @@ PregnancyStore.prototype.knockUpForce = function (newPregType, newPregIncubation
     
 	//if (pregType < 0 || pregType > MAX_FLAG_VALUE || pregInc < 0 || pregInc > MAX_FLAG_VALUE || buttPregType < 0 || buttPregType > MAX_FLAG_VALUE || buttPregInc < 0 || buttPregInc > MAX_FLAG_VALUE || pregType == buttPregType || pregInc == buttPregInc) {
 	//trace("Error: PregnancyStore created with invalid values for its flags. PregnancyStore(" + pregType + ", " + pregInc + ", " + buttPregType + ", " + buttPregInc + ")");	}
-
+*/
     // Pregnancy methods
-    
-//    this.type = function () { 
-        //if _pregnancyTypeFlag == 0 return 0;
-    //    else return _pregnancyTypeFlag; // & PREG_TYPE_MASK?
-      //  }
+
+/*
+PregnancyStore.Pregnancy.prototype.type = function(type) {
+		if (this.pregnancyTypeFlag == 0) {return 0;}
+		else { return this.pregnancyTypeFlag }
+	};
+*/
+
+
+/*
     
 // isPregnant rewrite. Checks to see if Amily is pregnant
     
@@ -165,24 +218,11 @@ PregnancyStore.prototype.knockUpForce = function (newPregType, newPregIncubation
 
 		public function get buttIncubation():int { return (_buttPregnancyIncubationFlag == 0 ? 0 : kGAMECLASS.flags[_buttPregnancyIncubationFlag]); }
 		
-		public function get isPregnant():Boolean { return type != 0; } //At birth the incubation can be zero so a check vs. type is safer
 
 		public function get isButtPregnant():Boolean { return buttType != 0; } //At birth the incubation can be zero so a check vs. type is safer
 */		
-		/* Using this function adds a series of events which happen during the pregnancy. They must be added in descending order (ex. 500, 450, 350, 225, 100, 25)
-		   to work properly. For NPCs who have multiple pregnancy types each type has its own set of events. Events can be used to see how far along the NPC
-		   is in her pregnancy with the event property. They can also be checked using the eventTriggered() function. This checks to see which was the latest event
-		   the player noticed. The eventTriggered() function only triggers once per event per pregnancy. */
 
 /*
-public function addPregnancyEventSet(pregType:int, ... pregStage):void
-		{
-			var pregVector:Vector.<int> = new Vector.<int>(pregStage.length + 2);
-			pregVector[0] = pregType; //First element is the pregnancy type
-			for (var i:int = 0; i < pregStage.length; i++) pregVector[i + 1] = pregStage[i];
-			pregVector[pregVector.length - 1] = -1; //Make last element -1 to ensure there is always a match
-			_pregnancyEventValue.push(pregVector);
-		}
 
 		//Same as addPregnancyEventSet, but for butts
 		public function addButtPregnancyEventSet(buttPregType:int, ... buttPregStage):void
@@ -194,10 +234,7 @@ public function addPregnancyEventSet(pregType:int, ... pregStage):void
 			_buttPregnancyEventValue.push(pregVector);
 		}
 		
-		public function knockUp(newPregType:int = 0, newPregIncubation:int = 0):void
-		{
-			if (!isPregnant) knockUpForce(newPregType, newPregIncubation);
-		}
+
 		
 		
 	

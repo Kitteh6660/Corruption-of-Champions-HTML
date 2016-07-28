@@ -36,6 +36,7 @@ function Creature() {
 	this.bonusHP = 0;
     this.additionalXP = 0;
     this.lustVuln = 1;
+    this.temperment = 0;
 
     this.drops = [];
     this.dropThresholds = [];
@@ -87,10 +88,15 @@ function Creature() {
 	this.cumMultiplier = 0;
 	//Vaginas
 	this.vaginas = [];
+    // Pregnancy
     this.pregnancyType = 0;
     this.pregnancyIncubation = 0;
+    this.pregnancyEventArr = [];
+    this.pregnancyEventNum = 0;
     this.buttPregnancyType = 0;
     this.buttPregnancyIncubation = 0;
+    this.buttPregnancyEventArr = [];
+    this.buttPregnancyEventNum = 0;
 	//Ass
 	this.ass = new Ass();
 	//Breasts
@@ -733,9 +739,14 @@ Creature.prototype.changeStatusValue = function(stype, valueIdx, newNum) {
     if (valueIdx == 4)
         this.statusEffects[stype].value4 = newNum;
 }
-//Key Items
+
+//-------
+// Key Items
+//-------
+
+//Create a new Key Item
 Creature.prototype.createKeyItem = function(keyName, value1, value2, value3, value4) {
-    var newKeyItem = new KeyItem();
+    var newKeyItem = new KeyItem(keyName);
     //used to denote that the array has already had its new spot pushed on.
     var arrayed = false;
     //used to store where the array goes
@@ -744,23 +755,23 @@ Creature.prototype.createKeyItem = function(keyName, value1, value2, value3, val
     //Start the array if its the first bit
     if (this.keyItems.length == 0)
     {
-        outputText("New Key Item Started Array! " + keyName);
+        //outputText("<br>New Key Item Started Array! " + newKeyItem.ktype.id);
         this.keyItems.push(newKeyItem);
         arrayed = true;
         keySlot = 0;
     }
     //If it belongs at the end, push it on
-    if (this.keyItems[keyItems.length - 1].keyName < keyName && !arrayed)
+    if (this.keyItems[this.keyItems.length - 1].ktype.id < newKeyItem.ktype.id && !arrayed)
     {
-        outputText("New Key Item Belongs at the end!! " + keyName);
+        //outputText("<br>New Key Item Belongs at the end!! " + newKeyItem.ktype.id);
         this.keyItems.push(newKeyItem);
         arrayed = true;
-        keySlot = keyItems.length - 1;
+        keySlot = this.keyItems.length - 1;
     }
     //If it belongs in the beginning, splice it in
-    if (this.keyItems[0].keyName > keyName && !arrayed)
+    if (this.keyItems[0].ktype.id > newKeyItem.ktype.id && !arrayed)
     {
-        outputText("New Key Item Belongs at the beginning! " + keyName);
+        //outputText("<br>New Key Item Belongs at the beginning! " + newKeyItem.ktype.id);
         this.keyItems.splice(0, 0, newKeyItem);
         arrayed = true;
         keySlot = 0;
@@ -768,19 +779,19 @@ Creature.prototype.createKeyItem = function(keyName, value1, value2, value3, val
     //Find the spot it needs to go in and splice it in.
     if (!arrayed)
     {
-        outputText("New Key Item using alphabetizer! " + keyName);
+        //outputText("<br>New Key Item using alphabetizer! " + newKeyItem.ktype.id);
         counter = this.keyItems.length;
         while (counter > 0 && !arrayed)
         {
             counter--;
             //If the current slot is later than new key
-            if (this.keyItems[counter].keyName > keyName)
+            if (this.keyItems[counter].ktype.id > newKeyItem.ktype.id)
             {
                 //If the earlier slot is earlier than new key && a real spot
                 if (counter - 1 >= 0)
                 {
                     //If the earlier slot is earlier slot in!
-                    if (this.keyItems[counter - 1].keyName <= keyName)
+                    if (this.keyItems[counter - 1].ktype.id <= newKeyItem.ktype.id)
                     {
                         arrayed = true;
                         this.keyItems.splice(counter, 0, newKeyItem);
@@ -791,7 +802,7 @@ Creature.prototype.createKeyItem = function(keyName, value1, value2, value3, val
                 else
                 {
                     //If the next slot is later we are go
-                    if (this.keyItems[counter].keyName <= keyName)
+                    if (this.keyItems[counter].ktype.id <= newKeyItem.ktype.id)
                     {
                         arrayed = true;
                         this.keyItems.splice(counter, 0, newKeyItem);
@@ -804,7 +815,7 @@ Creature.prototype.createKeyItem = function(keyName, value1, value2, value3, val
     //Fallback
     if (!arrayed)
     {
-        outputText("New Key Item Belongs at the end!! " + keyName);
+        //outputText("New Key Item Belongs at the end!! " + newKeyItem.ktype.id);
         this.keyItems.push(newKeyItem);
         keySlot = this.keyItems.length - 1;
     }
@@ -814,13 +825,17 @@ Creature.prototype.createKeyItem = function(keyName, value1, value2, value3, val
     this.keyItems[keySlot].value2 = value2;
     this.keyItems[keySlot].value3 = value3;
     this.keyItems[keySlot].value4 = value4;
-    outputText("NEW KEYITEM FOR PLAYER in slot " + keySlot + ": " + keyItems[keySlot].keyName);
+    //outputText("NEW KEYITEM FOR PLAYER in slot " + keySlot + ": " + this.keyItems[keySlot].ktype.id);
 }
+
+//Remove a Key Item
 Creature.prototype.removeKeyItem = function(ktype) {
     var counter = this.hasKeyItem(ktype);
     if (counter < 0) return;
     this.statusEffects.splice(counter, 1);
 }
+
+//Check if a Key Item exists
 Creature.prototype.hasKeyItem = function(ktype) {
     if (ktype == undefined)
         return -1;
@@ -831,6 +846,8 @@ Creature.prototype.hasKeyItem = function(ktype) {
     }
     return -1;
 }
+
+//Utility functions for key item array
 Creature.prototype.keyValue = function(ktype, value) {
     var counter = this.hasKeyItem(ktype);
     if (counter < 0) {
@@ -874,6 +891,7 @@ Creature.prototype.setKeyValue = function(ptype, valueIdx, newNum) {
     if (valueIdx == 4)
         this.keyItems[i].value4 = newNum;
 }
+
 //------------
 // SEXUAL UTIL
 //------------
@@ -1246,7 +1264,7 @@ Creature.prototype.cumCapacity = function() {
 }
 
 Creature.prototype.inHeat = {
-    get inHeat() { return this.findStatusEffect(StatusEffects.Heat) >= 0; }
+    get inHeat() { return this.findStatusEffect(StatusEffects.Heat) >= 1; } // Setting to 0 was causing heat messages for the Imp scene.
 }
 
 Creature.prototype.inRut = {
@@ -2052,6 +2070,66 @@ Creature.prototype.hasKnot = function(arg) {
     return this.cocks[arg].hasKnot();
 }
 
+//PLACEHOLDER
+Creature.prototype.dogCocks = function() {
+    outputText("Placeholder for dogCocks in creature.js. Returning.")
+    doNext(Camp.returnToCampUseOneHour);
+}
+
+
+
+Creature.prototype.cockHead = function(cockNum = 0) {
+    if (cockNum < 0 || cockNum > this.cocks.length - 1) {
+        outputText("Something went wrong in Creature.prototype.cockHead!");
+        return;
+    }
+    switch (this.cocks[cockNum].cockType) {
+        case CockTypesEnum.CAT:
+            if (rand(2) == 0) return "point";
+            return "narrow tip";
+        case CockTypesEnum.DEMON:
+            if (rand(2) == 0) return "tainted crown";
+            return "nub-ringed tip";
+        case CockTypesEnum.DISPLACER:
+            switch (rand(5)) {
+                case  0: return "star tip";
+                case  1: return "blooming cock-head";
+                case  2: return "open crown";
+                case  3: return "alien tip";
+                default: return "bizarre head";
+            }
+        case CockTypesEnum.DOG:
+        case CockTypesEnum.FOX:
+            if (rand(2) == 0) return "pointed tip";
+            return "narrow tip";
+        case CockTypesEnum.HORSE:
+            if (rand(2) == 0) return "flare";
+            return "flat tip";
+        case CockTypesEnum.KANGAROO:
+            if (rand(2) == 0) return "tip";
+            return "point";
+        case CockTypesEnum.LIZARD:
+            if (rand(2) == 0) return "crown";
+            return "head";
+        case CockTypesEnum.TENTACLE:
+            if (rand(2) == 0) return "mushroom-like tip";
+            return "wide plant-like crown";
+        case CockTypesEnum.PIG:
+            if (rand(2) == 0) return "corkscrew tip";
+            return "corkscrew head";
+        case CockTypesEnum.RHINO:
+            if (rand(2) == 0) return "flared head";
+            return "rhinoceros dickhead";
+        case CockTypesEnum.ECHIDNA:
+            if (rand(2) == 0) return "quad heads";
+            return "echidna quad heads";
+        default:
+    }
+    if (rand(2) == 0) return "crown";
+    if (rand(2) == 0) return "head";
+    return "cock-head";
+};
+
 //------------
 // ALTERATIONS
 //------------
@@ -2311,7 +2389,7 @@ Creature.prototype.growTits = function(amount, rowsGrown, display, growthType) {
             }
     
             //Grow!
-            breastRows[temp2].breastRating += temp;
+            this.breastRows[temp2].breastRating += temp;
             rowsGrown--;
         }
     }
@@ -2335,8 +2413,8 @@ Creature.prototype.growTits = function(amount, rowsGrown, display, growthType) {
         temp = 0;
         //Start at top and keep growing down, back to top if hit bottom before done.
         while(rowsGrown > 0) {
-            if (temp+1 > breastRows.length) temp = 0;
-            breastRows[temp].breastRating += amount;
+            if (temp+1 > this.breastRows.length) temp = 0;
+            this.breastRows[temp].breastRating += amount;
             temp++;
             temp3 += amount;
             rowsGrown--;
@@ -2345,7 +2423,7 @@ Creature.prototype.growTits = function(amount, rowsGrown, display, growthType) {
     if (growthType == 3) {
         while(rowsGrown > 0) {
             rowsGrown--;
-            breastRows[0].breastRating += amount;
+            this.breastRows[0].breastRating += amount;
             temp3 += amount;
         }
     }
@@ -2476,7 +2554,7 @@ Creature.prototype.cuntChange = function(cArea, display, spacingsF, spacingsB) {
     return stretched;
 }
 Creature.prototype.cuntChangeNoDisplay = function(cArea) {
-    if (vaginas.length == 0) return false;
+    if (this.vaginas.length == 0) return false;
     var stretched = false;
     if (this.findPerk(PerkLib.FerasBoonMilkingTwat) < 0 || vaginas[0].vaginalLooseness <= VAGINA_LOOSENESS_NORMAL) {
         //cArea > capacity = autostreeeeetch.
@@ -2510,12 +2588,12 @@ Creature.prototype.cuntChangeNoDisplay = function(cArea) {
     return stretched;
 }
 Creature.prototype.cuntChangeDisplay = function() {
-    if (vaginas[0].vaginalLooseness == VAGINA_LOOSENESS_CLOWN_CAR) outputText("<b>Your " + Appearance.vaginaDescript(this,0) + " is stretched painfully wide, large enough to accomodate most beasts and demons.</b>");
-    if (vaginas[0].vaginalLooseness == VAGINA_LOOSENESS_GAPING_WIDE) outputText("<b>Your " + Appearance.vaginaDescript(this,0) + " is stretched so wide that it gapes continually.</b>");
-    if (vaginas[0].vaginalLooseness == VAGINA_LOOSENESS_GAPING) outputText("<b>Your " + Appearance.vaginaDescript(this,0) + " painfully stretches, the lips now wide enough to gape slightly.</b>");
-    if (vaginas[0].vaginalLooseness == VAGINA_LOOSENESS_LOOSE) outputText("<b>Your " + Appearance.vaginaDescript(this,0) + " is now very loose.</b>", false);
-    if (vaginas[0].vaginalLooseness == VAGINA_LOOSENESS_NORMAL) outputText("<b>Your " + Appearance.vaginaDescript(this,0) + " is now a little loose.</b>", false);
-    if (vaginas[0].vaginalLooseness == VAGINA_LOOSENESS_TIGHT) outputText("<b>Your " + Appearance.vaginaDescript(this,0) + " is stretched out to a more normal size.</b>");
+    if (this.vaginas[0].vaginalLooseness == VAGINA_LOOSENESS_CLOWN_CAR) outputText("<b>Your " + Appearance.vaginaDescript(this,0) + " is stretched painfully wide, large enough to accomodate most beasts and demons.</b>");
+    if (this.vaginas[0].vaginalLooseness == VAGINA_LOOSENESS_GAPING_WIDE) outputText("<b>Your " + Appearance.vaginaDescript(this,0) + " is stretched so wide that it gapes continually.</b>");
+    if (this.vaginas[0].vaginalLooseness == VAGINA_LOOSENESS_GAPING) outputText("<b>Your " + Appearance.vaginaDescript(this,0) + " painfully stretches, the lips now wide enough to gape slightly.</b>");
+    if (this.vaginas[0].vaginalLooseness == VAGINA_LOOSENESS_LOOSE) outputText("<b>Your " + Appearance.vaginaDescript(this,0) + " is now very loose.</b>", false);
+    if (this.vaginas[0].vaginalLooseness == VAGINA_LOOSENESS_NORMAL) outputText("<b>Your " + Appearance.vaginaDescript(this,0) + " is now a little loose.</b>", false);
+    if (this.vaginas[0].vaginalLooseness == VAGINA_LOOSENESS_TIGHT) outputText("<b>Your " + Appearance.vaginaDescript(this,0) + " is stretched out to a more normal size.</b>");
 }
 //Anal Stretching
 Creature.prototype.buttChange = function(cArea, display, spacingsF, spacingsB) {
@@ -3426,3 +3504,295 @@ Creature.prototype.oneTailDescript = function() {
 Creature.prototype.wingsDescript = function() {
     return Appearance.wingsDescript(this);
 }
+
+//---------
+// PREGNANCY UTILS
+//---------
+
+
+Creature.prototype.isPregnant = function() { return this.pregnancyType != 0; };
+
+Creature.prototype.isButtPregnant = function() { return this.buttPregnancyType != 0; };
+
+//fertility must be >= random(0-beat)
+//If arg == 1 then override any contraceptives and guarantee fertilization
+//If arg == -1, no chance of fertilization.
+Creature.prototype.knockUp = function(type = 0, incubation = 0, beat = 100, arg = 0, event = []) {
+    //Contraceptives cancel!
+    if (this.findStatusEffect(StatusEffects.Contraceptives) >= 0 && arg < 1) return;
+    // Originally commented out
+    //if (this.findStatusEffect(StatusEffects.GooStuffed) >= 0) return; //No longer needed thanks to PREGNANCY_GOO_STUFFED being used as a blocking value
+    var bonus = 0;
+//If arg = 1 (always pregnant), bonus = 9000
+    if (arg >= 1) bonus = 9000;
+    if (arg <= -1) bonus = -9000;
+
+    if (this.pregnancyIncubation == 0 && this.totalFertility() + bonus > Math.floor(Math.random() * beat) && this.hasVagina()) {
+        this.knockUpForce(type, incubation);
+        //trace("PC Knocked up with pregnancy type: " + type + " for " + incubation + " incubation.");
+    }
+    
+//Chance for eggs fertilization - ovi elixir and imps excluded!
+    if (type != PREGNANCY_IMP && type != PREGNANCY_OVIELIXIR_EGGS && type != PREGNANCY_ANEMONE) {
+        if (this.findPerk(PerkLib.SpiderOvipositor) >= 0 || this.findPerk(PerkLib.BeeOvipositor) >= 0) {
+            if (this.totalFertility() + bonus > Math.floor(Math.random() * beat)) {
+                this.fertilizeEggs();
+            }
+        }
+    }
+};
+
+Creature.prototype.buttKnockUp = function(type = 0, incubation = 0, beat = 100, arg = 0) {
+    //Contraceptives cancel!
+    if (this.findStatusEffect(StatusEffects.Contraceptives) >= 0 && arg < 1)
+        return;
+    var bonus = 0;
+//If arg = 1 (always pregnant), bonus = 9000
+    if (arg >= 1) bonus = 9000;
+    if (arg <= -1) bonus = -9000;
+//If unpregnant and fertility wins out:
+    if (this.buttPregnancyIncubation == 0 && this.totalFertility() + bonus > Math.floor(Math.random() * beat)) {
+        this.buttKnockUpForce(type, incubation);
+        //trace("PC Butt Knocked up with pregnancy type: " + type + " for " + incubation + " incubation.");
+    }
+};
+
+//The more complex buttKnockUp function used by the player is defined in Character.as
+Creature.prototype.buttKnockUpForce = function(type = 0, incubation = 0, event = []) {
+    this.buttPregnancyType = type;
+    this.buttPregnancyIncubation = (type == 0 ? 0 : incubation * 60); //Won't allow incubation time without pregnancy type
+    if (event.length > 1) {
+        this.buttPregnancyEventArr = event;
+        this.buttPregnancyEventNum = 0;
+    }
+    if (type == 0) {
+        this.buttPregnancyEventArr.length = 0;
+        this.pregnancyEventNum = 0;
+    }
+};
+
+
+Creature.prototype.knockUpForce = function(type = 0, incubation = 0, event = []) {
+    this.pregnancyType = type;
+    this.pregnancyIncubation = (type == 0 ? 0 : incubation * 60); //Won't allow incubation time without pregnancy type
+    if (event.length > 1) {
+        this.pregnancyEventArr = event;
+        this.pregnancyEventNum = 0;
+    }
+    //Reset pregnancy event array and encounter
+    if (type == 0) {
+        this.pregnancyEventArr.length = 0;
+        this.pregnancyEventNum = 0;
+    }
+};
+
+// More for compatibility, though knockUpForce will take care of this too.
+Creature.prototype.eventFill = function(events) {
+    this.pregnancyEventArr = [];
+    for (i in events)
+        this.pregnancyEventArr.push(events[i] * 60);
+} 
+
+Creature.prototype.pregnancyAdvance = function() {
+    if (this.pregnancyType == 0) {
+        this.pregnancyEventArr.length = 0;
+        this.pregnancyEventNum = 0;
+    }
+    if (this.pregnancyIncubation > 0) this.pregnancyIncubation--;
+    if (this.pregnancyIncubation < 0) this.pregnancyIncubation = 0;
+    if (this.buttPregnancyIncubation > 0) this.buttPregnancyIncubation--;
+    if (this.buttPregnancyIncubation < 0) this.buttPregnancyIncubation = 0;
+    // If there's something in the pregnancy event array, find out what event we're on.
+    if (this.pregnancyEventArr.length > 1) {
+        for (j = 0; j < this.pregnancyEventArr.length; j++) {
+            if (this.pregnancyIncubation < this.pregnancyEventArr[j]) {
+                //outputText("Setting new flag to " + (j + 1));
+                this.pregnancyEventNum = j + 1;
+            }
+        }
+    }
+    if (this.buttPregnancyEventArr.length > 1) {
+        for (j = 0; j < this.buttPregnancyEventArr.length; j++) {
+            if (this.buttPregnancyIncubation < this.buttPregnancyEventArr[j]) {
+                //outputText("Setting new flag to " + (j + 1));
+                this.buttPregnancyEventNum = j + 1;
+            }
+        }
+    }
+}
+
+//public function pregnancyUpdate():Boolean { return false; }
+
+
+
+
+/*
+
+
+//The more complex knockUp function used by the player is defined above
+//The player doesn't need to be told of the last event triggered, so the code here is quite a bit simpler than that in PregnancyStore
+
+
+//fertility must be >= random(0-beat)
+
+
+*/
+
+//---------------
+// OVIPOSITING - NOT COMPLETE IN THE SLIGHTEST. CHECK ALL FUNCTIONS WHEN WE DECIDE TO GET THIS GOING.
+//---------------
+
+// Does the creature have a spider ovipositor?
+Creature.prototype.canOvipositSpider = function()
+{
+    if (this.eggs() >= 10 && this.findPerk(PerkLib.SpiderOvipositor) >= 0 && this.isDrider() && this.tailType == TAIL_TYPE_SPIDER_ADBOMEN)
+        return true;
+    return false;
+}
+
+// Does the creature have an bee ovipositor?
+Creature.prototype.canOvipositBee = function()
+{
+    if (this.eggs() >= 10 && this.findPerk(PerkLib.BeeOvipositor) >= 0 && this.tailType == TAIL_TYPE_BEE_ABDOMEN)
+        return true;
+    return false;
+}
+
+// Can the creature oviposit at all?
+Creature.prototype.canOviposit = function()
+{
+    if (this.canOvipositSpider() || this.canOvipositBee())
+        return true;
+    return false;
+}
+
+// How many eggs, held in value 1 in the perks, does the creature have?
+Creature.prototype.eggs = function()
+{
+    if (this.findPerk(PerkLib.SpiderOvipositor) < 0 && this.findPerk(PerkLib.BeeOvipositor) < 0)
+        return -1;
+    else if (this.findPerk(PerkLib.SpiderOvipositor) >= 0)
+        return this.perkValue(PerkLib.SpiderOvipositor, 1);
+    else
+        return this.perkValue(PerkLib.BeeOvipositor, 1);
+    return;
+}
+
+// Add eggs to the ovipositors
+Creature.prototype.addEggs = function(arg = 0) {
+    if (this.findPerk(PerkLib.SpiderOvipositor) < 0 && this.findPerk(PerkLib.BeeOvipositor) < 0)
+        return -1;
+    else {
+        // Increase the number of Spider eggs by arg.
+        if (this.findPerk(PerkLib.SpiderOvipositor) >= 0) {
+            this.addPerkValue(PerkLib.SpiderOvipositor, 1, arg);
+            // Can't hold more than 50 eggs
+            if (this.eggs() > 50)
+                this.setPerkValue(PerkLib.SpiderOvipositor, 1, 50);
+            return this.perkValue(PerkLib.SpiderOvipositor, 1);
+        }
+        else {
+            // Increase Bee eggs by arg.
+            this.addPerkValue(PerkLib.BeeOvipositor, 1, arg);
+            if (this.eggs() > 50)
+                this.setPerkValue(PerkLib.BeeOvipositor, 1, 50);
+            return this.perkValue(PerkLib.BeeOvipositor);
+        }
+    }
+};
+
+// Sets a specific number of eggs to the ovipositors
+Creature.prototype.setEggs = function(arg = 0) {
+    if (this.findPerk(PerkLib.SpiderOvipositor) < 0 && this.findPerk(PerkLib.BeeOvipositor) < 0)
+        return -1;
+    else {
+        // Set the number of Spider eggs by arg.
+        if (this.findPerk(PerkLib.SpiderOvipositor) >= 0) {
+            this.setPerkValue(PerkLib.SpiderOvipositor, 1, arg);
+            // Can't hold more than 50 eggs
+            if (this.eggs() > 50)
+                this.setPerkValue(PerkLib.SpiderOvipositor, 1, 50);
+            return this.perkValue(PerkLib.SpiderOvipositor, 1);
+        }
+        else {
+            // Set the number of Bee eggs by arg.
+            this.setPerkValue(PerkLib.BeeOvipositor, 1, arg);
+            // No more than 50 eggs
+            if (this.eggs() > 50)
+                this.setPerkValue(PerkLib.BeeOvipositor, 1, 50);
+            return this.perkValue(PerkLib.BeeOvipositor);
+        }
+    }
+};
+
+// Returns value 2 to check to see if the creature's eggs are fertilized.
+Creature.prototype.fertilizedEggs = function() {
+    if (this.findPerk(PerkLib.SpiderOvipositor) < 0 && this.findPerk(PerkLib.BeeOvipositor) < 0)
+        return -1;
+    else if (this.findPerk(PerkLib.SpiderOvipositor) >= 0)
+        return this.perkValue(PerkLib.SpiderOvipositor, 2);
+    else
+        return this.perkValue(PerkLib.BeeOvipositor, 2);
+};
+
+// Fertilize the player's eggs by setting value 2 to eggs()
+Creature.prototype.fertilizeEggs = function() {
+    if (this.findPerk(PerkLib.SpiderOvipositor) < 0 && this.findPerk(PerkLib.BeeOvipositor) < 0)
+        return -1;
+    else if (this.findPerk(PerkLib.SpiderOvipositor) >= 0)
+        this.setPerkValue(PerkLib.SpiderOvipositor, 2, this.eggs());
+    else
+        this.setPerkValue(PerkLib.BeeOvipositor, 2, this.eggs());
+    return this.fertilizedEggs();
+};
+
+// Remove all eggs from the ovipositors
+Creature.prototype.dumpEggs = function() {
+    if (this.findPerk(PerkLib.SpiderOvipositor) < 0 && this.findPerk(PerkLib.BeeOvipositor) < 0) return;
+    // Clear out the eggs
+    this.setEggs(0);
+    // Use the new egg number to clear out the fertilized eggs
+    this.fertilizeEggs();
+};
+
+
+//---------------
+// MINO CUM ADDICTION
+//---------------
+
+Creature.prototype.minoCumAddiction = function(raw) {
+    //Fix if variables go out of range.
+    if (gameFlags[MINOTAUR_CUM_ADDICTION_TRACKER] < 0) gameFlags[MINOTAUR_CUM_ADDICTION_TRACKER] = 0;
+    if (gameFlags[MINOTAUR_CUM_ADDICTION_STATE] < 0) gameFlags[MINOTAUR_CUM_ADDICTION_STATE] = 0;
+    if (gameFlags[MINOTAUR_CUM_ADDICTION_TRACKER] > 120) gameFlags[MINOTAUR_CUM_ADDICTION_TRACKER] = 120;
+    gameFlags[EVER_DRANK_MINOCUM] = 1;
+//Turn off withdrawal
+//if (flags[kFLAGS.MINOTAUR_CUM_ADDICTION_STATE] > 1) flags[kFLAGS.MINOTAUR_CUM_ADDICTION_STATE] = 1;
+//Reset counter
+    gameFlags[TIME_SINCE_LAST_CONSUMED_MINOTAUR_CUM] = 0;
+//If highly addicted, rises slower
+    if (gameFlags[MINOTAUR_CUM_ADDICTION_TRACKER] >= 60) raw /= 2;
+    if (gameFlags[MINOTAUR_CUM_ADDICTION_TRACKER] >= 80) raw /= 2;
+    if (gameFlags[MINOTAUR_CUM_ADDICTION_TRACKER] >= 90) raw /= 2;
+    if (player.findPerk(PerkLib.MinotaurCumResistance) >= 0) raw *= 0;
+//If in withdrawl, readdiction is potent!
+    if (gameFlags[MINOTAUR_CUM_ADDICTION_STATE] == 3) raw += 10;
+    if (gameFlags[MINOTAUR_CUM_ADDICTION_STATE] == 2) raw += 5;
+    raw = Math.round(raw * 100) / 100;
+//PUT SOME CAPS ON DAT' SHIT
+    if (raw > 50) raw = 50;
+    if (raw < -50) raw = -50;
+    gameFlags[MINOTAUR_CUM_ADDICTION_TRACKER] += raw;
+//Recheck to make sure shit didn't break
+    if (this.findPerk(PerkLib.MinotaurCumResistance) >= 0) gameFlags[MINOTAUR_CUM_ADDICTION_TRACKER] = 0; //Never get addicted!
+    if (gameFlags[MINOTAUR_CUM_ADDICTION_TRACKER] > 120) gameFlags[MINOTAUR_CUM_ADDICTION_TRACKER] = 120;
+    if (gameFlags[MINOTAUR_CUM_ADDICTION_TRACKER] < 0) gameFlags[MINOTAUR_CUM_ADDICTION_TRACKER] = 0;
+};
+
+Creature.prototype.minotaurAddicted = function() {
+    return this.findPerk(PerkLib.MinotaurCumResistance) < 0 && (this.findPerk(PerkLib.MinotaurCumAddict) >= 0 || gameFlags[MINOTAUR_CUM_ADDICTION_STATE] >= 1);
+};
+
+Creature.prototype.minotaurNeed = function() {
+    return this.findPerk(PerkLib.MinotaurCumResistance) < 0 && gameFlags[MINOTAUR_CUM_ADDICTION_STATE] > 1;
+};

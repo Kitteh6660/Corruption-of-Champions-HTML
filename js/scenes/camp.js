@@ -21,9 +21,13 @@ Camp.doCamp = function () {
     else {
         hideMenuButton("buttonLevel");
         }
-	playerMenu = Camp.doCamp;
+    playerMenu = Camp.doCamp;
 	//Display texts
 	clearOutput();
+    // Display Special events
+    CampEvents.checkEvents();
+    // Display Pregnancy related events
+    pregnancyProgression.updatePregnancy(); // Displays special messages before the main camp message prints.
 	/*if (isabellaFollower()) {
 		outputText("Your campsite got a lot more comfortable once Isabella moved in.  Carpets cover up much of the barren ground, simple awnings tied to the rocks provide shade, and hand-made wooden furniture provides comfortable places to sit and sleep.  ", false);
 	}
@@ -51,30 +55,42 @@ Camp.doCamp = function () {
     }
     
     //DEBUGGING CODE FOR AMILY MEETINGS
-    //player.gender = 1;
-    //outputText("Player Gender is " + player.gender);
-    //gameFlags[AMILY_AFFECTION] = 40;
-    //outputText("Amily Affection is " + gameFlags[AMILY_AFFECTION]);
-    //player.changeLust(50);
-    //var testingPreg = new PregnancyStore(0,0,0,0);
-    //outputText(testingPreg.isPregnant());
+    //player.gender = 3;
     //player.modStats("cor", 50);
+    //Inventory.takeItem(Items.Consumables.IncubiDraftPurified);
+    // gameFlags[AMILY_HERM_QUEST] = 2;
+    //gameFlags[AMILY_AFFECTION] = 50;
+    //player.HP = 100;
+    //outputText(player.gender + "<br>");
+    //outputText("AmilyMet = " + gameFlags[AMILY_MET] + "<br>");
+    //if (!player.isPregnant()) { player.knockUpForce(PREGNANCY_AMILY, 100); }
+    //outputText("Player pregnancy counter is " + player.pregnancyIncubation + "<br>");
+    //outputText("Player knockedup by " + player.pregnancyType + "<br>");
+
+    //if (!amily.isPregnant()) amily.knockUpForce(PREGNANCY_PLAYER, INCUBATION_MOUSE);
+    //outputText("Amily pregnancy counter is " + amily.pregnancyIncubation + "<br>");
+    //outputText("Player knockedup by " + amily.pregnancyType + "<br>");
+    //outputText("Player pregnancy event counter is " + amily.pregnancyEventNum + "<br><br>");
+
+
 
     //Display available options
 	menu();
-	addButton(0, "Explore", Areas.GenericExploration.exploreMenu, null, null, null, "Explore to find new regions and visit any discovered regions.");
+
+    addButton(0, "Explore", Areas.GenericExploration.exploreMenu, null, null, null, "Explore to find new regions and visit any discovered regions.");
     addButton(1, "Places", Places.placesMenu, null, null, null, "Visit any places you have discovered so far.");
     //addButton(5, "Camp Actions", Camp.campActionsMenu, null, null, null, "Interact with the camp surroundings.");
     if (Camp.followersCount() > 0) addButton(2, "Followers", Camp.campFollowersMenu, null, null, null, "Check up on any followers or companions who are joining you in or around your camp. You'll probably just end up sleeping with them.");
     if (Camp.loversCount() > 0) addButton(3, "Lovers", Camp.campLoversMenu, null, null, null, "Check up on any lovers you have invited so far and interact with them.");
     if (Camp.slavesCount() > 0) addButton(4, "Slaves", Camp.campSlavesMenu, null, null, null, "Check up on any slaves you have received and interact with them.");
+    addButton(6, "Debug", Debug.doDebug, null, null, null, "Debug Menu.");
 	addButton(8, "Masturbate", Camp.doMasturbate);
 	addButton(9, "Sleep", Camp.doSleep);
     if (Inventory.showStash(stashbool) == true) {
         addButton(12, "Stash", Inventory.stashMenu, null, null, null, "The stash allows you to store your items safely until you need them later.");
     }
     addButton(13, "Inventory", Inventory.inventoryMenu, null, null, null, "The inventory allows you to use an item. Be careful as this leaves you open to a counterattack when in combat.");
-    addButtonDisabled(14, "Codex", "Not yet implemented."); //Codex.readCodex
+    //addButton(14, "Codex", Codex.readCodex);
 }
 
 
@@ -124,10 +140,10 @@ Camp.doSleep = function() {
     //For now
     clearOutput();
     outputText("You lie down and sleep for eight hours.");
-    Time.advanceHours(8);
     player.changeHP(15 * 8, true);
     player.changeLust(player.lib * 0.04 * 8, false);
     doNext(Camp.doCamp);
+    Time.advanceHours(8);
 };
 
 //UTILS

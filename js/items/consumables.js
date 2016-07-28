@@ -36,6 +36,9 @@ Items.Consumables.CaninePepperBulby.description = "This bulbous pepper has a sli
 Items.Consumables.CaninePepperBulby.consumeEffect = createCallBackFunction(ConsumableEffects.canineTFs, 5);
 Items.Consumables.CaninePepperBulby.value = 10;
 
+Items.Consumables.Condom = new Item("Condom", "Condom", "TO BE ADDED", ITEM_TYPE_CONSUMABLE);
+Items.Consumables.Condom.description = "TO BE ADDED";
+
 Items.Consumables.Equinum = new Item("Equinum", "Equinum", "a vial of Equinum", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.Equinum.description = "This is a long flared vial with a small label that reads, \"<i>Equinum</i>\". It is likely this potion is tied to horses in some way.";
 Items.Consumables.Equinum.consumeEffect = ConsumableEffects.equineTFs;
@@ -43,6 +46,11 @@ Items.Consumables.Equinum.consumeEffect = ConsumableEffects.equineTFs;
 Items.Consumables.GoblinAle = new Item("Gob.Ale", "Goblin Ale", "a flagon of potent goblin ale", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.GoblinAle.description = "This sealed flagon of 'Goblin Ale' sloshes noisily with alcoholic brew. Judging by the markings on the flagon, it's a VERY strong drink, and not to be trifled with.";
 Items.Consumables.GoblinAle.consumeEffect = ConsumableEffects.goblinTFs;
+
+// Needed for Amily transformation code. Flesh out when we reach the areas of the game when you can actually get them.
+Items.Consumables.GoldenSeed = new Item("G.Seed", "Golden Seed", "a golden seed", ITEM_TYPE_CONSUMABLE);
+//Items.Consumables.GoldenSeed.description =
+//Items.Consumables.GoldenSeed.consumeEffect =
 
 Items.Consumables.Hummanus = new Item("Hummus ", "Hummanus", "a small jar of hummus", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.Hummanus.description = "This is a small jar with label that reads, \"<i>Hummanus</i>\". If the name clues you in, this might be how humanity is regained.";
@@ -52,13 +60,50 @@ Items.Consumables.ImpFood = new Item("ImpFood", "Imp Food", "a parcel of imp foo
 Items.Consumables.ImpFood.description = "This is a small parcel of reddish-brown bread stuffed with some kind of meat. It smells delicious.";
 Items.Consumables.ImpFood.consumeEffect = ConsumableEffects.impTFs;
 
+Items.Consumables.LaBova = new Item("LaBova", "La Bova", "TO BE ADDED", ITEM_TYPE_CONSUMABLE);
+//Items.Consumables.LaBova.description =
+//Items.Consumables.LaBova.consumeEffect = ConsumableEffects
+
+Items.Consumables.Lactaid = new Item("Lactaid", "Lactaid", "TO BE ADDED", ITEM_TYPE_CONSUMABLE);
+//Items.Consumables.Lactaid.description =
+//Items.Consumables.Lactaid.consumeEffect = ConsumableEffects
+
+Items.Consumables.MinotaurBlood = new Item("M.Blood", "MinoBlood", "TO BE ADDED", ITEM_TYPE_CONSUMABLE);
+
+Items.Consumables.MinotaurCum = new Item("M.Cum", "MinoCum", "TO BE ADDED", ITEM_TYPE_CONSUMABLE);
+
 Items.Consumables.PigTruffle = new Item("PigTruf", "Pig Truffle", "a pigtail truffle", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.PigTruffle.description = "It's clear where this fungus gets its name. A small, curly sprig resembling a pig's tail can be seen jutting out of it.";
 Items.Consumables.PigTruffle.consumeEffect = ConsumableEffects.pigTFs;
 
+Items.Consumables.PureHoney = new Item("PurHon", "Pure Honey", "TO BE ADDED", ITEM_TYPE_CONSUMABLE);
+
+Items.Consumables.Reptilum = new Item("Reptilum", "Reptilum", "TO BE ADDED", ITEM_TYPE_CONSUMABLE);
+//Items.Consumables.Reptilum.description = "TO BE ADDED.";
+//Items.Consumables.Reptilum.consumeEffect = ConsumableEffects.
+
+Items.Consumables.SnakeOil = new Item("SnakeOil", "Snake Oil", "TO BE ADDED", ITEM_TYPE_CONSUMABLE);
+//Items.Consumables.SnakeOil.description = "TO BE ADDED.";
+//Items.Consumables.SnakeOil.consumeEffect = ConsumableEffects.
+
+Items.Consumables.SpecialHoney = new Item("SPHoney", "Special Honey", "TO BE ADDED", ITEM_TYPE_CONSUMABLE);
+//Items.Consumables.SpecialHoney.description = "TO BE ADDED.";
+//Items.Consumables.SpecialHoney.consumeEffect = ConsumableEffects.
+
+
+Items.Consumables.TatteredScroll = new Item("T.Scroll", "Tattered Scroll", "TO BE ADDED", ITEM_TYPE_CONSUMABLE);
+//Items.Consumables.TatteredScroll.description = "TO BE ADDED.";
+//Items.Consumables.TatteredScroll.consumeEffect = ConsumableEffects.
+
+Items.Consumables.WetCloth = new Item("W.Cloth", "Wet Cloth", "TO BE ADDED", ITEM_TYPE_CONSUMABLE);
+
 Items.Consumables.WhiskerFruit = new Item("W.Fruit", "W.Fruit", "a piece of whisker-fruit", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.WhiskerFruit.description = "This small, peach-sized fruit has tiny whisker-like protrusions growing from the sides.";
 Items.Consumables.WhiskerFruit.consumeEffect = ConsumableEffects.felineTFs;
+
+Items.Consumables.WhiteBook = new Item("W.Book", "White Book", "TO BE ADDED", ITEM_TYPE_CONSUMABLE);
+//Items.Consumables.WhiteBook.description
+//Items.Consumables.WhiteBook.consumeEffect = ConsumableEffects.
 
 //------------
 // DEMONIC
@@ -76,6 +121,8 @@ Items.Consumables.SuccubiMilk = new Item("SucMilk", "SucMilk", "a bottle of Succ
 Items.Consumables.SuccubiMilk.description = "This milk-bottle is filled to the brim with a creamy white milk of dubious origin. A pink label proudly labels it as \"<i>Succubi Milk</i>\". In small text at the bottom of the label it reads: \"<i>To bring out the succubus in YOU!</i>\"";
 Items.Consumables.SuccubiMilk.consumeEffect = createCallBackFunction(ConsumableEffects.demonTFs, 1, false);
 
+
+// There are two definitions for SuccubiMilkPurified. Which one is the correct one?
 Items.Consumables.SuccubiMilkPurified = new Item("P.S.Mlk", "P.S.Milk", "an untainted bottle of Succubi milk", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.SuccubiMilkPurified.description = "This milk-bottle is filled to the brim with a creamy white milk of dubious origin. A pink label proudly labels it as \"<i>Succubi Milk</i>\". In small text at the bottom of the label it reads: \"<i>To bring out the succubus in YOU!</i>\" Rathazul has purified this to prevent corruption upon use.";
 Items.Consumables.SuccubiMilkPurified.consumeEffect = createCallBackFunction(ConsumableEffects.demonTFs, 1, true);
@@ -98,10 +145,16 @@ Items.Consumables.FishFillet = new Item("FishFil", "F. Fillet", "a fish fillet",
 Items.Consumables.FishFillet.description = "A perfectly cooked piece of fish. You're not sure what type of fish is, since you're fairly certain \"delicious\" is not a valid species.";
 Items.Consumables.FishFillet.consumeEffect = ConsumableEffects.fishFillet;
 
-Items.Consumables.LustDraft = new Item("L.Draft", "LustDraft", "a vial of roiling bubble-gum pink fluid", ITEM_TYPE_CONSUMABLE);
+Items.Consumables.LustDraft = new Item("L.Draft", "Lust Draft", "a vial of roiling bubble-gum pink fluid", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.LustDraft.description = "This vial of bright pink fluid bubbles constantly inside the glass, as if eager to escape. It smells very sweet, and has \"Lust\" inscribed on the side of the vial.";
 Items.Consumables.LustDraft.consumeEffect = ConsumableEffects.lustDraft;
 Items.Consumables.LustDraft.value = 20;
+
+Items.Consumables.FuckDraft = new Item("F.Draft", "Fuck Draft", "a vial of roiling red fluid labeled \"Fuck Draft\".", ITEM_TYPE_CONSUMABLE);
+Items.Consumables.FuckDraft.description = "This vial of red fluid bubbles constantly inside the glass, as if eager to escape.  It smells very strongly, though its odor is difficult to identify.  The word \"Fuck\" is inscribed on the side of the vial.";
+//Items.Consumables.LustDraft.consumeEffect = ConsumableEffects.fuckDraft;
+Items.Consumables.FuckDraft.value = 20;
+
 
 Items.Consumables.OviElixir = new Item("OviElix", "Ovi Elixir", "a salve marked as 'Ovulation Exlixir'", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.OviElixir.description = "This hexagonal container with an egg-shaped label can help you or others lay eggs.";
@@ -150,3 +203,12 @@ Items.Consumables.BodyLotionClear = new BodyLotion("ClearLn", "Clear", "smooth t
 Items.Consumables.BodyLotionRough = new BodyLotion("RoughLn", "Rough", "thick abrasive cream");
 Items.Consumables.BodyLotionSexy = new BodyLotion("SexyLtn", "Sexy", "pretty cream like substance");
 Items.Consumables.BodyLotionSmooth = new BodyLotion("SmthLtn", "Smooth", "smooth thick creamy liquid");
+
+
+//-------------
+// EGGS
+//-------------
+
+// Needed for Amily transformation code to work. Flesh out when we can obtain the items.
+Items.Consumables.BlackEgg = new Item("BlEgg", "Black Egg", "a black egg");
+Items.Consumables.LBlackEgg = new Item("LBlEgg", "L.Black Egg", "a large black egg");
