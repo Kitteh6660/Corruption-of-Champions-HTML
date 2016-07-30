@@ -61,3 +61,6 @@ PerkLib.Masochist = new PerkType("Masochist", "Masochist", "TO BE ADDED");
 PerkLib.HistoryAlchemist = new PerkType("H.Alchemist", "Alchemist History", "TO BE ADDED");
 PerkLib.TransformationResistance = new PerkType("T.Resist", "Transformation Resistance", "TO BE ADDED");
 PerkLib.Oviposition = new PerkType("Oviposit", "Oviposition", "TO BE ADDED");
+PerkLib.MessyOrgasms = new PerkType("MessyOrgasms", "Messy Orgasms", "TO BE ADDED");
+PerkLib.MaraesGiftButtslut = new PerkType("MaraesGiftButtslut", "TO BE ADDED", "TO BE ADDED");
+PerkLib.Incorporeality = new PerkType("Incorporeality", "Incorporeality", "TO BE ADDED");

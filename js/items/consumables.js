@@ -91,7 +91,7 @@ Items.Consumables.Reptilum.consumeEffect = ConsumableEffects.lizardTFs;
 
 Items.Consumables.SnakeOil = new Item("SnakeOil", "Snake Oil", "a vial of snake oil", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.SnakeOil.description = "A vial the size of your fist made of dark brown glass. It contains what appears to be an oily, yellowish liquid. The odor is abominable.";
-//Items.Consumables.SnakeOil.consumeEffect = ConsumableEffects.
+Items.Consumables.SnakeOil.consumeEffect = ConsumableEffects.snakeTFs;
 
 //TODO: Special Honey Code
 Items.Consumables.SpecialHoney = new Item("SPHoney", "Special Honey", "TO BE ADDED", ITEM_TYPE_CONSUMABLE);
@@ -105,7 +105,7 @@ Items.Consumables.TatteredScroll.consumeEffect = ConsumableEffects.tatteredScrol
 
 Items.Consumables.WetCloth = new Item("W.Cloth", "Wet Cloth", "a wet cloth dripping with slippery slime", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.WetCloth.description = "Dripping with a viscous slime, you've no doubt rubbing this cloth on your body would have some kind of strange effect.";
-//Items.Consumables.WetCloth.consumeEffect
+Items.Consumables.WetCloth.consumeEffect.slimeTFs;
 
 Items.Consumables.WhiskerFruit = new Item("W.Fruit", "W.Fruit", "a piece of whisker-fruit", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.WhiskerFruit.description = "This small, peach-sized fruit has tiny whisker-like protrusions growing from the sides.";

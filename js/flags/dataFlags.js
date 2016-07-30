@@ -27,6 +27,7 @@ const HAIR_GROWTH_STOPPED_BECAUSE_LIZARD= "Hair_Growth_Stopped";
 const EVER_INFESTED                     = "Ever_Infested"; // Has the PC ever been infested with worms?
 const MEANINGLESS_CORRUPTION            = "Meaningless_Corruption"; //Unknown, used in Goblin victory code.
 const INFESTED                          = "Infested";
+const HYPER_HAPPY                       = "Hyper_Happy";
 
 //------------
 // CODEX
