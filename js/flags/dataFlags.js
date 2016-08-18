@@ -65,6 +65,19 @@ const CODEX_ENTRY_ZEBRAS                = "Codex_Entry_Zebras";
 const CAMP_WALL_PROGRESS                = "Camp_Wall_Progress";
 
 //------------
+// SPELLS
+//------------
+
+//const KNOWS_AROUSE                      = "Knows_Arouse";
+//const KNOWS_HEAL                        = "Knows_Heal";
+//const KNOWS_MIGHT                       = "Knows_Might";
+//const KNOWS_CHARGE                      = "Knows_Charge";
+//const KNOWS_BLIND                       = "Knows_Blind";
+//const KNOWS_WHITEFIRE                   = "Knows_Whitefire";
+
+const SPELLS_CAST                       = "Spells_Cast";
+
+//------------
 // FOLLOWERS
 //------------
 //Rathazul
