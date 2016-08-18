@@ -10,10 +10,13 @@ ConsumableEffects.fishFillet = function() {
     if (!inCombat) outputText("You sit down and unwrap your fish fillet. It's perfectly flaky, allowing you to break it off in bite-sized chunks.  The salty meal disappears quickly, and your stomach gives an appreciative gurgle.");
     //(In combat?)
     else outputText("You produce the fish fillet from your bag.  Rather than unwrap it and savor the taste as you normally would, you take a large bite out of it, leaf wrapping and all.  In no time your salty meal is gone, your stomach giving an appreciative gurgle.  ");
+    //Blew up factory
+    if (gameFlags[FACTORY_SHUTDOWN] == 2) player.modStats("cor", 0.5);
+    //Turned off factory
+    else if (gameFlags[FACTORY_SHUTDOWN] == 1) player.modStats("cor", -0.1);
+    //Normal
+    else player.modStats("cor", 0.1);
     //Increase HP by quite a bit!)
-    //if (gameFlags[FACTORY_SHUTDOWN] == 2) player.modStats("cor", 0.5);
-    //if (gameFlags[FACTORY_SHUTDOWN] == 1) player.modStats("cor", -0.1);
-    player.modStats("cor", 0.1);
     player.changeHP(Math.round(player.maxHP() * .25), true);
     player.refillHunger(30);
 }
@@ -36,7 +39,7 @@ ConsumableEffects.lustDraft = function(fuck) {
     }
     //ORGAZMO
     if (player.lust >= player.maxLust() && !inCombat) {
-        outputText("\n\nThe arousal from the potion overwhelms your senses and causes you to spontaneously orgasm.  You rip off your " + player.armorName + " and look down as your ", false);
+        outputText("<br><br>The arousal from the potion overwhelms your senses and causes you to spontaneously orgasm.  You rip off your " + player.armorName + " and look down as your ", false);
         if (player.cocks.length > 0) {
             outputText(player.multiCockDescriptLight() + " erupts in front of you, liberally spraying the ground around you.  ", false);
         }
@@ -53,7 +56,7 @@ ConsumableEffects.lustDraft = function(fuck) {
         player.modStats("lib", 2, "sen", 1);
     }
     if (player.lust > player.maxLust()) player.lust = player.maxLust();
-    outputText("\n\n", false);
+    outputText("<br><br>", false);
     player.refillHunger(5);
 }
 
@@ -94,6 +97,7 @@ ConsumableEffects.scholarsTea = function() {
     player.refillHunger(10);
 }
 
+//Hair Dyes
 ConsumableEffects.hairDye = function(newColor) {
     if (player.hairLength == 0) {
         outputText("You rub the dye into your bald head, but it has no effect.");
@@ -112,6 +116,7 @@ ConsumableEffects.hairDye = function(newColor) {
     }
 }
 
+//Skin Oils
 ConsumableEffects.skinOil = function(newColor) {
     if (player.skinTone == newColor) {
         outputText("You " + player.clothedOrNaked("take a second to disrobe before uncorking the bottle of oil and rubbing", "uncork the bottle of oil and rub") + " the smooth liquid across your body. Once you’ve finished you feel rejuvenated. ");
@@ -140,6 +145,7 @@ ConsumableEffects.skinOil = function(newColor) {
     }
 }
 
+//Body Lotions
 ConsumableEffects.bodyLotion = function(newAdj) {
     if (player.skinTone == newAdj) {
         outputText("You " + player.clothedOrNaked("take a second to disrobe before uncorking the flask of lotion and rubbing", "uncork the flask of lotion and rub") + " the " + liquidDesc(newAdj) + " across your body. Once you’ve finished you feel reinvigorated. ");
@@ -243,3 +249,78 @@ function liquidDesc(_adj) {
     liquidDesc = liquidArrays[rand(liquidArrays.length)];
     return liquidDesc;
 }
+
+//Tattered Scroll
+ConsumableEffects.tatteredScroll = function() {
+    outputText("Your wobbly " + player.legs() + " give out underneath you as your body's willpower seems to evaporate, your mouth reading the words on the scroll with a backwards sounding sing-song voice.<br><br>");
+
+    if (player.hairColor == "sandy blonde") {
+        outputText("Your mouth forms a smile of its own volition, reading, \"<i>Tresed eht retaw llahs klim ruoy.</i>\"<br><br>", false);
+        if (player.breastRows.length == 0 || player.biggestTitSize() == 0) {
+            outputText("You grow a perfectly rounded pair of C-cup breasts!  ", false);
+            if (player.breastRows.length == 0) player.createBreastRow();
+            player.breastRows[0].breasts = 2;
+            player.breastRows[0].breastRating = 3;
+            if (player.breastRows[0].nipplesPerBreast < 1) player.breastRows[0].nipplesPerBreast = 1;
+            player.dynStats("sen", 2);
+            player.changeLust(1);
+        }
+        if (player.biggestTitSize() > 0 && player.biggestTitSize() < 3) {
+            outputText("Your breasts suddenly balloon outwards, stopping as they reach a perfectly rounded C-cup.  ", false);
+            player.breastRows[0].breastRating = 3;
+            player.dynStats("sen", 1);
+            player.changeLust(1);
+        }
+        if (player.averageNipplesPerBreast() < 1) {
+            outputText("A dark spot appears on each breast, rapidly forming into a sensitive nipple.  ", false);
+            temp = player.breastRows.length;
+            while (temp > 0) {
+                temp--;
+                //If that breast didnt have nipples reset length
+                if (player.breastRows[0].nipplesPerBreast < 1) player.breastRows[0].nippleLength = .2;
+                player.breastRows[0].nipplesPerBreast = 1;
+            }
+            player.dynStats("sen", 2);
+            player.changeLust(1);
+        }
+        if (player.biggestLactation() > 0) {
+            outputText("A strong pressure builds in your chest, painful in its intensity.  You yank down your top as ", false);
+            if (player.biggestLactation() < 2) outputText("powerful jets of milk spray from your nipples, spraying thick streams over the ground.  You moan at the sensation and squeeze your tits, hosing down the tainted earth with an offering of your milk.  You blush as the milk ends, quite embarassed with your increased milk production.  ", false);
+            if (player.biggestLactation() >= 2 && player.biggestLactation() <= 2.6) outputText("eruptions of milk squirt from your nipples, hosing thick streams everywhere.  The feeling of the constant gush of fluids is very erotic, and you feel yourself getting more and more turned on.  You start squeezing your breasts as the flow diminishes, anxious to continue the pleasure, but eventually all good things come to an end.  ", false);
+            if (player.biggestLactation() > 2.6 && player.biggestLactation() < 3) outputText("thick hoses of milk erupt from your aching nipples, forming puddles on the ground.  You smile at how well you're feeding the earth, your milk coating the ground faster than it can be absorbed.  The constant lactation is pleasurable... in a highly erotic way, and you find yourself moaning and pulling on your nipples, your hands completely out of control.  In time you realize the milk has stopped, and even had time to soak into the dirt.  You wonder at your strange thoughts and pull your hands from your sensitive nipples.  ", false);
+
+            if (player.biggestLactation() >= 3) outputText("you drop to your knees and grab your nipples.  With a very sexual moan you begin milking yourself, hosing out huge quantities of milk.  You pant and grunt, offering as much of your milk as you can.  It cascades down a hill in a small stream, and you can't help but blush with pride... and lust.  The erotic pleasures build as you do your best to feed the ground all of your milk.  You ride the edge of orgasm for an eternity, milk everywhere.  When you come to, you realize you're kneeling there, tugging your dry nipples.  Embarrassed, you stop, but your arousal remains.  ", false);
+            if (player.biggestLactation() < 3) {
+                player.boostLactation(.7);
+                outputText("Your breasts feel fuller... riper... like your next milking could be even bigger.  ", false);
+            }
+            player.dynStats("lib", 1, "sen", 4);
+            player.changeLust(15);
+        }
+        if (player.biggestLactation() == 0) {
+            outputText("A pleasurable release suddenly erupts from your nipples!  Twin streams of milk are spraying from your breasts, soaking into the ground immediately.  It stops all too soon, though a voice in your head assures you that you can lactate quite often now.  ", false);
+            player.boostLactation(1);
+            player.dynStats("lib", .5, "sen", 1);
+            player.changeLust(10);
+
+        }
+        outputText("<br><br>Your mouth curls into a sick smile and, with a voice that isn't your own, speaks, \"<i>I ALWAYS get what I want, dear...</i>\"", false);
+        doNext(Camp.returnToCampUseOneHour);
+    }
+    else {
+        outputText("Your mouth forms a smile of its own volition, reading, \"<i>nuf erutuf rof riah ydnas, nus tresed eht sa ydnas.</i>\"<br><br>You feel a tingling in your scalp, and realize your hair has become a sandy blonde!", false);
+        player.hairColor = "sandy blonde";
+        outputText("<br><br>Your mouth curls with a sick smile, speaking with a voice that isn't your own, \"<i>I ALWAYS get what I want, dear...</i>\"", false);
+        doNext(Camp.returnToCampUseOneHour);
+    }
+    // Using Tattered Scroll in Combat
+    /*
+     if (!kGAMECLASS.inCombat) {
+     //RAEP
+     spriteSelect(50);
+     outputText("<br><br>You hear the soft impact of clothes hitting the ground behind you, and turn to see that the sand witch has found you! You cannot resist a peek at your uninvited guest, beholding a curvy dark-skinned beauty, her form dominated by a quartet of lactating breasts.  Somewhere in your lust-fogged mind you register the top two as something close to double-Ds, and her lower pair to be about Cs.  She smiles and leans over you, pushing you to the ground violently.<br><br>She turns around and drops, planting her slick honey-pot firmly against your mouth.  Her scent is strong, overpowering in its intensity.  Your tongue darts out for a taste and finds a treasure trove of sticky sweetness.  Instinctively you tongue-fuck her, greedily devouring her cunny-juice, shoving your tongue in as far as possible while suckling her clit.  Dimly you feel the milk spattering over you, splashing off you and into the cracked earth.  Everywhere the milk touches feels silky smooth and sensitive, and your hands begin stroking your body, rubbing it in as the witch sprays more and more of it.  You lose track of time, orgasming many times, slick and sticky with sexual fluids.", false);
+     player.orgasm();
+     dynStats("lib", 1, "sen", 5);
+     player.slimeFeed();
+     }*/
+};
