@@ -59,19 +59,6 @@ const CODEX_ENTRY_SUCCUBUS              = "Codex_Entry_Succubus";
 const CODEX_ENTRY_ZEBRAS                = "Codex_Entry_Zebras";
 
 //------------
-// DUNGEONS
-//------------
-const FACTORY_FOUND                     = "Factory_Found";
-const FACTORY_SUCCUBUS_DEFEATED         = "Factory_Succubus_Defeated";
-const FACTORY_INCUBUS_DEFEATED          = "Factory_Incubus_Defeated";
-const FACTORY_OMNIBUS_DEFEATED          = "Factory_Omnibus_Defeated";
-const FACTORY_SHUTDOWN                  = "Factory_Shutdown"; //1 if shutdown, 2 if overloaded.
-const FACTORY_INCUBUS_BRIBED            = "Factory_Incubus_Bribed";
-const FACTORY_TAKEN_LACTAID             = "Factory_Taken_Lactaid";
-const FACTORY_TAKEN_GROPLUS             = "Factory_Taken_GroPlus";
-const FACTORY_MILKER_BUILT              = "Factory_Milker_Built";
-
-//------------
 // CAMP FLAGS
 //------------
 
@@ -268,3 +255,9 @@ const HAS_KEY_ITEM                          = "Has_Key_Item" // Does the player 
 const HAS_ARMOR_RACK                        = "Has_Armor_Rack" // Does the player have the armor rack?
 const HAS_WEAPON_RACK                       = "Has_Weapon_Rack" // Does the player have the weapon rack?
 const HAS_EQUIPMENT_RACK                    = "Has_Equipment_Rack" // Does the player have the equipment rack?
+
+//---------
+// PLOT VARIABLES
+//---------
+
+const FACTORY_SHUTDOWN                      = "Factory_Shutdown" // Is the factory on, shut down, or destroyed?
