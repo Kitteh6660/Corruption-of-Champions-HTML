@@ -7,6 +7,11 @@ Items.Consumables.BeeHoney = new Item("BeeHony", "Bee Honey", "a small vial fill
 Items.Consumables.BeeHoney.description = "This fine crystal vial is filled with a thick amber liquid that glitters dully in the light. You can smell a sweet scent, even though it is tightly corked.";
 Items.Consumables.BeeHoney.consumeEffect = ConsumableEffects.beeTFs;
 
+Items.Consumables.BlackBook = new Item("B.Book", "Black Book", "a small book with a midnight-black cover", ITEM_TYPE_CONSUMABLE);
+Items.Consumables.BlackBook.description = "This solid black book is totally unmarked, saved for a blood red clasp that holds the covers closed until you are ready to read it.  The pages are edged with gold, like some of the fancy books in the monastary back home.";
+//Items.Consumables.BlackBook.consumeEffect
+Items.Consumables.BlackBook.value = 40;
+
 Items.Consumables.CaninePepper = new Item("CanineP", "Canine Pp", "a canine pepper", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.CaninePepper.description = "The pepper is shiny and red, bulbous at the base but long and narrow at the tip. It smells spicy.";
 Items.Consumables.CaninePepper.consumeEffect = createCallBackFunction(ConsumableEffects.canineTFs, 0);
@@ -66,7 +71,7 @@ Items.Consumables.LaBova.description = "A bottle containing a misty fluid with a
 
 Items.Consumables.Lactaid = new Item("Lactaid", "Lactaid", "a pink bottle labelled \"Lactaid\"", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.Lactaid.description = "Judging by the name printed on this bottle, 'Lactaid' probably has an effect on the ability to lactate, and you doubt that effect is a reduction.";
-//Items.Consumables.Lactaid.consumeEffect = ConsumableEffects
+//Items.Consumables.Lactaid.consumeEffect = ConsumableEffects lactaid
 
 Items.Consumables.MinotaurBlood = new Item("M.Blood", "MinoBlood", "a vial of Minotaur blood", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.MinotaurBlood.description = "You've got a scratched up looking vial full of bright red minotaur blood.  Any time you move it around it seems to froth up, as if eager to escape.";
@@ -74,7 +79,10 @@ Items.Consumables.MinotaurBlood.description = "You've got a scratched up looking
 
 Items.Consumables.MinotaurCum = new Item("M.Cum", "MinoCum", "a sealed bottle of minotaur cum", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.MinotaurCum.description = "This bottle of minotaur cum looks thick and viscous.  You know it has narcotic properties, but aside from that its effects are relatively unknown.";
-//Items.Consumables.MinotaurCum.consumeEffect
+//Items.Consumables.MinotaurCum.consumeEffect minotaurcum,false
+Items.Consumables.MinotaurCum.value = 60;
+
+//Items.Consumables.OvipositionElixir = new OvipoisitionElixir();
 
 Items.Consumables.PigTruffle = new Item("PigTruf", "Pig Truffle", "a pigtail truffle", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.PigTruffle.description = "It's clear where this fungus gets its name. A small, curly sprig resembling a pig's tail can be seen jutting out of it.";
@@ -85,27 +93,32 @@ Items.Consumables.PureHoney = new Item("PurHon", "Pure Honey", "TO BE ADDED", IT
 //Items.Consumables.PureHoney.description =
 //Items.Consumables.PureHoney.consumeEffect =
 
+//Items.Consumables.Reducto = new Reducto(); //TODO
+
 Items.Consumables.Reptilum = new Item("Reptilum", "Reptilum", "a vial of Reptilum", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.Reptilum.description = "This is a rounded bottle with a small label that reads, \"<i>Reptilum</i>\".  It is likely this potion is tied to reptiles in some way.";
 Items.Consumables.Reptilum.consumeEffect = ConsumableEffects.lizardTFs;
 
 Items.Consumables.SnakeOil = new Item("SnakeOil", "Snake Oil", "a vial of snake oil", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.SnakeOil.description = "A vial the size of your fist made of dark brown glass. It contains what appears to be an oily, yellowish liquid. The odor is abominable.";
-Items.Consumables.SnakeOil.consumeEffect = ConsumableEffects.snakeTFs;
+Items.Consumables.SnakeOil.consumeEffect = ConsumableEffects.snakeTFs; //TODO
 
 //TODO: Special Honey Code
 Items.Consumables.SpecialHoney = new Item("SPHoney", "Special Honey", "TO BE ADDED", ITEM_TYPE_CONSUMABLE);
 //Items.Consumables.SpecialHoney.description = "TO BE ADDED.";
 //Items.Consumables.SpecialHoney.consumeEffect = ConsumableEffects.
 
-
 Items.Consumables.TatteredScroll = new Item("T.Scroll", "Tattered Scroll", "a tattered scroll", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.TatteredScroll.description = "This tattered scroll is written in strange symbols, yet you have the feeling that if you tried to, you could decipher it.";
 Items.Consumables.TatteredScroll.consumeEffect = ConsumableEffects.tatteredScroll;
 
+Items.Consumables.TrapOil = new Item("TrapOil", "TrapOil", "a vial of trap oil.", ITEM_TYPE_CONSUMABLE);
+Items.Consumables.TrapOil.description = "A round, opaque glass vial filled with a clear, viscous fluid.  It has a symbol inscribed on it, a circle with a cross and arrow pointing out of it in opposite directions.  It looks and smells entirely innocuous.";
+//Items.Consumables.TrapOil.consumeEffect = ConsumableEffects.trapOil;
+
 Items.Consumables.WetCloth = new Item("W.Cloth", "Wet Cloth", "a wet cloth dripping with slippery slime", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.WetCloth.description = "Dripping with a viscous slime, you've no doubt rubbing this cloth on your body would have some kind of strange effect.";
-Items.Consumables.WetCloth.consumeEffect.slimeTFs;
+Items.Consumables.WetCloth.consumeEffect = ConsumableEffects.slimeTFs; //TODO
 
 Items.Consumables.WhiskerFruit = new Item("W.Fruit", "W.Fruit", "a piece of whisker-fruit", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.WhiskerFruit.description = "This small, peach-sized fruit has tiny whisker-like protrusions growing from the sides.";
@@ -114,6 +127,7 @@ Items.Consumables.WhiskerFruit.consumeEffect = ConsumableEffects.felineTFs;
 Items.Consumables.WhiteBook = new Item("W.Book", "White Book", "a small book with a pristine white cover", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.WhiteBook.description = "This white book is totally unmarked, and the cover is devoid of any lettering or title.  A shiny brass clasp keeps the covers closed until you are ready to read it.";
 //Items.Consumables.WhiteBook.consumeEffect = ConsumableEffects.
+Items.Consumables.WhiteBook.value = 40;
 
 //------------
 // DEMONIC
