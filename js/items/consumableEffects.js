@@ -19,7 +19,40 @@ ConsumableEffects.fishFillet = function() {
     //Increase HP by quite a bit!)
     player.changeHP(Math.round(player.maxHP() * .25), true);
     player.refillHunger(30);
-}
+};
+
+//Lactaid
+ConsumableEffects.lactaid = function() {
+    player.slimeFeed();
+    var i = 0;
+    outputText("You gulp down the bottle of lactaid, easily swallowing the creamy liquid.", true);
+    //Bump up size!
+    if (player.averageBreastSize() < 8) {
+        outputText("<br><br>", false);
+        if (player.breastRows.length == 1) player.growTits((1 + rand(5)), 1, true, 1);
+        else player.growTits(1 + rand(2), player.breastRows.length, true, 1);
+    }
+    //Player doesn't lactate
+    if (player.biggestLactation() < 1) {
+        outputText("<br><br>", false);
+        outputText("You feel your " + player.nippleDescript(0) + "s become tight and engorged.  A single droplet of milk escapes each, rolling down the curves of your breasts.  <b>You are now lactating!</b>", false);
+        for (i = 0; i < player.breastRows.length; i++) {
+            player.breastRows[i].lactationMultiplier += 2;
+        }
+    }
+    //Boost lactation
+    else {
+        outputText("<br><br>", false);
+        outputText("Milk leaks from your " + player.nippleDescript(0) + "s in thick streams.  You're lactating even more!", false);
+        for (i = 0; i < player.breastRows.length; i++) {
+            player.breastRows[i].lactationMultiplier += 1 + rand(10) / 10;
+        }
+    }
+    player.changeLust(10);
+    if (rand(3) == 0) {
+        outputText(player.modFem(95, 1), false);
+    }
+};
 
 //Lust Draft
 ConsumableEffects.lustDraft = function(fuck) {
@@ -39,7 +72,7 @@ ConsumableEffects.lustDraft = function(fuck) {
     }
     //ORGAZMO
     if (player.lust >= player.maxLust() && !inCombat) {
-        outputText("<br><br>The arousal from the potion overwhelms your senses and causes you to spontaneously orgasm.  You rip off your " + player.armorName + " and look down as your ", false);
+        outputText("<br><br>The arousal from the potion overwhelms your senses and causes you to spontaneously orgasm.  You rip off your " + player.armor.equipmentName + " and look down as your ", false);
         if (player.cocks.length > 0) {
             outputText(player.multiCockDescriptLight() + " erupts in front of you, liberally spraying the ground around you.  ", false);
         }
@@ -58,7 +91,7 @@ ConsumableEffects.lustDraft = function(fuck) {
     if (player.lust > player.maxLust()) player.lust = player.maxLust();
     outputText("<br><br>", false);
     player.refillHunger(5);
-}
+};
 
 //Vitality Tincture
 ConsumableEffects.vitalityTincture = function() {
@@ -82,7 +115,7 @@ ConsumableEffects.vitalityTincture = function() {
     }
     if (rand(3) == 0) outputText(player.modTone(95, 3), false);
     player.refillHunger(10);
-}
+};
 
 //Scholar's Tea
 ConsumableEffects.scholarsTea = function() {
@@ -95,7 +128,7 @@ ConsumableEffects.scholarsTea = function() {
     else if (player.inte < 80) player.modStats("int", 0.5 + rand(2));
     else player.modStats("int", 0.2 + rand(2));
     player.refillHunger(10);
-}
+};
 
 //Hair Dyes
 ConsumableEffects.hairDye = function(newColor) {
@@ -114,7 +147,7 @@ ConsumableEffects.hairDye = function(newColor) {
             player.changeLust(-15, true);
         }
     }
-}
+};
 
 //Skin Oils
 ConsumableEffects.skinOil = function(newColor) {
@@ -143,7 +176,7 @@ ConsumableEffects.skinOil = function(newColor) {
                 outputText("You " + player.clothedOrNaked("take a second to disrobe before uncorking the bottle of oil and rubbing", "uncork the bottle of oil and rub") + " the smooth liquid across your body. Even before you’ve covered your arms and [chest] your skin begins to tingle pleasantly all over. After your skin darkens a little, it begins to change until you have " + newColor + " skin.");
         }
     }
-}
+};
 
 //Body Lotions
 ConsumableEffects.bodyLotion = function(newAdj) {
@@ -224,7 +257,7 @@ ConsumableEffects.bodyLotion = function(newAdj) {
                 outputText("You " + player.clothedOrNaked("take a second to disrobe before uncorking the bottle of oil and rubbing", "uncork the bottle of oil and rub") + " the smooth liquid across your body. Even before you’ve covered your arms and [chest] your skin begins to tingle pleasantly all over. After your skin darkens a little, it begins to change until you have " + newAdj + " skin.");
         }
     }
-}
+};
 
 //TODO: Move to a better place.
 function liquidDesc(_adj) {
@@ -273,7 +306,7 @@ ConsumableEffects.tatteredScroll = function() {
         }
         if (player.averageNipplesPerBreast() < 1) {
             outputText("A dark spot appears on each breast, rapidly forming into a sensitive nipple.  ", false);
-            temp = player.breastRows.length;
+            var temp = player.breastRows.length;
             while (temp > 0) {
                 temp--;
                 //If that breast didnt have nipples reset length
@@ -345,19 +378,19 @@ ConsumableEffects.blackSpellbook = function() {
         player.dynStats("int", .6);
     }
 //Smart enough for arouse and doesnt have it
-    if (player.inte >= 25 && player.findStatusEffect(StatusEffects.KnowsArouse) < 0) {
+    if (player.inte >= 25 && player.spells.arouse == 0) {
         outputText("<br><br>You blink in surprise, assaulted by the knowledge of a <b>new spell: Arouse.</b>", false);
         player.spells.arouse = true;
         return;
     }
 //Smart enough for arouse and doesnt have it
-    if (player.inte >= 30 && player.findStatusEffect(StatusEffects.KnowsHeal) < 0) {
+    if (player.inte >= 30 && player.spells.heal == 0) {
         outputText("<br><br>You blink in surprise, assaulted by the knowledge of a <b>new spell: Heal.</b>", false);
         player.spells.heal = true;
         return;
     }
 //Smart enough for arouse and doesnt have it
-    if (player.inte >= 40 && player.findStatusEffect(StatusEffects.KnowsMight) < 0) {
+    if (player.inte >= 40 && player.spells.might == 0) {
         outputText("<br><br>You blink in surprise, assaulted by the knowledge of a <b>new spell: Might.</b>", false);
         player.spells.might = true;
     }
@@ -383,20 +416,20 @@ ConsumableEffects.whiteSpellBook = function() {
         player.dynStats("int", .6);
     }
     //Smart enough for arouse and doesnt have it
-    if (player.inte >= 25 && player.findStatusEffect(StatusEffects.KnowsCharge) < 0) {
+    if (player.inte >= 25 && player.spells.chargeWeapon == 0) {
         outputText("<br><br>You blink in surprise, assaulted by the knowledge of a <b>new spell: Charge Weapon.</b>", false);
         player.spells.chargeWeapon = true;
         return;
     }
     //Smart enough for arouse and doesnt have it
-    if (player.inte >= 30 && player.findStatusEffect(StatusEffects.KnowsBlind) < 0) {
+    if (player.inte >= 30 && player.spells.chargeWeapon == 0) {
         outputText("<br><br>You blink in surprise, assaulted by the knowledge of a <b>new spell: Blind.</b>", false);
         player.spells.blind = true;
         return;
     }
     //Smart enough for arouse and doesnt have it
-    if (player.inte >= 40 && player.findStatusEffect(StatusEffects.KnowsWhitefire) < 0) {
+    if (player.inte >= 40 && player.spells.whitefire == 0) {
         outputText("<br><br>You blink in surprise, assaulted by the knowledge of a <b>new spell: Whitefire.</b>", false);
         player.spells.whitefire = true;
     }
-}
+};

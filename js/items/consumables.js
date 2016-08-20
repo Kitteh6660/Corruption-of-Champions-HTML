@@ -74,7 +74,7 @@ Items.Consumables.LaBova.consumeEffect = ConsumableEffects.cowTFs(true, false);
 
 Items.Consumables.Lactaid = new Item("Lactaid", "Lactaid", "a pink bottle labelled \"Lactaid\"", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.Lactaid.description = "Judging by the name printed on this bottle, 'Lactaid' probably has an effect on the ability to lactate, and you doubt that effect is a reduction.";
-//Items.Consumables.Lactaid.consumeEffect = ConsumableEffects lactaid
+Items.Consumables.Lactaid.consumeEffect = ConsumableEffects.lactaid
 
 Items.Consumables.MinotaurBlood = new Item("M.Blood", "MinoBlood", "a vial of Minotaur blood", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.MinotaurBlood.description = "You've got a scratched up looking vial full of bright red minotaur blood.  Any time you move it around it seems to froth up, as if eager to escape.";

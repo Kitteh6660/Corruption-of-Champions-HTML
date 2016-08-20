@@ -3797,4 +3797,44 @@ public function updateOvipositionPerk(tfSource:String):int
     }
 }
 
+
+//UPDATE CLAWS
+ public function updateClaws(clawType:int = CLAW_TYPE_NORMAL):String
+ {
+ var clawTone:String = "";
+ var oldClawTone:String = player.clawTone;
+
+ switch (clawType) {
+ case CLAW_TYPE_DRAGON:       clawTone = "steel-gray";   break;
+ case CLAW_TYPE_SALAMANDER:   clawTone = "fiery-red";    break;
+ case CLAW_TYPE_LIZARD:
+ // See http://www.bergenbattingcenter.com/lizard-skins-bat-grip/ for all those NYI! lizard skin colors
+ // I'm still not that happy with these claw tones. Any suggestion would be nice.
+ switch (player.skinTone) {
+ case "red":          clawTone = "reddish";      break;
+ case "green":        clawTone = "greenish";     break;
+ case "white":        clawTone = "light-gray";   break;
+ case "blue":         clawTone = "bluish";       break;
+ case "black":        clawTone = "dark-gray";    break;
+ case "purple":       clawTone = "purplish";     break;
+ case "silver":       clawTone = "silvery";      break;
+ case "pink":         clawTone = "pink";         break; // NYI! Maybe only with a new Skin Oil?
+ case "orange":       clawTone = "orangey";      break; // NYI!
+ case "yellow":       clawTone = "yellowish";    break; // NYI!
+ case "desert-camo":  clawTone = "pale-yellow";  break; // NYI!
+ case "gray-camo":    clawTone = "gray";         break; // NYI!
+ default:             clawTone = "gray";         break;
+ }
+ break;
+ default:
+ clawTone = "";
+ }
+
+ player.clawType = clawType;
+ player.clawTone = clawTone;
+
+ return oldClawTone;
+ }
+
+
     */
