@@ -18,6 +18,7 @@ const IMPS_KILLED                       = "Imps_Killed"; // How many Imps has th
 const COMBAT_BONUS_XP_VALUE             = "Combat_Bonus_XP_Value";
 const SLIME_CRAVING                     = "Slime_Craving"; // Replaces Slime Craving status effect.
 const GOOGIRL_BIRTHS                    = "GooGirl_Births";
+const HORSE_WARNING                     = "Horse_Warning"; // In Danger of Drinking Too Much Equinum
 
 
 //------------
@@ -264,13 +265,19 @@ const TIMES_MET_OOZE                    = "Times_Met_Ooze";
 //------------
 // Racks
 
-const HAS_KEY_ITEM                          = "Has_Key_Item" // Does the player have any key items?
-const HAS_ARMOR_RACK                        = "Has_Armor_Rack" // Does the player have the armor rack?
-const HAS_WEAPON_RACK                       = "Has_Weapon_Rack" // Does the player have the weapon rack?
-const HAS_EQUIPMENT_RACK                    = "Has_Equipment_Rack" // Does the player have the equipment rack?
+const HAS_KEY_ITEM                          = "Has_Key_Item"; // Does the player have any key items?
+const HAS_ARMOR_RACK                        = "Has_Armor_Rack"; // Does the player have the armor rack?
+const HAS_WEAPON_RACK                       = "Has_Weapon_Rack"; // Does the player have the weapon rack?
+const HAS_EQUIPMENT_RACK                    = "Has_Equipment_Rack"; // Does the player have the equipment rack?
 
 //---------
 // PLOT VARIABLES
 //---------
 
-const FACTORY_SHUTDOWN                      = "Factory_Shutdown" // Is the factory on, shut down, or destroyed?
+const FACTORY_SHUTDOWN                      = "Factory_Shutdown"; // Is the factory on, shut down, or destroyed?
+
+//---------
+// PLAYER TRANSFORMATIONS
+//---------
+
+const HAS_BLACK_NIPPLES                     = "Has_Black_Nipples";

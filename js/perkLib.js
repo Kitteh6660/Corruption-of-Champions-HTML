@@ -65,3 +65,6 @@ PerkLib.MessyOrgasms = new PerkType("MessyOrgasms", "Messy Orgasms", "TO BE ADDE
 PerkLib.MaraesGiftButtslut = new PerkType("MaraesGiftButtslut", "TO BE ADDED", "TO BE ADDED");
 PerkLib.Incorporeality = new PerkType("Incorporeality", "Incorporeality", "TO BE ADDED");
 PerkLib.SpellcastingAffinity = new PerkType("SpellAff", "Spellcasting Affinity", "TO BE ADDED");
+PerkLib.HarpyWomb = new PerkType("HarpyWomb", "Harpy Womb", "TO BE ADDED");
+PerkLib.BasiliskWomb = new PerkType ("BaskWomb", "Basilisk Womb", "TO BE ADDED");
+

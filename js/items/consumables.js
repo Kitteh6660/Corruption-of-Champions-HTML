@@ -9,7 +9,7 @@ Items.Consumables.BeeHoney.consumeEffect = ConsumableEffects.beeTFs;
 
 Items.Consumables.BlackBook = new Item("B.Book", "Black Book", "a small book with a midnight-black cover", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.BlackBook.description = "This solid black book is totally unmarked, saved for a blood red clasp that holds the covers closed until you are ready to read it.  The pages are edged with gold, like some of the fancy books in the monastary back home.";
-//Items.Consumables.BlackBook.consumeEffect
+Items.Consumables.BlackBook.consumeEffect = ConsumableEffects.blackSpellbook;
 Items.Consumables.BlackBook.value = 40;
 
 Items.Consumables.CaninePepper = new Item("CanineP", "Canine Pp", "a canine pepper", ITEM_TYPE_CONSUMABLE);
@@ -41,8 +41,10 @@ Items.Consumables.CaninePepperBulby.description = "This bulbous pepper has a sli
 Items.Consumables.CaninePepperBulby.consumeEffect = createCallBackFunction(ConsumableEffects.canineTFs, 5);
 Items.Consumables.CaninePepperBulby.value = 10;
 
-Items.Consumables.Condom = new Item("Condom", "Condom", "TO BE ADDED", ITEM_TYPE_CONSUMABLE);
-Items.Consumables.Condom.description = "TO BE ADDED";
+Items.Consumables.Condom = new Item("Condom", "Condom", "a condom packet", ITEM_TYPE_CONSUMABLE);
+Items.Consumables.Condom.description = "This wrapper contains a latex condom that can be worn over penis. It's designed to prevent pregnancy most of the time. Can be used in certain sex scenes.";
+Items.Consumables.Condom.consumeEffect = outputText("You look at the unopened packet of condom.  If applicable, you can use the condom to prevent pregnancy most of the time.");
+Items.Consumables.Condom.value = 6;
 
 Items.Consumables.Equinum = new Item("Equinum", "Equinum", "a vial of Equinum", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.Equinum.description = "This is a long flared vial with a small label that reads, \"<i>Equinum</i>\". It is likely this potion is tied to horses in some way.";
@@ -55,7 +57,8 @@ Items.Consumables.GoblinAle.consumeEffect = ConsumableEffects.goblinTFs;
 // Needed for Amily transformation code. Flesh out when we reach the areas of the game when you can actually get them.
 Items.Consumables.GoldenSeed = new Item("G.Seed", "Golden Seed", "a golden seed", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.GoldenSeed.description = "This seed looks and smells absolutely delicious.  Though it has an unusual color, the harpies prize these nuts as delicious treats.  Eating one might induce some physical transformations.";
-//Items.Consumables.GoldenSeed.consumeEffect =
+Items.Consumables.GoldenSeed.consumeEffect = ConsumableEffects.harpyTFs(0);
+
 
 Items.Consumables.Hummanus = new Item("Hummus ", "Hummanus", "a small jar of hummus", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.Hummanus.description = "This is a small jar with label that reads, \"<i>Hummanus</i>\". If the name clues you in, this might be how humanity is regained.";
@@ -67,7 +70,7 @@ Items.Consumables.ImpFood.consumeEffect = ConsumableEffects.impTFs;
 
 Items.Consumables.LaBova = new Item("LaBova", "La Bova", "a bottle containing a misty fluid labeled \"LaBova\"", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.LaBova.description = "A bottle containing a misty fluid with a grainy texture, it has a long neck and a ball-like base.  The label has a stylized picture of a well endowed cowgirl nursing two guys while they jerk themselves off."
-//Items.Consumables.LaBova.consumeEffect = ConsumableEffects
+Items.Consumables.LaBova.consumeEffect = ConsumableEffects.cowTFs(true, false);
 
 Items.Consumables.Lactaid = new Item("Lactaid", "Lactaid", "a pink bottle labelled \"Lactaid\"", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.Lactaid.description = "Judging by the name printed on this bottle, 'Lactaid' probably has an effect on the ability to lactate, and you doubt that effect is a reduction.";
@@ -126,7 +129,7 @@ Items.Consumables.WhiskerFruit.consumeEffect = ConsumableEffects.felineTFs;
 
 Items.Consumables.WhiteBook = new Item("W.Book", "White Book", "a small book with a pristine white cover", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.WhiteBook.description = "This white book is totally unmarked, and the cover is devoid of any lettering or title.  A shiny brass clasp keeps the covers closed until you are ready to read it.";
-//Items.Consumables.WhiteBook.consumeEffect = ConsumableEffects.
+Items.Consumables.WhiteBook.consumeEffect = ConsumableEffects.whiteSpellBook;
 Items.Consumables.WhiteBook.value = 40;
 
 //------------
