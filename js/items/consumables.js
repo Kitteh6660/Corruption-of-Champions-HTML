@@ -5,12 +5,7 @@ Items.Consumables = {};
 //------------
 Items.Consumables.BeeHoney = new Item("BeeHony", "Bee Honey", "a small vial filled with giant-bee honey", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.BeeHoney.description = "This fine crystal vial is filled with a thick amber liquid that glitters dully in the light. You can smell a sweet scent, even though it is tightly corked.";
-Items.Consumables.BeeHoney.consumeEffect = ConsumableEffects.beeTFs;
-
-Items.Consumables.BlackBook = new Item("B.Book", "Black Book", "a small book with a midnight-black cover", ITEM_TYPE_CONSUMABLE);
-Items.Consumables.BlackBook.description = "This solid black book is totally unmarked, saved for a blood red clasp that holds the covers closed until you are ready to read it.  The pages are edged with gold, like some of the fancy books in the monastary back home.";
-Items.Consumables.BlackBook.consumeEffect = ConsumableEffects.blackSpellbook;
-Items.Consumables.BlackBook.value = 40;
+Items.Consumables.BeeHoney.consumeEffect = ConsumableEffects.beeTFs(0);
 
 Items.Consumables.CaninePepper = new Item("CanineP", "Canine Pp", "a canine pepper", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.CaninePepper.description = "The pepper is shiny and red, bulbous at the base but long and narrow at the tip. It smells spicy.";
@@ -41,11 +36,6 @@ Items.Consumables.CaninePepperBulby.description = "This bulbous pepper has a sli
 Items.Consumables.CaninePepperBulby.consumeEffect = createCallBackFunction(ConsumableEffects.canineTFs, 5);
 Items.Consumables.CaninePepperBulby.value = 10;
 
-Items.Consumables.Condom = new Item("Condom", "Condom", "a condom packet", ITEM_TYPE_CONSUMABLE);
-Items.Consumables.Condom.description = "This wrapper contains a latex condom that can be worn over penis. It's designed to prevent pregnancy most of the time. Can be used in certain sex scenes.";
-Items.Consumables.Condom.consumeEffect = outputText("You look at the unopened packet of condom.  If applicable, you can use the condom to prevent pregnancy most of the time.");
-Items.Consumables.Condom.value = 6;
-
 Items.Consumables.Equinum = new Item("Equinum", "Equinum", "a vial of Equinum", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.Equinum.description = "This is a long flared vial with a small label that reads, \"<i>Equinum</i>\". It is likely this potion is tied to horses in some way.";
 Items.Consumables.Equinum.consumeEffect = ConsumableEffects.equineTFs;
@@ -54,11 +44,9 @@ Items.Consumables.GoblinAle = new Item("Gob.Ale", "Goblin Ale", "a flagon of pot
 Items.Consumables.GoblinAle.description = "This sealed flagon of 'Goblin Ale' sloshes noisily with alcoholic brew. Judging by the markings on the flagon, it's a VERY strong drink, and not to be trifled with.";
 Items.Consumables.GoblinAle.consumeEffect = ConsumableEffects.goblinTFs;
 
-// Needed for Amily transformation code. Flesh out when we reach the areas of the game when you can actually get them.
 Items.Consumables.GoldenSeed = new Item("G.Seed", "Golden Seed", "a golden seed", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.GoldenSeed.description = "This seed looks and smells absolutely delicious.  Though it has an unusual color, the harpies prize these nuts as delicious treats.  Eating one might induce some physical transformations.";
 Items.Consumables.GoldenSeed.consumeEffect = ConsumableEffects.harpyTFs(0);
-
 
 Items.Consumables.Hummanus = new Item("Hummus ", "Hummanus", "a small jar of hummus", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.Hummanus.description = "This is a small jar with label that reads, \"<i>Hummanus</i>\". If the name clues you in, this might be how humanity is regained.";
@@ -85,21 +73,14 @@ Items.Consumables.MinotaurCum.description = "This bottle of minotaur cum looks t
 Items.Consumables.MinotaurCum.consumeEffect = ConsumableEffects.minotaurCum(false);
 Items.Consumables.MinotaurCum.value = 60;
 
-Items.Consumables.OvipositionElixir = new Item("OviElixir", "Ovi Elixir", "a hexagonal crystal bottle tagged with an image of an egg", ITEM_TYPE_CONSUMABLE);
-Items.Consumables.OvipositionElixir.description = "This hexagonal crystal bottle is filled with a strange green fluid.  A tag with a picture of an egg is tied to the neck of the bottle, indicating it is somehow connected to egg-laying.";
-Items.Consumables.MinotaurCum.consumeEffect = ConsumableEffects.oviElixir();
-Items.Consumables.OvipositionElixir.value = 30;
-
 Items.Consumables.PigTruffle = new Item("PigTruf", "Pig Truffle", "a pigtail truffle", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.PigTruffle.description = "It's clear where this fungus gets its name. A small, curly sprig resembling a pig's tail can be seen jutting out of it.";
 Items.Consumables.PigTruffle.consumeEffect = ConsumableEffects.pigTFs;
 
-//TODO: Find Special Honey Code
-Items.Consumables.PureHoney = new Item("PurHon", "Pure Honey", "TO BE ADDED", ITEM_TYPE_CONSUMABLE);
-//Items.Consumables.PureHoney.description =
-//Items.Consumables.PureHoney.consumeEffect =
-
-//Items.Consumables.Reducto = new Reducto(); //TODO
+Items.Consumables.PureHoney = new Item("PurHon", "Pure Honey", "a crystal vial filled with glittering honey", ITEM_TYPE_CONSUMABLE);
+Items.Consumables.PureHoney.description = "This fine crystal vial is filled with a thick amber liquid that glitters in the light.  You can smell a sweet scent, even though it is tightly corked.";
+Items.Consumables.PureHoney.consumeEffect = ConsumableEffects.beeTFs(1);
+Items.Consumables.PureHoney.value = 40;
 
 Items.Consumables.Reptilum = new Item("Reptilum", "Reptilum", "a vial of Reptilum", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.Reptilum.description = "This is a rounded bottle with a small label that reads, \"<i>Reptilum</i>\".  It is likely this potion is tied to reptiles in some way.";
@@ -109,14 +90,10 @@ Items.Consumables.SnakeOil = new Item("SnakeOil", "Snake Oil", "a vial of snake 
 Items.Consumables.SnakeOil.description = "A vial the size of your fist made of dark brown glass. It contains what appears to be an oily, yellowish liquid. The odor is abominable.";
 Items.Consumables.SnakeOil.consumeEffect = ConsumableEffects.snakeTFs; //TODO
 
-//TODO: Special Honey Code
-Items.Consumables.SpecialHoney = new Item("SPHoney", "Special Honey", "TO BE ADDED", ITEM_TYPE_CONSUMABLE);
-//Items.Consumables.SpecialHoney.description = "TO BE ADDED.";
-//Items.Consumables.SpecialHoney.consumeEffect = ConsumableEffects.
-
-Items.Consumables.TatteredScroll = new Item("T.Scroll", "Tattered Scroll", "a tattered scroll", ITEM_TYPE_CONSUMABLE);
-Items.Consumables.TatteredScroll.description = "This tattered scroll is written in strange symbols, yet you have the feeling that if you tried to, you could decipher it.";
-Items.Consumables.TatteredScroll.consumeEffect = ConsumableEffects.tatteredScroll;
+Items.Consumables.SpecialHoney = new Item("SPHoney", "Special Honey", "a bottle of special bee honey", ITEM_TYPE_CONSUMABLE);
+Items.Consumables.SpecialHoney.description = "A clear crystal bottle of a dark brown fluid that you got from the bee handmaiden.  It gives off a strong sweet smell even though the bottle is still corked.";
+Items.Consumables.SpecialHoney.consumeEffect = ConsumableEffects.beeTFs(2);
+Items.Consumables.SpecialHoney.value = 20;
 
 Items.Consumables.TrapOil = new Item("TrapOil", "TrapOil", "a vial of trap oil.", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.TrapOil.description = "A round, opaque glass vial filled with a clear, viscous fluid.  It has a symbol inscribed on it, a circle with a cross and arrow pointing out of it in opposite directions.  It looks and smells entirely innocuous.";
@@ -130,10 +107,6 @@ Items.Consumables.WhiskerFruit = new Item("W.Fruit", "W.Fruit", "a piece of whis
 Items.Consumables.WhiskerFruit.description = "This small, peach-sized fruit has tiny whisker-like protrusions growing from the sides.";
 Items.Consumables.WhiskerFruit.consumeEffect = ConsumableEffects.felineTFs;
 
-Items.Consumables.WhiteBook = new Item("W.Book", "White Book", "a small book with a pristine white cover", ITEM_TYPE_CONSUMABLE);
-Items.Consumables.WhiteBook.description = "This white book is totally unmarked, and the cover is devoid of any lettering or title.  A shiny brass clasp keeps the covers closed until you are ready to read it.";
-Items.Consumables.WhiteBook.consumeEffect = ConsumableEffects.whiteSpellBook;
-Items.Consumables.WhiteBook.value = 40;
 
 //------------
 // DEMONIC
@@ -171,6 +144,16 @@ Items.Consumables.SuccubiMilkPurified.value = 20;
 //------------
 // NON-TFs
 //------------
+Items.Consumables.BlackBook = new Item("B.Book", "Black Book", "a small book with a midnight-black cover", ITEM_TYPE_CONSUMABLE);
+Items.Consumables.BlackBook.description = "This solid black book is totally unmarked, saved for a blood red clasp that holds the covers closed until you are ready to read it.  The pages are edged with gold, like some of the fancy books in the monastary back home.";
+Items.Consumables.BlackBook.consumeEffect = ConsumableEffects.blackSpellbook;
+Items.Consumables.BlackBook.value = 40;
+
+Items.Consumables.Condom = new Item("Condom", "Condom", "a condom packet", ITEM_TYPE_CONSUMABLE);
+Items.Consumables.Condom.description = "This wrapper contains a latex condom that can be worn over penis. It's designed to prevent pregnancy most of the time. Can be used in certain sex scenes.";
+Items.Consumables.Condom.consumeEffect = outputText("You look at the unopened packet of condom.  If applicable, you can use the condom to prevent pregnancy most of the time.");
+Items.Consumables.Condom.value = 6;
+
 Items.Consumables.FishFillet = new Item("FishFil", "F. Fillet", "a fish fillet", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.FishFillet.description = "A perfectly cooked piece of fish. You're not sure what type of fish is, since you're fairly certain \"delicious\" is not a valid species.";
 Items.Consumables.FishFillet.consumeEffect = ConsumableEffects.fishFillet;
@@ -199,9 +182,19 @@ Items.Consumables.ScholarsTea = new Item("Smart T", "Scholars T.", "a cup of sch
 Items.Consumables.ScholarsTea.description = "This potent tea supposedly has mind-strengthening effects.";
 Items.Consumables.ScholarsTea.consumeEffect = ConsumableEffects.scholarsTea;
 
+Items.Consumables.TatteredScroll = new Item("T.Scroll", "Tattered Scroll", "a tattered scroll", ITEM_TYPE_CONSUMABLE);
+Items.Consumables.TatteredScroll.description = "This tattered scroll is written in strange symbols, yet you have the feeling that if you tried to, you could decipher it.";
+Items.Consumables.TatteredScroll.consumeEffect = ConsumableEffects.tatteredScroll;
+
 Items.Consumables.VitalityTincture = new Item("Vital T", "Vitality T.", "a fish fillet", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.VitalityTincture.description = "This powerful brew is supposedly good for the strengthening the body.";
 Items.Consumables.VitalityTincture.consumeEffect = ConsumableEffects.vitalityTincture;
+
+Items.Consumables.WhiteBook = new Item("W.Book", "White Book", "a small book with a pristine white cover", ITEM_TYPE_CONSUMABLE);
+Items.Consumables.WhiteBook.description = "This white book is totally unmarked, and the cover is devoid of any lettering or title.  A shiny brass clasp keeps the covers closed until you are ready to read it.";
+Items.Consumables.WhiteBook.consumeEffect = ConsumableEffects.whiteSpellBook;
+Items.Consumables.WhiteBook.value = 40;
+
 
 //------------
 // DYES/OILS/LOTIONS

@@ -29,6 +29,7 @@ const EVER_INFESTED                     = "Ever_Infested"; // Has the PC ever be
 const MEANINGLESS_CORRUPTION            = "Meaningless_Corruption"; //Unknown, used in Goblin victory code.
 const INFESTED                          = "Infested";
 const HYPER_HAPPY                       = "Hyper_Happy";
+const PREGNANCY_CORRUPTION              = "Pregnancy_Corruption"; // Used in Phouka pregnancy
 
 //------------
 // CODEX

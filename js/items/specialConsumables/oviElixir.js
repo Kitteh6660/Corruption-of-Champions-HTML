@@ -38,7 +38,7 @@ ConsumableEffects.oviElixir = function() {
     if (player.pregnancyType == PREGNANCY_OVIELIXIR_EGGS) { //If player already has eggs, chance of size increase!
         if (player.findStatusEffect(StatusEffects.Eggs) >= 0) {
             //If eggs are small, chance of increase!
-            if (player.statusEffectValue(StatusEffects.Eggs,2) == 0) { // TODO Find how to change the 2nd status effect var
+            if (player.statusEffectValue(StatusEffects.Eggs,2) == 0) { 
                 //1 in 2 chance!
                 if (rand(3) == 0) {
                     player.addStatusValue(StatusEffects.Eggs, 2, 1);

@@ -18,19 +18,19 @@ ConsumableEffects.beeTFs = function(type) {
     }
     player.slimeFeed();
     player.refillHunger(15);
-    /*if ((pure || special) && player.pregnancyType == PregnancyStore.PREGNANCY_FAERIE) { //Pure or special honey can reduce the corruption of a phouka baby
-     if (flags[PREGNANCY_CORRUPTION] > 1) { //Child is phouka, hates pure honey
+    if ((pure || special) && player.pregnancyType == PREGNANCY_FAERIE) { //Pure or special honey can reduce the corruption of a phouka baby
+     if (gameFlags[PREGNANCY_CORRUPTION] > 1) { //Child is phouka, hates pure honey
      outputText("<br><br>You feel queasy and want to throw up.  There's a pain in your belly and you realize the baby you're carrying didn't like that at all.  Then again, maybe pure honey is good for it.");
      }
-     else if (flags[PREGNANCY_CORRUPTION] < 1) { //Child is faerie, loves pure honey
+     else if (gameFlags[PREGNANCY_CORRUPTION] < 1) { //Child is faerie, loves pure honey
      outputText("<br><br>A warm sensation starts in your belly and runs all through your body.  It's almost as if you're feeling music and you guess your passenger enjoyed the meal.");
      }
      else { //Child is on the line, will become a faerie with this drink
      outputText("<br><br>At first you feel your baby struggle against the honey, then it seems to grow content and enjoy it.");
      }
-     flags[PREGNANCY_CORRUPTION]--;
+     gameFlags[PREGNANCY_CORRUPTION]--;
      if (pure) return(false); //No transformative effects for the player because the pure honey was absorbed by the baby - Special honey will keep on giving
-     }*/
+     }
     //Corruption reduction
     if (changes < changeLimit && pure) { //Special honey will also reduce corruption, but uses different text and is handled separately
         outputText("<br><br>");
