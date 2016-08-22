@@ -85,7 +85,10 @@ Items.Consumables.MinotaurCum.description = "This bottle of minotaur cum looks t
 Items.Consumables.MinotaurCum.consumeEffect = ConsumableEffects.minotaurCum(false);
 Items.Consumables.MinotaurCum.value = 60;
 
-//Items.Consumables.OvipositionElixir = new OvipoisitionElixir();
+Items.Consumables.OvipositionElixir = new Item("OviElixir", "Ovi Elixir", "a hexagonal crystal bottle tagged with an image of an egg", ITEM_TYPE_CONSUMABLE);
+Items.Consumables.OvipositionElixir.description = "This hexagonal crystal bottle is filled with a strange green fluid.  A tag with a picture of an egg is tied to the neck of the bottle, indicating it is somehow connected to egg-laying.";
+Items.Consumables.MinotaurCum.consumeEffect = ConsumableEffects.oviElixir();
+Items.Consumables.OvipositionElixir.value = 30;
 
 Items.Consumables.PigTruffle = new Item("PigTruf", "Pig Truffle", "a pigtail truffle", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.PigTruffle.description = "It's clear where this fungus gets its name. A small, curly sprig resembling a pig's tail can be seen jutting out of it.";
