@@ -88,7 +88,7 @@ Items.Consumables.Reptilum.consumeEffect = ConsumableEffects.lizardTFs;
 
 Items.Consumables.SnakeOil = new Item("SnakeOil", "Snake Oil", "a vial of snake oil", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.SnakeOil.description = "A vial the size of your fist made of dark brown glass. It contains what appears to be an oily, yellowish liquid. The odor is abominable.";
-Items.Consumables.SnakeOil.consumeEffect = ConsumableEffects.snakeTFs; //TODO
+Items.Consumables.SnakeOil.consumeEffect = ConsumableEffects.snakeTFs;
 
 Items.Consumables.SpecialHoney = new Item("SPHoney", "Special Honey", "a bottle of special bee honey", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.SpecialHoney.description = "A clear crystal bottle of a dark brown fluid that you got from the bee handmaiden.  It gives off a strong sweet smell even though the bottle is still corked.";

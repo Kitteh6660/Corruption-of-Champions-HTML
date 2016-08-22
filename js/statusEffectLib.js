@@ -27,6 +27,7 @@ StatusEffects.Feeder = new StatusEffectType("Feeder");
 StatusEffects.MeanToNaga = new StatusEffectType("Mean to Naga");
 StatusEffects.Contraceptives = new StatusEffectType("Contraceptives");
 StatusEffects.Eggs = new StatusEffectType("Eggs");
+StatusEffects.Uniball = new StatusEffectType("Uniball"); //TODO: Check code to see if this would be better as a gameflag
 
 //------------
 // COMBAT
