@@ -57,7 +57,7 @@ Items.Consumables.ImpFood.description = "This is a small parcel of reddish-brown
 Items.Consumables.ImpFood.consumeEffect = ConsumableEffects.impTFs;
 
 Items.Consumables.LaBova = new Item("LaBova", "La Bova", "a bottle containing a misty fluid labeled \"LaBova\"", ITEM_TYPE_CONSUMABLE);
-Items.Consumables.LaBova.description = "A bottle containing a misty fluid with a grainy texture, it has a long neck and a ball-like base.  The label has a stylized picture of a well endowed cowgirl nursing two guys while they jerk themselves off."
+Items.Consumables.LaBova.description = "A bottle containing a misty fluid with a grainy texture, it has a long neck and a ball-like base.  The label has a stylized picture of a well endowed cowgirl nursing two guys while they jerk themselves off.";
 Items.Consumables.LaBova.consumeEffect = ConsumableEffects.cowTFs(true, false);
 
 Items.Consumables.Lactaid = new Item("Lactaid", "Lactaid", "a pink bottle labelled \"Lactaid\"", ITEM_TYPE_CONSUMABLE);
