@@ -20,6 +20,7 @@ StatusEffects.CuntStretched = new StatusEffectType("Cunt Stretched");
 //Penalties
 StatusEffects.Infested = new StatusEffectType("Infested");
 StatusEffects.WormPlugged = new StatusEffectType("Worm Plugged");
+StatusEffects.Dysfunction = new StatusEffectType("Dysfunction");
 
 //Neutral
 StatusEffects.Feeder = new StatusEffectType("Feeder");
