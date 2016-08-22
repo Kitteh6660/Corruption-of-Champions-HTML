@@ -18,6 +18,7 @@ const IMPS_KILLED                       = "Imps_Killed"; // How many Imps has th
 const COMBAT_BONUS_XP_VALUE             = "Combat_Bonus_XP_Value";
 const SLIME_CRAVING                     = "Slime_Craving"; // Replaces Slime Craving status effect.
 const GOOGIRL_BIRTHS                    = "GooGirl_Births";
+const HORSE_WARNING                     = "Horse_Warning"; // In Danger of Drinking Too Much Equinum
 
 
 //------------
@@ -63,6 +64,19 @@ const CODEX_ENTRY_ZEBRAS                = "Codex_Entry_Zebras";
 //------------
 
 const CAMP_WALL_PROGRESS                = "Camp_Wall_Progress";
+
+//------------
+// SPELLS
+//------------
+
+//const KNOWS_AROUSE                      = "Knows_Arouse";
+//const KNOWS_HEAL                        = "Knows_Heal";
+//const KNOWS_MIGHT                       = "Knows_Might";
+//const KNOWS_CHARGE                      = "Knows_Charge";
+//const KNOWS_BLIND                       = "Knows_Blind";
+//const KNOWS_WHITEFIRE                   = "Knows_Whitefire";
+
+const SPELLS_CAST                       = "Spells_Cast";
 
 //------------
 // FOLLOWERS
@@ -219,6 +233,7 @@ const MINOTAUR_CUM_ADDICTION_STATE      = "Minotaur_Cum_Addiction_State"; // Wha
 const MINOTAUR_CUM_ADDICTION_TRACKER       = "Minotaur_Cum_Addiction_Tracker"; //How much cum? (0-120)
 const TIME_SINCE_LAST_CONSUMED_MINOTAUR_CUM = "Time_Since_Last_Consumed_Minotaur_Cum" // Timer for cum problems
 const EVER_DRANK_MINOCUM                    = "Ever_Drank_Minocum" // Used for playerinfo menu
+const MINOTAUR_CUM_REALLY_ADDICTED_STATE    = "Minotaur_Cum_Really_Addicted_State"
 
 //Naga
 const NAGA_LAST_ENCOUNTERED_AS_NAGA     = "Naga_Last_Encountered_As_Naga"; //0 indicates player isn't naga, 1 indicates player is naga, 2 indicates player is naga but hostile.
@@ -251,13 +266,19 @@ const TIMES_MET_OOZE                    = "Times_Met_Ooze";
 //------------
 // Racks
 
-const HAS_KEY_ITEM                          = "Has_Key_Item" // Does the player have any key items?
-const HAS_ARMOR_RACK                        = "Has_Armor_Rack" // Does the player have the armor rack?
-const HAS_WEAPON_RACK                       = "Has_Weapon_Rack" // Does the player have the weapon rack?
-const HAS_EQUIPMENT_RACK                    = "Has_Equipment_Rack" // Does the player have the equipment rack?
+const HAS_KEY_ITEM                          = "Has_Key_Item"; // Does the player have any key items?
+const HAS_ARMOR_RACK                        = "Has_Armor_Rack"; // Does the player have the armor rack?
+const HAS_WEAPON_RACK                       = "Has_Weapon_Rack"; // Does the player have the weapon rack?
+const HAS_EQUIPMENT_RACK                    = "Has_Equipment_Rack"; // Does the player have the equipment rack?
 
 //---------
 // PLOT VARIABLES
 //---------
 
-const FACTORY_SHUTDOWN                      = "Factory_Shutdown" // Is the factory on, shut down, or destroyed?
+const FACTORY_SHUTDOWN                      = "Factory_Shutdown"; // Is the factory on, shut down, or destroyed?
+
+//---------
+// PLAYER TRANSFORMATIONS
+//---------
+
+const HAS_BLACK_NIPPLES                     = "Has_Black_Nipples";
