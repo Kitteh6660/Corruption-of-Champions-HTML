@@ -82,7 +82,7 @@ Items.Consumables.MinotaurBlood.consumeEffect = ConsumableEffects.minotaurTFs;
 
 Items.Consumables.MinotaurCum = new Item("M.Cum", "MinoCum", "a sealed bottle of minotaur cum", ITEM_TYPE_CONSUMABLE);
 Items.Consumables.MinotaurCum.description = "This bottle of minotaur cum looks thick and viscous.  You know it has narcotic properties, but aside from that its effects are relatively unknown.";
-//Items.Consumables.MinotaurCum.consumeEffect minotaurcum,false
+Items.Consumables.MinotaurCum.consumeEffect = ConsumableEffects.minotaurCum(false);
 Items.Consumables.MinotaurCum.value = 60;
 
 //Items.Consumables.OvipositionElixir = new OvipoisitionElixir();

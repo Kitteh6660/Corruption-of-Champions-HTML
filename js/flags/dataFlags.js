@@ -233,6 +233,7 @@ const MINOTAUR_CUM_ADDICTION_STATE      = "Minotaur_Cum_Addiction_State"; // Wha
 const MINOTAUR_CUM_ADDICTION_TRACKER       = "Minotaur_Cum_Addiction_Tracker"; //How much cum? (0-120)
 const TIME_SINCE_LAST_CONSUMED_MINOTAUR_CUM = "Time_Since_Last_Consumed_Minotaur_Cum" // Timer for cum problems
 const EVER_DRANK_MINOCUM                    = "Ever_Drank_Minocum" // Used for playerinfo menu
+const MINOTAUR_CUM_REALLY_ADDICTED_STATE    = "Minotaur_Cum_Really_Addicted_State"
 
 //Naga
 const NAGA_LAST_ENCOUNTERED_AS_NAGA     = "Naga_Last_Encountered_As_Naga"; //0 indicates player isn't naga, 1 indicates player is naga, 2 indicates player is naga but hostile.
