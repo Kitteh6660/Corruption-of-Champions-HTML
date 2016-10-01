@@ -3585,7 +3585,7 @@ ConsumableEffects.harpyTFs = function(type) {
         else if (temp == 2) player.skinTone = "dark";
         else if (temp == 3) player.skinTone = "light";
         outputText(player.skinTone + " colored.</b>", false);
-        //updateClaws(player.clawType); TODO - ADD THIS
+        updateClaws(player.clawType);
     }
     //-Grow hips out if narrow.
     if (player.hipRating < 10 && changes < changeLimit && rand(3) == 0) {
@@ -3673,7 +3673,7 @@ ConsumableEffects.harpyTFs = function(type) {
         outputText("<br><br>You smile impishly as you lick the last bits of the nut from your teeth, but when you go to wipe your mouth, instead of the usual texture of your " + player.skinDesc + " on your lips, you feel feathers! You look on in horror while more of the avian plumage sprouts from your " + player.skinDesc + ", covering your forearms until <b>your arms look vaguely like wings</b>. Your hands remain unchanged thankfully. It'd be impossible to be a champion without hands! The feathery limbs might help you maneuver if you were to fly, but there's no way they'd support you alone.", false);
         changes++;
         player.armType = ARM_TYPE_HARPY;
-        //updateClaws(); TODO Add this
+        updateClaws();
     }
     //-Feathery Hair
     if (player.hairType != 1 && changes < changeLimit && (type == 1 || player.faceType == FACE_HUMAN) && rand(4) == 0) {
@@ -3826,9 +3826,14 @@ ConsumableEffects.minotaurTFs = function() {
         }
         changes++;
     }
-    //if (rand(5) == 0) updateOvipositionPerk(tfSource); //TODO ADD
+    //Ovipositing Check
+    if (rand(5) == 0 && changes >= changeLimit && player.findPerk(PerkLib.Oviposition) >= 0 && player.lizardScore() < 8) {
+        outputText("<br><br>Another change in your uterus ripples through your reproductive systems. Somehow you know you've lost a little bit of reptilian reproductive ability.<br>");
+        outputText("(<b>Perk Lost: Oviposition</b>)<br>");
+        player.removePerk(PerkLib.Oviposition)
+    }
     //Restore arms to become human arms again
-    //if (rand(4) == 0) restoreArms(tfSource); //TODO ADD
+    if (rand(4) == 0) restoreArms(tfSource);
     //+hooves
     if (player.lowerBody != LOWER_BODY_TYPE_HOOFED) {
         if (changes < changeLimit && rand(3) == 0) {
@@ -4247,6 +4252,150 @@ ConsumableEffects.snakeTFs = function() {
     player.refillHunger(5);
 };
 
+ConsumableEffects.slimeTFs = function () {
+    //var tfSource = "gooGasmic";
+    outputText("You take the wet cloth in hand and rub it over your body, smearing the strange slime over your " + player.skinDesc + " slowly.", true);
+    //Stat changes
+    //libido up to 80
+    if (player.lib < 80) {
+        player.dynStats("lib", (.5 + (90 - player.lib) / 10));
+        player.changeLust(player.lib / 2);
+        outputText("<br><br>Blushing and feeling horny, you make sure to rub it over your chest and erect nipples, letting the strange slimy fluid soak into you.", false);
+    }
+    //sensitivity moves towards 50
+    if (player.sens < 50) {
+        outputText("<br><br>The slippery slime soaks into your " + player.skinDesc + ", making it tingle with warmth, sensitive to every touch.", false);
+        player.dynStats("sen", 1);
+    }
+    else if (player.sens > 50) {
+        outputText("<br><br>The slippery slime numbs your " + player.skinDesc + " slightly, leaving behind only gentle warmth.", false);
+        player.dynStats("sen", -1);
+    }
+    //Commented out in the original
+    /*Calculate goopiness
+     var goopiness:Number = 0;
+     if (player.skinType == SKIN_TYPE_GOO) goopiness+=2;
+     if (player.hair.indexOf("gooey") != -1) goopiness++;
+     if (player.hasVagina()) {
+     if (player.vaginalCapacity() >= 9000) goopiness++;
+     }*/
+    //Cosmetic changes based on 'goopyness'
+    // Standard Ovipoisitor removal
+    if (rand(5) == 0 && changes >= changeLimit && player.findPerk(PerkLib.Oviposition) >= 0 && player.lizardScore() < 8) {
+        outputText("<br><br>Another change in your uterus ripples through your reproductive systems. Somehow you know you've lost a little bit of reptilian reproductive ability.<br>");
+        outputText("(<b>Perk Lost: Oviposition</b>)<br>");
+        player.removePerk(PerkLib.Oviposition)
+    }
+    //Remove wings
+    if (player.wingType > WING_TYPE_NONE) {
+        if (player.wingType == WING_TYPE_SHARK_FIN) outputText("<br><br>You sigh, feeling a hot wet tingling down your back.  It tickles slightly as you feel your fin slowly turn to sludge, dripping to the ground as your body becomes more goo-like.", false);
+        else outputText("<br><br>You sigh, feeling a hot wet tingling down your back.  It tickles slightly as you feel your wings slowly turn to sludge, dripping to the ground as your body becomes more goo-like.", false);
+        player.wingType = WING_TYPE_NONE;
+    }
+    //Goopy hair
+    if (player.hairType != 3) {
+        player.hairType = 3;
+        //if bald
+        if (player.hairLength <= 0) {
+            outputText("<br><br>Your head buzzes pleasantly, feeling suddenly hot and wet.  You instinctively reach up to feel the source of your wetness, and discover you've grown some kind of gooey hair.  From time to time it drips, running down your back to the crack of your " + player.buttDescript() + ".", false);
+            player.hairLength = 5;
+        }
+        else {
+            //if hair isnt rubbery or latexy
+            if (player.hairColor.indexOf("rubbery") == -1 && player.hairColor.indexOf("latex-textured") == -1) {
+                outputText("<br><br>Your head buzzes pleasantly, feeling suddenly hot and wet.  You instinctively reach up to feel the source of your wetness, and discover your hair has become a slippery, gooey mess.  From time to time it drips, running down your back to the crack of your " + player.buttDescript() + ".", false);
+            }
+            //Latexy stuff
+            else {
+                outputText("<br><br>Your oddly inorganic hair shifts, becoming partly molten as rivulets of liquid material roll down your back.  How strange.", false);
+            }
+        }
+        if (player.hairColor != "green" && player.hairColor != "purple" && player.hairColor != "blue" && player.hairColor != "cerulean" && player.hairColor != "emerald") {
+            outputText("  Stranger still, the hue of your semi-liquid hair changes to ");
+            var blah = rand(10);
+            if (blah <= 2) player.hairColor = "green";
+            else if (blah <= 4) player.hairColor = "purple";
+            else if (blah <= 6) player.hairColor = "blue";
+            else if (blah <= 8) player.hairColor = "cerulean";
+            else player.hairColor = "emerald";
+            outputText(player.hairColor + ".");
+        }
+        player.changeLust(10);
+    }
+    //1.Goopy skin
+    if (player.hairType == 3 && (player.skinDesc != "skin" || player.skinAdj != "slimy")) {
+        if (player.skinType == SKIN_TYPE_PLAIN) outputText("<br><br>You sigh, feeling your " + player.armorName + " sink into you as your skin becomes less solid, gooey even.  You realize your entire body has become semi-solid and partly liquid!", false);
+        else if (player.skinType == SKIN_TYPE_FUR) outputText("<br><br>You sigh, suddenly feeling your fur become hot and wet.  You look down as your " + player.armorName + " sinks partway into you.  With a start you realize your fur has melted away, melding into the slime-like coating that now serves as your skin.  You've become partly liquid and incredibly gooey!", false);
+        else if (player.hasScales()) outputText("<br><br>You sigh, feeling slippery wetness over your scales.  You reach to scratch it and come away with a slippery wet coating.  Your scales have transformed into a slimy goop!  Looking closer, you realize your entire body has become far more liquid in nature, and is semi-solid.  Your " + player.armorName + " has even sunk partway into you.", false);
+        player.skinType = SKIN_TYPE_GOO;
+        player.skinDesc = "skin";
+        player.skinAdj = "slimy";
+        if (player.skinTone != "green" && player.skinTone != "purple" && player.skinTone != "blue" && player.skinTone != "cerulean" && player.skinTone != "emerald") {
+            outputText("  Stranger still, your skintone changes to ");
+            var blaht = rand(10);
+            if (blaht <= 2) player.skinTone = "green";
+            else if (blaht <= 4) player.skinTone = "purple";
+            else if (blaht <= 6) player.skinTone = "blue";
+            else if (blaht <= 8) player.skinTone = "cerulean";
+            else player.skinTone = "emerald";
+            outputText(player.skinTone + "!");
+            if (player.armType != ARM_TYPE_HUMAN || player.clawType != CLAW_TYPE_NORMAL) restoreArms(tfSource);
+        }
+
+    }
+    ////1a.Make alterations to dick/vaginal/nippular descriptors to match
+    //DONE EXCEPT FOR TITS & MULTIDICKS (UNFINISHED KINDA)
+    //2.Goo legs
+    if (player.skinAdj == "slimy" && player.skinDesc == "skin" && player.lowerBody != LOWER_BODY_TYPE_GOO) {
+        outputText("<br><br>Your viewpoint rapidly drops as everything below your " + player.buttDescript() + " and groin melts together into an amorphous blob.  Thankfully, you discover you can still roll about on your new slimey undercarriage, but it's still a whole new level of strange.", false);
+        player.tallness -= 3 + rand(2);
+        if (player.tallness < 36) {
+            player.tallness = 36;
+            outputText("  The goo firms up and you return to your previous height.  It would truly be hard to get any shorter than you already are!", false);
+        }
+        player.lowerBody = LOWER_BODY_TYPE_GOO;
+        player.legCount = 1;
+
+    }
+    //3a. Grow vagina if none
+    if (!player.hasVagina()) {
+        outputText("<br><br>A wet warmth spreads through your slimey groin as a narrow gash appears on the surface of your groin.  <b>You have grown a vagina.</b>", false);
+        player.createVagina();
+        player.vaginas[0].vaginalWetness = VAGINA_WETNESS_DROOLING;
+        player.vaginas[0].vaginalLooseness = VAGINA_LOOSENESS_GAPING;
+        player.clitLength = .4;
+        player.genderCheck();
+
+
+    }
+    //3b.Infinite Vagina
+    if (player.vaginalCapacity() < 9000) {
+        if (player.findStatusEffect(StatusEffects.BonusVCapacity) < 0) player.createStatusEffect(StatusEffects.BonusVCapacity, 9000, 0, 0, 0);
+        else player.addStatusValue(StatusEffects.BonusVCapacity, 1, 9000);
+        outputText("<br><br>Your " + player.vaginaDescript(0) + "'s internal walls feel a tingly wave of strange tightness.  Experimentally, you slip a few fingers, then your hand, then most of your forearm inside yourself.  <b>It seems you're now able to accommodate just about ANYTHING inside your sex.</b>", false);
+
+    }
+    else if (player.tallness < 100 && rand(3) <= 1) {
+        outputText("<br><br>Your gel-like body swells up from the intake of additional slime.  If you had to guess, you'd bet you were about two inches taller.", false);
+        player.tallness += 2;
+        player.dynStats("str", 1, "tou", 1);
+    }
+    //Big slime girl
+    else {
+        if (player.findStatusEffect(StatusEffects.SlimeCraving) < 0) {
+            outputText("<br><br>You feel a growing gnawing in your gut.  You feel... hungry, but not for food.  No, you need something wet and goopy pumped into you.  You NEED it.  You can feel it in your bones.  <b>If you don't feed that need... you'll get weaker and maybe die.</b>", false);
+            player.createStatusEffect(StatusEffects.SlimeCraving, 0, 0, 0, 1); //Value four indicates this tracks strength and speed separately
+        }
+        else {
+            outputText("<br><br>You feel full for a moment, but you know it's just a temporary respite from your constant need to be 'injected' with fluid.", false);
+            player.changeStatusValue(StatusEffects.SlimeCraving, 1, 0);
+        }
+    }
+    if (rand(2) == 0) outputText(player.modFem(85, 3), false);
+    if (rand(2) == 0) outputText(player.modThickness(20, 3), false);
+    if (rand(2) == 0) outputText(player.modTone(15, 5), false);
+};
+
 ConsumableEffects.trapOil = function() {
     clearOutput();
     var changes = 0;
@@ -4477,7 +4626,7 @@ ConsumableEffects.trapOil = function() {
 //Nipples Turn Black:
     if (gameFlags[HAS_BLACK_NIPPLES] == 0 && rand(6) == 0 && changes < changeLimit) {
         outputText("<br><br>A tickling sensation plucks at your nipples and you cringe, trying not to giggle.  Looking down you are in time to see the last spot of flesh tone disappear from your [nipples].  They have turned an onyx black!");
-        gameFlags[HAS_BLACK_NIPPLES] == 1;
+        gameFlags[HAS_BLACK_NIPPLES] = 1;
         changes++;
     }
 //Remove odd eyes
@@ -4593,45 +4742,116 @@ public function updateOvipositionPerk(tfSource:String):int
             return -1; // Lost it
     }
 }
+*/
 
 
-//UPDATE CLAWS
- public function updateClaws(clawType:int = CLAW_TYPE_NORMAL):String
- {
- var clawTone:String = "";
- var oldClawTone:String = player.clawTone;
+function updateClaws(clawType = CLAW_TYPE_NORMAL)  {
+    var clawTone = "";
+    var oldClawTone = player.clawTone;
 
- switch (clawType) {
- case CLAW_TYPE_DRAGON:       clawTone = "steel-gray";   break;
- case CLAW_TYPE_SALAMANDER:   clawTone = "fiery-red";    break;
- case CLAW_TYPE_LIZARD:
+    switch (clawType) {
+    case CLAW_TYPE_DRAGON:       clawTone = "steel-gray";   break;
+    case CLAW_TYPE_SALAMANDER:   clawTone = "fiery-red";    break;
+    case CLAW_TYPE_LIZARD:
  // See http://www.bergenbattingcenter.com/lizard-skins-bat-grip/ for all those NYI! lizard skin colors
  // I'm still not that happy with these claw tones. Any suggestion would be nice.
- switch (player.skinTone) {
- case "red":          clawTone = "reddish";      break;
- case "green":        clawTone = "greenish";     break;
- case "white":        clawTone = "light-gray";   break;
- case "blue":         clawTone = "bluish";       break;
- case "black":        clawTone = "dark-gray";    break;
- case "purple":       clawTone = "purplish";     break;
- case "silver":       clawTone = "silvery";      break;
- case "pink":         clawTone = "pink";         break; // NYI! Maybe only with a new Skin Oil?
- case "orange":       clawTone = "orangey";      break; // NYI!
- case "yellow":       clawTone = "yellowish";    break; // NYI!
- case "desert-camo":  clawTone = "pale-yellow";  break; // NYI!
- case "gray-camo":    clawTone = "gray";         break; // NYI!
- default:             clawTone = "gray";         break;
- }
- break;
- default:
- clawTone = "";
- }
-
- player.clawType = clawType;
- player.clawTone = clawTone;
-
- return oldClawTone;
+    switch (player.skinTone) {
+    case "red":          clawTone = "reddish";      break;
+    case "green":        clawTone = "greenish";     break;
+    case "white":        clawTone = "light-gray";   break;
+    case "blue":         clawTone = "bluish";       break;
+    case "black":        clawTone = "dark-gray";    break;
+    case "purple":       clawTone = "purplish";     break;
+    case "silver":       clawTone = "silvery";      break;
+    case "pink":         clawTone = "pink";         break; // NYI! Maybe only with a new Skin Oil?
+    case "orange":       clawTone = "orangey";      break; // NYI!
+    case "yellow":       clawTone = "yellowish";    break; // NYI!
+    case "desert-camo":  clawTone = "pale-yellow";  break; // NYI!
+    case "gray-camo":    clawTone = "gray";         break; // NYI!
+    default:             clawTone = "gray";         break;
+    }
+    break;
+    default:
+    clawTone = "";
  }
 
+    player.clawType = clawType;
+    player.clawTone = clawTone;
 
-    */
+    return oldClawTone;
+ }
+
+function restoreArms(tfSource) {
+    //trace('called restoreArms("' + tfSource + '")');
+    var message = "";
+
+    if (tfSource == "gooGasmic") {
+        // skin just turned gooey. Now lets fix unusual arms.
+        var hasClaws = player.clawType != CLAW_TYPE_NORMAL;
+
+        message = "\n\n";
+        if (player.armType == ARM_TYPE_HARPY) {
+            message += "The feathers on your arms melt back into your now gooey skin.";
+            if (hasClaws) message += " Additionally your now gooey claws melt back into your fingers.";
+        } else if (hasClaws) {
+            message += "Your now gooey claws melt back into your fingers.";
+        }
+
+        if (hasClaws) message += " Well, who cares, gooey claws aren't very useful in combat to begin with.";
+        if (hasClaws || player.armType == ARM_TYPE_HARPY) output.text(message + "  <b>You have normal human arms again.</b>");
+
+        updateClaws();
+        player.armType = ARM_TYPE_HUMAN;
+        return 1;
+    }
+
+
+    if (changes < changeLimit && player.armType != ARM_TYPE_HUMAN) {
+        if ([ARM_TYPE_HARPY, ARM_TYPE_SPIDER, ARM_TYPE_SALAMANDER].indexOf(player.armType) >= 0) //TODO Add Salamander Arm Type
+            message += "\n\nYou scratch at your biceps absentmindedly, but no matter how much you scratch, it isn't getting rid of the itch.";
+
+        switch (player.armType) {
+            case ARM_TYPE_HARPY:
+                message += "  Glancing down in irritation, you discover that your feathery arms are shedding their feathery coating."
+                    +"  The wing-like shape your arms once had is gone in a matter of moments, leaving [skinfurscales] behind.";
+                break;
+
+            case ARM_TYPE_SPIDER:
+                message += "  Glancing down in irritation, you discover that your arms' chitinous covering is flaking away."
+                    +"  The glossy black coating is soon gone, leaving [skinfurscales] behind.";
+                break;
+
+            case ARM_TYPE_SALAMANDER:
+                message += "  Glancing down in irritation, you discover that your once scaly arms are shedding their scales and that"
+                    +" your claws become normal human fingernails again.";
+                break;
+
+            case ARM_TYPE_PREDATOR: //TODO Add Predator Arm Type
+                switch (player.skinType) {
+                    case SKIN_TYPE_GOO:
+                        if (player.clawType != CLAW_TYPE_NORMAL)
+                            message += "\n\nYour gooey claws melt into your fingers."
+                                +" Well, who cares, gooey claws aren't very useful in combat to begin with.";
+                        break;
+
+                    case SKIN_TYPE_PLAIN:
+                    case SKIN_TYPE_FUR:
+                    case SKIN_TYPE_SCALES:
+                        message += "\n\nYou feel a sudden tingle in your [claws] and then you realize,"
+                            +" that they have become normal human fingernails again.";
+                        break;
+                }
+                break;
+
+            default:
+                message += "\n\nYour unusual arms change more and more until they are normal human arms, leaving [skinfurscales] behind.";
+        }
+        output.text(message + "  <b>You have normal human arms again.</b>");
+        updateClaws();
+        player.armType = ARM_TYPE_HUMAN;
+        changes++;
+        return 1;
+    }
+
+    return 0;
+}

@@ -21,6 +21,7 @@ StatusEffects.CuntStretched = new StatusEffectType("Cunt Stretched");
 StatusEffects.Infested = new StatusEffectType("Infested");
 StatusEffects.WormPlugged = new StatusEffectType("Worm Plugged");
 StatusEffects.Dysfunction = new StatusEffectType("Dysfunction");
+StatusEffects.SlimeCraving = new StatusEffectType("Slime Craving");
 
 //Neutral
 StatusEffects.Feeder = new StatusEffectType("Feeder");

@@ -66,6 +66,8 @@ function Creature() {
     this.armType = 0;
     //Extra parts
     this.antennae = 0;
+    this.clawType = 0;
+    this.clawTone = "";
     this.hornType = 0;
     this.horns = 0;
     this.gills = false;
