@@ -408,7 +408,7 @@ Inventory.armorRackDescription = function() {
         for (x = 9; x < 18; x++) {
             if (gearStorage[x].quantity > 0) itemList[itemList.length] = gearStorage[x].itype.longName;
 			outputText("  It currently holds " + formatStringArray(itemList) + ".");
-			return true;
+			//return true; //TODO Test if this fixes this.
 			}
         return false;
     }
@@ -420,7 +420,7 @@ Inventory.weaponRackDescription = function() {
         for (x = 0; x < 9; x++) {
             if (gearStorage[x].quantity > 0) itemList[itemList.length] = gearStorage[x].itype.longName;
 			outputText("  It currently holds " + formatStringArray(itemList) + ".");
-			return true;
+			//return true; //TODO Test to see if this fixes this.
 			}
         return false;
     }
@@ -432,7 +432,7 @@ Inventory.weaponRackDescription = function() {
         for (x = 36; x < 45; x++) {
             if (gearStorage[x].quantity > 0) itemList[itemList.length] = gearStorage[x].itype.longName;
 			outputText("  It currently holds " + formatStringArray(itemList) + ".");
-			return true;
+			//return true; //TODO Test to see if this fixes this
 			}
         return false;
     }

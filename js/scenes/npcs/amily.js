@@ -165,7 +165,7 @@ amily.eventFill(INCUBATION_AMILY_EVENT);
 AmilyScene.amilySprite = function() {
     if (gameFlags[AMILY_NOT_FURRY] > 0) displaySprite("amily_defurr");
     else displaySprite("amily");
-}
+};
 
 // Used for later checks when Amily is a follower. - COMPLETE
 AmilyScene.amilyFollower = function() {
@@ -3001,7 +3001,7 @@ AmilyScene.postBirthingEndChoices = function() {
     addButton(1, "Stay Friends", AmilyScene.declineAmilyHermPath, null, null, null, "TO BE ADDED");
     addButton(2, "Shoot Down", AmilyScene.rejectAmilyHermPath, null, null, null, "TO BE ADDED");
     
-}
+};
 
 
 AmilyScene.acceptAmilyHermPath = function() {
@@ -3023,7 +3023,7 @@ AmilyScene.acceptAmilyHermPath = function() {
 
     gameFlags[AMILY_CLOTHING] = "rags";
     doNext(playerMenu); // Check this.
-}
+};
 
 //[=Stay Friends=]
 AmilyScene.declineAmilyHermPath = function() {
@@ -3033,7 +3033,7 @@ AmilyScene.declineAmilyHermPath = function() {
 outputText("Amily doesn't look entirely happy, but you assure her that you will keep coming back to see her. And when you tease at the possibility of a few more litters in your respective futures, stroking her penis through her tattered pants, she blushes but agrees to go.<br><br>");
     //(Amily returns to the Ruined Village; this scene will repeat the next time the player gives birth to a litter of Amily's children)
     doNext(playerMenu); // Check this
-}
+};
 
 //Shoot the bitch down!
 AmilyScene.rejectAmilyHermPath = function() {
@@ -3045,7 +3045,7 @@ outputText("Amily reels, heartstruck, her expression making it clear that her he
 //Disable village encounters, go!
     gameFlags[AMILY_VILLAGE_ENCOUNTERS_DISABLED] = 1;
     doNext(playerMenu);
-}
+};
 
 
 
@@ -3270,7 +3270,7 @@ AmilyScene.amilyCorrupt1 = function () {
                 outputText("You search for Amily high and low, but can't find a single trace of her. Frustrated, you return to the camp.  Maybe if you were smarter or faster you could find her.");
                 doNext(Camp.returnToCampUseTwoHours);
             }
-        }
+        };
 
 
 //COMPLETE
@@ -3333,7 +3333,7 @@ AmilyScene.amilyCorrupt2 = function () {
                 //RAPE 2 GO
                 AmilyScene.amilyCorruptionRape();
             }
-        }
+        };
 
 //COMPLETE
 AmilyScene.amilyCorrupt3 = function () {
@@ -3374,7 +3374,7 @@ AmilyScene.amilyCorrupt3 = function () {
 
 //RAPE 3 GO
             AmilyScene.amilyCorruptionRape(); //chooseYourAmilyRape();
-        }
+        };
 
 //COMPLETE
 AmilyScene.amilyCorruptionRape = function () {
@@ -3408,7 +3408,7 @@ AmilyScene.amilyCorruptionRape = function () {
             else if (gameFlags[AMILY_CORRUPTION_PATH] == 3) {
                 doNext(AmilyScene.rapeCorruptAmily4Meeting);
             }
-        }
+        };
 
 //OMPLETE
 AmilyScene.rapeCorruptAmily1 = function () {
@@ -3456,7 +3456,7 @@ AmilyScene.rapeCorruptAmily1 = function () {
             else if (player.gender == 1) doNext(AmilyScene.rapeCorruptAmily1Male);
 //Cunts!
             else doNext(AmilyScene.rapeCorruptAmily1Female);
-        }
+        };
 
 //COMPLETE
 AmilyScene.rapeCorruptAmily1Male = function () {
@@ -3481,7 +3481,7 @@ AmilyScene.rapeCorruptAmily1Male = function () {
             if (inCombat() == true) cleanupAfterCombat();
             else
                 doNext(Camp.returnToCampUseOneHour);
-        }
+        };
 
 //NEED COMBAT CODE
 AmilyScene.rapeCorruptAmily1Female = function () {
@@ -3522,7 +3522,7 @@ AmilyScene.rapeCorruptAmily1Female = function () {
             if (inCombat() == true) cleanupAfterCombat();
             else
                 doNext(Camp.returnToCampUseOneHour);
-        }
+        };
 
 AmilyScene.rapeCorruptAmily2Male = function () {
             clearOutput();
@@ -3572,7 +3572,7 @@ AmilyScene.rapeCorruptAmily2Male = function () {
             outputText("<br><br>");
 
             AmilyScene.rapeCorruptAmily2Epilogue();
-        }
+        };
 
 //COMPLETE
 AmilyScene.rapeCorruptAmily2Female = function () {
@@ -3604,7 +3604,7 @@ AmilyScene.rapeCorruptAmily2Female = function () {
             if (player.wetness() >= 5) outputText("  Your orgasm lasts much longer than usual. Eventually you release Amily and finish off on top of her head.<br><br>");
 
             AmilyScene.rapeCorruptAmily2Epilogue();
-        }
+        };
 
 // COMPLETE
 AmilyScene.rapeCorruptAmily2Epilogue = function () {
@@ -3621,7 +3621,7 @@ AmilyScene.rapeCorruptAmily2Epilogue = function () {
             player.modStats("lib", -2);
             player.modStats("cor", 5);
             doNext(Camp.returnToCampUseOneHour);
-        }
+        };
 
 // COMPLETE
 AmilyScene.rapeCorruptAmily3Male = function () {
@@ -3674,7 +3674,7 @@ AmilyScene.rapeCorruptAmily3Male = function () {
 
 //call followup function
             AmilyScene.rapeCorruptAmily3Epilogue();
-        }
+        };
 
 // COMPLETE
 AmilyScene.rapeCorruptAmily3Female = function () {
@@ -3718,7 +3718,7 @@ AmilyScene.rapeCorruptAmily3Female = function () {
 
 //Link to followup.
 AmilyScene.rapeCorruptAmily3Epilogue();
-        }
+        };
 
 //COMPLETE
 AmilyScene.rapeCorruptAmily3Epilogue = function () {
@@ -3742,7 +3742,7 @@ AmilyScene.rapeCorruptAmily3Epilogue = function () {
             player.modStats("cor", 5);
 
             doNext(Camp.returnToCampUseOneHour);
-        }
+        };
 
 // COMPLETE
 AmilyScene.rapeCorruptAmily4Meeting = function () {
@@ -3769,7 +3769,7 @@ AmilyScene.rapeCorruptAmily4Meeting = function () {
             }
             else if (player.gender == 2) doNext(AmilyScene.rapeCorruptAmily4Female);
             else doNext(AmilyScene.rapeCorruptAmily4Male);
-        }
+        };
 
 //COMPLETE
 AmilyScene.rapeCorruptAmily4Male = function () {
@@ -3851,7 +3851,7 @@ AmilyScene.rapeCorruptAmily4Male = function () {
 
             outputText("Black spunk comes out of your " + player.cockDescript(0) + ", ripe with corruption. The moment it hits Amily's head, she moans. Your vile cum covers her whole head, then her whole upper body, and spreads along her body unnaturally. Not even a crevice is left free as your black jism permeates her skin and covers her like a full body suit. Soon enough she's covered from head to toe. Her pussy leaks copiously and she moans throughout the whole affair.<br><br>");
             AmilyScene.rapeCorruptAmily4Epilogue();
-        }
+        };
 
 //COMPLETE
 AmilyScene.rapeCorruptAmily4Female = function () {
@@ -3930,7 +3930,7 @@ AmilyScene.rapeCorruptAmily4Female = function () {
             outputText("Black juices squirt from your " + player.vaginaDescript() + ", ripe with corruption.  The moment it hits Amily's head, she moans. Your vile femcum covers her whole head, then her whole upper body, and spreads along her body unnaturally. Not even a crevice is left free as your black juices permeate her skin and cover her like a full body suit. Soon enough she's covered from head to toe. Her pussy leaks copiously and she moans throughout the whole affair.<br><br>");
 
             AmilyScene.rapeCorruptAmily4Epilogue();
-        }
+        };
 
 //NEED MARBLE TO FINISH
 AmilyScene.rapeCorruptAmily4Epilogue = function () {
@@ -3970,7 +3970,7 @@ AmilyScene.rapeCorruptAmily4Epilogue = function () {
              */
             gameFlags[AMILY_VILLAGE_ENCOUNTERS_DISABLED] = 1;
             doNext(Camp.returnToCampUseOneHour);
-        }
+        };
 
 
 //--------
