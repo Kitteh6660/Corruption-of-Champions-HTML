@@ -4745,7 +4745,10 @@ public function updateOvipositionPerk(tfSource:String):int
 */
 
 
-function updateClaws(clawType = CLAW_TYPE_NORMAL)  {
+function updateClaws(clawType)  {
+    if (clawType == undefined) {
+        clawType = CLAW_TYPE_NORMAL
+    }
     var clawTone = "";
     var oldClawTone = player.clawTone;
 
@@ -4779,7 +4782,7 @@ function updateClaws(clawType = CLAW_TYPE_NORMAL)  {
     player.clawTone = clawTone;
 
     return oldClawTone;
- }
+ };
 
 function restoreArms(tfSource) {
     //trace('called restoreArms("' + tfSource + '")');
@@ -4798,7 +4801,7 @@ function restoreArms(tfSource) {
         }
 
         if (hasClaws) message += " Well, who cares, gooey claws aren't very useful in combat to begin with.";
-        if (hasClaws || player.armType == ARM_TYPE_HARPY) output.text(message + "  <b>You have normal human arms again.</b>");
+        if (hasClaws || player.armType == ARM_TYPE_HARPY) outputText(message + "  <b>You have normal human arms again.</b>");
 
         updateClaws();
         player.armType = ARM_TYPE_HUMAN;
@@ -4846,7 +4849,7 @@ function restoreArms(tfSource) {
             default:
                 message += "\n\nYour unusual arms change more and more until they are normal human arms, leaving [skinfurscales] behind.";
         }
-        output.text(message + "  <b>You have normal human arms again.</b>");
+        outputText(message + "  <b>You have normal human arms again.</b>");
         updateClaws();
         player.armType = ARM_TYPE_HUMAN;
         changes++;
