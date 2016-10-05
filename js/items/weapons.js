@@ -14,11 +14,12 @@ Items.Weapons.Pipe.verb = "smash";
 Items.Weapons.Pipe.value = 25;
 Items.Weapons.Pipe.attack = 5;
 
-Items.Weapons.WizardStaff = new Item("W.Staff", "Wizard Staff", "TO BE ADDED", ITEM_TYPE_WEAPON);
-//Items.Weapons.WizardStaff.description = ""
-//Items.Weapons.WizardStaff.equipmentName = "";
-//Items.Weapons.WizardStaff.verb = "";
-//Items.Weapons.WizardStaff.value = ;
-//Items.Weapons.WizardStaff.attack = ;
+Items.Weapons.WizardStaff = new Item("W.Staff", "W. Staff", "a wizard's staff", ITEM_TYPE_WEAPON);
+Items.Weapons.WizardStaff.description = "This staff is made of very old wood and seems to tingle to the touch.  The top has an odd zig-zag shape to it, and the wood is worn smooth from lots of use.  It probably belonged to a wizard at some point and would aid magic use.";
+Items.Weapons.WizardStaff.equipmentName = "wizard's staff";
+Items.Weapons.WizardStaff.verb = (player.findPerk(PerkLib.StaffChanneling) >= 0 ? "shot" : "smack"); //TODO Test this
+Items.Weapons.WizardStaff.value = 350;
+Items.Weapons.WizardStaff.attack = 3;
+// TODO Weapon also adds a perk. Need to see how to add this in upon equip. "Wizard's Focus", PerkLib.WizardsFocus, 0.4, 0, 0, 0
 
 
