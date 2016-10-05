@@ -180,10 +180,7 @@ AmilyScene.amilyFollower = function() {
 
 // A check function to see if Amily is corrupt or not. - COMPLETE
 AmilyScene.amilyCorrupt = function() {
-    if (gameFlags[AMILY_FOLLOWER] == 2) {
-        return true;
-    }
-    else return false;
+    return gameFlags[AMILY_FOLLOWER] == 2;
 };
 
 //-------------
@@ -3979,14 +3976,11 @@ AmilyScene.rapeCorruptAmily4Epilogue = function () {
 
 // GAME NOT LIKING THIS FUNCTION FOR SOME REASON!
 AmilyScene.amilyCanHaveTFNow = function () {
-    if (gameFlags[AMILY_NOT_FURRY] == 0 &&
-        gameFlags[AMILY_OFFERED_DEFURRY] == 1 &&
-        player.hasItem(Items.Consumables.GoldenSeed) &&
-        (player.hasItem(Items.Consumables.LBlackEgg) || player.hasItem(Items.Consumables.BlackEgg)) &&
-        (player.hasItem(Items.Consumables.SuccubiMilkPurified) || (AmilyScene.amilyCorrupt() == true && player.hasItem(Items.Consumables.SuccubiMilk))) == true) {
-                return true;
-            }
-            else return false;
+    return !!(gameFlags[AMILY_NOT_FURRY] == 0 &&
+    gameFlags[AMILY_OFFERED_DEFURRY] == 1 &&
+    player.hasItem(Items.Consumables.GoldenSeed) &&
+    (player.hasItem(Items.Consumables.LBlackEgg) || player.hasItem(Items.Consumables.BlackEgg)) &&
+    (player.hasItem(Items.Consumables.SuccubiMilkPurified) || (AmilyScene.amilyCorrupt() == true && player.hasItem(Items.Consumables.SuccubiMilk))) == true);
         };
 
 // COMPLETE
