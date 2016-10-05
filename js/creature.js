@@ -3699,7 +3699,6 @@ Creature.prototype.eggs = function()
         return this.perkValue(PerkLib.SpiderOvipositor, 1);
     else
         return this.perkValue(PerkLib.BeeOvipositor, 1);
-    return;
 }
 
 // Add eggs to the ovipositors

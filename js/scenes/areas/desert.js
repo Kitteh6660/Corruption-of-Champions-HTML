@@ -16,7 +16,6 @@ Areas.Desert.explore = function() {
             if (SandWitch.pregnancyEventNum == 2 && rand(4) == 0) {
                 if (SandWitch.pregnancyType = "Drider_Eggs") SandWitchScene.sammitchBirthsDriders();
                 else SandWitchScene.witchBirfsSomeBees();
-                return;
                 break;
             }
             // Otherwise, do normal encounter
