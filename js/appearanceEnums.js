@@ -102,6 +102,16 @@ const ARM_TYPE_HUMAN            =   0;
 const ARM_TYPE_HARPY            =   1;
 const ARM_TYPE_SPIDER           =   2;
 
+// clawType
+const CLAW_TYPE_NORMAL                                            =   0;
+const CLAW_TYPE_LIZARD                                            =   1;
+const CLAW_TYPE_DRAGON                                            =   2;
+const CLAW_TYPE_SALAMANDER                                        =   3;
+const CLAW_TYPE_CAT                                               =   4; // NYI! Placeholder for now!! (See http://tiny.cc/coc-revamp-claws)
+const CLAW_TYPE_DOG                                               =   5; // NYI! Placeholder for now!! (See http://tiny.cc/coc-revamp-claws)
+const CLAW_TYPE_RAPTOR                                            =   6; // NYI! Placeholder for now!! (See http://tiny.cc/coc-revamp-claws) Giev teh Rapturs :-)
+const CLAW_TYPE_MANTIS                                            =   7; // NYI! Placeholder for Xianxia mod (See http://tiny.cc/coc-xianxia-mod)
+
 //Tail Type
 const TAIL_TYPE_NONE            =   0;
 const TAIL_TYPE_HORSE           =   1;
