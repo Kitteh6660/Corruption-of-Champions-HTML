@@ -476,17 +476,17 @@ Inventory.pickItemArmorRack = function() {
 //function pickItemToPlaceInDresser() { pickItemToPlaceInStorage(placeInDresser, undergarmentAcceptable, "dresser", true); };
 
 // These functions test to see if the right item type is being put into the right stash.
-Inventory.allAcceptable = new function(itype) { return true; };
+Inventory.allAcceptable = function(itype) { return true; };
 
-Inventory.armorAcceptable = new function(itype) {
+Inventory.armorAcceptable = function(itype) {
     if (itype == ITEM_TYPE_ARMOUR) return true;
     return false; };
 
-Inventory.weaponAcceptable = new function(itype) {
+Inventory.weaponAcceptable = function(itype) {
     if (itype == ITEM_TYPE_WEAPON) return true;
     return false; };
 
-Inventory.shieldAcceptable = new function(itype) {
+Inventory.shieldAcceptable = function(itype) {
     if (itype == ITEM_TYPE_SHIELD) return true;
     return false; };
 //function jewelryAcceptable(itype) { return itype is Jewelry; };
@@ -495,11 +495,13 @@ Inventory.shieldAcceptable = new function(itype) {
 
 // This function puts the item into storage
 // CANNOT TEST UNTIL SOME MORE THINGS ARE PUT INTO THE GAME
+// PlaceInStorage is confusing. First parameter is ran if it succeeds. Second parameter is a test function for success
+// or failure.
 
 Inventory.placeInStorage = function(placeInStorageFunction, typeAcceptableFunction, text, showEmptyWarning) {
     clearOutput(); 
     hideUpDown();
-	outputText("What item slot do you wish to empty into your " + text + "?");
+	outputText("Which item slot do you wish to empty into your " + text + "?<br><br>");
 	menu();
     var foundItem = false;
     for (x = 0; x < 10; x++) {
