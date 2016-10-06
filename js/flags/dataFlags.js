@@ -201,6 +201,7 @@ const WANDERER_DEMON                    = "Wanderer_Demon";
 const WANDERER_EPILOGUE                 = "Wanderer_Epilogue";
 
 //Tamani and Tamani's Daughters
+const TAMANI_MET                        = "Tamani_Met";
 const TAMANI_TIME_OUT                   = "Tamani_Time_Out";
 const TAMANI_BAD_ENDED                  = "Tamani_Bad_Ended";
 const TAMANI_DAUGHTER_PREGGO_COUNTDOWN  = "Tamani_Daughter_Preggo_Countdown";
