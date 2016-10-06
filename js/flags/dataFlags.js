@@ -208,6 +208,7 @@ const TAMANI_DAUGHTER_PREGGO_COUNTDOWN  = "Tamani_Daughter_Preggo_Countdown";
 const TAMANI_NUMBER_OF_DAUGHTERS        = "Tamani_Number_Of_Daughters";
 const TAMANI_TIMES_HYPNOTIZED           = "Tamani_Times_Hypnotized";
 const TAMANI_DEFEAT_COUNTER             = "Tamani_Defeat_Counter";
+const TAMANI_TIMES_IMPREGNATED          = "Tamani_Times_Impregnated";
 
 
 //Whitney & Farm
