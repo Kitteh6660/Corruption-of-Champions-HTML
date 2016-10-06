@@ -200,6 +200,14 @@ const WANDERER_MET                      = "Wanderer_Met";
 const WANDERER_DEMON                    = "Wanderer_Demon";
 const WANDERER_EPILOGUE                 = "Wanderer_Epilogue";
 
+//Tamani and Tamani's Daughters
+const TAMANI_TIME_OUT                   = "Tamani_Time_Out";
+const TAMANI_BAD_ENDED                  = "Tamani_Bad_Ended";
+const TAMANI_DAUGHTER_PREGGO_COUNTDOWN  = "Tamani_Daughter_Preggo_Countdown";
+const TAMANI_NUMBER_OF_DAUGHTERS        = "Tamani_Number_Of_Daughters";
+const TAMANI_TIMES_HYPNOTIZED           = "Tamani_Times_Hypnotized";
+
+
 //Whitney & Farm
 const FARM_DISABLED                     = "Farm_Disabled";
 const FARM_CORRUPTION_STARTED           = "Farm_Corruption_Started";
