@@ -1418,7 +1418,7 @@ Player.prototype.itemCount = function(itype) {
 }
 
 Player.prototype.roomInExistingStack = function(itype) {
-	for (var i = 0; i < this.itemSlots.length; i++) {
+	for (var i = 0; i < 10; i++) {
 		if (this.itemSlots[i].itype == itype && this.itemSlots[i].quantity != 0 && this.itemSlots[i].quantity < 5)
 			return i;
 	}

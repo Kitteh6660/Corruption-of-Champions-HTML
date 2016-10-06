@@ -459,7 +459,7 @@ Inventory.shieldRackFilled = function() {
 };
 
 // These are used to pick an item from storage to put back into inventory
-// TODO Test once the put code is complete.
+
 Inventory.takeFromWeaponRack = function() {
 	callNext = Inventory.takeFromWeaponRack;
 	Inventory.takeFromStorage(player.itemSlots, 9, 18, "rack");
@@ -568,7 +568,7 @@ function placeInDresser(slotNum) {
 }
 */
 
-// This function put the item into the player.itemSlots array for later retrieval
+// This function put the stash item into the player.itemSlots array for later retrieval
 Inventory.placeIn = function(startSlot, endSlot, slotNum) {
     clearOutput(); // Clear the output
 	var x = startSlot; // Get the starting slot in the player.Itemslots array for our loop
@@ -579,7 +579,7 @@ Inventory.placeIn = function(startSlot, endSlot, slotNum) {
 	for (x = startSlot; x < endSlot; x++) { //Find any slots which already hold the item that is being stored
 		if (player.itemSlots[x].itype == player.itemSlots[slotNum].itype && player.itemSlots[x].quantity < 5) { // If there is an item of the same kind and there is less than five...
 			player.itemSlots[x].quantity += 1; // Increase the quantity in the slot
-			outputText("You add " + player.itemSlots[slotNum].shortName + " into storage slot " + num2Text(x + 1 - startSlot) + ".<br>"); //TODO Take out storage slot number after stash code is complete.
+			outputText("You add " + player.itemSlots[slotNum].itype.shortName + " into storage slot " + num2Text(x + 1 - startSlot) + ".<br>"); //TODO Take out storage slot number after stash code is complete.
 			player.itemSlots[slotNum].removeOneItem();
 			return;
 		}
@@ -589,7 +589,6 @@ Inventory.placeIn = function(startSlot, endSlot, slotNum) {
 	for (x = startSlot; x < endSlot; x++) { //Find any empty slots and put the item(s) there
 		if (player.itemSlots[x].quantity == 0) {
 			player.itemSlots[x].setItemAndQty(player.itemSlots[slotNum].itype, 1);
-			//player.itemSlots[x].quantity += 1;
 			outputText("You place " + player.itemSlots[slotNum].itype.shortName + " into storage slot " + num2Text(x + 1 - startSlot) + ".<br>");  //TODO Take out storage slot number after stash code is complete.
 			player.itemSlots[slotNum].removeOneItem();
 			return;
@@ -604,13 +603,11 @@ Inventory.placeIn = function(startSlot, endSlot, slotNum) {
 
 };
 
-
-
 // This function takes an item out of storage
 Inventory.takeFromStorage = function(Array, startSlot, endSlot, text) {
     clearOutput(); 
     hideUpDown();
-	if (!Inventory.itemAnyInStorage(player.Itemslots, startSlot, endSlot)) { //If no items are left then return to the camp menu. Can only happen if the player removes the last item.
+	if (!Inventory.itemAnyInStorage(startSlot, endSlot)) { //If no items are left then return to the camp menu. Can only happen if the player removes the last item.
         playerMenu();
 		return;
     }
@@ -618,16 +615,16 @@ Inventory.takeFromStorage = function(Array, startSlot, endSlot, text) {
 	var button = 0;
     menu();
 	for (var x = startSlot; x < endSlot; x++, button++) {
-        if (player.Itemslots[x].quantity > 0) addButton(button, (player.Itemslots[x].itype.shortName + " x" + player.Itemslots[x].quantity), Inventory.pickFrom(player.Itemslots, x));
+        if (player.itemSlots[x].quantity > 0) addButton(button, (player.itemSlots[x].itype.shortName + " x" + player.itemSlots[x].quantity), Inventory.pickFrom, x);
     }
     addButton(14, "Back", Inventory.stashMenu);
 };
 
-Inventory.pickFrom = function(storage, slotNum) {
+Inventory.pickFrom = function(slotNum) {
     clearOutput();
-	var itype = storage[slotNum].itype;
-	storage[slotNum].quantity--;
-    Inventory.takeItem(itype, callNext, callNext, storage[slotNum]);
+	var itype = player.itemSlots[slotNum].itype;
+	player.itemSlots[slotNum].removeOneItem();
+    Inventory.takeItem(itype, callNext, callNext, player.itemSlots[slotNum]);
 };
 
 
