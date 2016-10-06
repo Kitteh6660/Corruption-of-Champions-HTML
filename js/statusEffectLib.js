@@ -21,11 +21,14 @@ StatusEffects.CuntStretched = new StatusEffectType("Cunt Stretched");
 StatusEffects.Infested = new StatusEffectType("Infested");
 StatusEffects.WormPlugged = new StatusEffectType("Worm Plugged");
 StatusEffects.Dysfunction = new StatusEffectType("Dysfunction");
+StatusEffects.SlimeCraving = new StatusEffectType("Slime Craving");
 
 //Neutral
 StatusEffects.Feeder = new StatusEffectType("Feeder");
 StatusEffects.MeanToNaga = new StatusEffectType("Mean to Naga");
 StatusEffects.Contraceptives = new StatusEffectType("Contraceptives");
+StatusEffects.Eggs = new StatusEffectType("Eggs");
+StatusEffects.Uniball = new StatusEffectType("Uniball"); //TODO: Check code to see if this would be better as a gameflag
 
 //------------
 // COMBAT

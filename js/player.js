@@ -54,7 +54,9 @@ function Player() {
     this.teaseXP = 0;
 
 	this.itemSlots = [];
-    for (var i = 0; i < 10; i++) {
+    //Slots 0-9 are player inventory. Slots 10-55 are for gear storage options. See inventory.js for details
+    // Initializing it here makes things easier.
+    for (var i = 0; i < 56; i++) {
         this.itemSlots.push(new ItemSlot());
     }
 	this.keyItems = [];
@@ -1416,7 +1418,7 @@ Player.prototype.itemCount = function(itype) {
 }
 
 Player.prototype.roomInExistingStack = function(itype) {
-	for (var i = 0; i < this.itemSlots.length; i++) {
+	for (var i = 0; i < 10; i++) {
 		if (this.itemSlots[i].itype == itype && this.itemSlots[i].quantity != 0 && this.itemSlots[i].quantity < 5)
 			return i;
 	}

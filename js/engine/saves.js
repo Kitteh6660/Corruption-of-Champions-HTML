@@ -269,7 +269,7 @@ Data.loadGameObject = function(slot) {
 
         //Set items
         player.itemSlots = [];
-        for (var i = 0; i < 10; i++) {
+        for (var i = 0; i < 56; i++) {
             player.itemSlots.push(new ItemSlot());
         }
         for (i = 0; i < saveData.player.itemSlots.length; i++) {

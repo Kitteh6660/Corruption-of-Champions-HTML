@@ -29,6 +29,7 @@ const EVER_INFESTED                     = "Ever_Infested"; // Has the PC ever be
 const MEANINGLESS_CORRUPTION            = "Meaningless_Corruption"; //Unknown, used in Goblin victory code.
 const INFESTED                          = "Infested";
 const HYPER_HAPPY                       = "Hyper_Happy";
+const PREGNANCY_CORRUPTION              = "Pregnancy_Corruption"; // Used in Phouka pregnancy
 
 //------------
 // CODEX
@@ -198,6 +199,16 @@ const LUMI_MET                          = "Lumi_Met";
 const WANDERER_MET                      = "Wanderer_Met";
 const WANDERER_DEMON                    = "Wanderer_Demon";
 const WANDERER_EPILOGUE                 = "Wanderer_Epilogue";
+
+//Tamani and Tamani's Daughters
+const TAMANI_MET                        = "Tamani_Met";
+const TAMANI_TIME_OUT                   = "Tamani_Time_Out";
+const TAMANI_BAD_ENDED                  = "Tamani_Bad_Ended";
+const TAMANI_DAUGHTER_PREGGO_COUNTDOWN  = "Tamani_Daughter_Preggo_Countdown";
+const TAMANI_NUMBER_OF_DAUGHTERS        = "Tamani_Number_Of_Daughters";
+const TAMANI_TIMES_HYPNOTIZED           = "Tamani_Times_Hypnotized";
+const TAMANI_DEFEAT_COUNTER             = "Tamani_Defeat_Counter";
+
 
 //Whitney & Farm
 const FARM_DISABLED                     = "Farm_Disabled";

@@ -120,7 +120,7 @@ Goblin.prototype.doAI = function() {
 // This Goblin attack used across all goblins except Tamani and Daughters.
 Goblin.goblinTeaseAttack = function() {
 	var det = rand(3);
-	if (monster.refName == "goblin" || monster.refName == "goblin assassin") {
+	if (monster.refName == "goblin" || monster.refName == "goblin assassin" || monster.refName == "Tamani") {
 		if (det == 0) outputText(capitalize(monster.a) + monster.refName + " runs her hands along her leather-clad body and blows you a kiss. \"<i>Why not walk on the wild side?</i>\" she asks.");
 		if (det == 1) outputText(capitalize(monster.a) + monster.refName + " grabs her heel and lifts it to her head in an amazing display of flexibility.  She caresses her snatch and gives you a come hither look.");
 		if (det == 2) outputText(capitalize(monster.a) + monster.refName + " bends over, putting on a show and jiggling her heart-shaped ass at you.  She looks over her shoulder and sucks on her finger, batting her eyelashes.");
@@ -191,7 +191,7 @@ Goblin.goblinDrugAttack = function() {
 		}
 	else {
 			outputText(capitalize(monster.a) + monster.refName + " pulls out a blue vial and uncaps it, swiftly downing its contents.");
-			if (this.HPRatio() < 1) {
+			if (this.HP < this.maxHP()) {
 				outputText("  She looks to have recovered from some of her wounds!<br>");
 				this.changeHP((this.maxHP() / 4) * multiplier);
 				if (monster.name == "Tamani") monster.changeHP((monster.maxHP() / 4) * multiplier);
@@ -227,7 +227,7 @@ Goblin.goblinDrugAttack = function() {
 			player.changeFatigue(10 + rand(25) * multiplier);
 		}
 	}
-	// Possible multiple throws. Check at higher level gobs?
+	// TODO Possible multiple throws. Check at higher level gobs?
 	return;
 };
 

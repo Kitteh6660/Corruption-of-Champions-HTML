@@ -2150,7 +2150,7 @@ BeeGirlScene.beeRapesYou = function() {
         }
         player.slimeFeed();
         cleanupAfterCombat();
-        player.orgasm; //
+        player.orgasm(); //
     }
     // Player is not a taur    
     else {

@@ -19,6 +19,7 @@ Debug.doDebug = function() {
     addButton(1, "Fight", Debug.fightCreature, null, null, null, "Fight a creature.");
     addButton(2, "StatChange", Debug.statChange, null, null, null, "Change a Stat for testing.");
     addButton(3, "PregTest", Debug.pregTest, null, null, null, "Start a Pregnancy in the Player.");
+    addButton(4, "RackTest", Debug.rackTest, null, null, null, "Put items in your inventory for rack checking.");
     addButton(14, "Leave", Camp.doCamp, null, null, null, "Return to Camp.");
 };
 
@@ -70,7 +71,7 @@ Debug.genderChangeNone = function() {
 
 Debug.fightCreature = function() {
     clearOutput();
-    startCombat(new Hellhound());
+    startCombat(new Tamani());
 }
 
 //-------
@@ -106,3 +107,13 @@ Debug.pregTest = function() {
     player.buttKnockUpForce(PREGNANCY_BEE_EGGS, INCUBATION_BEE);
     doNext(Debug.doDebug);
 };
+
+//---------
+// RackTest
+//---------
+Debug.rackTest = function() {
+    clearOutput
+    outputText("Putting Weapon and Armor into Inventory for testing racks<br><br>");
+    Inventory.takeItem(Items.Weapons.Pipe);
+    Inventory.takeItem(Items.Armor.BeeArmor);
+}

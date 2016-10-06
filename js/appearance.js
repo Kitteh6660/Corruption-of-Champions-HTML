@@ -173,16 +173,21 @@ Appearance.breastDescript = function(size, lactation) {
         case 5:
         case 6:
             return descript + "tits";
+            break;
         case 7:
             if (lactation >= 2.5) return descript + "udders";
             if (lactation >= 1) descript += "milk ";
             return descript + "jugs";
+            break;
         case 8:
             if (size > 6) return descript + "love-pillows";
             return descript + "boobs";
+            break;
         case 9:
             if (size > 6) return descript + "tits";
+            break;
         default:
+            break;
     }
     return descript + "breasts";
 }

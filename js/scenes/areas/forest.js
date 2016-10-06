@@ -13,7 +13,16 @@ Areas.Forest.explore = function() {
     choice[choice.length] = 8; //Peaceful walk
     var select = choice[rand(choice.length)];
     switch(select) {
-        case 0: //Goblin and imp encounters. Tamani will eventually be encounterable.
+        case 0: //25% chance of Tamani/Daughter's. Otherwise, goblin and imp encounters.
+            if (rand(4) <= 0 && gameFlags[TAMANI_TIME_OUT] == 0 && player.gender > 0 && gameFlags[TAMANI_BAD_ENDED] == 0 && (player.totalCocks() > 0 || player.hasKeyItem("Deluxe Dildo") < 0)) {
+                if (player.totalCocks() > 0 && gameFlags[TAMANI_DAUGHTER_PREGGO_COUNTDOWN] == 0 && gameFlags[TAMANI_NUMBER_OF_DAUGHTERS] >= 24) {
+                    outputText("You've reached Tamani Daughter's Scene. Placeholder.")
+                    //tamaniDaughtersScene.encounterTamanisDaughters();
+                }
+                else
+                    TamaniScene.encounterTamani();
+                return;
+            }
             Areas.GenericExploration.genericGobImpEncounters();
             break;
         case 1: //Jojo
