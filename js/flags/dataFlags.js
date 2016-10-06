@@ -166,7 +166,8 @@ const INCUBATION_IMP                    = 432; //Time for standard imps. Imp lor
 // Pregnancy event arrays
 const INCUBATION_MOUSE_EVENT            = [336, 280, 216, 180, 120, 72, 48, 32]; // Event flags for Mouse Pregnancy
 const INCUBATION_AMILY_EVENT            = [150, 120, 100, 96, 90, 72, 48]; // Special array for Amily pregnancy in Town Ruins.
-const INCUBATION_SAND_WITCH_EVENT        = [142, 96];
+const INCUBATION_SAND_WITCH_EVENT       = [142, 96];
+const INCUBATION_TAMANI_EVENT           = [219, 96, 48];
 
 // Pregnancy types. Marks who did the impregnation
 const PREGNANCY_PLAYER                  = "Player"; // Marks the player impregnated someone
@@ -209,6 +210,8 @@ const TAMANI_NUMBER_OF_DAUGHTERS        = "Tamani_Number_Of_Daughters";
 const TAMANI_TIMES_HYPNOTIZED           = "Tamani_Times_Hypnotized";
 const TAMANI_DEFEAT_COUNTER             = "Tamani_Defeat_Counter";
 const TAMANI_TIMES_IMPREGNATED          = "Tamani_Times_Impregnated";
+const TAMANI_PREGNANCY_COUNT            = "Tamani_Pregnancy_Count"; //Current litter
+const TIMES_OVIPOSITED_TAMANI           = "Times_Oviposited_Tamani";
 
 
 //Whitney & Farm

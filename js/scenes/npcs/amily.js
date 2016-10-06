@@ -1,5 +1,5 @@
 var AmilyScene = [];
-var amily; //To be removed?
+
 /*
  * Amily created by aimozg on 02.01.14.
  * Converted to JS by Matraia
@@ -145,7 +145,7 @@ function Amily() {
 
 Amily.prototype = new Creature();
 Amily.prototype.constructor = Amily;
-amily = new Amily();
+var amily = new Amily(); // Used for Pregnancy tracking
 
 var sexForced = false; // Used to get around a nasty bug.
 

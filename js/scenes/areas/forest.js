@@ -16,7 +16,7 @@ Areas.Forest.explore = function() {
         case 0: //25% chance of Tamani/Daughter's. Otherwise, goblin and imp encounters. Trying a tweak of the encounter rate...
             if (rand(100) <= 25 && gameFlags[TAMANI_TIME_OUT] == 0 && player.gender > 0 && gameFlags[TAMANI_BAD_ENDED] == 0 && (player.totalCocks() > 0 || player.hasKeyItem("Deluxe Dildo") < 0)) {
                 if (player.totalCocks() > 0 && gameFlags[TAMANI_DAUGHTER_PREGGO_COUNTDOWN] == 0 && gameFlags[TAMANI_NUMBER_OF_DAUGHTERS] >= 24) {
-                    outputText("You've reached Tamani Daughter's Scene. Placeholder.")
+                    outputText("You've reached Tamani Daughter's Scene. Placeholder. Will come in a later version!")
                     //tamaniDaughtersScene.encounterTamanisDaughters();
                 }
                 else

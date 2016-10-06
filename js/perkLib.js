@@ -68,3 +68,4 @@ PerkLib.SpellcastingAffinity = new PerkType("SpellAff", "Spellcasting Affinity",
 PerkLib.HarpyWomb = new PerkType("HarpyWomb", "Harpy Womb", "TO BE ADDED");
 PerkLib.BasiliskWomb = new PerkType("BaskWomb", "Basilisk Womb", "TO BE ADDED");
 PerkLib.Androgyny = new PerkType("Androgyny", "Androgyny", "TO BE ADDED");
+PerkLib.MaraesGiftStud = new PerkType("MaraesGiftStud", "Marae's Gift - Stud", "TO BE ADDED");
