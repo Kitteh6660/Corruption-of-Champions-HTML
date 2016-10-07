@@ -255,6 +255,10 @@ const MINOTAUR_CUM_REALLY_ADDICTED_STATE    = "Minotaur_Cum_Really_Addicted_Stat
 const NAGA_LAST_ENCOUNTERED_AS_NAGA     = "Naga_Last_Encountered_As_Naga"; //0 indicates player isn't naga, 1 indicates player is naga, 2 indicates player is naga but hostile.
 const NAGA_FUCKED_AS_NAGA               = "Naga_Fucked_As_Naga";
 
+//Sand Trap
+const SANDTRAP_LOSS_REPEATS             = "Sandtrap_Loss_Repeats"; //Used for Sandtrap bad end tracking
+const TIMES_ENCOUNTERED_SAND_TRAPS      = "Times_Encountered_Sand_Traps";
+
 //Sand Witch
 const SAND_WITCH_RAPED                  = "Sand_Witch_Raped";
 

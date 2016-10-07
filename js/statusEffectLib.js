@@ -50,3 +50,5 @@ StatusEffects.TemporaryHeat = new StatusEffectType("TempHeat");
 StatusEffects.Venom = new StatusEffectType("Venom");
 StatusEffects.ParalyzeVenom = new StatusEffectType("ParalyzeVenom");
 StatusEffects.LustVenom = new StatusEffectType("LustVenom");
+
+StatusEffects.Fertilized = new StatusEffectType("Fertilized"); // Used in SandTrap battles.

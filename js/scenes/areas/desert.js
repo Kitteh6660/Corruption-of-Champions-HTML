@@ -5,14 +5,14 @@ Areas.Desert.explore = function() {
     exploration.exploredDesert++; //Increment counter
     var choice = [];
     choice[choice.length] = 0; //Sand Witch
-    choice[choice.length] = 1; //Naga
+    choice[choice.length] = 1; //Naga and Sand Trap
     choice[choice.length] = 2; //Marcus and Lucia
     choice[choice.length] = 99; //Nothing out of the ordinary, possibly find mirage
     var select = choice[rand(choice.length)];
     switch(select) {
         case 0: //Sand Witch
             // Check for birthing scene. Sand Witch must be in second half of pregnancy and hit a 1/4 chance.
-            // May possibly have to rename constructor like Amily/amily to make this work.
+
             if (SandWitch.pregnancyEventNum == 2 && rand(4) == 0) {
                 if (SandWitch.pregnancyType = "Drider_Eggs") SandWitchScene.sammitchBirthsDriders();
                 else SandWitchScene.witchBirfsSomeBees();
@@ -23,8 +23,11 @@ Areas.Desert.explore = function() {
             SandWitchScene.encounter();
             break;
             }
-        case 1: //Naga
-            NagaScene.nagaEncounter();
+        case 1: //Naga and Sand Trap
+            if (rand(2) == 0) {
+                SandTrapScene.encounterASandTrap();
+            }
+            else NagaScene.nagaEncounter();
             break;
         case 2: //Marcus and Lucia
             WandererScene.wandererRouter();
