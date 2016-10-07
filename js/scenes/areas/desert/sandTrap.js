@@ -120,7 +120,6 @@ function SandTrap() {
 SandTrap.prototype = new Creature();
 SandTrap.prototype.constructor = SandTrap;
 
-// Now to figure out the Sand Trap AI, which is much different than other monsters...
 
 // Tracks current level of you in the sand pit. A trap level of 1 at the end of the round means you've been caught. A trap level of 4 means you're at the top of the pit. This function changes the trap level.
 SandTrap.trapLevel = function(amount) {
