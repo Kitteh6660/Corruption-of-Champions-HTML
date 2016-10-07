@@ -10,6 +10,39 @@ addToGameFlags(TAMANI_MET, TAMANI_TIME_OUT, TAMANI_BAD_ENDED, TAMANI_DAUGHTER_PR
 // Tamani Combat Information
 //---------
 
+//Changes Tamani chest description depending on how much she's been impregnated.
+TamaniScene.tamaniChest = function() {
+    var descript = "";
+    switch (gameFlags[TAMANI_TIMES_IMPREGNATED]) {
+        case -1:
+        case  0: descript = (rand(2) == 0 ? "ample " : "handful of "); break;
+        case  1:
+        case  2:
+        case  3: descript = (rand(2) == 0 ? "large " : "jiggling "); break;
+        case  4:
+        case  5:
+        case  6: descript = (rand(2) == 0 ? "wobbling " : "impressive "); break;
+        case  7:
+        case  8:
+        case  9:
+        case 10: descript = (rand(2) == 0 ? "over-proportioned " : "super-sized "); break;
+        default: descript = (rand(2) == 0 ? "massive " : "gigantic "); break;
+    }
+    switch (rand(11)) {
+        case  0:
+        case  1:
+        case  2: return descript + "tits";
+        case  3: return descript + "melons";
+        case  4: return descript + "mounds";
+        case  5: return descript + "muffins";
+        case  6: return descript + "knockers";
+        case  7: return descript + "love-pillows";
+        default:
+    }
+    return descript + "breasts";
+};
+
+
 //Tamani Description
 function Tamani() {
     //Names and References
@@ -17,7 +50,7 @@ function Tamani() {
     this.name = "Tamani";
     this.refName = this.name;
     //this.imageName = "tamani";
-    this.long = "She keeps her arms folded across her TamaniScene.tamaniChest() and glares at you.  The little thing is only about four feet tall, with pink and black dyed hair cut into a cute little 'do.  The greenish-gray skin of her breasts bulges out around her arms, supported by a few leather straps, amplifying her cleavage.  Her cunt lips are pierced multiple times, inflamed, and slightly parted.  There really isn't any clothing on her to hide them, just more of the ever-present straps wrapping around her thighs."; //TODO Fix Desc.
+    this.battleDesc = "She keeps her arms folded across her breasts and glares at you.  The little thing is only about four feet tall, with pink and black dyed hair cut into a cute little 'do.  The greenish-gray skin of her breasts bulges out around her arms, supported by a few leather straps, amplifying her cleavage.  Her cunt lips are pierced multiple times, inflamed, and slightly parted.  There really isn't any clothing on her to hide them, just more of the ever-present straps wrapping around her thighs."; //TODO Fix Desc.
     // this.plural = false;
     this.createVagina(false, VAGINA_WETNESS_DROOLING, VAGINA_LOOSENESS_NORMAL);
     this.createStatusEffect(StatusEffects.BonusVCapacity, 55, 0, 0, 0);
@@ -1141,37 +1174,7 @@ TamaniScene.tamaniGivesBirth = function() {
 //--------
 
 
-//Changes Tamani chest description depending on how much she's been impregnated.
-TamaniScene.tamaniChest = function() {
-    var descript = "";
-    switch (gameFlags[TAMANI_TIMES_IMPREGNATED]) {
-        case -1:
-        case  0: descript = (rand(2) == 0 ? "ample " : "handful of "); break;
-        case  1:
-        case  2:
-        case  3: descript = (rand(2) == 0 ? "large " : "jiggling "); break;
-        case  4:
-        case  5:
-        case  6: descript = (rand(2) == 0 ? "wobbling " : "impressive "); break;
-        case  7:
-        case  8:
-        case  9:
-        case 10: descript = (rand(2) == 0 ? "over-proportioned " : "super-sized "); break;
-        default: descript = (rand(2) == 0 ? "massive " : "gigantic "); break;
-    }
-    switch (rand(11)) {
-        case  0:
-        case  1:
-        case  2: return descript + "tits";
-        case  3: return descript + "melons";
-        case  4: return descript + "mounds";
-        case  5: return descript + "muffins";
-        case  6: return descript + "knockers";
-        case  7: return descript + "love-pillows";
-        default:
-    }
-    return descript + "breasts";
-};
+
 
 //TODO TAMANI SATCHEL CODE. ONCE WE SEE IN THE GAME WHERE YOU ACCESS THIS, WE CAN ADD IT.
 

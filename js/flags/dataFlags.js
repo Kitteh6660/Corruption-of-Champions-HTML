@@ -275,6 +275,9 @@ const TIMES_THOUGHT_ABOUT_GOO_RECRUITMENT = "Times_Thought_About_Goo_Recruitment
 //Green Goo
 const TIMES_MET_OOZE                    = "Times_Met_Ooze";
 
+//Worms
+
+const WORM_INFEST_ATTEMPTED             = "Worm_Infest_Attempted";
 
 //------------
 // KEY ITEMS
