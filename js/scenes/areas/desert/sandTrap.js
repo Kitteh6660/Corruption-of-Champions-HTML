@@ -132,7 +132,7 @@ SandTrap.trapLevel = function(amount) {
     return monster.trap;
 };
 
-SandTrap.sandTrapWait() = function() {
+SandTrap.sandTrapWait = function() {
     clearOutput();
 //TODO spriteSelect(97);
     // First, mark that the player climbed...
