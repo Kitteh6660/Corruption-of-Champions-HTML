@@ -26,7 +26,9 @@ battleMenu = function() {
 	addButton(4, "Run", flee);
     addButton(5, "P. Specials", physicalSpecials);
     addButton(6, "M. Specials", mentalSpecials);
-    addButton(7, "Wait", wait);
+    // Making change so buttons make sense for Sand Trap
+    if (monster.refName = "sandtrap") addButton(7, "Climb", wait);
+    else addButton(7, "Wait", wait);
     addButton(8, "Fantasize", fantasize);
     if (player.findStatusEffect(StatusEffects.Bind) >= 0) {
         menu();
@@ -92,7 +94,8 @@ flee = function(callHook) { //There are 4 states. Undefined means proceed to esc
         outputText("You can't escape from this fight!");
         success = null;
     }
-    if (monster.findStatusEffect(StatusEffects.Level) >= 0 && monster.statusEffectv1(StatusEffects.Level) < 4) {
+    // Attempt to flee from Sand Trap before reaching level 4
+    if (monster.refName == "sandtrap" && monster.trap >= 0 && monster.trap < 4) {
         outputText("You're too deeply mired to escape! You'll have to <b>climb</b> some first!");
         success = null;
     }
@@ -346,8 +349,10 @@ flee = function(callHook) { //There are 4 states. Undefined means proceed to esc
     }
 }
 
+// Wait Command
 wait = function() {
     clearOutput();
+    // Is the player bound?
     if (player.findStatusEffect(StatusEffects.Bind)) {
         switch(player.statusEffectValue(StatusEffects.Bind, 1)) {
             case BIND_TYPE_GOO:
@@ -362,11 +367,14 @@ wait = function() {
             default:
         }
     }
+    // Is the player Sand Trapped?
+    if (monster.refName = "sandtrap") {
+        monster.sandTrapWait();
+
     /*if (monster.findStatusEffect(StatusEffects.PCTailTangle) >= 0) {
         monster.kitsuneWait();
     }
-    else if (monster.findStatusEffect(StatusEffects.Level) >= 0) {
-        monster.sandTrapWait();
+    else
     }
     else if (monster.findStatusEffect(StatusEffects.MinotaurEntangled) >= 0) {
         clearOutput();

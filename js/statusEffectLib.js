@@ -36,6 +36,7 @@ StatusEffects.Uniball = new StatusEffectType("Uniball"); //TODO: Check code to s
 //Buffs
 StatusEffects.ChargeWeapon = new StatusEffectType("ChargeWeapon");
 StatusEffects.Might = new StatusEffectType("Might");
+StatusEffects.Climbed = new StatusEffectType("Climbed"); // Used in Sand Trap fight;
 //Debuffs
 StatusEffects.Acid = new StatusEffectType("Acid");
 StatusEffects.Blind = new StatusEffectType("Blind");
