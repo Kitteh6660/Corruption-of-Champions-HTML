@@ -26,9 +26,7 @@ battleMenu = function() {
 	addButton(4, "Run", flee);
     addButton(5, "P. Specials", physicalSpecials);
     addButton(6, "M. Specials", mentalSpecials);
-    // Making change so buttons make sense for Sand Trap
-    if (monster.refName = "sandtrap") { addButton(7, "Climb", wait); }
-    else { addButton(7, "Wait", wait); }
+    addButton(7, "Wait", wait);
     addButton(8, "Fantasize", fantasize);
     if (player.findStatusEffect(StatusEffects.Bind) >= 0) {
         menu();
