@@ -27,7 +27,8 @@ const HORSE_WARNING                     = "Horse_Warning"; // In Danger of Drink
 const HAIR_GROWTH_STOPPED_BECAUSE_LIZARD= "Hair_Growth_Stopped";
 const EVER_INFESTED                     = "Ever_Infested"; // Has the PC ever been infested with worms?
 const MEANINGLESS_CORRUPTION            = "Meaningless_Corruption"; //Unknown, used in Goblin victory code.
-const INFESTED                          = "Infested";
+const INFESTED                          = "Infested"; // Currently infested with worms.
+const EVER_INFESTED                     = "Ever_Infested"; // Ever been infested with worms.
 const HYPER_HAPPY                       = "Hyper_Happy";
 const PREGNANCY_CORRUPTION              = "Pregnancy_Corruption"; // Used in Phouka pregnancy
 
@@ -278,6 +279,8 @@ const TIMES_MET_OOZE                    = "Times_Met_Ooze";
 //Worms
 
 const WORM_INFEST_ATTEMPTED             = "Worm_Infest_Attempted";
+const MET_WORMS                         = "Met_Worms";
+const WORMS_FETISH                      = "Worms_Fetish"; //0 = Not Encountered, 1 = Partially on, 2 = Fully on, 3 = Off
 
 //------------
 // KEY ITEMS
