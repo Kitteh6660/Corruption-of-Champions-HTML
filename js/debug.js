@@ -74,6 +74,8 @@ Debug.genderChangeNone = function() {
 
 Debug.fightCreature = function() {
     clearOutput();
+    gameFlags[CLIMBED_TRAP_THIS_ROUND] = 0;
+    gameFlags[TRAP_LEVEL] = 2;
     startCombat(new SandTrap());
 }
 

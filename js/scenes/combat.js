@@ -26,7 +26,8 @@ battleMenu = function() {
 	addButton(4, "Run", flee);
     addButton(5, "P. Specials", physicalSpecials);
     addButton(6, "M. Specials", mentalSpecials);
-    addButton(7, "Wait", wait);
+    if (monster.refName = "sandtrap") addButton(7, "Climb", wait);
+    else addButton(7, "Wait", wait);
     addButton(8, "Fantasize", fantasize);
     if (player.findStatusEffect(StatusEffects.Bind) >= 0) {
         menu();
@@ -83,7 +84,7 @@ flee = function(callHook) { //There are 4 states. Undefined means proceed to esc
         outputText("The thought of another male in your area competing for all the pussy infuriates you! No way will you run!", true);
         success = null;
     }
-    if (monster.findStatusEffect(StatusEffects.Level) >= 0 && player.canFly()) {
+    if (monster.trap >= 0 && player.canFly()) {
         clearOutput();
         outputText("You flex the muscles in your back and, shaking clear of the sand, burst into the air! Wasting no time you fly free of the sandtrap and its treacherous pit. \"<i>One day your wings will fall off, little ant,</i>\" the snarling voice of the thwarted androgyne carries up to you as you make your escape. \"<i>And I will be waiting for you when they do!</i>\"");
         success = true;
@@ -348,7 +349,11 @@ flee = function(callHook) { //There are 4 states. Undefined means proceed to esc
 
 wait = function() {
     clearOutput();
-    if (player.findStatusEffect(StatusEffects.Bind)) {
+    if (monster.refName == "sandtrap") {
+        SandTrap.sandTrapWait();
+        return;
+    }
+    else if (player.findStatusEffect(StatusEffects.Bind)) {
         switch(player.statusEffectValue(StatusEffects.Bind, 1)) {
             case BIND_TYPE_GOO:
                 outputText("You writhe uselessly, trapped inside the goo girl's warm, seething body. Darkness creeps at the edge of your vision as you are lulled into surrendering by the rippling vibrations of the girl's pulsing body around yours.");
@@ -362,11 +367,11 @@ wait = function() {
             default:
         }
     }
+    else outputText("You decide not to take any action this round.<br><br>");
     /*if (monster.findStatusEffect(StatusEffects.PCTailTangle) >= 0) {
         monster.kitsuneWait();
     }
-    else if (monster.findStatusEffect(StatusEffects.Level) >= 0) {
-        monster.sandTrapWait();
+
     }
     else if (monster.findStatusEffect(StatusEffects.MinotaurEntangled) >= 0) {
         clearOutput();
@@ -431,12 +436,12 @@ wait = function() {
         player.removeStatusEffect(StatusEffects.Confusion);
     }*/
     //else {
-        outputText("You decide not to take any action this round.<br><br>");
+
     //}
 
     player.changeFatigue(-5, false);
     combatRoundOver();
-}
+};
 
 fantasize = function() {
     clearOutput();

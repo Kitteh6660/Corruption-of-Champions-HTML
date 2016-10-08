@@ -28,7 +28,6 @@ const HAIR_GROWTH_STOPPED_BECAUSE_LIZARD= "Hair_Growth_Stopped";
 const EVER_INFESTED                     = "Ever_Infested"; // Has the PC ever been infested with worms?
 const MEANINGLESS_CORRUPTION            = "Meaningless_Corruption"; //Unknown, used in Goblin victory code.
 const INFESTED                          = "Infested"; // Currently infested with worms.
-const EVER_INFESTED                     = "Ever_Infested"; // Ever been infested with worms.
 const HYPER_HAPPY                       = "Hyper_Happy";
 const PREGNANCY_CORRUPTION              = "Pregnancy_Corruption"; // Used in Phouka pregnancy
 
@@ -258,6 +257,9 @@ const NAGA_FUCKED_AS_NAGA               = "Naga_Fucked_As_Naga";
 //Sand Trap
 const SANDTRAP_LOSS_REPEATS             = "Sandtrap_Loss_Repeats"; //Used for Sandtrap bad end tracking
 const TIMES_ENCOUNTERED_SAND_TRAPS      = "Times_Encountered_Sand_Traps";
+const TRAP_LEVEL                        = "Trap_Level"; // What level of the sand trap are you on?
+const CLIMBED_TRAP_THIS_ROUND           = "Climbed_Trap_This_Round"; // Did you try climbing this round?
+const FERTILE_SANDTRAP                  = "Fertile_Sandtrap";
 
 //Sand Witch
 const SAND_WITCH_RAPED                  = "Sand_Witch_Raped";
