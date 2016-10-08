@@ -27,7 +27,8 @@ const HORSE_WARNING                     = "Horse_Warning"; // In Danger of Drink
 const HAIR_GROWTH_STOPPED_BECAUSE_LIZARD= "Hair_Growth_Stopped";
 const EVER_INFESTED                     = "Ever_Infested"; // Has the PC ever been infested with worms?
 const MEANINGLESS_CORRUPTION            = "Meaningless_Corruption"; //Unknown, used in Goblin victory code.
-const INFESTED                          = "Infested";
+const INFESTED                          = "Infested"; // Currently infested with worms.
+const EVER_INFESTED                     = "Ever_Infested"; // Ever been infested with worms.
 const HYPER_HAPPY                       = "Hyper_Happy";
 const PREGNANCY_CORRUPTION              = "Pregnancy_Corruption"; // Used in Phouka pregnancy
 
@@ -166,7 +167,8 @@ const INCUBATION_IMP                    = 432; //Time for standard imps. Imp lor
 // Pregnancy event arrays
 const INCUBATION_MOUSE_EVENT            = [336, 280, 216, 180, 120, 72, 48, 32]; // Event flags for Mouse Pregnancy
 const INCUBATION_AMILY_EVENT            = [150, 120, 100, 96, 90, 72, 48]; // Special array for Amily pregnancy in Town Ruins.
-const INCUBATION_SAND_WITCH_EVENT        = [142, 96];
+const INCUBATION_SAND_WITCH_EVENT       = [142, 96];
+const INCUBATION_TAMANI_EVENT           = [219, 96, 48];
 
 // Pregnancy types. Marks who did the impregnation
 const PREGNANCY_PLAYER                  = "Player"; // Marks the player impregnated someone
@@ -208,6 +210,9 @@ const TAMANI_DAUGHTER_PREGGO_COUNTDOWN  = "Tamani_Daughter_Preggo_Countdown";
 const TAMANI_NUMBER_OF_DAUGHTERS        = "Tamani_Number_Of_Daughters";
 const TAMANI_TIMES_HYPNOTIZED           = "Tamani_Times_Hypnotized";
 const TAMANI_DEFEAT_COUNTER             = "Tamani_Defeat_Counter";
+const TAMANI_TIMES_IMPREGNATED          = "Tamani_Times_Impregnated";
+const TAMANI_PREGNANCY_COUNT            = "Tamani_Pregnancy_Count"; //Current litter
+const TIMES_OVIPOSITED_TAMANI           = "Times_Oviposited_Tamani";
 
 
 //Whitney & Farm
@@ -250,6 +255,10 @@ const MINOTAUR_CUM_REALLY_ADDICTED_STATE    = "Minotaur_Cum_Really_Addicted_Stat
 const NAGA_LAST_ENCOUNTERED_AS_NAGA     = "Naga_Last_Encountered_As_Naga"; //0 indicates player isn't naga, 1 indicates player is naga, 2 indicates player is naga but hostile.
 const NAGA_FUCKED_AS_NAGA               = "Naga_Fucked_As_Naga";
 
+//Sand Trap
+const SANDTRAP_LOSS_REPEATS             = "Sandtrap_Loss_Repeats"; //Used for Sandtrap bad end tracking
+const TIMES_ENCOUNTERED_SAND_TRAPS      = "Times_Encountered_Sand_Traps";
+
 //Sand Witch
 const SAND_WITCH_RAPED                  = "Sand_Witch_Raped";
 
@@ -271,6 +280,11 @@ const TIMES_THOUGHT_ABOUT_GOO_RECRUITMENT = "Times_Thought_About_Goo_Recruitment
 //Green Goo
 const TIMES_MET_OOZE                    = "Times_Met_Ooze";
 
+//Worms
+
+const WORM_INFEST_ATTEMPTED             = "Worm_Infest_Attempted";
+const MET_WORMS                         = "Met_Worms";
+const WORMS_FETISH                      = "Worms_Fetish"; //0 = Not Encountered, 1 = Partially on, 2 = Fully on, 3 = Off
 
 //------------
 // KEY ITEMS

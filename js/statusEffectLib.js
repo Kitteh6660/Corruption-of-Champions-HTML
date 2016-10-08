@@ -36,6 +36,7 @@ StatusEffects.Uniball = new StatusEffectType("Uniball"); //TODO: Check code to s
 //Buffs
 StatusEffects.ChargeWeapon = new StatusEffectType("ChargeWeapon");
 StatusEffects.Might = new StatusEffectType("Might");
+StatusEffects.Climbed = new StatusEffectType("Climbed"); // Used in Sand Trap fight;
 //Debuffs
 StatusEffects.Acid = new StatusEffectType("Acid");
 StatusEffects.Blind = new StatusEffectType("Blind");
@@ -50,3 +51,5 @@ StatusEffects.TemporaryHeat = new StatusEffectType("TempHeat");
 StatusEffects.Venom = new StatusEffectType("Venom");
 StatusEffects.ParalyzeVenom = new StatusEffectType("ParalyzeVenom");
 StatusEffects.LustVenom = new StatusEffectType("LustVenom");
+
+StatusEffects.Fertilized = new StatusEffectType("Fertilized"); // Used in SandTrap battles.
