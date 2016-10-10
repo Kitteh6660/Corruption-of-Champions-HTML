@@ -282,6 +282,9 @@ const TIMES_THOUGHT_ABOUT_GOO_RECRUITMENT = "Times_Thought_About_Goo_Recruitment
 //Green Goo
 const TIMES_MET_OOZE                    = "Times_Met_Ooze";
 
+//Oasis Demons
+const OASIS_DEMONS_ACCEPT               = "Oasis_Demons_Accept";
+
 //Worms
 
 const WORM_INFEST_ATTEMPTED             = "Worm_Infest_Attempted";
