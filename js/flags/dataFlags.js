@@ -285,6 +285,12 @@ const TIMES_MET_OOZE                    = "Times_Met_Ooze";
 //Oasis Demons
 const OASIS_DEMONS_ACCEPT               = "Oasis_Demons_Accept";
 
+//Tentacle Beast
+const TENTACLE_COOL_DOWN                = "Tentacle_Cool_Down";
+const TENTACLE_BIND                     = "Tentacle_Bind";
+const TENTACLE_BAD_END                  = "Tentacle_Bad_End";
+const TENTACLE_GENDERLESS_CENTAUR       = "Tentacle_Genderless_Centaur" //Unknown flag 00247;
+
 //Worms
 
 const WORM_INFEST_ATTEMPTED             = "Worm_Infest_Attempted";

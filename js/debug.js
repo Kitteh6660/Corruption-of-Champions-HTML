@@ -74,7 +74,7 @@ Debug.genderChangeNone = function() {
 
 Debug.fightCreature = function() {
     clearOutput();
-    startCombat(new DemonPack());
+    startCombat(new TentacleBeast());
 }
 
 //-------
