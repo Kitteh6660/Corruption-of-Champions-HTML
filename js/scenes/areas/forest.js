@@ -6,7 +6,7 @@ Areas.Forest.explore = function() {
     var choice = [];
     choice[choice.length] = 0; //Goblin/imp encounter
     if ((player.cor >= 25 || player.level >= 4 || gameFlags[JOJO_CORRUPTION_STAGE] != 0) && gameFlags[JOJO_CAMP] == 0/* && flags[JOJO_DEAD_OR_GONE] == 0*/) choice[choice.length] = 1; //Jojo
-    //choice[choice.length] = 2; //Tentacle beast
+    if (player.level >= 2) choice[choice.length] = 2; //Tentacle beast
     //choice[choice.length] = 3; //Corrupted Glade
     choice[choice.length] = 4; //Root
     choice[choice.length] = 5; //Bee-girl
@@ -29,8 +29,20 @@ Areas.Forest.explore = function() {
             JojoScene.routeJojoEncounter();
             break;
         case 2: //Tentacle Beasts (Not yet implemented)
-            outputText("A sense of dread washes over you followed by a sense of relief. Seems like tentacle beasts aren't in the game yet.");
-            doNext(Camp.returnToCampUseOneHour);
+            // TODO Track down this legacy flag if (player.gender > 0) flags[kFLAGS.UNKNOWN_FLAG_NUMBER_00247] = 0;
+            //Tentacle avoidance chance due to dangerous plants
+            if (player.hasKeyItem("Dangerous Plants") >= 0 && player.inte / 2 > rand(50)) {
+                //trace("TENTACLE'S AVOIDED DUE TO BOOK!");
+                outputText("Using the knowledge contained in your 'Dangerous Plants' book, you determine a tentacle beast's lair is nearby, do you continue?  If not you could return to camp.\n\n", true);
+                menu();
+                addButton(0, "Continue", TentacleBeastScene.encounter);
+                addButton(1, "Leave", Camp.returnToCampUseOneHour);
+                return;
+            }
+            else {
+                TentacleBeastScene.encounter();
+                return;
+            }
             break;
         case 3: //Corrupted Glade (Not yet implemented)
             break;

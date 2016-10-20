@@ -4,12 +4,12 @@ addToGameFlags(MET_OTTERGIRL);
 
 CalluScene.ottahGirl = function() {
     clearOutput();
-    //outputText(images.showImage("callu-intro"));
+    // TODO outputText(images.showImage("callu-intro"));
     gameFlags[MET_OTTERGIRL]++;
     //First Time
     if (gameFlags[MET_OTTERGIRL] == 1) {
         outputText("Your exploration of the lakeside takes you further than you've gone before. The water here is almost completely still, its waters ");
-        //if (!flags[FACTORY_SHUTDOWN] == 2) outputText("crystal clear, giving you a stunning view of the lakebed");
+        // TODO if (!flags[FACTORY_SHUTDOWN] == 2) outputText("crystal clear, giving you a stunning view of the lakebed");
         /*else*/ outputText("only slightly clouded, giving you an obscured view of the lakebed");
         outputText(". Fish dart to and fro within the waters, caring little for your explorations above the waves.");
         outputText("<br><br>You watch the fish for a few minutes until you notice that you're not alone on the shoreline. Further down the sandy beaches sits a solitary, feminine figure, her legs parted and arched. A fishing rod is held lazily in her hands. You trace the fishing line with your eyes, seeing a little piece of flotsam bobbing up and down a fair distance into the water.");
@@ -49,7 +49,7 @@ CalluScene.ottahGirl = function() {
 //For Dicks
 CalluScene.ottergirlLikesDongs = function() {
     clearOutput();
-    //outputText(images.showImage("callu-sex-fuck"));
+    // TODO outputText(images.showImage("callu-sex-fuck"));
     outputText("The moment you agree, a sly smile spreads across her face. She jams the end of her fishing pole into the sand like a post, to prevent it from going anywhere, and stands up. There's no tease, no ceremony as she strips out of her bikini bottoms and tosses them aside. Her newly revealed mound has only the barest tuft of pubic hair, a little wisp of blonde hair amongst the sparse brown fur.");
 
     outputText("<br><br>You move forward, intent on groping Callu's little breasts still hidden beneath the bikini top, but she holds up a hand and says, \"<i>Whoa there darlin', that ain't how a fish'n'fuck works. You just lay down, and I'll take care of everything. And make sure you're as naked as a newborn babe.</i>\"");
@@ -159,7 +159,7 @@ CalluScene.ottergirlLikesDongs = function() {
 //For Chicks
 CalluScene.ottersForGals = function() {
     clearOutput();
-    //outputText(images.showImage("callu-sex-facesit"));
+    // TODO outputText(images.showImage("callu-sex-facesit"));
     outputText("The moment you agree, a sly smile spreads across her face. She jams the end of her fishing pole into the sand like a post, to prevent it from going anywhere, and stands up. There's no tease, no ceremony as she strips out of her bikini bottoms and tosses them aside. Her newly revealed mound has only the barest tuft of pubic hair, a little wisp of blonde hair amongst the sparse brown fur.");
 
     outputText("<br><br>You move forward, intent on groping Callu's little breasts still hidden beneath the bikini top, but she holds up a hand and says, \"<i>Whoa there darlin', that ain't how a fish'n'fuck works. You just lay down, and I'll take care of everything. And make sure you're as naked as a newborn babe.</i>\"");

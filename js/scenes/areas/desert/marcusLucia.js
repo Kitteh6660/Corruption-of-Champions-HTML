@@ -37,6 +37,7 @@ WandererScene.wandererFirstMeeting = function() {
 //Repeated encounter if he left
 WandererScene.wandererRepeatMeeting = function() {
     outputText("Marcus waves to you as he crests a nearby dune, yelling a greeting. \"<i>Hey traveler! Do you have a moment to help a man with a question of theological and moral imperatives?</i>\"<br><br>His succubus accomplice, Lucia, snorts in disdain.");
+    menu();
     addButton(0, "Help Him", WandererScene.wandererHelpHim);
     addButton(4, "Leave", WandererScene.wandererLeave);
 }

@@ -267,9 +267,14 @@ TamaniScene.tamaniSexWon = function() {
         else outputText("sweet cock has ", false);
         outputText("any more cream to give to me?</i>\"<br><br>", false);
         outputText("She doesn't give you a chance to answer as she wobbles off, jiggling pleasantly in all the right places, \"<i>Of course you do.  I'll be back for the rest later!</i>\"<br><br>", false);
-        player.orgasm();
-        if (inCombat()) cleanupAfterCombat(); //TODO TEST THIS
-        else doNext(Camp.returnToCampUseOneHour);
+        if (inCombat()) {
+            cleanupAfterCombat();
+            player.orgasm();
+        } //TODO TEST THIS
+        else {
+            player.orgasm();
+            doNext(Camp.returnToCampUseOneHour);
+        }
     }
     //Too big? Jerk off with feet and bukkake
     else {
@@ -294,10 +299,15 @@ TamaniScene.tamaniSexWon = function() {
         outputText("She doesn't give you a chance to answer as she staggers up and strikes a sexy pose, \"<i>Of course you do.  I'll be back for the rest later!</i>\"<br><br>", false);
 
         outputText("Tamani wiggles in the sexiest way as she leaves, arousing your body all over again...", false);
-        player.orgasm(); //TODO Test Position
         player.changeLust(35);
-        if (inCombat()) cleanupAfterCombat(); //TODO Test This
-        else doNext(Camp.returnToCampUseOneHour);
+        if (inCombat()) {
+            cleanupAfterCombat();
+            player.orgasm();
+        } //TODO Test This
+        else {
+            player.orgasm();
+            doNext(Camp.returnToCampUseOneHour);
+        }
     }
 };
 
@@ -318,8 +328,8 @@ TamaniScene.tamaniAnalSex = function() {
 
     outputText("You can feel the cum building up inside you, and you know that you won't be able to hold out much longer.  Looking down, you can see that Tamani isn't far from orgasm, either.  Her fingers slip rapidly in and out of her cunt, and the look on her face is one of thoughtless bliss.  She shudders and goes limp in your grasp just as you cum, painting the insides of her ass with your semen.  Her eyes are still rolled up into the back of her head as you pull your softening prick out of her ass.  You drop her, letting her legs fall back to the ground with a dull thud.  She turns over onto her side, looking up at you.  Between exhausted pants, she manages to say, \"<i>Don't... think that I... enjoyed that... or anything... I'll be back for you, and you better not...</i>\" before she passes out.  You shake your head and laugh at the stubborn little slut as you tuck " + player.sMultiCockDesc() + " back into your " + player.armor.equipmentName + " and head back to your camp.", false);
 
-    player.orgasm();
     cleanupAfterCombat();
+    player.orgasm();
 };
 
 //Kill Tamani Choice - Silly Mode and Normal Mode options
@@ -395,8 +405,8 @@ TamaniScene.tamaniBeaten = function() {
     //Don't encounter Tamani for 3 days if fertilized
     if (player.fertilizedEggs() == 0) tamanipreg.knockUpForce(PREGNANCY_DRIDER_EGGS, 72);
     player.dumpEggs();
-    player.orgasm(); //TODO Test this order
     cleanupAfterCombat();
+    player.orgasm();
 };
 
 //LOSE
@@ -463,9 +473,9 @@ TamaniScene.tamaniSexLost = function() {
     outputText("<br><br>", false);
 
     outputText("Tamani removes the ring once you have finished.  She seals the bottle and places it in her pouch as you drop to the ground, exhausted.  All you can do is watch as she walks away, her ass swaying confidently from side to side.  Your last thought before you pass out is how much easier it would've been to just fuck her.", false);
-    player.orgasm();
     player.dynStats("lib", .5, "sen", -1, "cor", .5);
     cleanupAfterCombat();
+    player.orgasm();
 };
 
 //Submissive Loss Scene - Very detailed
@@ -569,8 +579,9 @@ TamaniScene.tamaniSexLetHer = function() {
         //Combat end:
         if (inCombat()) {
             outputText("  After the stress and strain of a lost fight and the stress of having your seed so expertly stolen, you lie down on your flank and go to sleep.", false);
-            cleanupAfterCombat(); //TODO Check Order
             player.orgasm();
+            cleanupAfterCombat(); //TODO Check Order
+
         }
         //(Noncombat end:
         else {
@@ -986,8 +997,9 @@ TamaniScene.tamaniFirstTimeConsentual = function() {
         if (player.cor > 66) outputText("  Your " + player.cockDescript(0) + " twitches at the thought, ready and wanting more.", false);
     }
     player.dynStats("lib", .5, "sen", -1, "cor", .5);
+    player.orgasm();
     doNext(Camp.returnToCampUseOneHour);
-    player.orgasm(); //TODO Check order on this. I recall there being something funny about it.
+
 };
 
 //Male - Refuse Sex First Time
