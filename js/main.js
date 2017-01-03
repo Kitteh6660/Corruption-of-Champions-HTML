@@ -1,7 +1,4 @@
 function mainMenu() {
-    Data.loadSettings();
-	clearOutput();
-
     // Check to see if the user has a bad browser
 	if (typeof(Storage) !== "undefined") {
 		// All good to go!
@@ -9,16 +6,17 @@ function mainMenu() {
     else if (GetIEVersion() < 11) {
         errorOldInternetExplorerEwwww();
         return;
-    } 
+    }
+    else if (GetIEVersion() >= 11) { //Don't run the game if on Edge or IE11 due to issues.
+        errorEdgeNeverWorks();
+        return;
+    }
     else {
 		errorOldBrowser();
         return;
 	}
-    //Don't run the game if on Edge due to issues.
-    if (GetIEVersion() >= 13) {
-        errorEdgeNeverWorks();
-        return;
-    }
+    Data.loadSettings();
+    clearOutput();
     // Load the start screen
     outputText("<img src=\"assets/interface/CoCLogo.png\" height=\"300\" width=\"400\"><br>");
 	outputText("Corruption of Champions: HTML Edition (" + gameVersion + ")<br><br>");
