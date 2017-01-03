@@ -826,7 +826,7 @@ function teaseMain(justText) {
             }
             else {
                 outputText("Panting with your unstoppable lust for the delicious, impregnable cunt before you, you yank off your " + player.armor.equipmentName + " with strength born of your inhuman rut, and quickly wave your fully erect cock at your enemy. She flashes with lust, quickly feeling the heady effect of your man-musk. You rush up, taking advantage of her aroused state and grab her shoulders. ");
-                outputText("Before she can react, you push her down until she's level with your cock, and start to spin it in a circle, slapping her right in the face with your musky man-meat. Her eyes swim, trying to follow your meatspin as you swat her in the face with your cock! Satisfied, you release her and prepare to fight!");
+                outputText("Before she can react, you push her down until she's level with your cock, and start to spin it in a circle, slapping her right in the face with your musky man-meat. Her eyes swim, trying to follow your meatspin as you swat her in the face with your cock! Satisfied, you release her and prepare to fight!<br>");
             }
             penis = true;
             break;

@@ -58,7 +58,7 @@ function refreshStats() {
     document.getElementById("hungerFrame").style.visibility = "hidden";
 	//Advancement
 	if ((player.XP / (player.level * 100)) < 1)
-		document.getElementById("xpBar").style.width = Math.floor((player.XP / (player.level * 100)) * 100) + "%"
+		document.getElementById("xpBar").style.width = Math.floor((player.XP / (player.level * 100)) * 100) + "%";
 	else 
 		document.getElementById("xpBar").style.width = "100%";
 	//Name
@@ -165,10 +165,7 @@ function doYesNo(yesFunc, noFunc) {
 }
 
 function isButtonVisible(index) {
-    if (document.getElementById("button" + index).style.visibility == "visible")
-        return true;
-    else
-        return false;
+    return document.getElementById("button" + index).style.visibility == "visible";
 }
 
 //Top menu buttons

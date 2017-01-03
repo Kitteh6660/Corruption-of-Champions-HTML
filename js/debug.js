@@ -14,11 +14,15 @@ Debug.doDebug = function() {
     outputText("Have an armor rack? " + gameFlags[HAS_ARMOR_RACK] + "<br>");
     outputText("Have a weapon rack? " + gameFlags[HAS_WEAPON_RACK] + "<br>");
     outputText("Have a shield rack? " + gameFlags[HAS_EQUIPMENT_RACK] + "<br>");
+    outputText("Tamani Pregnancy Type Flag is: " + tamanipreg.pregnancyType + "<br>");
+    outputText("Tamani Pregnancy Incubation Flag is: " + tamanipreg.pregnancyIncubation + "<br>");
+    outputText("Tamani Pregnancy Event Number is: " + tamanipreg.pregnancyEventNum);
     menu();
     addButton(0, "Gender", Debug.genderChange, null, null, null, "Change the Player's Gender.");
     addButton(1, "Fight", Debug.fightCreature, null, null, null, "Fight a creature.");
     addButton(2, "StatChange", Debug.statChange, null, null, null, "Change a Stat for testing.");
     addButton(3, "PregTest", Debug.pregTest, null, null, null, "Start a Pregnancy in the Player.");
+    addButton(4, "RackTest", Debug.rackTest, null, null, null, "Put items in your inventory for rack checking.");
     addButton(14, "Leave", Camp.doCamp, null, null, null, "Return to Camp.");
 };
 
@@ -70,7 +74,7 @@ Debug.genderChangeNone = function() {
 
 Debug.fightCreature = function() {
     clearOutput();
-    startCombat(new Hellhound());
+    startCombat(new TentacleBeast());
 }
 
 //-------
@@ -102,7 +106,20 @@ Debug.changeStats = function() {
 //----------
 Debug.pregTest = function() {
     clearOutput();
-    outputText("Making player pregnant.");
-    player.buttKnockUpForce(PREGNANCY_BEE_EGGS, INCUBATION_BEE);
+    outputText("Knocking up Tamani<br>");
+    tamanipreg.knockUpForce(PREGNANCY_PLAYER, 216, INCUBATION_TAMANI_EVENT);
+    tamanipreg.eventFill(INCUBATION_TAMANI_EVENT);
+    outputText("Pregnancy Type Flag is: " + tamanipreg.pregnancyType + "<br>");
+    outputText("Pregnancy Incubation Flag is: " + tamanipreg.pregnancyIncubation + "<br>");
     doNext(Debug.doDebug);
 };
+
+//---------
+// RackTest
+//---------
+Debug.rackTest = function() {
+    clearOutput
+    outputText("Putting Weapon and Armor into Inventory for testing racks<br><br>");
+    Inventory.takeItem(Items.Weapons.Pipe);
+    Inventory.takeItem(Items.Armor.BeeArmor);
+}

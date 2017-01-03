@@ -18,6 +18,7 @@ const IMPS_KILLED                       = "Imps_Killed"; // How many Imps has th
 const COMBAT_BONUS_XP_VALUE             = "Combat_Bonus_XP_Value";
 const SLIME_CRAVING                     = "Slime_Craving"; // Replaces Slime Craving status effect.
 const GOOGIRL_BIRTHS                    = "GooGirl_Births";
+const HORSE_WARNING                     = "Horse_Warning"; // In Danger of Drinking Too Much Equinum
 
 
 //------------
@@ -26,7 +27,9 @@ const GOOGIRL_BIRTHS                    = "GooGirl_Births";
 const HAIR_GROWTH_STOPPED_BECAUSE_LIZARD= "Hair_Growth_Stopped";
 const EVER_INFESTED                     = "Ever_Infested"; // Has the PC ever been infested with worms?
 const MEANINGLESS_CORRUPTION            = "Meaningless_Corruption"; //Unknown, used in Goblin victory code.
-const INFESTED                          = "Infested";
+const INFESTED                          = "Infested"; // Currently infested with worms.
+const HYPER_HAPPY                       = "Hyper_Happy";
+const PREGNANCY_CORRUPTION              = "Pregnancy_Corruption"; // Used in Phouka pregnancy
 
 //------------
 // CODEX
@@ -58,23 +61,23 @@ const CODEX_ENTRY_SUCCUBUS              = "Codex_Entry_Succubus";
 const CODEX_ENTRY_ZEBRAS                = "Codex_Entry_Zebras";
 
 //------------
-// DUNGEONS
-//------------
-const FACTORY_FOUND                     = "Factory_Found";
-const FACTORY_SUCCUBUS_DEFEATED         = "Factory_Succubus_Defeated";
-const FACTORY_INCUBUS_DEFEATED          = "Factory_Incubus_Defeated";
-const FACTORY_OMNIBUS_DEFEATED          = "Factory_Omnibus_Defeated";
-const FACTORY_SHUTDOWN                  = "Factory_Shutdown"; //1 if shutdown, 2 if overloaded.
-const FACTORY_INCUBUS_BRIBED            = "Factory_Incubus_Bribed";
-const FACTORY_TAKEN_LACTAID             = "Factory_Taken_Lactaid";
-const FACTORY_TAKEN_GROPLUS             = "Factory_Taken_GroPlus";
-const FACTORY_MILKER_BUILT              = "Factory_Milker_Built";
-
-//------------
 // CAMP FLAGS
 //------------
 
 const CAMP_WALL_PROGRESS                = "Camp_Wall_Progress";
+
+//------------
+// SPELLS
+//------------
+
+//const KNOWS_AROUSE                      = "Knows_Arouse";
+//const KNOWS_HEAL                        = "Knows_Heal";
+//const KNOWS_MIGHT                       = "Knows_Might";
+//const KNOWS_CHARGE                      = "Knows_Charge";
+//const KNOWS_BLIND                       = "Knows_Blind";
+//const KNOWS_WHITEFIRE                   = "Knows_Whitefire";
+
+const SPELLS_CAST                       = "Spells_Cast";
 
 //------------
 // FOLLOWERS
@@ -163,7 +166,8 @@ const INCUBATION_IMP                    = 432; //Time for standard imps. Imp lor
 // Pregnancy event arrays
 const INCUBATION_MOUSE_EVENT            = [336, 280, 216, 180, 120, 72, 48, 32]; // Event flags for Mouse Pregnancy
 const INCUBATION_AMILY_EVENT            = [150, 120, 100, 96, 90, 72, 48]; // Special array for Amily pregnancy in Town Ruins.
-const INCUBATION_SAND_WITCH_EVENT        = [142, 96];
+const INCUBATION_SAND_WITCH_EVENT       = [142, 96];
+const INCUBATION_TAMANI_EVENT           = [219, 96, 48];
 
 // Pregnancy types. Marks who did the impregnation
 const PREGNANCY_PLAYER                  = "Player"; // Marks the player impregnated someone
@@ -196,6 +200,19 @@ const LUMI_MET                          = "Lumi_Met";
 const WANDERER_MET                      = "Wanderer_Met";
 const WANDERER_DEMON                    = "Wanderer_Demon";
 const WANDERER_EPILOGUE                 = "Wanderer_Epilogue";
+
+//Tamani and Tamani's Daughters
+const TAMANI_MET                        = "Tamani_Met";
+const TAMANI_TIME_OUT                   = "Tamani_Time_Out";
+const TAMANI_BAD_ENDED                  = "Tamani_Bad_Ended";
+const TAMANI_DAUGHTER_PREGGO_COUNTDOWN  = "Tamani_Daughter_Preggo_Countdown";
+const TAMANI_NUMBER_OF_DAUGHTERS        = "Tamani_Number_Of_Daughters";
+const TAMANI_TIMES_HYPNOTIZED           = "Tamani_Times_Hypnotized";
+const TAMANI_DEFEAT_COUNTER             = "Tamani_Defeat_Counter";
+const TAMANI_TIMES_IMPREGNATED          = "Tamani_Times_Impregnated";
+const TAMANI_PREGNANCY_COUNT            = "Tamani_Pregnancy_Count"; //Current litter
+const TIMES_OVIPOSITED_TAMANI           = "Times_Oviposited_Tamani";
+
 
 //Whitney & Farm
 const FARM_DISABLED                     = "Farm_Disabled";
@@ -231,10 +248,18 @@ const MINOTAUR_CUM_ADDICTION_STATE      = "Minotaur_Cum_Addiction_State"; // Wha
 const MINOTAUR_CUM_ADDICTION_TRACKER       = "Minotaur_Cum_Addiction_Tracker"; //How much cum? (0-120)
 const TIME_SINCE_LAST_CONSUMED_MINOTAUR_CUM = "Time_Since_Last_Consumed_Minotaur_Cum" // Timer for cum problems
 const EVER_DRANK_MINOCUM                    = "Ever_Drank_Minocum" // Used for playerinfo menu
+const MINOTAUR_CUM_REALLY_ADDICTED_STATE    = "Minotaur_Cum_Really_Addicted_State"
 
 //Naga
 const NAGA_LAST_ENCOUNTERED_AS_NAGA     = "Naga_Last_Encountered_As_Naga"; //0 indicates player isn't naga, 1 indicates player is naga, 2 indicates player is naga but hostile.
 const NAGA_FUCKED_AS_NAGA               = "Naga_Fucked_As_Naga";
+
+//Sand Trap
+const SANDTRAP_LOSS_REPEATS             = "Sandtrap_Loss_Repeats"; //Used for Sandtrap bad end tracking
+const TIMES_ENCOUNTERED_SAND_TRAPS      = "Times_Encountered_Sand_Traps";
+const TRAP_LEVEL                        = "Trap_Level"; // What level of the sand trap are you on?
+const CLIMBED_TRAP_THIS_ROUND           = "Climbed_Trap_This_Round"; // Did you try climbing this round?
+const FERTILE_SANDTRAP                  = "Fertile_Sandtrap";
 
 //Sand Witch
 const SAND_WITCH_RAPED                  = "Sand_Witch_Raped";
@@ -257,13 +282,39 @@ const TIMES_THOUGHT_ABOUT_GOO_RECRUITMENT = "Times_Thought_About_Goo_Recruitment
 //Green Goo
 const TIMES_MET_OOZE                    = "Times_Met_Ooze";
 
+//Oasis Demons
+const OASIS_DEMONS_ACCEPT               = "Oasis_Demons_Accept";
+
+//Tentacle Beast
+const TENTACLE_COOL_DOWN                = "Tentacle_Cool_Down";
+const TENTACLE_BIND                     = "Tentacle_Bind";
+const TENTACLE_BAD_END                  = "Tentacle_Bad_End";
+const TENTACLE_GENDERLESS_CENTAUR       = "Tentacle_Genderless_Centaur" //Unknown flag 00247;
+
+//Worms
+
+const WORM_INFEST_ATTEMPTED             = "Worm_Infest_Attempted";
+const MET_WORMS                         = "Met_Worms";
+const WORMS_FETISH                      = "Worms_Fetish"; //0 = Not Encountered, 1 = Partially on, 2 = Fully on, 3 = Off
 
 //------------
 // KEY ITEMS
 //------------
 // Racks
 
-const HAS_KEY_ITEM                          = "Has_Key_Item" // Does the player have any key items?
-const HAS_ARMOR_RACK                        = "Has_Armor_Rack" // Does the player have the armor rack?
-const HAS_WEAPON_RACK                       = "Has_Weapon_Rack" // Does the player have the weapon rack?
-const HAS_EQUIPMENT_RACK                    = "Has_Equipment_Rack" // Does the player have the equipment rack?
+const HAS_KEY_ITEM                          = "Has_Key_Item"; // Does the player have any key items?
+const HAS_ARMOR_RACK                        = "Has_Armor_Rack"; // Does the player have the armor rack?
+const HAS_WEAPON_RACK                       = "Has_Weapon_Rack"; // Does the player have the weapon rack?
+const HAS_EQUIPMENT_RACK                    = "Has_Equipment_Rack"; // Does the player have the equipment rack?
+
+//---------
+// PLOT VARIABLES
+//---------
+
+const FACTORY_SHUTDOWN                      = "Factory_Shutdown"; // Is the factory on, shut down, or destroyed?
+
+//---------
+// PLAYER TRANSFORMATIONS
+//---------
+
+const HAS_BLACK_NIPPLES                     = "Has_Black_Nipples";

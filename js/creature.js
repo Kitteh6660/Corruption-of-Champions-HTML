@@ -66,6 +66,8 @@ function Creature() {
     this.armType = 0;
     //Extra parts
     this.antennae = 0;
+    this.clawType = CLAW_TYPE_NORMAL;
+    this.clawTone = "";
     this.hornType = 0;
     this.horns = 0;
     this.gills = false;
@@ -3697,7 +3699,6 @@ Creature.prototype.eggs = function()
         return this.perkValue(PerkLib.SpiderOvipositor, 1);
     else
         return this.perkValue(PerkLib.BeeOvipositor, 1);
-    return;
 }
 
 // Add eggs to the ovipositors
