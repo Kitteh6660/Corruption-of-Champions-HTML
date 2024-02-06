@@ -1265,17 +1265,21 @@ Creature.prototype.cumCapacity = function() {
     return cumCap;
 }
 
-Creature.prototype.inHeat = {
-    get inHeat() { return this.findStatusEffect(StatusEffects.Heat) >= 1; } // Setting to 0 was causing heat messages for the Imp scene.
-}
+Object.defineProperty(Creature.prototype, "inHeat", {
+    get: function () {
+        return this.findStatusEffect(StatusEffects.Heat) >= 0;
+    }
+});
 
-Creature.prototype.inRut = {
-    get inRut() { return this.findStatusEffect(StatusEffects.Rut) >= 0; }
-}
+Object.defineProperty(Creature.prototype, "inRut", {
+    get: function () {
+        return this.findStatusEffect(StatusEffects.Rut) >= 0;
+    }
+});
 
 Creature.prototype.bonusFertility = function() {
     var counter = 0;
-    if (this.inHeat())
+    if (this.inHeat)
         counter += this.statusEffectValue(StatusEffects.Heat, 1);
     if (this.findPerk(PerkLib.FertilityPlus) >= 0)
         counter += 15;

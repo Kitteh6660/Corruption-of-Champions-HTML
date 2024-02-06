@@ -14,9 +14,9 @@ Debug.doDebug = function() {
     outputText("Have an armor rack? " + gameFlags[HAS_ARMOR_RACK] + "<br>");
     outputText("Have a weapon rack? " + gameFlags[HAS_WEAPON_RACK] + "<br>");
     outputText("Have a shield rack? " + gameFlags[HAS_EQUIPMENT_RACK] + "<br>");
-    outputText("Tamani Pregnancy Type Flag is: " + tamanipreg.pregnancyType + "<br>");
-    outputText("Tamani Pregnancy Incubation Flag is: " + tamanipreg.pregnancyIncubation + "<br>");
-    outputText("Tamani Pregnancy Event Number is: " + tamanipreg.pregnancyEventNum);
+    outputText("Tamani Pregnancy Type Flag is: " + tamani.pregnancyType + "<br>");
+    outputText("Tamani Pregnancy Incubation Flag is: " + tamani.pregnancyIncubation + "<br>");
+    outputText("Tamani Pregnancy Event Number is: " + tamani.pregnancyEventNum);
     menu();
     addButton(0, "Gender", Debug.genderChange, null, null, null, "Change the Player's Gender.");
     addButton(1, "Fight", Debug.fightCreature, null, null, null, "Fight a creature.");
@@ -107,10 +107,10 @@ Debug.changeStats = function() {
 Debug.pregTest = function() {
     clearOutput();
     outputText("Knocking up Tamani<br>");
-    tamanipreg.knockUpForce(PREGNANCY_PLAYER, 216, INCUBATION_TAMANI_EVENT);
-    tamanipreg.eventFill(INCUBATION_TAMANI_EVENT);
-    outputText("Pregnancy Type Flag is: " + tamanipreg.pregnancyType + "<br>");
-    outputText("Pregnancy Incubation Flag is: " + tamanipreg.pregnancyIncubation + "<br>");
+    tamani.knockUpForce(PREGNANCY_PLAYER, 216, INCUBATION_TAMANI_EVENT);
+    tamani.eventFill(INCUBATION_TAMANI_EVENT);
+    outputText("Pregnancy Type Flag is: " + tamani.pregnancyType + "<br>");
+    outputText("Pregnancy Incubation Flag is: " + tamani.pregnancyIncubation + "<br>");
     doNext(Debug.doDebug);
 };
 

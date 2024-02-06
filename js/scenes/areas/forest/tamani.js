@@ -96,7 +96,7 @@ function Tamani() {
 }
 Tamani.prototype = new Creature();
 Tamani.prototype.constructor = Tamani;
-var tamanipreg = new Tamani(); //Constant instance of Tamani solely for pregnancy tracking. There may be a better way to do this.
+var tamani = new Tamani(); //Constant instance of Tamani solely for pregnancy tracking. There may be a better way to do this.
 
 
 
@@ -210,7 +210,7 @@ TamaniScene.tamaniVictoryMenu = function() {
         addButton(0, "Fuck", TamaniScene.tamaniSexWon);
         if (player.cockThatFits(monster.analCapacity()) >= 0) addButton(1, "Buttfuck", TamaniScene.tamaniAnalSex);
         else addButtonDisabled(1, "Buttfuck", player.cockTotal() == 1 ? "Your cock is too big to fit in Tamani's ass." : "None of your cocks will fit in Tamani's ass.");
-        if (!tamanipreg.isPregnant() && player.canOvipositSpider()) addButton(2, "Lay Eggs", TamaniScene.tamaniBeaten);
+        if (!tamani.isPregnant() && player.canOvipositSpider()) addButton(2, "Lay Eggs", TamaniScene.tamaniBeaten);
         if (gameFlags[TAMANI_DEFEAT_COUNTER] >= 4 && monster.HP <= 0) addButton(3, "NO MORE!", TamaniScene.killTamaniChoice);
         addButton(4, "Leave", cleanupAfterCombat);
     }
@@ -369,7 +369,7 @@ TamaniScene.postTamaniRemoval = function() {
     outputText("<br><br>With Tamani no more, you take her satchel and return to your camp.");
     monster.XP += 100; //Gain more XP as Tamani's removed from the game.
     player.createKeyItem("Tamani's Satchel", 2, 1, 1, 100); // GAIN SATCHEL
-    if (tamanipreg.isPregnant()) tamanipreg.knockUpForce(0,0); //Clear Tamani Pregnancy.
+    if (tamani.isPregnant()) tamani.knockUpForce(0,0); //Clear Tamani Pregnancy.
     cleanupAfterCombat();
 };
 
@@ -403,7 +403,7 @@ TamaniScene.tamaniBeaten = function() {
     outputText("\n\nAt last, the bloated bitch slides into the gooey green puddle with a splash, freeing your ovipositor to retract.  She immediately begins snoring, clearly as satisfied as you.  What a strange creature.");
     gameFlags[TIMES_OVIPOSITED_TAMANI]++;
     //Don't encounter Tamani for 3 days if fertilized
-    if (player.fertilizedEggs() == 0) tamanipreg.knockUpForce(PREGNANCY_DRIDER_EGGS, 72);
+    if (player.fertilizedEggs() == 0) tamani.knockUpForce(PREGNANCY_DRIDER_EGGS, 72);
     player.dumpEggs();
     cleanupAfterCombat();
     player.orgasm();
@@ -837,7 +837,7 @@ TamaniScene.encounterTamani = function() {
         TamaniScene.tamaniMaleFirstEncounter();
     }
     else {
-        switch (tamanipreg.pregnancyEventNum) {
+        switch (tamani.pregnancyEventNum) {
             case  2: TamaniScene.tamaniPregnantEncounter();	break;	//She's moderately pregnant
             case  3: TamaniScene.tamaniBirthScene(); break;		//She's close to giving birth so do it now
             default: TamaniScene.tamaniMaleRepeatEncounter();		//She's not pregnant or is only slightly pregnant
@@ -1028,7 +1028,7 @@ TamaniScene.tamaniMaleRepeatEncounter = function() {
     //spriteSelect(56); TODO SPRITE
     clearOutput();
     //(IF FUCKED - check to see if she's pregnant or has given birth)
-    if (tamanipreg.isPregnant() || gameFlags[TAMANI_NUMBER_OF_DAUGHTERS] > 0) outputText("While exploring, you're startled by the feeling of tiny hands stroking the insides of your thighs.  You look down and find Tamani there, grinning wolfishly,  \"<i>Ready for another fuck, big " + player.mf("boy", "girl") + "?\"<br><br>", false);
+    if (tamani.isPregnant() || gameFlags[TAMANI_NUMBER_OF_DAUGHTERS] > 0) outputText("While exploring, you're startled by the feeling of tiny hands stroking the insides of your thighs.  You look down and find Tamani there, grinning wolfishly,  \"<i>Ready for another fuck, big " + player.mf("boy", "girl") + "?\"<br><br>", false);
     // Else check for hypnoslut scene (large hypnosis number, then 50% chance)
     else outputText("While exploring, you're startled by the feeling of tiny hands stroking the insides of your thighs.  You look down and find Tamani the goblin there, grinning with desire, \"<i>Ready to stuff me with cum?  I'm not taking no for an answer this time.</i>\"<br><br>", false);
     if (gameFlags[TAMANI_TIMES_HYPNOTIZED] > 19 && rand(2) == 0) {
@@ -1058,9 +1058,9 @@ TamaniScene.tamaniStartFight = function() {
 //----------
 
 TamaniScene.tamaniKnockUp = function() {
-    if (tamanipreg.isPregnant()) return; //Already preggers
-    tamanipreg.knockUpForce(PREGNANCY_PLAYER, 216, INCUBATION_TAMANI_EVENT); //Nine day long pregnancy
-    tamanipreg.eventFill(INCUBATION_TAMANI_EVENT); //Converts hours into minutes for finer event tracking.
+    if (tamani.isPregnant()) return; //Already preggers
+    tamani.knockUpForce(PREGNANCY_PLAYER, 216, INCUBATION_TAMANI_EVENT); //Nine day long pregnancy
+    tamani.eventFill(INCUBATION_TAMANI_EVENT); //Converts hours into minutes for finer event tracking.
     //Determine how many kids...
     gameFlags[TAMANI_PREGNANCY_COUNT] = 2;
     var cum = player.cumQ();
@@ -1173,12 +1173,12 @@ TamaniScene.tamaniBirthScene = function() {
 };
 
 TamaniScene.tamaniGivesBirth = function() {
-    if (tamanipreg.pregnancyType == PREGNANCY_PLAYER) { //Don't want drider eggs to add to her daughers
+    if (tamani.pregnancyType == PREGNANCY_PLAYER) { //Don't want drider eggs to add to her daughers
         gameFlags[TAMANI_NUMBER_OF_DAUGHTERS] += gameFlags[TAMANI_PREGNANCY_COUNT];
         gameFlags[TAMANI_PREGNANCY_COUNT] = 0;
         gameFlags[TAMANI_TIMES_IMPREGNATED]++;
     }
-    tamanipreg.knockUpForce(0, 0); //Clear Pregnancy
+    tamani.knockUpForce(0, 0); //Clear Pregnancy
 };
 
 //--------

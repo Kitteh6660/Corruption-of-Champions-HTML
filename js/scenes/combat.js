@@ -101,8 +101,8 @@ flee = function(callHook) { //There are 4 states. Undefined means proceed to esc
         outputText("You'd like to run, but you can't scale the walls of the pit with so many demonic hands pulling you down!");
         success = null;
     }
-    if (flags[UNKNOWN_FLAG_NUMBER_00329] == 1 && (monster.refName == "minotaur gang" || monster.refName == "minotaur tribe")) {
-        flags[UNKNOWN_FLAG_NUMBER_00329] = 0;
+    if (/*gameFlags[UNKNOWN_FLAG_NUMBER_00329] == 1 && (*/monster.refName == "minotaur gang" || monster.refName == "minotaur tribe"/*)*/) {
+        //gameFlags[UNKNOWN_FLAG_NUMBER_00329] = 0;
         //(Free run away)
         outputText("You slink away while the pack of brutes is arguing. Once they finish that argument, they'll be sorely disappointed!");
         success = true;
