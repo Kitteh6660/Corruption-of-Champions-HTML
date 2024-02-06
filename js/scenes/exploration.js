@@ -56,21 +56,17 @@ Areas.GenericExploration.tryDiscover = function() {
             return;
         }
         //Find encounters
-        if (rand(100) > 0) {
-            switch(rand(4)) {
-                case 0:
-                    Areas.GenericExploration.genericGobImpEncounters();
-                    break;
-                case 1:
-                    GiacomoScene.giacomoEncounter();
-                    break;
-                case 2:
-                case 3:
-            }
-        }
-        else {
-            //Easter egg
-            outputText("You wander around, fruitlessly searching for new places.");
+        switch(rand(4)) {
+            case 0:
+                Areas.GenericExploration.genericGobImpEncounters();
+                break;
+            case 1:
+                GiacomoScene.giacomoEncounter();
+                break;
+            case 2:
+            case 3:
+                outputText("You wander around, fruitlessly searching for new places.");
+                break;
         }
     }
 }
